@@ -14,10 +14,10 @@ use strict ;
 use Time::HiRes ;
 
 eval 'use HTML::Template ; 1' or  # HTMLをテンプレート化
-	printresult('ERROR : cannot load HTML::Template') ;
+	print_result('ERROR : cannot load HTML::Template') ;
 
 eval 'use LWP::Simple ; 1' or     # 曖昧検索サーバとの接続に使用
-	printresult('ERROR : cannot load LWP::Simple') ;
+	print_result('ERROR : cannot load LWP::Simple') ;
 
 my @timer ;                       # 実行時間計測用
 my $timestamp = timestamp() ;     # CGIを実行した時刻
@@ -32,7 +32,7 @@ my %db_fullname = (               # データベースの正式名
 #- ▲ モジュール読み込みと変数の初期化
 
 #- ▼ リクエストからパラメータを取得
-push @timer, [Time::HiRes::time(), 'start;'] ;                       #===== 実行時間計測 =====
+push @timer, [Time::HiRes::time(), 'start;'] ;           #===== 実行時間計測 =====
 
 my %query = get_query_parameters() ;  # HTTPリクエストからパラメータを取得
 
@@ -56,39 +56,27 @@ my $download =                        # ファイルとしてダウンロード�
 #-- △ 使用するパラメータ一覧
 #- ▲ リクエストからパラメータを取得
 
-
-#- 引数なし：トップページ表示
-
-
-if (not $accession and not $userseq){
-
-	printresult('test') ;
+#- ▼ パラメータに応じて画面遷移
+#-- 引数なし：トップページ
+if (not $userseq and not $accession){
+	print_top_html() ;
 }
 
-#- accession=配列を取得してトップページ表示
-elsif ($accession and $format eq 'txt'){
-	printresult('test') ;
+#-- accession有り&format=txt：配列を取得してテキストを出力
+elsif (not $userseq and $format eq 'txt'){
+	print_result('FASTA text from NCBI.') ;  # temporary
 }
 
-
-#- accession：配列を取得してテキストを出力
-elsif ($accession){
-	printresult('test') ;
+#-- accession有り：配列を取得してトップページ表示
+elsif (not $userseq){
+	print_top_html($accession) ;
 }
 
-
-
-
-#- userseq：配列設計を行い結果を出力
-elsif ($userseq){
-	printresult('test') ;
-}
-
+#-- userseq有り：配列設計を行い結果を出力
 else {
-	printresult('test') ;
+	print_result('Table of result sequences.') ;  # temporary
 }
-
-#- ▲ 結果出力
+#- ▲ パラメータに応じて画面遷移
 
 exit ;
 
@@ -106,7 +94,7 @@ if (defined $ENV{'REQUEST_METHOD'} and
 	defined $ENV{'CONTENT_LENGTH'}
 ){
 	eval 'read(STDIN, $buffer, $ENV{"CONTENT_LENGTH"})' or
-		printresult('ERROR : get_query_parameters() : read failed') ;
+		print_result('ERROR : get_query_parameters() : read failed') ;
 } elsif (defined $ENV{'QUERY_STRING'}){
 	$buffer = $ENV{'QUERY_STRING'} ;
 }
@@ -124,32 +112,67 @@ foreach (@query){
 return %query ;
 } ;
 # ====================
-sub printresult {  # $format (global) にあわせて結果を出力
-($format eq 'txt' ) ? print_txt($_[0])  :
-($format eq 'json') ? print_json($_[0]) :
-                      print_html($_[0]) ;  # default format: html
-exit ;
-} ;
-# ====================
-sub print_txt {  # TXTを出力
-# ■■■ 未実装 ■■■
-print_html($_[0]) ;  # temporary
-exit ;
-} ;
-# ====================
-sub print_json {  # JSONを出力
-# ■■■ 未実装 ■■■
-print_html($_[0]) ;  # temporary
-exit ;
-} ;
-# ====================
-sub print_html {  # HTMLを出力
+sub print_top_html {  # トップページHTMLを出力
+my $accession = $_[0] // '' ;
 
-#- ▼ メモ
-# ・検索結果ページをHTMLで出力
-# ・引数が ERROR で始まる場合はエラーページを出力
-#- ▲ メモ
+#- ▼ Accession番号からFASTAを取得
+my $userseq = get_sequence($accession) ||
+'>sample sequence
+ggctgccaag aacctgcagg aggcagaaga atggtacaaa tccaagtttg ctgacctctc
+tgaggctgcc aaccggaaca atgacgccct gcgccaggca aagcaggagt ccactgagta
+ccggagacag gtgcagtccc tcacctgtga agtggatgcc cttaaaggaa ccaatgagtc
+cctggaacgc cagatgcgtg aaatggaaga gaactttgcc gttgaagctg ctaactacca
+agacactatt ggccgcctgc aggatgagat tcagaatatg aaggaggaaa tggctcgtca
+ccttcgtgaa taccaagacc tgctcaatgt taagatggcc cttgacattg agattgccac
+ctacaggaag ctgctggaag gcgaggagag caggatttct ctgcctcttc caaacttttc
+ctccctgaac ctgagggaaa ctaatctgga ttcactccct ctggttgata cccactcaaa
+aaggacactt ctgattaaga cggttgaaac tagagatgga caggttatca acgaaacttc
+tcagcatcac gatgaccttg aataaaaatt gcacacactc agtgcagcaa tatattacca
+' ;
+#- ▲ Accession番号からFASTAを取得
 
+#- ▼ HTML出力
+my $template = HTML::Template->new(filename => 'template/top.tmpl') ;
+
+$template->param(
+	ACCESSION => $accession,
+	USERSEQ   => $userseq
+) ;
+
+print "Content-type: text/html; charset=utf-8\n\n" ;
+print $template->output ;
+#- ▲ HTML出力
+
+exit ;
+} ;
+# ====================
+sub get_sequence {  # Accession番号からFASTAを取得
+my $accession = $_[0] or return ;
+
+# ■■■ 未実装 ■■■
+return "$accession.fasta" ;  # temporary
+} ;
+# ====================
+sub print_result {  # $format (global変数) にあわせて結果を出力
+($format eq 'txt' ) ? print_result_txt($_[0])  :
+($format eq 'json') ? print_result_json($_[0]) :
+                      print_result_html($_[0]) ;  # default format: html
+exit ;
+} ;
+# ====================
+sub print_result_txt {  # TXTを出力
+# ■■■ 未実装 ■■■
+print_result_html($_[0]) ;  # temporary
+exit ;
+} ;
+# ====================
+sub print_result_json {  # JSONを出力
+# ■■■ 未実装 ■■■
+print_result_html($_[0]) ;  # temporary
+exit ;
+} ;
+# ====================
+sub print_result_html {  # HTMLを出力
 my $html = $_[0] // '' ;
 
 #- ▼ HTML出力

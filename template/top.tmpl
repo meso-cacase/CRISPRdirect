@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html>
+
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta http-equiv='Content-Style-Type' content='text/css'>
+<meta name='author' content='Yuki Naito'>
+<title>CRISPRdirect</title>
+<style type='text/css'>
+<!--
+	* { font-family:verdana,arial,helvetica,sans-serif }
+	p,table,div,textarea { font-size:8pt }
+	a       { text-decoration:none; color:#003399 }
+	a:hover { text-decoration:none; color:maroon  }
+	.b      { text-decoration:none; color:black   }
+-->
+</style>
+</head>
+
+<body>
+
+<div>
+<a href='.'><img src='ocean.jpg' height=80 width='100%'></a>
+<a href='.' class=b><font size=5>CRISPRdirect &beta; </font></a>
+	rational design of CRISPR/Cas target.
+</div>
+
+<hr><!-- __________________________________________________ -->
+
+<div>
+<form name=getsequence method=GET action='http://altair.dbcls.jp/showvalue.cgi'>
+	<p>Enter an accession number and retrieve sequence:<br>
+	<input type=text name=accession size=20 maxlength=50 value='<TMPL_VAR NAME=ACCESSION>'>
+	<input type=submit value='retrieve sequence'>
+	</p>
+</form>
+</div>
+
+<div>
+<form name=crisprdirect method=POST action='http://altair.dbcls.jp/showvalue.cgi'>
+	<p>or Paste in a nucleotide sequence:<br>
+	<textarea name=userseq rows=15 cols=100>
+<TMPL_VAR NAME=USERSEQ></textarea>
+	</p>
+
+	<p>Specificity check:
+	<select name=db>
+		<option value=none         >none</option>
+		<option value=hg19 selected>Human genome, GRCh37/hg19 (Feb, 2009)</option>
+	</select>
+	</p>
+
+	<p><input type=submit value=design></p>
+</form>
+</div>
+
+<hr><!-- __________________________________________________ -->
+
+<p><font color=gray>CRISPRdirect &beta; |
+<a target='_blank' href='http://twitter.com/meso_cacase'>@meso_cacase</a> at 
+<a target='_blank' href='http://dbcls.rois.ac.jp/'>DBCLS</a>
+</font></p>
+
+</body>
+</html>
