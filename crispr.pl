@@ -147,10 +147,13 @@ exit ;
 } ;
 # ====================
 sub get_sequence {  # Accession番号からFASTAを取得
-my $accession = $_[0] or return ;
-
-# ■■■ 未実装 ■■■
-return "$accession.fasta" ;  # temporary
+my $accession = $_[0] or return '' ;
+$accession =~ /^[\w\.]+$/ or return "\nCannot retrieve sequence.\n" ;
+my $uri   = "http://130.14.29.110/sviewer/" .
+            "?report=fasta&retmode=text&val=$accession" ;
+            # 130.14.29.110 = www.ncbi.nlm.nih.gov DNS参照時間を短縮
+my $fasta = get($uri) || "\nCannot retrieve sequence.\n" ;
+return $fasta ;
 } ;
 # ====================
 sub print_result {  # $format (global変数) にあわせて結果を出力
