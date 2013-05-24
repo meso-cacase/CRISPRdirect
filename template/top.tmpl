@@ -3,9 +3,53 @@
 
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta http-equiv='Content-Script-Type' content='text/javascript'>
 <meta http-equiv='Content-Style-Type' content='text/css'>
 <meta name='author' content='Yuki Naito'>
 <title>CRISPRdirect</title>
+<script type='text/javascript'>
+<!--
+function retrieveSequence(){
+	acc = document.getElementById('acc').value ;
+	requestFile('', 'GET', './?format=txt&accession='+acc, true) ;
+}
+function requestFile(data, method, fileName, async){
+	var httpoj = createHttpRequest() ;
+	httpoj.onreadystatechange = function(){
+		if (httpoj.readyState==4){ 
+			on_loaded(httpoj) ;
+		}
+	}
+	httpoj.open(method, fileName, async) ;
+	httpoj.send(data) ;
+}
+function createHttpRequest(){
+	//for Win IE
+	if(window.ActiveXObject){
+		try {
+			//for MSXML2
+			return new ActiveXObject('Msxml2.XMLHTTP') ;
+		} catch (e) {
+			try {
+				//for MSXML
+				return new ActiveXObject('Microsoft.XMLHTTP') ;
+			} catch (e2) {
+				return null ;
+			}
+		}
+	} else if(window.XMLHttpRequest){
+		//other agents
+		return new XMLHttpRequest() ;
+	} else {
+		return null ;
+	}
+}
+function on_loaded(oj){
+	res  = oj.responseText ;
+	document.getElementById('useq').value = res ;
+}
+//-->
+</script>
 <style type='text/css'>
 <!--
 	* { font-family:verdana,arial,helvetica,sans-serif }
@@ -27,19 +71,45 @@
 
 <hr><!-- __________________________________________________ -->
 
+<script type='text/javascript'>
+<!--
+var ua = navigator.userAgent.toLowerCase() ;
+if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
+	document.write('<div>') ;
+	document.write('<form name=getsequence method=GET action=".">') ;
+	document.write('	<p>Enter an accession number and retrieve sequence:<br>') ;
+	document.write('	<input type=text id=acc name=accession size=20 maxlength=50') ;
+	document.write('		value="<TMPL_VAR NAME=ACCESSION>">') ;
+	document.write('	<input type=submit value="retrieve sequence">') ;
+	document.write('	<\/p>') ;
+	document.write('<\/form>') ;
+	document.write('<\/div>') ;
+} else {
+	document.write('	<p>Enter an accession number and retrieve sequence:<br>') ;
+	document.write('	<input type=text id=acc name=accession size=20 maxlength=50 value=""') ;
+	document.write('		onkeypress="if(event.keyCode==13){retrieveSequence()}">') ;
+	document.write('	<input type=button value="retrieve sequence"') ;
+	document.write('		onclick="retrieveSequence()">') ;
+	document.write('	<\/p>') ;
+}
+//-->
+</script>
+
+<!-- <noscript> -->
 <div>
 <form name=getsequence method=GET action='.'>
 	<p>Enter an accession number and retrieve sequence:<br>
-	<input type=text name=accession size=20 maxlength=50 value='<TMPL_VAR NAME=ACCESSION>'>
+	<input type=text id=acc name=accession size=20 maxlength=50 value='<TMPL_VAR NAME=ACCESSION>'>
 	<input type=submit value='retrieve sequence'>
 	</p>
 </form>
 </div>
+<!-- </noscript> -->
 
 <div>
 <form name=crisprdirect method=POST action='http://altair.dbcls.jp/showvalue.cgi'>
 	<p>or Paste in a nucleotide sequence:<br>
-	<textarea name=userseq rows=15 cols=100>
+	<textarea id=useq name=userseq rows=15 cols=100>
 <TMPL_VAR NAME=USERSEQ></textarea>
 	</p>
 

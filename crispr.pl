@@ -45,45 +45,51 @@ my %db_fullname = (               # データベースの正式名
 #- ▼ リクエストからパラメータを取得
 push @timer, [Time::HiRes::time(), 'start;'] ;           #===== 実行時間計測 =====
 
-my %query = get_query_parameters() ;  # HTTPリクエストからパラメータを取得
+my %query = get_query_parameters() ;   # HTTPリクエストからパラメータを取得
 
 #-- ▽ 使用するパラメータ一覧
-my $accession =                       # Accession番号: NM_003380, ...
-	$query{'accession'} // '' ;
+my $accession = $query{'accession'} ;  # Accession番号: NM_003380, ...
 
-my $userseq =                         # 塩基配列: (FASTA形式または塩基配列のみ)
-	$query{'userseq'} // '' ;
+my $userseq   = $query{'userseq'} ;    # 塩基配列: (FASTA形式または塩基配列のみ)
 
-my $db = lc(                          # 特異性確認のデータベース: hg19, mm10, ...
+my $db = lc(                           # 特異性確認のデータベース: hg19, mm10, ...
 	$query{'db'} // '') ;
 
-my $format =                          # 出力フォーマット: html, txt, json
+my $format =                           # 出力フォーマット: html, txt, json
 	($query{'format'} and $query{'format'} =~ /^(html|txt|json)$/i) ?
 	lc($query{'format'}) : '' ;
 
-my $download =                        # ファイルとしてダウンロードするか: (boolean)
+my $download =                         # ファイルとしてダウンロードするか: (boolean)
 	($query{'download'} and $format =~ /^(txt|json)$/) ?
 	$query{'download'} : '' ;
 #-- △ 使用するパラメータ一覧
 #- ▲ リクエストからパラメータを取得
 
 #- ▼ パラメータに応じて画面遷移
-#-- 引数なし：トップページ
-if (not $userseq and not $accession){
-	print_top_html() ;
+#-- userseqなしでformat=txt：FASTAを取得してテキスト出力
+if (not defined $userseq and $format eq 'txt'){
+	#--- ▽ Accession番号からFASTAを取得
+	my $fasta = (not $accession) ?
+	            	$sampleseq :
+	            (eval 'require GetSequence ; 1') ?
+	            	GetSequence::accession2fasta($accession) || $sampleseq :
+	            	"ERROR : cannot load GetSequence\n" ;
+	#--- △ Accession番号からFASTAを取得
+
+	#--- ▽ TXT出力
+	print "Content-type: text/plain; charset=utf-8\n\n" ;
+	print $fasta ;
+	#--- △ TXT出力
+
+	exit ;
 }
 
-#-- accession有り&format=txt：配列を取得してテキストを出力
-elsif (not $userseq and $format eq 'txt'){
-	print_result('FASTA text from NCBI.') ;  # temporary
-}
-
-#-- accession有り：配列を取得してトップページ表示
-elsif (not $userseq){
+#-- userseqなし：トップページ表示、accessionありの場合は配列を取得
+elsif (not defined $userseq){
 	print_top_html($accession) ;
 }
 
-#-- userseq有り：配列設計を行い結果を出力
+#-- userseqあり：配列設計を行い結果を出力
 else {
 	print_result('Table of result sequences.') ;  # temporary
 }
@@ -127,10 +133,11 @@ sub print_top_html {  # トップページHTMLを出力
 my $accession = $_[0] // '' ;
 
 #- ▼ Accession番号からFASTAを取得
-eval 'require GetSequence ; 1' or  # FASTA取得に使用
-	print_result('ERROR : cannot load GetSequence') ;
-
-my $userseq = GetSequence::accession2fasta($accession) || $sampleseq ;
+my $userseq = (not $accession) ?
+              	$sampleseq :
+              (eval 'require GetSequence ; 1') ?
+              	GetSequence::accession2fasta($accession) || $sampleseq :
+              	"ERROR : cannot load GetSequence\n" ;
 #- ▲ Accession番号からFASTAを取得
 
 #- ▼ HTML出力
