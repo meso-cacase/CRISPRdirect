@@ -4,7 +4,7 @@
 #
 # 必要なモジュール:
 # HTML::Template
-# LWP::Simple
+# LWP::Simple (GetSequence.pm内で使用)
 #
 # 2013-04-18 Yuki Naito (@meso_cacase) 実装開始
 
@@ -16,11 +16,22 @@ use Time::HiRes ;
 eval 'use HTML::Template ; 1' or  # HTMLをテンプレート化
 	print_result('ERROR : cannot load HTML::Template') ;
 
-eval 'use LWP::Simple ; 1' or     # 曖昧検索サーバとの接続に使用
-	print_result('ERROR : cannot load LWP::Simple') ;
-
 my @timer ;                       # 実行時間計測用
 my $timestamp = timestamp() ;     # CGIを実行した時刻
+
+my $sampleseq =                   # トップページで表示するサンプル配列
+'>sample sequence
+ggctgccaag aacctgcagg aggcagaaga atggtacaaa tccaagtttg ctgacctctc
+tgaggctgcc aaccggaaca atgacgccct gcgccaggca aagcaggagt ccactgagta
+ccggagacag gtgcagtccc tcacctgtga agtggatgcc cttaaaggaa ccaatgagtc
+cctggaacgc cagatgcgtg aaatggaaga gaactttgcc gttgaagctg ctaactacca
+agacactatt ggccgcctgc aggatgagat tcagaatatg aaggaggaaa tggctcgtca
+ccttcgtgaa taccaagacc tgctcaatgt taagatggcc cttgacattg agattgccac
+ctacaggaag ctgctggaag gcgaggagag caggatttct ctgcctcttc caaacttttc
+ctccctgaac ctgagggaaa ctaatctgga ttcactccct ctggttgata cccactcaaa
+aaggacactt ctgattaaga cggttgaaac tagagatgga caggttatca acgaaacttc
+tcagcatcac gatgaccttg aataaaaatt gcacacactc agtgcagcaa tatattacca
+' ;
 
 my %db_fullname = (               # データベースの正式名
 	'hg19'   => 'Human genome, GRCh37/hg19 (Feb, 2009)',
@@ -116,19 +127,10 @@ sub print_top_html {  # トップページHTMLを出力
 my $accession = $_[0] // '' ;
 
 #- ▼ Accession番号からFASTAを取得
-my $userseq = get_sequence($accession) ||
-'>sample sequence
-ggctgccaag aacctgcagg aggcagaaga atggtacaaa tccaagtttg ctgacctctc
-tgaggctgcc aaccggaaca atgacgccct gcgccaggca aagcaggagt ccactgagta
-ccggagacag gtgcagtccc tcacctgtga agtggatgcc cttaaaggaa ccaatgagtc
-cctggaacgc cagatgcgtg aaatggaaga gaactttgcc gttgaagctg ctaactacca
-agacactatt ggccgcctgc aggatgagat tcagaatatg aaggaggaaa tggctcgtca
-ccttcgtgaa taccaagacc tgctcaatgt taagatggcc cttgacattg agattgccac
-ctacaggaag ctgctggaag gcgaggagag caggatttct ctgcctcttc caaacttttc
-ctccctgaac ctgagggaaa ctaatctgga ttcactccct ctggttgata cccactcaaa
-aaggacactt ctgattaaga cggttgaaac tagagatgga caggttatca acgaaacttc
-tcagcatcac gatgaccttg aataaaaatt gcacacactc agtgcagcaa tatattacca
-' ;
+eval 'require GetSequence ; 1' or  # FASTA取得に使用
+	print_result('ERROR : cannot load GetSequence') ;
+
+my $userseq = GetSequence::accession2fasta($accession) || $sampleseq ;
 #- ▲ Accession番号からFASTAを取得
 
 #- ▼ HTML出力
@@ -144,16 +146,6 @@ print $template->output ;
 #- ▲ HTML出力
 
 exit ;
-} ;
-# ====================
-sub get_sequence {  # Accession番号からFASTAを取得
-my $accession = $_[0] or return '' ;
-$accession =~ /^[\w\.]+$/ or return "\nCannot retrieve sequence.\n" ;
-my $uri   = "http://130.14.29.110/sviewer/" .
-            "?report=fasta&retmode=text&val=$accession" ;
-            # 130.14.29.110 = www.ncbi.nlm.nih.gov DNS参照時間を短縮
-my $fasta = get($uri) || "\nCannot retrieve sequence.\n" ;
-return $fasta ;
 } ;
 # ====================
 sub print_result {  # $format (global変数) にあわせて結果を出力
