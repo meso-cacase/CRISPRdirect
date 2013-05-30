@@ -91,7 +91,12 @@ elsif (not defined $userseq){
 
 #-- userseqあり：配列設計を行い結果を出力
 else {
-	print_result('Table of result sequences.') ;  # temporary
+	eval 'require CRISPRdirect ; 1' or
+		print_result('ERROR : cannot load CRISPRdirect') ;
+	my $result = CRISPRdirect::crispr_design($userseq, $db) ;
+
+	my $html = "<textarea rows=15 cols=100>$result</textarea>" ;  # temporary
+	print_result($html) ;                                         # temporary
 }
 #- ▲ パラメータに応じて画面遷移
 
@@ -131,6 +136,7 @@ return %query ;
 # ====================
 sub print_top_html {  # トップページHTMLを出力
 my $accession = $_[0] // '' ;
+$sampleseq ||= '' ;   # undefを回避
 
 #- ▼ Accession番号からFASTAを取得
 my $userseq = (not $accession) ?
@@ -156,9 +162,10 @@ exit ;
 } ;
 # ====================
 sub print_result {  # $format (global変数) にあわせて結果を出力
-($format eq 'txt' ) ? print_result_txt($_[0])  :
-($format eq 'json') ? print_result_json($_[0]) :
-                      print_result_html($_[0]) ;  # default format: html
+(defined $format and $format eq 'txt' ) ? print_result_txt($_[0])  :
+(defined $format and $format eq 'json') ? print_result_json($_[0]) :
+                                          print_result_html($_[0]) ;
+                                          # default format: html
 exit ;
 } ;
 # ====================
@@ -177,16 +184,12 @@ exit ;
 sub print_result_html {  # HTMLを出力
 my $html = $_[0] // '' ;
 
-#- ▼ HTML出力
 my $template = HTML::Template->new(filename => 'template/design.tmpl') ;
 
-$template->param(
-	HTML => $html
-) ;
+$template->param(HTML => $html) ;
 
 print "Content-type: text/html; charset=utf-8\n\n" ;
 print $template->output ;
-#- ▲ HTML出力
 
 exit ;
 } ;
