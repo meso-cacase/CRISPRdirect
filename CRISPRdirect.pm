@@ -14,7 +14,7 @@ sub crispr_design {
 #
 # usage: $tsv = crispr_design($userseq, $db) ;
 
-my $targetlength = 20 ;
+my $targetlength = 23 ;
 
 my $fasta = $_[0] or return '' ;
 my $db    = $_[1] // '' ;
@@ -30,7 +30,7 @@ foreach (1..length($seq) - $targetlength + 1){
 	my $pam       = substr($targetseq, -3) ;
 	my $tm        = tm_RNA(dna2rna($targetseq)) ;
 
-	$pam =~ /gg$/i and
+	$pam =~ /GG$/i and
 	push @targetlist, {
 		'start'    => $_,
 		'sequence' => $targetseq,
