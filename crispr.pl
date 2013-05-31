@@ -157,7 +157,7 @@ $userseq = (not $accession) ?
 #- ▲ Accession番号からFASTAを取得
 
 #- ▼ HTML出力
-my $template = HTML::Template->new(filename => 'template/top.tmpl') ;
+my $template = HTML::Template->new(filename => 'index.tmpl') ;
 
 $template->param(
 	ACCESSION => $accession,
