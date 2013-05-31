@@ -28,6 +28,7 @@ my @targetlist ;
 foreach (1..length($seq) - $targetlength + 1){
 	my $targetseq = substr($seq, $_ - 1, $targetlength) ;
 	my $pam       = substr($targetseq, -3) ;
+	my $tttt      = ($targetseq =~ /(AAAA|TTTT)/i) ? 'true' : 'false' ;
 	my $tm        = tm_RNA(dna2rna($targetseq)) ;
 
 	$pam =~ /GG$/i and
@@ -35,6 +36,7 @@ foreach (1..length($seq) - $targetlength + 1){
 		'start'    => $_,
 		'sequence' => $targetseq,
 		'pam'      => $pam,
+		'tttt'     => $tttt,
 		'tm'       => $tm
 	} ;
 }
@@ -43,7 +45,7 @@ foreach (1..length($seq) - $targetlength + 1){
 #- ▼ タブ区切りテキストを出力
 my $tsv =
 "# >$name
-# position	sequence	PAM	Tm
+# position	sequence	PAM	A(4)/T(4)	Tm
 #
 " ;
 foreach (@targetlist){
@@ -51,6 +53,7 @@ foreach (@targetlist){
 		$$_{'start'},
 		$$_{'sequence'},
 		$$_{'pam'},
+		$$_{'tttt'},
 		$$_{'tm'}
 	) ;
 	$tsv .= "\n" ;
