@@ -86,7 +86,7 @@ if (not defined $userseq and $format eq 'txt'){
 
 #-- userseqなし：トップページ表示、accessionありの場合は配列を取得
 elsif (not defined $userseq){
-	print_top_html($accession) ;
+	print_html($accession) ;
 }
 
 #-- userseqあり：配列設計を行い結果を出力
@@ -95,8 +95,14 @@ else {
 		print_result('ERROR : cannot load CRISPRdirect') ;
 	my $result = CRISPRdirect::crispr_design($userseq, $db) ;
 
-	my $html = "<textarea rows=15 cols=100>$result</textarea>" ;  # temporary
-	print_result($html) ;                                         # temporary
+	my $html =
+		"<h4>Results:</h4>\n"                                .
+		"<p>You can copy-paste into spreadsheet softwares\n" .
+		"(<i>e.g.</i> Excel) or text editors.</p>\n"         .
+		"<div>\n"                                            .
+		"<textarea rows=30 cols=100>$result</textarea>\n"    .
+		"</div>\n" ;
+	print_html($accession, $userseq, $html) ;
 }
 #- ▲ パラメータに応じて画面遷移
 
@@ -134,16 +140,20 @@ foreach (@query){
 return %query ;
 } ;
 # ====================
-sub print_top_html {  # トップページHTMLを出力
+sub print_html {  # HTMLを出力
 my $accession = $_[0] // '' ;
-$sampleseq ||= '' ;   # undefを回避
+my $userseq   = $_[1]       ;
+my $result    = $_[2] // '' ;
+
+$sampleseq ||= '' ;  # undefを回避
 
 #- ▼ Accession番号からFASTAを取得
-my $userseq = (not $accession) ?
-              	$sampleseq :
-              (eval 'require GetSequence ; 1') ?
-              	GetSequence::accession2fasta($accession) || $sampleseq :
-              	"ERROR : cannot load GetSequence\n" ;
+not defined $userseq and
+$userseq = (not $accession) ?
+           	$sampleseq :
+           (eval 'require GetSequence ; 1') ?
+           	GetSequence::accession2fasta($accession) || $sampleseq :
+           	"ERROR : cannot load GetSequence\n" ;
 #- ▲ Accession番号からFASTAを取得
 
 #- ▼ HTML出力
@@ -151,7 +161,8 @@ my $template = HTML::Template->new(filename => 'template/top.tmpl') ;
 
 $template->param(
 	ACCESSION => $accession,
-	USERSEQ   => $userseq
+	USERSEQ   => $userseq,
+	RESULT    => $result
 ) ;
 
 print "Content-type: text/html; charset=utf-8\n\n" ;
@@ -178,19 +189,6 @@ exit ;
 sub print_result_json {  # JSONを出力
 # ■■■ 未実装 ■■■
 print_result_html($_[0]) ;  # temporary
-exit ;
-} ;
-# ====================
-sub print_result_html {  # HTMLを出力
-my $html = $_[0] // '' ;
-
-my $template = HTML::Template->new(filename => 'template/design.tmpl') ;
-
-$template->param(HTML => $html) ;
-
-print "Content-type: text/html; charset=utf-8\n\n" ;
-print $template->output ;
-
 exit ;
 } ;
 # ====================
