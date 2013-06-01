@@ -1,0 +1,40 @@
+<h4>Results:</h4>
+<p>You can copy-paste into spreadsheet softwares
+(<i>e.g.</i> Excel) or text editors.</p>
+<div>
+<textarea rows=30 cols=100><TMPL_VAR NAME=RESULT></textarea>
+</div>
+
+<h4>Data Export:</h4>
+<div>
+
+<input type=hidden id=fmt name=format value="">
+
+<script type='text/javascript'>
+<!--
+	document.write(
+		'<ul>'                                                         +
+		'    <li><a href="javascript:void(0)" onclick="'               +
+		'            document.getElementById(\'fmt\').value=\'txt\';'  +
+		'            document.crisprdirect.submit();'                  +
+		'            return false;">'                                  +
+		'        Tab-delimited text</a>'                               +
+		'    <li><a href="javascript:void(0)" onclick="'               +
+		'            document.getElementById(\'fmt\').value=\'json\';' +
+		'            document.crisprdirect.submit();'                  +
+		'            return false;">'                                  +
+		'        JSON format</a>'                                      +
+		'</ul>'
+	) ;
+//-->
+</script>
+
+<noscript>
+<ul>
+	<li>Tab-delimited text:
+		<input type=submit name=format value='txt'>
+	<li>JSON format:
+		<input type=submit name=format value='json'>
+</ul>
+</noscript>
+</div>

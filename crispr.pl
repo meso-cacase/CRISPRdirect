@@ -95,14 +95,22 @@ else {
 		print_result('ERROR : cannot load CRISPRdirect') ;
 	my $result = CRISPRdirect::crispr_design($userseq, $db) ;
 
-	my $html =
-		"<h4>Results:</h4>\n"                                .
-		"<p>You can copy-paste into spreadsheet softwares\n" .
-		"(<i>e.g.</i> Excel) or text editors.</p>\n"         .
-		"<div>\n"                                            .
-		"<textarea rows=30 cols=100>$result</textarea>\n"    .
-		"</div>\n" ;
-	print_html($accession, $userseq, $html) ;
+	#--- TXT出力
+	if ($format eq 'txt'){
+		print_txt($accession, $userseq, $result) ;
+	}
+
+	#--- JSON出力
+	elsif ($format eq 'json'){
+		print_json($accession, $userseq, $result) ;
+	}
+
+	#--- HTML出力
+	else {
+		my $template = HTML::Template->new(filename => 'result.tmpl') ;
+		$template->param(RESULT => $result) ;
+		print_html($accession, $userseq, $template->output) ;
+	}
 }
 #- ▲ パラメータに応じて画面遷移
 
@@ -172,23 +180,25 @@ print $template->output ;
 exit ;
 } ;
 # ====================
-sub print_result {  # $format (global変数) にあわせて結果を出力
-(defined $format and $format eq 'txt' ) ? print_result_txt($_[0])  :
-(defined $format and $format eq 'json') ? print_result_json($_[0]) :
-                                          print_result_html($_[0]) ;
-                                          # default format: html
+sub print_txt {  # TXTを出力
+my $accession = $_[0] // '' ;
+my $userseq   = $_[1] // '' ;
+my $result    = $_[2] // '' ;
+
+print "Content-type: text/plain; charset=utf-8\n\n" ;
+print "$result\n" ;
+
 exit ;
 } ;
 # ====================
-sub print_result_txt {  # TXTを出力
-# ■■■ 未実装 ■■■
-print_result_html($_[0]) ;  # temporary
-exit ;
-} ;
-# ====================
-sub print_result_json {  # JSONを出力
-# ■■■ 未実装 ■■■
-print_result_html($_[0]) ;  # temporary
+sub print_json {  # JSONを出力
+my $accession = $_[0] // '' ;
+my $userseq   = $_[1] // '' ;
+my $result    = $_[2] // '' ;
+
+print "Content-type: text/plain; charset=utf-8\n\n" ;  # temporary
+print "$result\n" ;
+
 exit ;
 } ;
 # ====================

@@ -113,8 +113,8 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 </div>
 </noscript>
 
-<div>
 <form name=crisprdirect method=POST action='.'>
+<div>
 	<p>or Paste in a nucleotide sequence:<br>
 	<textarea id=useq name=userseq rows=15 cols=100>
 <TMPL_VAR NAME=USERSEQ></textarea>
@@ -129,10 +129,10 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 
 	<input type=hidden id=acc2 name=accession value="<TMPL_VAR NAME=ACCESSION>">
 	<p><input type=submit value=design></p>
-</form>
 </div>
 
 <TMPL_VAR NAME=RESULT>
+</form>
 
 <hr><!-- __________________________________________________ -->
 
