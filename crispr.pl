@@ -16,6 +16,9 @@ use Time::HiRes ;
 eval 'use HTML::Template ; 1' or  # HTMLをテンプレート化
 	print_result('ERROR : cannot load HTML::Template') ;
 
+eval 'use JSON::XS ; 1' or        # JSON出力用
+	print_result('ERROR : cannot load JSON::XS') ;
+
 my @timer ;                       # 実行時間計測用
 my $timestamp = timestamp() ;     # CGIを実行した時刻
 
@@ -196,8 +199,23 @@ my $accession = $_[0] // '' ;
 my $userseq   = $_[1] // '' ;
 my $result    = $_[2] // '' ;
 
-print "Content-type: text/plain; charset=utf-8\n\n" ;  # temporary
-print "$result\n" ;
+my @result = split /\n/, $result ;
+@result = grep(!/^#/, @result) ;
+
+my @json ;
+foreach (@result){
+	my ($start, $sequence, $pam, $tttt, $tm) = split /\t/ ;
+	push @json, {
+		position => $start,
+		sequence => $sequence,
+		pam      => $pam,
+		tttt     => $tttt,
+		tm       => $tm
+	}
+}
+
+print "Content-type: application/json; charset=utf-8\n\n" ;
+print JSON::XS->new->canonical->utf8->encode({results  => \@json}) ;
 
 exit ;
 } ;
