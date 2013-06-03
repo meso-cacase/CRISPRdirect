@@ -8,24 +8,35 @@
 <h4>Data Export:</h4>
 <div>
 
-<input type=hidden id=fmt name=format value="">
+<input type=hidden name=format value="">
 
 <script type='text/javascript'>
 <!--
-	document.write(
-		'<ul>'                                                         +
-		'    <li><a href="javascript:void(0)" onclick="'               +
-		'            document.getElementById(\'fmt\').value=\'txt\';'  +
-		'            document.crisprdirect.submit();'                  +
-		'            return false;">'                                  +
-		'        Tab-delimited text</a>'                               +
-		'    <li><a href="javascript:void(0)" onclick="'               +
-		'            document.getElementById(\'fmt\').value=\'json\';' +
-		'            document.crisprdirect.submit();'                  +
-		'            return false;">'                                  +
-		'        JSON format</a>'                                      +
-		'</ul>'
-	) ;
+function export_txt(){
+	w = window.open('', 'dataexport') ;
+	w.onLoad=openformat('txt') ;
+}
+function export_json(){
+	w = window.open('', 'dataexport') ;
+	w.onLoad=openformat('json') ;
+}
+function openformat(format){
+	document.crisprdirect.target = 'dataexport' ;
+	document.crisprdirect.format.value = format ;
+	document.crisprdirect.submit() ;
+	document.crisprdirect.target = '' ;
+	document.crisprdirect.format.value = '' ;
+}
+document.write(
+	'<ul>'                                           +
+	'    <li><a href="javascript:void(0)" onclick="' +
+	'            export_txt();return false">'        +
+	'        Tab-delimited text</a>'                 +
+	'    <li><a href="javascript:void(0)" onclick="' +
+	'            export_json();return false">'       +
+	'        JSON format</a>'                        +
+	'</ul>'
+) ;
 //-->
 </script>
 
