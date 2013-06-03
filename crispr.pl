@@ -14,10 +14,7 @@ use strict ;
 use Time::HiRes ;
 
 eval 'use HTML::Template ; 1' or  # HTMLをテンプレート化
-	print_result('ERROR : cannot load HTML::Template') ;
-
-eval 'use JSON::XS ; 1' or        # JSON出力用
-	print_result('ERROR : cannot load JSON::XS') ;
+	print_error('ERROR : cannot load HTML::Template') ;
 
 my @timer ;                       # 実行時間計測用
 my $timestamp = timestamp() ;     # CGIを実行した時刻
@@ -95,7 +92,7 @@ elsif (not defined $userseq){
 #-- userseqあり：配列設計を行い結果を出力
 else {
 	eval 'require CRISPRdirect ; 1' or
-		print_result('ERROR : cannot load CRISPRdirect') ;
+		print_error('ERROR : cannot load CRISPRdirect') ;
 	my $result = CRISPRdirect::crispr_design($userseq, $db) ;
 
 	#--- TXT出力
@@ -105,6 +102,8 @@ else {
 
 	#--- JSON出力
 	elsif ($format eq 'json'){
+		eval 'require JSON::XS ; 1' or
+			print_error('ERROR : cannot load JSON::XS') ;
 		print_json($accession, $userseq, $result) ;
 	}
 
@@ -133,7 +132,7 @@ if (defined $ENV{'REQUEST_METHOD'} and
 	defined $ENV{'CONTENT_LENGTH'}
 ){
 	eval 'read(STDIN, $buffer, $ENV{"CONTENT_LENGTH"})' or
-		print_result('ERROR : get_query_parameters() : read failed') ;
+		print_error('ERROR : get_query_parameters() : read failed') ;
 } elsif (defined $ENV{'QUERY_STRING'}){
 	$buffer = $ENV{'QUERY_STRING'} ;
 }
@@ -164,7 +163,7 @@ $userseq = (not $accession) ?
            	$sampleseq :
            (eval 'require GetSequence ; 1') ?
            	GetSequence::accession2fasta($accession) || $sampleseq :
-           	"ERROR : cannot load GetSequence\n" ;
+           	print_error('ERROR : cannot load GetSequence') ;
 #- ▲ Accession番号からFASTAを取得
 
 #- ▼ HTML出力
@@ -216,6 +215,15 @@ foreach (@result){
 
 print "Content-type: application/json; charset=utf-8\n\n" ;
 print JSON::XS->new->canonical->utf8->encode({results  => \@json}) ;
+
+exit ;
+} ;
+# ====================
+sub print_error {  # エラーを出力
+my $text = $_[0] // '' ;
+
+print "Content-type: text/html; charset=utf-8\n\n" ;
+print "$text\n" ;
 
 exit ;
 } ;
