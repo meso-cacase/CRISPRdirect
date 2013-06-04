@@ -187,7 +187,10 @@ my $accession = $_[0] // '' ;
 my $userseq   = $_[1] // '' ;
 my $result    = $_[2] // '' ;
 
-print "Content-type: text/plain; charset=utf-8\n\n" ;
+print "Content-type: text/plain; charset=utf-8\n" ;
+$download and  # ファイルとしてダウンロードする場合
+	print "Content-Disposition: attachment; filename=CRISPRdirect.txt\n" ;
+print "\n" ;
 print "$result\n" ;
 
 exit ;
@@ -213,7 +216,10 @@ foreach (@result){
 	}
 }
 
-print "Content-type: application/json; charset=utf-8\n\n" ;
+print "Content-type: application/json; charset=utf-8\n" ;
+$download and  # ファイルとしてダウンロードする場合
+	print "Content-Disposition: attachment; filename=CRISPRdirect.json\n" ;
+print "\n" ;
 print JSON::XS->new->canonical->utf8->encode({results  => \@json}) ;
 
 exit ;

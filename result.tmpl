@@ -8,39 +8,62 @@
 <h4>Data Export:</h4>
 <div>
 
-<input type=hidden name=format value="">
-
 <script type='text/javascript'>
 <!--
 function export_txt(){
 	w = window.open('', 'dataexport') ;
-	w.onLoad=openformat('txt') ;
+	w.onLoad=openformat('txt', '') ;
 }
 function export_json(){
 	w = window.open('', 'dataexport') ;
-	w.onLoad=openformat('json') ;
+	w.onLoad=openformat('json', '') ;
 }
-function openformat(format){
+function download_txt(){
+	w = window.open('', 'dataexport') ;
+	w.onLoad=openformat('txt', 'true') ;
+}
+function download_json(){
+	w = window.open('', 'dataexport') ;
+	w.onLoad=openformat('json', 'true') ;
+}
+function openformat(format, download){
 	document.crisprdirect.target = 'dataexport' ;
 	document.crisprdirect.format.value = format ;
+	document.crisprdirect.download.value = download ;
 	document.crisprdirect.submit() ;
 	document.crisprdirect.target = '' ;
 	document.crisprdirect.format.value = '' ;
+	document.crisprdirect.download.value = '' ;
 }
 document.write(
+	'<input type=hidden name=format   value="">'     +
+	'<input type=hidden name=download value="">'     +
+	''                                               +
 	'<ul>'                                           +
-	'    <li><a href="javascript:void(0)" onclick="' +
+	'    <li>Tab-delimited text:'                    +
+	'        <a href="javascript:void(0)" onclick="' +
 	'            export_txt();return false">'        +
-	'        Tab-delimited text</a>'                 +
-	'    <li><a href="javascript:void(0)" onclick="' +
+	'        Open in new window<\/a> |'              +
+	'        <a href="javascript:void(0)" onclick="' +
+	'            download_txt();return false">'      +
+	'        Download<\/a><br>'                      +
+	'    <li>JSON format:'                           +
+	'        <a href="javascript:void(0)" onclick="' +
 	'            export_json();return false">'       +
-	'        JSON format</a>'                        +
-	'</ul>'
+	'        Open in new window<\/a> |'              +
+	'        <a href="javascript:void(0)" onclick="' +
+	'            download_json();return false">'     +
+	'        Download<\/a>'                          +
+	'<\/ul>'
 ) ;
 //-->
 </script>
 
 <noscript>
+<p>
+	<input type=radio name=download value='' checked>Show
+	<input type=radio name=download value=true>Download file
+</p>
 <ul>
 	<li>Tab-delimited text:
 		<input type=submit name=format value='txt'>
