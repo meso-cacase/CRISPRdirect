@@ -7,6 +7,9 @@ package CRISPRdirect ;
 use warnings ;
 use strict ;
 
+eval 'use KmerCount ; 1' or  # ゲノムにおけるk-merの頻度を求めるためのモジュール
+	die 'ERROR : cannot load KmerCount' ;
+
 # ====================
 sub crispr_design {
 
@@ -26,26 +29,34 @@ $seq = rna2dna(flatsequence($seq)) ;
 #- ▼ すべての部分配列を生成
 my @targetlist ;
 foreach (1..length($seq) - $targetlength + 1){
-	my $targetseq = substr($seq, $_ - 1, $targetlength) ;
+	my $position  = $_ ;
+	my $targetseq = substr($seq, $position - 1, $targetlength) ;
 	my $pam       = substr($targetseq, -3) ;
-	my $tttt      = ($targetseq =~ /(AAAA|TTTT)/i) ? 'true' : 'false' ;
-	my $tm        = tm_RNA(dna2rna($targetseq)) ;
 
-	$pam =~ /GG$/i and
-	push @targetlist, {
-		'start'    => $_,
-		'sequence' => $targetseq,
-		'pam'      => $pam,
-		'tttt'     => $tttt,
-		'tm'       => $tm
-	} ;
+	if ($pam =~ /GG$/i){
+		my $tttt    = ($targetseq =~ /(AAAA|TTTT)/i) ? 'true' : 'false' ;
+		my $tm      = tm_RNA(dna2rna($targetseq)) ;
+		my $count23 = KmerCount::count23(substr($targetseq, -23)) ;
+		my $count15 = KmerCount::count15(substr($targetseq, -15)) ;
+		my $count11 = KmerCount::count11(substr($targetseq, -11)) ;
+		push @targetlist, {
+			'start'    => $position,
+			'sequence' => $targetseq,
+			'pam'      => $pam,
+			'tttt'     => $tttt,
+			'tm'       => $tm,
+			'count23'  => $count23,
+			'count15'  => $count15,
+			'count11'  => $count11
+		} ;
+	}
 }
 #- ▲ すべての部分配列を生成
 
 #- ▼ タブ区切りテキストを出力
 my $tsv =
 "# >$name
-# position	sequence	PAM	A(4)/T(4)	Tm
+# position	sequence	PAM	A(4)/T(4)	Tm	hit_23mer	hit_15mer	hit_11mer
 #
 " ;
 foreach (@targetlist){
@@ -54,7 +65,10 @@ foreach (@targetlist){
 		$$_{'sequence'},
 		$$_{'pam'},
 		$$_{'tttt'},
-		$$_{'tm'}
+		$$_{'tm'},
+		$$_{'count23'},
+		$$_{'count15'},
+		$$_{'count11'}
 	) ;
 	$tsv .= "\n" ;
 }

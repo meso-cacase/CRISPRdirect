@@ -4,6 +4,7 @@
 #
 # 必要なモジュール:
 # HTML::Template
+# JSON::XS
 # LWP::Simple (GetSequence.pm内で使用)
 #
 # 2013-04-18 Yuki Naito (@meso_cacase) 実装開始
@@ -206,13 +207,16 @@ my @result = split /\n/, $result ;
 
 my @json ;
 foreach (@result){
-	my ($start, $sequence, $pam, $tttt, $tm) = split /\t/ ;
+	my ($start, $sequence, $pam, $tttt, $tm, $count23, $count15, $count11) = split /\t/ ;
 	push @json, {
-		position => $start,
-		sequence => $sequence,
-		pam      => $pam,
-		tttt     => $tttt,
-		tm       => $tm
+		position  => $start,
+		sequence  => $sequence,
+		pam       => $pam,
+		tttt      => $tttt,
+		tm        => $tm,
+		hit_23mer => $count23,
+		hit_15mer => $count15,
+		hit_11mer => $count11
 	}
 }
 
