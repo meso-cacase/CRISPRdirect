@@ -111,6 +111,7 @@ else {
 	eval 'require CRISPRdirect ; 1' or
 		print_error('ERROR : cannot load CRISPRdirect') ;
 	my $result = CRISPRdirect::crispr_design($userseq, $db) ;
+	$result =~ s/(?<=^# specificity_check:\t)(\w+)/$db_fullname{$1}/m ;
 
 	#--- TXT出力
 	if ($format eq 'txt'){

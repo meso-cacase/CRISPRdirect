@@ -55,7 +55,9 @@ foreach (1..length($seq) - $targetlength + 1){
 
 #- ▼ タブ区切りテキストを出力
 my $tsv =
-"# >$name
+"# [ CRISPRdirect | @{[ timestamp() ]} ]
+# sequence_name:	$name
+# specificity_check:	$db
 # position	sequence	PAM	A(4)/T(4)	Tm	hit_23mer	hit_15mer	hit_11mer
 #
 " ;
@@ -216,6 +218,12 @@ foreach (0..length($seq) - 2){
 }
 
 return $sum_dS ;
+} ;
+# ====================
+sub timestamp {  # タイムスタンプを 2000-01-01 00:00:00 の形式で出力
+my ($sec, $min, $hour, $mday, $mon, $year) = localtime ;
+return sprintf("%04d-%02d-%02d %02d:%02d:%02d",
+	$year+1900, $mon+1, $mday, $hour, $min, $sec) ;
 } ;
 # ====================
 
