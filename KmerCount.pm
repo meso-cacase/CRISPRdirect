@@ -18,7 +18,7 @@ sub count23 {
 
 my $seq  = $_[0] ;
 my $host = 'localhost' ;
-my $port = 6740 ;
+my $port = 6738 ;
 
 # 入力文字列のチェック
 chomp $seq ;
@@ -66,7 +66,7 @@ sub count15 {
 
 my $seq  = $_[0] ;
 my $host = 'localhost' ;
-my $port = 6739 ;
+my $port = 6737 ;
 
 # 入力文字列のチェック
 chomp $seq ;
@@ -114,7 +114,7 @@ sub count11 {
 
 my $seq  = $_[0] ;
 my $host = 'localhost' ;
-my $port = 6738 ;
+my $port = 6736 ;
 
 # 入力文字列のチェック
 chomp $seq ;

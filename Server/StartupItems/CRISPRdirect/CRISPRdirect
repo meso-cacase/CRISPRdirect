@@ -1,0 +1,133 @@
+#!/bin/sh
+#
+# /Library/StartupItems/CRISPRdirect/CRISPRdirect
+#
+# A startup script of CRISPRdirect jellyfish server for Mac OS X.
+#
+# 2013-12-27 Yuki Naito (@meso_cacase)
+
+. /etc/rc.common
+
+# *** CRISPRdirect jellyfish server port list ***
+#
+# --------------------------------
+# DB     	23nt	15nt	11nt
+# --------------------------------
+# hg19   	6738	6737	6736
+# mm10   	6748	6747	6746
+# rn5    	6758	6757	6756
+# galGal4	6768	6767	6766
+# xenTro3	6778	6777	6776
+# danRer7	6788	6787	6786
+# ci2    	6798	6797	6796
+# dm3    	6808	6807	6806
+# ce10   	6818	6817	6816
+# TAIR10 	6828	6827	6826
+# rice   	6838	6837	6836
+# bmor1  	6848	6847	6846
+# sacCer3	6858	6857	6856
+# --------------------------------
+
+JELFISH="/opt/CRISPRdirect/jellyfishd.pl"
+HASHDIR="/genome/jellyhash/1.1.10"
+
+StartService ()
+{
+	ConsoleMessage "Starting CRISPRdirect jellyfish server"
+	sudo -u nobody $JELFISH -p 6738 -k 23 -hash $HASHDIR/hg19/hg19_23nt.jf \
+		>> $HASHDIR/hg19/hg19_23nt.log &
+	sudo -u nobody $JELFISH -p 6737 -k 15 -hash $HASHDIR/hg19/hg19_15nt.jf \
+		>> $HASHDIR/hg19/hg19_15nt.log &
+	sudo -u nobody $JELFISH -p 6736 -k 11 -hash $HASHDIR/hg19/hg19_11nt.jf \
+		>> $HASHDIR/hg19/hg19_11nt.log &
+	sudo -u nobody $JELFISH -p 6748 -k 23 -hash $HASHDIR/mm10/mm10_23nt.jf \
+		>> $HASHDIR/mm10/mm10_23nt.log &
+	sudo -u nobody $JELFISH -p 6747 -k 15 -hash $HASHDIR/mm10/mm10_15nt.jf \
+		>> $HASHDIR/mm10/mm10_15nt.log &
+	sudo -u nobody $JELFISH -p 6746 -k 11 -hash $HASHDIR/mm10/mm10_11nt.jf \
+		>> $HASHDIR/mm10/mm10_11nt.log &
+	sudo -u nobody $JELFISH -p 6758 -k 23 -hash $HASHDIR/rn5/rn5_23nt.jf \
+		>> $HASHDIR/rn5/rn5_23nt.log &
+	sudo -u nobody $JELFISH -p 6757 -k 15 -hash $HASHDIR/rn5/rn5_15nt.jf \
+		>> $HASHDIR/rn5/rn5_15nt.log &
+	sudo -u nobody $JELFISH -p 6756 -k 11 -hash $HASHDIR/rn5/rn5_11nt.jf \
+		>> $HASHDIR/rn5/rn5_11nt.log &
+	sudo -u nobody $JELFISH -p 6768 -k 23 -hash $HASHDIR/galGal4/galGal4_23nt.jf \
+		>> $HASHDIR/galGal4/galGal4_23nt.log &
+	sudo -u nobody $JELFISH -p 6767 -k 15 -hash $HASHDIR/galGal4/galGal4_15nt.jf \
+		>> $HASHDIR/galGal4/galGal4_15nt.log &
+	sudo -u nobody $JELFISH -p 6766 -k 11 -hash $HASHDIR/galGal4/galGal4_11nt.jf \
+		>> $HASHDIR/galGal4/galGal4_11nt.log &
+	sudo -u nobody $JELFISH -p 6778 -k 23 -hash $HASHDIR/xenTro3/xenTro3_23nt.jf \
+		>> $HASHDIR/xenTro3/xenTro3_23nt.log &
+	sudo -u nobody $JELFISH -p 6777 -k 15 -hash $HASHDIR/xenTro3/xenTro3_15nt.jf \
+		>> $HASHDIR/xenTro3/xenTro3_15nt.log &
+	sudo -u nobody $JELFISH -p 6776 -k 11 -hash $HASHDIR/xenTro3/xenTro3_11nt.jf \
+		>> $HASHDIR/xenTro3/xenTro3_11nt.log &
+	sudo -u nobody $JELFISH -p 6788 -k 23 -hash $HASHDIR/danRer7/danRer7_23nt.jf \
+		>> $HASHDIR/danRer7/danRer7_23nt.log &
+	sudo -u nobody $JELFISH -p 6787 -k 15 -hash $HASHDIR/danRer7/danRer7_15nt.jf \
+		>> $HASHDIR/danRer7/danRer7_15nt.log &
+	sudo -u nobody $JELFISH -p 6786 -k 11 -hash $HASHDIR/danRer7/danRer7_11nt.jf \
+		>> $HASHDIR/danRer7/danRer7_11nt.log &
+	sudo -u nobody $JELFISH -p 6798 -k 23 -hash $HASHDIR/ci2/ci2_23nt.jf \
+		>> $HASHDIR/ci2/ci2_23nt.log &
+	sudo -u nobody $JELFISH -p 6797 -k 15 -hash $HASHDIR/ci2/ci2_15nt.jf \
+		>> $HASHDIR/ci2/ci2_15nt.log &
+	sudo -u nobody $JELFISH -p 6796 -k 11 -hash $HASHDIR/ci2/ci2_11nt.jf \
+		>> $HASHDIR/ci2/ci2_11nt.log &
+	sudo -u nobody $JELFISH -p 6808 -k 23 -hash $HASHDIR/dm3/dm3_23nt.jf \
+		>> $HASHDIR/dm3/dm3_23nt.log &
+	sudo -u nobody $JELFISH -p 6807 -k 15 -hash $HASHDIR/dm3/dm3_15nt.jf \
+		>> $HASHDIR/dm3/dm3_15nt.log &
+	sudo -u nobody $JELFISH -p 6806 -k 11 -hash $HASHDIR/dm3/dm3_11nt.jf \
+		>> $HASHDIR/dm3/dm3_11nt.log &
+	sudo -u nobody $JELFISH -p 6818 -k 23 -hash $HASHDIR/ce10/ce10_23nt.jf \
+		>> $HASHDIR/ce10/ce10_23nt.log &
+	sudo -u nobody $JELFISH -p 6817 -k 15 -hash $HASHDIR/ce10/ce10_15nt.jf \
+		>> $HASHDIR/ce10/ce10_15nt.log &
+	sudo -u nobody $JELFISH -p 6816 -k 11 -hash $HASHDIR/ce10/ce10_11nt.jf \
+		>> $HASHDIR/ce10/ce10_11nt.log &
+	sudo -u nobody $JELFISH -p 6828 -k 23 -hash $HASHDIR/TAIR10/TAIR10_23nt.jf \
+		>> $HASHDIR/TAIR10/TAIR10_23nt.log &
+	sudo -u nobody $JELFISH -p 6827 -k 15 -hash $HASHDIR/TAIR10/TAIR10_15nt.jf \
+		>> $HASHDIR/TAIR10/TAIR10_15nt.log &
+	sudo -u nobody $JELFISH -p 6826 -k 11 -hash $HASHDIR/TAIR10/TAIR10_11nt.jf \
+		>> $HASHDIR/TAIR10/TAIR10_11nt.log &
+	sudo -u nobody $JELFISH -p 6838 -k 23 -hash $HASHDIR/rice/rice_23nt.jf \
+		>> $HASHDIR/rice/rice_23nt.log &
+	sudo -u nobody $JELFISH -p 6837 -k 15 -hash $HASHDIR/rice/rice_15nt.jf \
+		>> $HASHDIR/rice/rice_15nt.log &
+	sudo -u nobody $JELFISH -p 6836 -k 11 -hash $HASHDIR/rice/rice_11nt.jf \
+		>> $HASHDIR/rice/rice_11nt.log &
+	sudo -u nobody $JELFISH -p 6848 -k 23 -hash $HASHDIR/bmor1/bmor1_23nt.jf \
+		>> $HASHDIR/bmor1/bmor1_23nt.log &
+	sudo -u nobody $JELFISH -p 6847 -k 15 -hash $HASHDIR/bmor1/bmor1_15nt.jf \
+		>> $HASHDIR/bmor1/bmor1_15nt.log &
+	sudo -u nobody $JELFISH -p 6846 -k 11 -hash $HASHDIR/bmor1/bmor1_11nt.jf \
+		>> $HASHDIR/bmor1/bmor1_11nt.log &
+	sudo -u nobody $JELFISH -p 6858 -k 23 -hash $HASHDIR/sacCer3/sacCer3_23nt.jf \
+		>> $HASHDIR/sacCer3/sacCer3_23nt.log &
+	sudo -u nobody $JELFISH -p 6857 -k 15 -hash $HASHDIR/sacCer3/sacCer3_15nt.jf \
+		>> $HASHDIR/sacCer3/sacCer3_15nt.log &
+	sudo -u nobody $JELFISH -p 6856 -k 11 -hash $HASHDIR/sacCer3/sacCer3_11nt.jf \
+		>> $HASHDIR/sacCer3/sacCer3_11nt.log &
+}
+
+StopService ()
+{
+	ConsoleMessage "Stopping CRISPRdirect jellyfish server"
+	kill $(ps -U nobody | sed 's/^\ *//' | grep jellyfishd | cut -d ' ' -f 1)
+}
+
+RestartService ()
+{
+	StopService
+	StartService
+}
+
+if test -x $JELFISH ; then
+	RunService "$1"
+else
+	ConsoleMessage "Could not find CRISPRdirect jellyfish server script!"
+fi
