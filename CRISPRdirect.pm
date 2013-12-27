@@ -36,9 +36,9 @@ foreach (1..length($seq) - $targetlength + 1){
 	if ($pam =~ /GG$/i){
 		my $tttt    = ($targetseq =~ /(AAAA|TTTT)/i) ? 'true' : 'false' ;
 		my $tm      = tm_RNA(dna2rna($targetseq)) ;
-		my $count23 = KmerCount::count23(substr($targetseq, -23)) ;
-		my $count15 = KmerCount::count15(substr($targetseq, -15)) ;
-		my $count11 = KmerCount::count11(substr($targetseq, -11)) ;
+		my $count23 = KmerCount::kmercount(substr($targetseq, -23), $db) ;
+		my $count15 = KmerCount::kmercount(substr($targetseq, -15), $db) ;
+		my $count11 = KmerCount::kmercount(substr($targetseq, -11), $db) ;
 		push @targetlist, {
 			'start'    => $position,
 			'sequence' => $targetseq,

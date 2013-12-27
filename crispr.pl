@@ -35,11 +35,19 @@ tcagcatcac gatgaccttg aataaaaatt gcacacactc agtgcagcaa tatattacca
 ' ;
 
 my %db_fullname = (               # データベースの正式名
-	'hg19'   => 'Human genome, GRCh37/hg19 (Feb, 2009)',
-	# 'mm10'   => 'Mouse genome, GRCm38/mm10 (Dec, 2011)',
-	# 'rn5'    => 'Rat genome, RGSC 5.0/rn5 (Mar, 2012)',
-	# 'dm3'    => 'Drosophila genome, BDGP Rel. 5/dm3 (Apr, 2006)',
-	# 'ce10'   => 'C. elegans genome, WS220/ce10 (Oct, 2010)',
+	'hg19'    => 'Human genome, GRCh37/hg19 (Feb, 2009)',
+	'mm10'    => 'Mouse genome, GRCm38/mm10 (Dec, 2011)',
+	'rn5'     => 'Rat genome, RGSC 5.0/rn5 (Mar, 2012)',
+	'galGal4' => 'Chicken genome, ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)',
+	'xenTro3' => 'Xenopus tropicalis genome, JGI 4.2/xenTro3 (Nov, 2009)',
+	'danRer7' => 'Zebrafish genome, Zv9/danRer7 (Jul, 2010)',
+	'ci2'     => 'Ciona intestinalis genome, JGI 2.1/ci2 (Mar, 2005)',
+	'dm3'     => 'Drosophila genome, BDGP R5/dm3 (Apr, 2006)',
+	'ce10'    => 'C. elegans genome, WS220/ce10 (Oct, 2010)',
+	'TAIR10'  => 'Arabidopsis thaliana genome, TAIR10 (Nov, 2010)',
+	'rice'    => 'Rice genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)',
+	'bmor1'   => 'Silkworm genome, Bmor1 (Apr, 2008)',
+	'sacCer3' => 'S. cerevisiae (S288C) genome, sacCer3 (Apr, 2011)',
 ) ;
 #- ▲ モジュール読み込みと変数の初期化
 
@@ -54,7 +62,7 @@ my $accession = $query{'accession'} ;  # Accession番号: NM_003380, ...
 my $userseq   = $query{'userseq'} ;    # 塩基配列: (FASTA形式または塩基配列のみ)
 
 my $db = lc(                           # 特異性確認のデータベース: hg19, mm10, ...
-	$query{'db'} // '') ;
+	$query{'db'} // 'hg19') ;          # default: hg19 (Human genome)
 
 my $format =                           # 出力フォーマット: html, txt, json
 	($query{'format'} and $query{'format'} =~ /^(html|txt|json)$/i) ?
@@ -64,6 +72,14 @@ my $download =                         # ファイルとしてダウンロード
 	($query{'download'} and $format =~ /^(txt|json)$/) ?
 	$query{'download'} : '' ;
 #-- △ 使用するパラメータ一覧
+
+#-- ▽ 大文字小文字を正規化
+$db =~ s/galGal4/galGal4/i ;
+$db =~ s/xenTro3/xenTro3/i ;
+$db =~ s/danRer7/danRer7/i ;
+$db =~ s/TAIR10/TAIR10/i   ;
+$db =~ s/sacCer3/sacCer3/i ;
+#-- △ 大文字小文字を正規化
 #- ▲ リクエストからパラメータを取得
 
 #- ▼ パラメータに応じて画面遷移
@@ -112,7 +128,7 @@ else {
 	else {
 		my $template = HTML::Template->new(filename => 'result.tmpl') ;
 		$template->param(RESULT => $result) ;
-		print_html($accession, $userseq, $template->output) ;
+		print_html($accession, $userseq, $db, $template->output) ;
 	}
 }
 #- ▲ パラメータに応じて画面遷移
@@ -152,9 +168,10 @@ return %query ;
 } ;
 # ====================
 sub print_html {  # HTMLを出力
-my $accession = $_[0] // '' ;
-my $userseq   = $_[1]       ;
-my $result    = $_[2] // '' ;
+my $accession = $_[0] // ''     ;
+my $userseq   = $_[1]           ;
+my $db        = $_[2] // 'hg19' ;  # default: hg19 (Human genome)
+my $result    = $_[3] // ''     ;
 
 $sampleseq ||= '' ;  # undefを回避
 
@@ -167,12 +184,32 @@ $userseq = (not $accession) ?
            	print_error('ERROR : cannot load GetSequence') ;
 #- ▲ Accession番号からFASTAを取得
 
+#- ▼ プルダウンメニュー
+my $select =
+"		<option value=none   >none</option>
+		<option value=hg19   >$db_fullname{'hg19'   }</option>
+		<option value=mm10   >$db_fullname{'mm10'   }</option>
+		<option value=rn5    >$db_fullname{'rn5'    }</option>
+		<option value=galGal4>$db_fullname{'galGal4'}</option>
+		<option value=xenTro3>$db_fullname{'xenTro3'}</option>
+		<option value=danRer7>$db_fullname{'danRer7'}</option>
+		<option value=ci2    >$db_fullname{'ci2'    }</option>
+		<option value=dm3    >$db_fullname{'dm3'    }</option>
+		<option value=ce10   >$db_fullname{'ce10'   }</option>
+		<option value=TAIR10 >$db_fullname{'TAIR10' }</option>
+		<option value=rice   >$db_fullname{'rice'   }</option>
+		<option value=bmor1  >$db_fullname{'bmor1'  }</option>
+		<option value=sacCer3>$db_fullname{'sacCer3'}</option>" ;
+$db and $select =~ s/(?<=option value=$db)/ selected/i ;  # 生物種を選択
+#- ▲ プルダウンメニュー
+
 #- ▼ HTML出力
 my $template = HTML::Template->new(filename => 'index.tmpl') ;
 
 $template->param(
 	ACCESSION => $accession,
 	USERSEQ   => $userseq,
+	SELECT    => $select,
 	RESULT    => $result
 ) ;
 
