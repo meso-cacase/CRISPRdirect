@@ -13,15 +13,15 @@ use Socket ;
 sub kmercount {
 
 # Jellyfishサーバに問い合わせ、ゲノムにおけるk-merの頻度を整数で返す
-# ただしエラーの際は -1 を返す
+# ただしエラーの際は空白文字を返す
 # usage: $count = kmercount('ggctgccaagaacctgcaggagg', 'hg19') ;
 
-my $seq = $_[0] or return -1 ;
-my $db  = $_[1] or return -1 ;
+my $seq = $_[0] or return '' ;
+my $db  = $_[1] or return '' ;
 
 # 入力文字列のチェック
 chomp $seq ;
-$seq =~ /^[atgc]+$/i or return -1 ;
+$seq =~ /^[atgc]+$/i or return '' ;
 
 my $k    = length $seq ;
 my $host = 'localhost' ;
@@ -93,12 +93,12 @@ my $port =
 		                0 :
 		0 ;
 
-$port or return -1 ;
+$port or return '' ;
 
 # ホスト名をIPアドレスの構造体に変換
 my $iaddr = inet_aton($host) or
 	# die "ERROR : $host does not exist ($!)" ;
-	return -1 ;
+	return '' ;
 
 # portとIPアドレスをまとめて構造体に変換
 my $sock_addr = pack_sockaddr_in($port, $iaddr) ;
@@ -106,12 +106,12 @@ my $sock_addr = pack_sockaddr_in($port, $iaddr) ;
 # ソケット生成
 socket(SOCKET, PF_INET, SOCK_STREAM, 0) or
 	# die "ERROR : cannot create socket ($!)" ;
-	return -1 ;
+	return '' ;
 
 # ソケットに接続
 connect(SOCKET, $sock_addr) or
 	# die "ERROR : cannot connect $host:$port ($!)" ;
-	return -1 ;
+	return '' ;
 
 # SOCKETをバッファリングしない
 select(SOCKET) ; $|=1 ; select(STDOUT) ;
@@ -125,7 +125,7 @@ while (<SOCKET>){ $count .= $_ }
 
 # 結果を整数で返す
 ($count =~ /(-?\d+)/) ? return $1 :
-                        return -1 ;
+                        return '' ;
 } ;
 # ====================
 
