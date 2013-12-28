@@ -53,7 +53,8 @@ function on_loaded(oj){
 </script>
 <style type='text/css'>
 <!--
-	* { font-family:verdana,arial,helvetica,sans-serif }
+	*     { font-family:verdana,arial,helvetica,sans-serif }
+	.mono { font-family:monaco,courier,monospace }
 	p,table,div,textarea { font-size:8pt }
 	a       { text-decoration:none; color:#003399 }
 	a:hover { text-decoration:none; color:maroon  }
@@ -116,7 +117,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 <form name=crisprdirect method=POST action='.'>
 <div>
 	<p>or Paste in a nucleotide sequence:<br>
-	<textarea id=useq name=userseq rows=15 cols=100>
+	<textarea id=useq name=userseq rows=15 cols=90 class=mono>
 <TMPL_VAR NAME=USERSEQ></textarea>
 	</p>
 
