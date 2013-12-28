@@ -175,7 +175,8 @@ sub tsv2table {
 my $result = $_[0] // '' ;
 
 my @result = split /\n/, $result ;
-@result = grep(!/^#/, @result) ;
+@result = grep(!/^#/, @result) or
+	return "<b style='font-size:12pt; color:#800000'>No candidates were found.</b>" ;
 
 my $i ;  # foreach() のカウンター
 my @table ;
