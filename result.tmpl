@@ -3,12 +3,6 @@
 <TMPL_VAR NAME=TABLE>
 </div>
 
-<div>
-<p>Tab-delimited text. You can copy-paste into spreadsheet softwares
-(<i>e.g.</i> Excel) or text editors.</p>
-<textarea rows=30 cols=90 class=mono><TMPL_VAR NAME=RESULT></textarea>
-</div>
-
 <h4>Data Export:</h4>
 <div>
 <script type='text/javascript'>
@@ -74,4 +68,10 @@ document.write(
 		<input type=submit name=format value='json'>
 </ul>
 </noscript>
+</div>
+
+<div>
+<p>Tab-delimited text can be copy-pasted into spreadsheet softwares
+(<i>e.g.</i> Excel) or text editors.</p>
+<textarea rows=30 cols=90 class=mono><TMPL_VAR NAME=RESULT></textarea>
 </div>
