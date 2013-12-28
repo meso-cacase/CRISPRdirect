@@ -1,13 +1,16 @@
 <h4>Results:</h4>
-<p>You can copy-paste into spreadsheet softwares
-(<i>e.g.</i> Excel) or text editors.</p>
 <div>
+<TMPL_VAR NAME=TABLE>
+</div>
+
+<div>
+<p>Tab-delimited text. You can copy-paste into spreadsheet softwares
+(<i>e.g.</i> Excel) or text editors.</p>
 <textarea rows=30 cols=90 class=mono><TMPL_VAR NAME=RESULT></textarea>
 </div>
 
 <h4>Data Export:</h4>
 <div>
-
 <script type='text/javascript'>
 <!--
 function export_txt(){

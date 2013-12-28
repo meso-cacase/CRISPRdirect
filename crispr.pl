@@ -128,7 +128,10 @@ else {
 	#--- HTML出力
 	else {
 		my $template = HTML::Template->new(filename => 'result.tmpl') ;
-		$template->param(RESULT => $result) ;
+		$template->param(
+			TABLE  => tsv2table($result),
+			RESULT => $result
+		) ;
 		print_html($accession, $userseq, $db, $template->output) ;
 	}
 }
@@ -166,6 +169,50 @@ foreach (@query){
 	}
 }
 return %query ;
+} ;
+# ====================
+sub tsv2table {
+my $result = $_[0] // '' ;
+
+my @result = split /\n/, $result ;
+@result = grep(!/^#/, @result) ;
+
+my $i ;  # foreach() のカウンター
+my @table ;
+foreach (@result){
+	$i ++ ;
+	my ($start, $sequence, $pam, $tttt, $tm, $count23, $count15, $count11) = split /\t/ ;
+	push @table,
+		"<tr>" . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}>$start"     . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}><span class=mono>$sequence</span>" . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}><span class=mono>$pam</span>"      . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'o' ]}>$tttt"      . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'p' ]}>$tm &deg;C" . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]}>$count23"   . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]}>$count15"   . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]}>$count11"   . "\n" .
+		"</tr>" . "\n" ;
+}
+
+return
+	"<table cellspacing=0 cellpadding=2>"         . "\n" .
+	"<tr>"                                        . "\n" .
+	"	<th class=v rowspan=2>target<br>position" . "\n" .
+	"	<th class=v colspan=2>target sequence"    . "\n" .
+	"	<th class=o rowspan=2>A(4)/T(4)"          . "\n" .
+	"	<th class=p rowspan=2>Tm"                 . "\n" .
+	"	<th class=g colspan=3>off-target hits"    . "\n" .
+	"</tr>"                                       . "\n" .
+	"<tr>"                                        . "\n" .
+	"	<th class=v>23mer"                        . "\n" .
+	"	<th class=v>PAM"                          . "\n" .
+	"	<th class=g>23mer"                        . "\n" .
+	"	<th class=g>15mer"                        . "\n" .
+	"	<th class=g>11mer"                        . "\n" .
+	"</tr>"                                       . "\n" .
+	"@{[ join '', @table ]}"                      .
+	"</table>" ;
 } ;
 # ====================
 sub print_html {  # HTMLを出力
