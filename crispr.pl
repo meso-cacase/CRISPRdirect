@@ -174,9 +174,22 @@ return %query ;
 sub tsv2table {
 my $result = $_[0] // '' ;
 
+my $exec_time = ($result =~ /^# \[.*\|\s*(.*?)\s*\]$/m)      ? $1 : '' ;
+my $seq_name  = ($result =~ /^# sequence_name:\t(.*)$/m)     ? $1 : '' ;
+my $db_name   = ($result =~ /^# specificity_check:\t(.*)$/m) ? $1 : '' ;
+
 my @result = split /\n/, $result ;
 @result = grep(!/^#/, @result) or
-	return "<b style='font-size:12pt; color:#800000'>No candidates were found.</b>" ;
+	return
+		"<p>"                                         . "\n" .
+		"	<b>Sequence name:</b> $seq_name<br>"      . "\n" .
+		"	<b>Specificity check:</b> $db_name<br>"   . "\n" .
+		"	<b>Time:</b> $exec_time"                  . "\n" .
+		"</p>"                                        . "\n" .
+		                                                "\n" .
+		"<b style='font-size:12pt; color:#800000'>"   . "\n" .
+		"	No candidates were found."                . "\n" .
+		"</b>" ;
 
 my $i ;  # foreach() のカウンター
 my @table ;
@@ -197,6 +210,12 @@ foreach (@result){
 }
 
 return
+	"<p>"                                         . "\n" .
+	"	<b>Sequence name:</b> $seq_name<br>"      . "\n" .
+	"	<b>Specificity check:</b> $db_name<br>"   . "\n" .
+	"	<b>Time:</b> $exec_time"                  . "\n" .
+	"</p>"                                        . "\n" .
+	                                                "\n" .
 	"<table cellspacing=0 cellpadding=2>"         . "\n" .
 	"<tr>"                                        . "\n" .
 	"	<th class=v rowspan=2>target<br>position" . "\n" .
