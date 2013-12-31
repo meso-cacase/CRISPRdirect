@@ -233,11 +233,11 @@ return
 	"	<th class=g colspan=6>off-target hits"    . "\n" .
 	"</tr>"                                       . "\n" .
 	"<tr>"                                        . "\n" .
-	"	<th class=v>23mer"                        . "\n" .
+	"	<th class=v>20mer+PAM (total 23mer)"      . "\n" .
 	"	<th class=v>PAM"                          . "\n" .
-	"	<th class=g colspan=2>23mer"              . "\n" .
-	"	<th class=g colspan=2>15mer"              . "\n" .
-	"	<th class=g colspan=2>11mer"              . "\n" .
+	"	<th class=g colspan=2>20mer<br>+PAM"      . "\n" .
+	"	<th class=g colspan=2>12mer<br>+PAM"      . "\n" .
+	"	<th class=g colspan=2>8mer<br>+PAM"       . "\n" .
 	"</tr>"                                       . "\n" .
 	"@{[ join '', @table ]}"                      .
 	"</table>" ;
@@ -332,9 +332,9 @@ foreach (@result){
 		pam       => $pam,
 		tttt      => $tttt,
 		tm        => $tm,
-		hit_23mer => $count23,
-		hit_15mer => $count15,
-		hit_11mer => $count11
+		hit_20mer => $count23,
+		hit_12mer => $count15,
+		hit_8mer  => $count11
 	}
 }
 

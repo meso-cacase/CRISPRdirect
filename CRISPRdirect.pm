@@ -58,7 +58,7 @@ my $tsv =
 "# [ CRISPRdirect | @{[ timestamp() ]} ]
 # sequence_name:	$name
 # specificity_check:	$db
-# position	sequence	PAM	A(4)/T(4)	Tm	hit_23mer	hit_15mer	hit_11mer
+# position	sequence	PAM	A(4)/T(4)	Tm	hit_20mer	hit_12mer	hit_8mer
 #
 " ;
 foreach (@targetlist){
