@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html>
+
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta http-equiv='Content-Style-Type' content='text/css'>
+<meta name='author' content='Yuki Naito'>
+<title>CRISPRdirect</title>
+<style type='text/css'>
+<!--
+	*     { font-family:verdana,arial,helvetica,sans-serif }
+	.mono { font-family:monaco,courier,monospace }
+	p,div,ol,ul,h4 { font-size:9pt }
+	table,textarea { font-size:8pt }
+	a       { text-decoration:none; color:#003399 }
+	a:hover { text-decoration:none; color:maroon  }
+	.b      { text-decoration:none; color:black   }
+	table { text-align:center; white-space:nowrap }
+	th { border-left:1px solid white }
+	td { border-left:1px solid #CCCCCC }
+	.v { background-color:#E6E6FA }
+	.o { background-color:#FFF0E0 }
+	.g { background-color:#E6FAF2 }
+	.p { background-color:#FFEDED }
+	.w { background-color:white   }
+-->
+</style>
+</head>
+
+<body>
+
+<div>
+<a href='..'><img src='CRISPRdirect.png' alt='CRISPRdirect' width=200 height=105 border=0></a>
+<span style='vertical-align:28px'>&mdash; Rational design of CRISPR/Cas target.</span>
+</div>
+
+<hr style='border-top:3px solid #2655A9'><!-- ________________________________________ -->
+
+
+<h3>About CRISPRdirect</h3>
+
+<p>CRISPRdirect is a web server for selecting rational CRISPR/Cas targets within an input sequence.
+
+
+<h3>Example</h3>
+
+<h4>Selecting target sites for human B melanoma antigen (BAGE) gene</h4>
+
+<ol>
+	<li>Enter the accession number for human BAGE gene (NM_001187).
+	<li>Click 'retrieve sequence' to get nucleotide sequence from GenBank.
+	<li>Or you can directly paste in a nucleotide sequence.<br>
+		Accepted input types are FASTA or plain nucleotide sequence up to 10 kbp.
+	<li>Select 'Human genome, GRCh37/hg19 (Feb, 2009)' for off-target checking.
+	<li>Click 'design'.
+</ol>
+
+<img src='CRISPR_BAGE_fasta.png' width=525 height=404 border=0>
+
+<h4>Results</h4>
+
+<ol type=A>
+	<li>Target positions.
+	<li>Target sequences, 20mer + 3mer PAM (total 23mer).
+	<li>Presence or absence of AAAA or TTTT in the target sequence. Avoid these sequences for gRNA vectors with pol III promoter.
+	<li>Calculated Tm of the target 20mer.
+	<li>Off-target search results against human genome. Number of hits with perfect match is shown.
+	<ul>
+		<li>20mer+PAM: The target 20mer is searched against the genome.<br>
+			The number '1' in this column usually indicates a perfect match against intended target (<i>e.g.</i>, BAGE gene).<br>
+			The number '0' in this column means no match in the genome. Possibly the sequence over exon-exon junction.<br>
+			Smaller number of hits (but not zero) is better.
+		<li>12mer+PAM: The 12mer of 3&prime; region of the target sequence is searched against the genome.<br>
+			This region contains critical residues for target specificity.<br>
+			Smaller number of hits (but not zero) is better.
+		<li>8mer+PAM: The 8mer of 3&prime; region of the target sequence is searched against the genome.<br>
+			This region contains the most critical residues for target specificity.<br>
+			Smaller number of hits (but not zero) is better.
+	</ul>
+</ol>
+
+<img src='CRISPR_BAGE_result1.png' width=525 height=306 border=0>
+
+<ol type=A start=6>
+	<li>Only one hit in the 20mer and the 12mer columns. These targets are highly specific.<br>
+		<font color=brown>&rarr; Recommended for CRISPR/Cas target.</font>
+	<li>No hit in the 20mer column. Possibly the sequences over exon-exon junction, so avoid using these ones.<br>
+		<font color=brown>&rarr; Not recommended for CRISPR/Cas target.</font>
+	<li>Very high number of off-target hits. Avoid using these sequences.<br>
+		<font color=brown>&rarr; Not recommended for CRISPR/Cas target.</font>
+</ol>
+
+<img src='CRISPR_BAGE_result2.png' width=525 height=272 border=0>
+
+<h4>Saving and exporting the results</h4>
+
+<ol type=A start=9>
+	<li>Tab-delimited text can be shown or downloaded as a file.
+	<li>JSON format output is also available.
+	<li>Tab-delimited text ready-to-use for copy-pasting into Excel or text editors, etc.
+</ol>
+
+<img src='CRISPR_BAGE_tsv.png' width=525 height=453 border=0>
+
+
+<h3>Useful tools</h3>
+
+<ul>
+	<li><b>GGGenome</b>: ultrafast genome sequence search engine maintained by our group.<br>
+		<a target='_blank' href='http://GGGenome.dbcls.jp/'>http://GGGenome.dbcls.jp/</a>
+	<li><b>siDirect</b>: highly effective, target-specific siRNA design software maintained by our group.<br>
+		<a target='_blank' href='http://siDirect2.RNAi.jp/'>http://siDirect2.RNAi.jp/</a>
+</ul>
+
+
+<hr style='border-top:1px solid #2655A9'><!-- ________________________________________ -->
+
+<p><font color=gray>CRISPRdirect |
+<a target='_blank' href='http://twitter.com/meso_cacase'>@meso_cacase</a> at 
+<a target='_blank' href='http://dbcls.rois.ac.jp/'>DBCLS</a>
+</font></p>
+
+</body>
+</html>
