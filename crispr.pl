@@ -229,7 +229,7 @@ return
 	"	<th class=v rowspan=2>target<br>position" . "\n" .
 	"	<th class=v colspan=2>target sequence"    . "\n" .
 	"	<th class=o rowspan=2>A(4)/T(4)"          . "\n" .
-	"	<th class=p rowspan=2>Tm"                 . "\n" .
+	"	<th class=p rowspan=2>Tm of<br>20mer"     . "\n" .
 	"	<th class=g colspan=6>off-target hits"    . "\n" .
 	"</tr>"                                       . "\n" .
 	"<tr>"                                        . "\n" .
