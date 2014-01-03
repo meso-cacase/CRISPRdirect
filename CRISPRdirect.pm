@@ -35,6 +35,7 @@ foreach (1..length($seq) - $targetlength + 1){
 
 	if ($pam =~ /GG$/i){
 		my $tttt    = ($targetseq =~ /TTTT/i) ? 'true' : 'false' ;
+		my $gc      = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
 		my $count23 = KmerCount::kmercount(substr($targetseq, -23), $db) ;
 		my $count15 = KmerCount::kmercount(substr($targetseq, -15), $db) ;
@@ -44,6 +45,7 @@ foreach (1..length($seq) - $targetlength + 1){
 			'sequence' => $targetseq,
 			'pam'      => $pam,
 			'tttt'     => $tttt,
+			'gc'       => $gc,
 			'tm'       => $tm,
 			'count23'  => $count23,
 			'count15'  => $count15,
@@ -58,7 +60,7 @@ my $tsv =
 "# [ CRISPRdirect | @{[ timestamp() ]} ]
 # sequence_name:	$name
 # specificity_check:	$db
-# position	sequence	PAM	TTTT	Tm	hit_20mer	hit_12mer	hit_8mer
+# position	sequence	PAM	TTTT	GC	Tm	hit_20mer	hit_12mer	hit_8mer
 #
 " ;
 foreach (@targetlist){
@@ -67,6 +69,7 @@ foreach (@targetlist){
 		$$_{'sequence'},
 		$$_{'pam'},
 		$$_{'tttt'},
+		$$_{'gc'},
 		$$_{'tm'},
 		$$_{'count23'},
 		$$_{'count15'},
@@ -128,6 +131,22 @@ sub dna2rna {
 my $seq = $_[0] or return '' ;
 $seq =~ tr/Tt/Uu/ ;
 return $seq ;
+} ;
+# ====================
+sub gc_percent {
+
+# GC含量
+#
+# usage: $gc = gc_percent('GGCTGCCAAGAACCTGCAGG') ;
+
+my $seq = lc ($_[0] // '') ;
+$seq =~ /^[atugc]+$/ or return '' ;
+
+# GC含量の計算
+my $gc_count   = ($seq =~ tr/gc/gc/) ;
+my $gc_percent = $gc_count / length($seq) * 100 ;
+
+return sprintf("%.2f", $gc_percent) ;
 } ;
 # ====================
 sub tm_RNA {

@@ -195,7 +195,7 @@ my $i ;  # foreach() のカウンター
 my @table ;
 foreach (@result){
 	$i ++ ;
-	my ($start, $sequence, $pam, $tttt, $tm, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $sequence, $pam, $tttt, $gc, $tm, $count23, $count15, $count11) = split /\t/ ;
 	my $seq15 = substr($sequence, -15) ;
 	my $seq11 = substr($sequence, -11) ;
 	push @table,
@@ -204,6 +204,7 @@ foreach (@result){
 		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}><span class=mono>$sequence</span>"              . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}><span class=mono>$pam</span>"                   . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'o' ]}>$tttt"                                          . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'p' ]}>$gc %"                                          . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'p' ]}>$tm &deg;C"                                     . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]}>$count23"                                       . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]} style='border-left:none; font-size:7pt'>"       . "\n" .
@@ -229,6 +230,7 @@ return
 	"	<th class=v rowspan=2>target<br>position" . "\n" .
 	"	<th class=v colspan=2>target sequence"    . "\n" .
 	"	<th class=o rowspan=2>TTTT"               . "\n" .
+	"	<th class=p rowspan=2>GC% of<br>20mer"    . "\n" .
 	"	<th class=p rowspan=2>Tm of<br>20mer"     . "\n" .
 	"	<th class=g colspan=6>off-target hits"    . "\n" .
 	"</tr>"                                       . "\n" .
@@ -325,12 +327,13 @@ my @result = split /\n/, $result ;
 
 my @json ;
 foreach (@result){
-	my ($start, $sequence, $pam, $tttt, $tm, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $sequence, $pam, $tttt, $gc, $tm, $count23, $count15, $count11) = split /\t/ ;
 	push @json, {
 		position  => $start,
 		sequence  => $sequence,
 		pam       => $pam,
 		tttt      => $tttt,
+		gc        => $gc,
 		tm        => $tm,
 		hit_20mer => $count23,
 		hit_12mer => $count15,
