@@ -62,8 +62,9 @@
 <ol type=A>
 	<li>Target positions.
 	<li>Target sequences, 20mer + 3mer PAM (total 23mer).
-	<li>Presence or absence of AAAA or TTTT in the target sequence. Avoid these sequences for gRNA vectors with pol III promoter.
+	<li>GC content of the target 20mer.
 	<li>Calculated Tm of the target 20mer.
+	<li>Presence or absence of TTTT in the target sequence. Avoid TTTT for gRNA vectors with pol III promoter.
 	<li>Off-target search results against human genome. Number of hits with perfect match is shown.
 	<ul>
 		<li>20mer+PAM: The target 20mer is searched against the genome.<br>
@@ -81,7 +82,7 @@
 
 <img src='CRISPR_BAGE_result1.png' width=525 height=306 border=0>
 
-<ol type=A start=6>
+<ol type=A start=7>
 	<li>Only one hit in the 20mer and the 12mer columns. These targets are highly specific.<br>
 		<font color=brown>&rarr; Recommended for CRISPR/Cas target.</font>
 	<li>No hit in the 20mer column. Possibly the sequences over exon-exon junction, so avoid using these ones.<br>
@@ -94,13 +95,64 @@
 
 <h4>Saving and exporting the results</h4>
 
-<ol type=A start=9>
+<ol type=A start=10>
 	<li>Tab-delimited text can be shown or downloaded as a file.
 	<li>JSON format output is also available.
-	<li>Tab-delimited text ready-to-use for copy-pasting into Excel or text editors, etc.
+	<li>Tab-delimited text, ready-to-use for copy-pasting into Excel or text editors, etc.
 </ol>
 
 <img src='CRISPR_BAGE_tsv.png' width=525 height=453 border=0>
+
+
+<h3>Methods</h3>
+
+<h4>Specificity check</h4>
+
+<p>Number of off-target hits are displayed for following species:</p>
+
+<ul>
+	<li><b>Human genome</b>, GRCh37/hg19 (Feb, 2009)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz</a>
+	<li><b>Mouse genome</b>, GRCm38/mm10 (Dec, 2011)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/chromFa.tar.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/chromFa.tar.gz</a>
+	<li><b>Rat genome</b>, RGSC 5.0/rn5 (Mar, 2012)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/rn5/bigZips/chromFa.tar.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/rn5/bigZips/chromFa.tar.gz</a>
+	<li><b>Chicken genome</b>, ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/galGal4/bigZips/galGal4.fa.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/galGal4/bigZips/galGal4.fa.gz</a>
+	<li><b><i>Xenopus tropicalis</i> genome</b>, JGI 4.2/xenTro3 (Nov, 2009)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/xenTro3/bigZips/xenTro3.fa.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/xenTro3/bigZips/xenTro3.fa.gz</a>
+	<li><b>Zebrafish genome</b>, Zv9/danRer7 (Jul, 2010)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/danRer7/bigZips/danRer7.fa.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/danRer7/bigZips/danRer7.fa.gz</a>
+	<li><b><i>Ciona intestinalis</i> genome</b>, JGI 2.1/ci2 (Mar, 2005)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/ci2/bigZips/ScaffoldFa.zip'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/ci2/bigZips/ScaffoldFa.zip</a>
+	<li><b><i>Drosophila</i> genome</b>, BDGP R5/dm3 (Apr, 2006)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/dm3/bigZips/chromFa.tar.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/dm3/bigZips/chromFa.tar.gz</a>
+	<li><b><i>C. elegans</i> genome</b>, WS220/ce10 (Oct, 2010)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/ce10/bigZips/chromFa.tar.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/ce10/bigZips/chromFa.tar.gz</a>
+	<li><b><i>Arabidopsis thaliana</i> genome</b>, TAIR10 (Nov, 2010)<br>
+		<a target='_blank' href='ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/'>
+		ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes</a>/*.fas
+	<li><b>Rice genome</b>, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)<br>
+		Genome assemblies (12 chromosomes) + Unanchored sequences from<br>
+		<a target='_blank' href='http://rapdb.dna.affrc.go.jp/download/irgsp1.html'>
+		http://rapdb.dna.affrc.go.jp/download/irgsp1.html</a>
+	<li><b>Silkworm genome</b>, Bmor1 (Apr, 2008)<br>
+		Bombyx_mori.Bmor1.17.dna.toplevel.fa.gz from<br>
+		<a target='_blank' href='ftp://ftp.ensemblgenomes.org/pub/metazoa/release-17/fasta/bombyx_mori/dna/'>
+		ftp://ftp.ensemblgenomes.org/pub/metazoa/release-17/fasta/bombyx_mori/dna/</a>
+	<li><b><i>S. cerevisiae</i> (S288C) genome</b>, sacCer3 (Apr, 2011)<br>
+		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/chromFa.tar.gz'>
+		ftp://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/chromFa.tar.gz</a>
+</ul>
 
 
 <h3>Useful tools</h3>
