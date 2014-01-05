@@ -34,9 +34,9 @@ foreach (1..length($seq) - $targetlength + 1){
 	my $pam       = substr($targetseq, -3) ;
 
 	if ($pam =~ /GG$/i){
-		my $tttt    = ($targetseq =~ /TTTT/i) ? 'true' : 'false' ;
 		my $gc      = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
+		my $tttt    = ($targetseq =~ /TTTT/i) ? 'true' : 'false' ;
 		my $count23 = KmerCount::kmercount(substr($targetseq, -23), $db) ;
 		my $count15 = KmerCount::kmercount(substr($targetseq, -15), $db) ;
 		my $count11 = KmerCount::kmercount(substr($targetseq, -11), $db) ;
@@ -44,9 +44,9 @@ foreach (1..length($seq) - $targetlength + 1){
 			'start'    => $position,
 			'sequence' => $targetseq,
 			'pam'      => $pam,
-			'tttt'     => $tttt,
 			'gc'       => $gc,
 			'tm'       => $tm,
+			'tttt'     => $tttt,
 			'count23'  => $count23,
 			'count15'  => $count15,
 			'count11'  => $count11
@@ -60,7 +60,7 @@ my $tsv =
 "# [ CRISPRdirect | @{[ timestamp() ]} ]
 # sequence_name:	$name
 # specificity_check:	$db
-# position	sequence	PAM	TTTT	GC	Tm	hit_20mer	hit_12mer	hit_8mer
+# position	sequence	PAM	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
 #
 " ;
 foreach (@targetlist){
@@ -68,9 +68,9 @@ foreach (@targetlist){
 		$$_{'start'},
 		$$_{'sequence'},
 		$$_{'pam'},
-		$$_{'tttt'},
 		$$_{'gc'},
 		$$_{'tm'},
+		$$_{'tttt'},
 		$$_{'count23'},
 		$$_{'count15'},
 		$$_{'count11'}

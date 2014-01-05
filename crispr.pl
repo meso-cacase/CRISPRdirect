@@ -195,7 +195,7 @@ my $i ;  # foreach() のカウンター
 my @table ;
 foreach (@result){
 	$i ++ ;
-	my ($start, $sequence, $pam, $tttt, $gc, $tm, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	my $seq15 = substr($sequence, -15) ;
 	my $seq11 = substr($sequence, -11) ;
 	push @table,
@@ -203,9 +203,9 @@ foreach (@result){
 		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}>$start"                                         . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}><span class=mono>$sequence</span>"              . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}><span class=mono>$pam</span>"                   . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'o' ]}>$gc %"                                          . "\n" .
+		"	<td class=@{[ ($i % 2) ? 'w' : 'o' ]}>$tm &deg;C"                                     . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'o' ]}>$tttt"                                          . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'p' ]}>$gc %"                                          . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'p' ]}>$tm &deg;C"                                     . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]}>$count23"                                       . "\n" .
 		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]} style='border-left:none; font-size:7pt'>"       . "\n" .
 		"		<a target='_blank' href='http://GGGenome.dbcls.jp/en/$db/$sequence'>[detail]</a>" . "\n" .
@@ -219,29 +219,30 @@ foreach (@result){
 }
 
 return
-	"<p>"                                         . "\n" .
-	"	<b>Sequence name:</b> $seq_name<br>"      . "\n" .
-	"	<b>Specificity check:</b> $db_name<br>"   . "\n" .
-	"	<b>Time:</b> $exec_time"                  . "\n" .
-	"</p>"                                        . "\n" .
-	                                                "\n" .
-	"<table cellspacing=0 cellpadding=2>"         . "\n" .
-	"<tr>"                                        . "\n" .
-	"	<th class=v rowspan=2>target<br>position" . "\n" .
-	"	<th class=v colspan=2>target sequence"    . "\n" .
-	"	<th class=o rowspan=2>TTTT"               . "\n" .
-	"	<th class=p rowspan=2>GC% of<br>20mer"    . "\n" .
-	"	<th class=p rowspan=2>Tm of<br>20mer"     . "\n" .
-	"	<th class=g colspan=6>off-target hits"    . "\n" .
-	"</tr>"                                       . "\n" .
-	"<tr>"                                        . "\n" .
-	"	<th class=v>20mer+PAM (total 23mer)"      . "\n" .
-	"	<th class=v>PAM"                          . "\n" .
-	"	<th class=g colspan=2>20mer<br>+PAM"      . "\n" .
-	"	<th class=g colspan=2>12mer<br>+PAM"      . "\n" .
-	"	<th class=g colspan=2>8mer<br>+PAM"       . "\n" .
-	"</tr>"                                       . "\n" .
-	"@{[ join '', @table ]}"                      .
+	"<p>"                                           . "\n" .
+	"	<b>Sequence name:</b> $seq_name<br>"        . "\n" .
+	"	<b>Specificity check:</b> $db_name<br>"     . "\n" .
+	"	<b>Time:</b> $exec_time"                    . "\n" .
+	"</p>"                                          . "\n" .
+	                                                  "\n" .
+	"<table cellspacing=0 cellpadding=2>"           . "\n" .
+	"<tr>"                                          . "\n" .
+	"	<th class=v rowspan=2>target<br>position"   . "\n" .
+	"	<th class=v colspan=2>target sequence"      . "\n" .
+	"	<th class=o colspan=3>sequence information" . "\n" .
+	"	<th class=g colspan=6>off-target hits"      . "\n" .
+	"</tr>"                                         . "\n" .
+	"<tr>"                                          . "\n" .
+	"	<th class=v>20mer+PAM (total 23mer)"        . "\n" .
+	"	<th class=v>PAM"                            . "\n" .
+	"	<th class=o>GC% of<br>20mer"                . "\n" .
+	"	<th class=o>Tm of<br>20mer"                 . "\n" .
+	"	<th class=o>TTTT in<br>23mer"               . "\n" .
+	"	<th class=g colspan=2>20mer<br>+PAM"        . "\n" .
+	"	<th class=g colspan=2>12mer<br>+PAM"        . "\n" .
+	"	<th class=g colspan=2>8mer<br>+PAM"         . "\n" .
+	"</tr>"                                         . "\n" .
+	"@{[ join '', @table ]}"                        .
 	"</table>" ;
 } ;
 # ====================
@@ -327,14 +328,14 @@ my @result = split /\n/, $result ;
 
 my @json ;
 foreach (@result){
-	my ($start, $sequence, $pam, $tttt, $gc, $tm, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	push @json, {
 		position  => $start,
 		sequence  => $sequence,
 		pam       => $pam,
-		tttt      => $tttt,
 		gc        => $gc,
 		tm        => $tm,
+		tttt      => $tttt,
 		hit_20mer => $count23,
 		hit_12mer => $count15,
 		hit_8mer  => $count11
