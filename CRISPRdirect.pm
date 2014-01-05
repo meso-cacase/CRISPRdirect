@@ -18,16 +18,35 @@ sub crispr_design {
 # usage: $tsv = crispr_design($userseq, $db) ;
 
 my $targetlength = 23 ;
+my $maxlength    = 10000 ;
+my $timeout      = 10 ;
 
 my $fasta = $_[0] or return '' ;
 my $db    = $_[1] // '' ;
 
 my ($name, $seq) = readFASTA($fasta) ;
-$name ||= 'YourSeq' ;
+$name //= 'YourSeq' ;
 $seq = rna2dna(flatsequence($seq)) ;
 
-#- ▼ すべての部分配列を生成
+my $tsv =
+"# [ CRISPRdirect | @{[ timestamp() ]} ]
+# sequence_name:	$name
+# specificity_check:	$db
+# position	sequence	PAM	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
+#
+" ;
+
+# 入力塩基配列の長さをチェック
+length $seq > $maxlength and return $tsv . "# ERROR:	Input sequence too long.\n" ;
+
 my @targetlist ;
+
+#- ▼ タイムアウト処理を行う部分
+eval {
+	local $SIG{ALRM} = sub { die } ;
+	alarm $timeout ;
+
+#- ▽ すべての部分配列を生成
 foreach (1..length($seq) - $targetlength + 1){
 	my $position  = $_ ;
 	my $targetseq = substr($seq, $position - 1, $targetlength) ;
@@ -53,16 +72,16 @@ foreach (1..length($seq) - $targetlength + 1){
 		} ;
 	}
 }
-#- ▲ すべての部分配列を生成
+#- △ すべての部分配列を生成
+
+	alarm 0 ;
+} ;
+#- ▲ タイムアウト処理を行う部分
+
+# タイムアウトの有無をチェック
+$@ and return $tsv . "# ERROR:	Timed out.\n" ;
 
 #- ▼ タブ区切りテキストを出力
-my $tsv =
-"# [ CRISPRdirect | @{[ timestamp() ]} ]
-# sequence_name:	$name
-# specificity_check:	$db
-# position	sequence	PAM	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
-#
-" ;
 foreach (@targetlist){
 	$tsv .= join "\t", (
 		$$_{'start'},

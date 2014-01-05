@@ -177,9 +177,12 @@ my $result = $_[0] // '' ;
 my $exec_time = ($result =~ /^# \[.*\|\s*(.*?)\s*\]$/m)      ? $1 : '' ;
 my $seq_name  = ($result =~ /^# sequence_name:\t(.*)$/m)     ? $1 : '' ;
 my $db_name   = ($result =~ /^# specificity_check:\t(.*)$/m) ? $1 : '' ;
+my $error     = ($result =~ /^# ERROR:\t(.*)$/m)             ? $1 : '' ;
 
 my @result = split /\n/, $result ;
-@result = grep(!/^#/, @result) or
+@result = grep(!/^#/, @result) or $error ||= 'No candidates were found.' ;
+
+$error and
 	return
 		"<p>"                                         . "\n" .
 		"	<b>Sequence name:</b> $seq_name<br>"      . "\n" .
@@ -188,7 +191,7 @@ my @result = split /\n/, $result ;
 		"</p>"                                        . "\n" .
 		                                                "\n" .
 		"<b style='font-size:12pt; color:#800000'>"   . "\n" .
-		"	No candidates were found."                . "\n" .
+		"	$error"                                   . "\n" .
 		"</b>" ;
 
 my $i ;  # foreach() のカウンター
@@ -322,6 +325,7 @@ my $prog_name = ($result =~ /^# \[\s*(.*?)\s*\|.*\]$/m)      ? $1 : '' ;
 my $exec_time = ($result =~ /^# \[.*\|\s*(.*?)\s*\]$/m)      ? $1 : '' ;
 my $seq_name  = ($result =~ /^# sequence_name:\t(.*)$/m)     ? $1 : '' ;
 my $db_name   = ($result =~ /^# specificity_check:\t(.*)$/m) ? $1 : '' ;
+my $error     = ($result =~ /^# ERROR:\t(.*)$/m)             ? $1 : '' ;
 
 my @result = split /\n/, $result ;
 @result = grep(!/^#/, @result) ;
@@ -351,6 +355,7 @@ print JSON::XS->new->canonical->utf8->encode({
 	time              => $exec_time,
 	sequence_name     => $seq_name,
 	specificity_check => $db_name,
+	error             => $error,
 	results           => \@json
 }) ;
 
