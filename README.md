@@ -3,7 +3,7 @@ CRISPRdirect
 
 CRISPR/Casシステムのターゲット配列を設計するウェブサービスです。
 
-+ http://altair.dbcls.jp/CRISPR/  
++ http://crispr.dbcls.jp/  
   本レポジトリにあるCGIが実際に稼働しています。
 
 
@@ -21,7 +21,19 @@ API
 
 + *db* (省略可)  
   特異性確認のためのデータベース。  
-  hg19 : ヒトゲノム
+  hg19    : ヒトゲノム  
+  mm10    : マウスゲノム  
+  rn5     : ラットゲノム  
+  galGal4 : ニワトリゲノム  
+  xenTro3 : ツメガエルゲノム  
+  danRer7 : ゼブラフィッシュゲノム  
+  ci2     : ホヤゲノム  
+  dm3     : ショウジョウバエゲノム  
+  ce10    : 線虫ゲノム  
+  TAIR10  : シロイヌナズナゲノム  
+  rice    : イネゲノム  
+  bmor1   : カイコゲノム  
+  sacCer3 : 出芽酵母ゲノム
 
 + *format* (省略可)  
   設計結果のフォーマット。  
