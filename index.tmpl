@@ -51,6 +51,58 @@ function on_loaded(oj){
 }
 //-->
 </script>
+<!-- jQuery -->
+<script type='text/javascript' charset='utf8'
+	src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js'>
+</script>
+<!-- DataTables -->
+<script type='text/javascript' charset='utf8'
+	src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'>
+</script>
+<!-- CSS for DataTables -->
+<link rel='stylesheet' type='text/css'
+	href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css'>
+<script type='text/javascript'>
+<!--
+$(document).ready(function(){
+	$('#result').dataTable({
+		'bAutoWidth'      : false,  // Disable automatic column width
+		'iDisplayLength'  : 20,     // Number of rows per page
+		'aLengthMenu'     : [[20, 100, -1], [20, 100, 'All']],  // Menu items
+		'sPaginationType' : 'full_numbers',  // Page control method
+		'bSortClasses'    : false,  // Disable highlighting the sorted columns
+		'aoColumnDefs'    : [{      // Sortable columns
+			'bSortable'   : false,
+			'aTargets'    : [ 1,2,7,9,11 ]
+		}],
+		'fnRowCallback'   : function( nRow, aData, iDisplayIndex, iDisplayIndexFull ){
+			// specific target sequence (Recommended)
+			if ( aData[6] == '1' ){
+				$('td:eq(6)', nRow).css('font-weight', 'bold') ;
+			}
+			// specific target sequence (Recommended)
+			if ( aData[8] == '1' ){
+				$('td:eq(8)', nRow).css('font-weight', 'bold') ;
+			}
+			// specific target sequence (Recommended)
+			if ( aData[6] == '1' && aData[8] == '1' ){
+				$('td:eq(0)', nRow).html('<em>' + aData[0] + '<\/em>') ;
+			}
+			// No hit against genomic sequences (Not recommended)
+			if ( aData[6] == '0' ){
+				$(nRow).addClass('s') ;
+				$('td:eq(6)', nRow).css('color', '#cc6666') ;
+			}
+			// TTTT in 23mer (Not recommended)
+			if ( aData[5] == 'true' ){
+				$(nRow).addClass('s') ;
+				$('td:eq(5)', nRow).css('color', '#cc6666') ;
+			}
+		}
+	});
+});
+//-->
+</script>
 <style type='text/css'>
 <!--
 	*     { font-family:verdana,arial,helvetica,sans-serif }
@@ -62,13 +114,21 @@ function on_loaded(oj){
 	.b      { text-decoration:none; color:black   }
 	.s      { text-decoration:none; color:gray    }
 	table { text-align:center; white-space:nowrap }
+	tr:nth-child(odd) td { background-color:white }
 	th { border-left:1px solid white }
 	td { border-left:1px solid #CCCCCC }
+	em { background-color:#99FF99; font-style:normal; font-weight:bold }
 	.v { background-color:#E6E6FA }
 	.o { background-color:#FFF0E0 }
 	.g { background-color:#E6FAF2 }
-	.p { background-color:#FFEDED }
-	.w { background-color:white   }
+
+	/*CSS for DataTables*/
+	table.dataTable thead th {
+		padding:2px 16px 2px 2px;
+		border-bottom:1px solid white;
+	}
+	table.dataTable tbody td { padding:2px 2px }
+	.dataTables_wrapper { display:inline-block }
 -->
 </style>
 </head>
@@ -92,7 +152,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 		'<div>'                                                           +
 		'<form name=getsequence method=GET action=".">'                   +
 		'    <p>Enter an accession number and retrieve sequence '         +
-		'        (<i>e.g.</i> NM_001187):<br>'                            +
+		'        (<i>e.g.<\/i> NM_001187):<br>'                           +
 		'    <input type=text id=acc name=accession size=20 maxlength=50' +
 		'        value="<TMPL_VAR NAME=ACCESSION>">'                      +
 		'    <input type=submit value="retrieve sequence">'               +
@@ -103,7 +163,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 } else {
 	document.write(
 		'    <p>Enter an accession number and retrieve sequence '         +
-		'        (<i>e.g.</i> NM_001187):<br>'                            +
+		'        (<i>e.g.<\/i> NM_001187):<br>'                           +
 		'    <input type=text id=acc name=accession size=20 maxlength=50' +
 		'        value="<TMPL_VAR NAME=ACCESSION>"'                       +
 		'        onkeypress="if(event.keyCode==13){retrieveSequence()}">' +

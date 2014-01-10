@@ -194,30 +194,32 @@ $error and
 		"	$error"                                   . "\n" .
 		"</b>" ;
 
-my $i ;  # foreach() のカウンター
 my @table ;
+my $ggg = 'http://GGGenome.dbcls.jp/en' ;  # GGGenome URI
 foreach (@result){
-	$i ++ ;
 	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	my $seq15 = substr($sequence, -15) ;
 	my $seq11 = substr($sequence, -11) ;
 	push @table,
 		"<tr>" . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}>$start"                                         . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}><span class=mono>$sequence</span>"              . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'v' ]}><span class=mono>$pam</span>"                   . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'o' ]}>$gc %"                                          . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'o' ]}>$tm &deg;C"                                     . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'o' ]}>$tttt"                                          . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]}>$count23"                                       . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]} style='border-left:none; font-size:7pt'>"       . "\n" .
-		"		<a target='_blank' href='http://GGGenome.dbcls.jp/en/$db/$sequence'>[detail]</a>" . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]}>$count15"                                       . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]} style='border-left:none; font-size:7pt'>"       . "\n" .
-		"		<a target='_blank' href='http://GGGenome.dbcls.jp/en/$db/$seq15'>[detail]</a>"    . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]}>$count11"                                       . "\n" .
-		"	<td class=@{[ ($i % 2) ? 'w' : 'g' ]} style='border-left:none; font-size:7pt'>"       . "\n" .
-		"		<a target='_blank' href='http://GGGenome.dbcls.jp/en/$db/$seq11'>[detail]</a>"    . "\n" .
+		"	<td class=v>$start"                                   . "\n" .
+		"	<td class=v><span class=mono>$sequence</span>"        . "\n" .
+		"	<td class=v><span class=mono>$pam</span>"             . "\n" .
+		"	<td class=o>$gc %"                                    . "\n" .
+		"	<td class=o>$tm &deg;C"                               . "\n" .
+		"	<td class=o>$tttt"                                    . "\n" .
+		"	<td class=g>$count23"                                 . "\n" .
+		"	<td class=g style='border-left:none; font-size:7pt'>" . "\n" .
+		"		<a target='_blank' href='$ggg/$db/$sequence'>"    .
+				"[detail]</a>"                                    . "\n" .
+		"	<td class=g>$count15"                                 . "\n" .
+		"	<td class=g style='border-left:none; font-size:7pt'>" . "\n" .
+		"		<a target='_blank' href='$ggg/$db/$seq15'>"       .
+				"[detail]</a>"                                    . "\n" .
+		"	<td class=g>$count11"                                 . "\n" .
+		"	<td class=g style='border-left:none; font-size:7pt'>" . "\n" .
+		"		<a target='_blank' href='$ggg/$db/$seq11'>"       .
+				"[detail]</a>"                                    . "\n" .
 		"</tr>" . "\n" ;
 }
 
@@ -228,7 +230,29 @@ return
 	"	<b>Time:</b> $exec_time"                    . "\n" .
 	"</p>"                                          . "\n" .
 	                                                  "\n" .
-	"<table cellspacing=0 cellpadding=2>"           . "\n" .
+	#- ▼ DataTablesが有効の場合のみ表示する情報
+	"<script type='text/javascript'>"                                                    . "\n" .
+	"<!--"                                                                               . "\n" .
+	"if (\$('#result').show()){"                                                         . "\n" .
+	"	document.write("                                                                 . "\n" .
+	"		'<ul>'                                                                    +" . "\n" .
+	"		'	<li>Highlighted target positions (<i>e.g.<\\/i>, <em>123<\\/em>)'     +" . "\n" .
+	"		'	    indicate highly specific sequences with less off-target hits.'    +" . "\n" .
+	"		'	<li>Target sequences with &apos;0&apos; in the &apos;20mer+PAM&apos;' +" . "\n" .
+	"		'	    off-target hits column are shown in gray.<br>'                    +" . "\n" .
+	"		'	    Possibly the sequences over exon-exon junction,'                  +" . "\n" .
+	"		'	    so avoid using these ones.'                                       +" . "\n" .
+	"		'	<li>Target sequences with TTTTs are also shown in gray.'              +" . "\n" .
+	"		'	    Avoid TTTT for gRNA vectors with pol III promoter.'               +" . "\n" .
+	"		'<\\/ul>'"                                                                   . "\n" .
+	"	) ;"                                                                             . "\n" .
+	"}"                                                                                  . "\n" .
+	"//-->"                                                                              . "\n" .
+	"</script>"                                                                          . "\n" .
+	#- ▲ DataTablesが有効の場合のみ表示する情報
+	                                                  "\n" .
+	"<table cellspacing=0 cellpadding=2 id=result>" . "\n" .
+	"<thead>"                                       . "\n" .
 	"<tr>"                                          . "\n" .
 	"	<th class=v rowspan=2>target<br>position"   . "\n" .
 	"	<th class=v colspan=2>target sequence"      . "\n" .
@@ -241,11 +265,17 @@ return
 	"	<th class=o>GC% of<br>20mer"                . "\n" .
 	"	<th class=o>Tm of<br>20mer"                 . "\n" .
 	"	<th class=o>TTTT in<br>23mer"               . "\n" .
-	"	<th class=g colspan=2>20mer<br>+PAM"        . "\n" .
-	"	<th class=g colspan=2>12mer<br>+PAM"        . "\n" .
-	"	<th class=g colspan=2>8mer<br>+PAM"         . "\n" .
+	"	<th class=g>20mer<br>+PAM"                  . "\n" .
+	"	<th class=g>"                               . "\n" .
+	"	<th class=g>12mer<br>+PAM"                  . "\n" .
+	"	<th class=g>"                               . "\n" .
+	"	<th class=g>8mer<br>+PAM"                   . "\n" .
+	"	<th class=g>"                               . "\n" .
 	"</tr>"                                         . "\n" .
+	"</thead>"                                      . "\n" .
+	"<tbody>"                                       . "\n" .
 	"@{[ join '', @table ]}"                        .
+	"</tbody>"                                      . "\n" .
 	"</table>" ;
 } ;
 # ====================
