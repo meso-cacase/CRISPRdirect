@@ -166,6 +166,7 @@ $(document).ready(function(){
 	a:hover { text-decoration:none; color:maroon  }
 	.b      { text-decoration:none; color:black   }
 	.s      { text-decoration:none; color:gray    }
+	form  { margin:10px 0px }
 	table { text-align:center; white-space:nowrap }
 	tr:nth-child(odd) td { background-color:white }
 	th { border-left:1px solid white }
@@ -246,7 +247,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 	</p>
 
 	<input type=hidden id=acc2 name=accession value="<TMPL_VAR NAME=ACCESSION>">
-	<p><input type=submit value=design></p>
+	<p><input type=submit value='   design   '></p>
 </div>
 
 <TMPL_VAR NAME=RESULT>

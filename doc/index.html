@@ -16,6 +16,7 @@
 	a:hover { text-decoration:none; color:maroon  }
 	.b      { text-decoration:none; color:black   }
 	.s      { text-decoration:none; color:gray    }
+	form  { margin:10px 0px }
 	table { text-align:center; white-space:nowrap }
 	tr:nth-child(odd) td { background-color:white }
 	th { border-left:1px solid white }
@@ -40,7 +41,7 @@
 
 <h4>About CRISPRdirect</h4>
 
-<p>CRISPRdirect is a web server for selecting rational CRISPR/Cas targets within an input sequence.
+<p>CRISPRdirect is a web server for selecting rational CRISPR/Cas targets within an input sequence.</p>
 
 
 <h4>Example</h4>
@@ -50,10 +51,45 @@
 <ol>
 	<li>Enter the accession number for human BAGE gene (NM_001187).
 	<li>Click 'retrieve sequence' to get nucleotide sequence from GenBank.
+
+	<form name=getsequence method=GET action='..' target='_blank'>
+	<span style='border:dotted 1px #8C93BA; padding:7px'>
+		Show example:
+		<input type=hidden name=accession value='NM_001187'>
+		<input type=submit value='retrieve sequence'>
+	</span>
+	</form>
+
 	<li>Or you can directly paste in a nucleotide sequence.<br>
 		Accepted input types are FASTA or plain nucleotide sequence up to 10 kbp.
 	<li>Select 'Human genome, GRCh37/hg19 (Feb, 2009)' for off-target checking.
 	<li>Click 'design'.
+
+	<form name=crisprdirect method=POST action='..' target='_blank'>
+	<span style='border:dotted 1px #8C93BA; padding:7px'>
+		Show example:
+		<input type=hidden name=accession value='NM_001187'>
+		<input type=hidden name=userseq value='>gi|4557346|ref|NM_001187.1| Homo sapiens B melanoma antigen (BAGE), mRNA
+CGCCAATTTAGGGTCTCCGGTATCTCCCGCTGAGCTGCTCTGTTCCCGGCTTAGAGGACCAGGAGAAGGG
+GGAGCTGGAGGCTGGAGCCTGTAACACCGTGGCTCGTCTCACTCTGGATGGTGGTGGCAACAGAGATGGC
+AGCGCAGCTGGAGTGTTAGGAGGGCGGCCTGAGCGGTAGGAGTGGGGCTGGAGCAGTAAGATGGCGGCCA
+GAGCGGTTTTTCTGGCATTGTCTGCCCAGCTGCTCCAAGCCAGGCTGATGAAGGAGGAGTCCCCTGTGGT
+GAGCTGGAGGTTGGAGCCTGAAGACGGCACAGCTCTGTGCTTCATCTTCTGAGGTTGTGGCAGCCACGGT
+GATGGAGACGGCAGCTCAACAGGAGCAATAGGAGGAGATGGAGTTTCACTGTGTCAGCCAGGATGGTCTC
+GATCTCCTGACCTCGTGATCCGCCCGCCTTGGCCTTCCAAAGTGCCGAGATTACAGCGATGTGCATTTTG
+TAAGCACTTTGGAGCCACTATCAAATGCTGTGAAGAGAAATGTACCCAGATGTATCATTATCCTTGTGCT
+GCAGGAGCCGGCTCCTTTCAGGATTTCAGTCACATCTTCCTGCTTTGTCCAGAACACATTGACCAAGCTC
+CTGAAAGATGTAAGTTTACTACGCATAGACTTTTAAACTTCAACCAATGTATTTACTGAAAATAACAAAT
+GTTGTAAATTCCCTGAGTGTTATTCTACTTGTATTAAAAGGTAATAATACATAATCATTAAAATCTGAGG
+GATCATTGCCAGAGATTGTTGGGGAGGGAAATGTTATCAACGGTTTCATTGAAATTAAATCCAAAAAGTT
+ATTTCCTCAGAAAAATCAAATAAAGTTTGCATGTTTTTTATTCTTAAAACATTTTAAAAACCACTGTAGA
+ATGATGTAAATAGGGACTGTGCAGTATTTCTGACATATACTATAAAATTATTAAAAAGTCAATCAGTATT
+CAACATCTTTTACACTAAAAAGCC
+'>
+		<input type=hidden name=db value=hg19>
+		<input type=submit value='   design   '>
+	</span>
+	</form>
 </ol>
 
 <img src='CRISPR_BAGE_fasta.png' width=525 height=404 border=0>
@@ -104,6 +140,10 @@
 </ol>
 
 <img src='CRISPR_BAGE_tsv.png' width=525 height=453 border=0>
+
+<p>The result page can also be saved as HTML file and opened by browser again.</p>
+
+<img src='savehtml.png' width=212 height=172 border=0>
 
 
 <h4>Methods</h4>
