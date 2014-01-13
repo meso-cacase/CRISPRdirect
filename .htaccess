@@ -1,0 +1,19 @@
+RewriteEngine on
+
+# [NC] は大文字小文字を区別しない
+# [R]  はリダイレクト
+# [R=301] はredirect permanent
+# [L]  は評価終了
+# [NE] はURIエンコードしない。これを指定しないと
+#      %22query+str%22 が %2522query+str%2522 になる
+
+# crispr.jp 経由でアクセスした場合は crispr.dbcls.jp にリダイレクト
+#
+# crisprdirect.crispr.jp -> crispr.dbcls.jp
+# direct.crispr.jp -> crispr.dbcls.jp
+# design.crispr.jp -> crispr.dbcls.jp
+# crispr.jp -> crispr.dbcls.jp
+#
+RewriteCond  %{HTTP_HOST}  ^((crisprdirect|direct|design)\.)?crispr.jp$  [NC]
+RewriteCond  %{REQUEST_URI}  ^/(test/)?
+RewriteRule  (.*)  http://crispr.dbcls.jp/%1$1  [R=301,L,NE]
