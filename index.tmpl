@@ -67,40 +67,16 @@ function on_loaded(oj){
 <script type='text/javascript' charset='utf8'
 	src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'>
 </script>
-<script type='text/javascript'>
-<!--
-	// Fallback for CDN hosted DataTables
-	(window.jQuery.fn.dataTable || document.write(
-		'<script src="jquery.dataTables/1.9.4/jquery.dataTables.min.js"><\/script>'
-	)) ;
-//-->
-</script>
 <!-- CSS for DataTables -->
 <link rel='stylesheet' type='text/css'
 	href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css'>
 <script type='text/javascript'>
 <!--
-	// Fallback for CDN hosted CSS
-	function cssLoaded(href) {
-		var cssFound = false ;
-
-		for (var i = 0 ; i < document.styleSheets.length ; i++) {
-			var sheet = document.styleSheets[i] ;
-			if (sheet['href'].indexOf(href) >= 0 && sheet['cssRules'].length > 0) {
-				cssFound = true ;
-			}
-		} ;
-
-		return cssFound ;
-	}
-
-	if (!cssLoaded('jquery.dataTables.css')) {
-		local_bootstrap = document.createElement('link') ;
-		local_bootstrap.setAttribute('rel',  'stylesheet') ;
-		local_bootstrap.setAttribute('type', 'text/css') ;
-		local_bootstrap.setAttribute('href', 'jquery.dataTables/1.9.4/css/jquery.dataTables.css') ;
-		document.getElementsByTagName('head')[0].appendChild(local_bootstrap) ;
-	}
+	// Fallback for CDN hosted DataTables
+	(window.jQuery.fn.dataTable || document.write(
+		'<script src="jquery.dataTables/1.9.4/jquery.dataTables.min.js"><\/script>' +
+		'<link rel="stylesheet" type="text/css" href="jquery.dataTables/1.9.4/css/jquery.dataTables.css">'
+	)) ;
 //-->
 </script>
 <script type='text/javascript'>
