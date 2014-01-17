@@ -257,7 +257,13 @@ return
 	"	<th class=v rowspan=2>target<br>position"   . "\n" .
 	"	<th class=v colspan=2>target sequence"      . "\n" .
 	"	<th class=o colspan=3>sequence information" . "\n" .
-	"	<th class=g colspan=6>off-target hits"      . "\n" .
+	"	<th class=g colspan=6>off-target hits "     . "\n" .
+	"		<a href='doc/off-target.html'"                             . "\n" .
+	"			onclick=\"window.open("                                . "\n" .
+	"				'doc/off-target.html','','width=600,height=700'"   . "\n" .
+	"			) ; return false ;\">"                                 . "\n" .
+	"		<img src='qicon.png' alt='?' width=15 height=15 border=0>" . "\n" .
+	"		</a>"                                                      . "\n" .
 	"</tr>"                                         . "\n" .
 	"<tr>"                                          . "\n" .
 	"	<th class=v>20mer+PAM (total 23mer)"        . "\n" .

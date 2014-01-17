@@ -60,7 +60,7 @@
 	</span>
 	</form>
 
-	<li>Or you can directly paste in a nucleotide sequence.<br>
+	<li>Or you can directly paste a nucleotide sequence.<br>
 		Accepted input types are FASTA or plain nucleotide sequence up to 10 kbp.
 	<li>Select 'Human genome, GRCh37/hg19 (Feb, 2009)' for off-target checking.
 	<li>Click 'design'.
@@ -105,8 +105,10 @@ CAACATCTTTTACACTAAAAAGCC
 	<li>Off-target search results against human genome. Number of hits with perfect match is shown.
 	<ul>
 		<li>20mer+PAM: The target 20mer is searched against the genome.<br>
-			The number '1' in this column usually indicates a perfect match against intended target (<i>e.g.</i>, BAGE gene).<br>
-			The number '0' in this column means no match in the genome. Possibly the sequence over exon-exon junction.<br>
+			The number '1' in this column usually indicates a perfect match against intended target
+			(<i>e.g.</i>, BAGE gene).<br>
+			The number '0' in this column means no match in the genome. Possibly the sequence over
+			exon-exon junction.<br>
 			Smaller number of hits (but not zero) is better.
 		<li>12mer+PAM: The 12mer of 3&prime; region of the target sequence is searched against the genome.<br>
 			This region contains critical residues for target specificity.<br>
