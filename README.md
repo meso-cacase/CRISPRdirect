@@ -7,6 +7,14 @@ CRISPR/Casシステムのターゲット配列を設計するウェブサービ�
   本レポジトリにあるCGIが実際に稼働しています。
 
 
+サンプル画像
+--------
+
+![スクリーンショット]
+(http://g86.dbcls.jp/~meso/meme/wp-content/uploads/2014/01/CRISPRscreen.png
+"スクリーンショット")
+
+
 API
 --------
 
