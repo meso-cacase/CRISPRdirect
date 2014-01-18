@@ -237,11 +237,12 @@ return
 	"	document.write("                                                                 . "\n" .
 	"		'<ul>'                                                                    +" . "\n" .
 	"		'	<li>Highlighted target positions (<i>e.g.<\\/i>, <em>123<\\/em>)'     +" . "\n" .
-	"		'	    indicate highly specific sequences with less off-target hits.'    +" . "\n" .
-	"		'	<li>Target sequences with &apos;0&apos; in the &apos;20mer+PAM&apos;' +" . "\n" .
-	"		'	    off-target hits column are shown in gray.<br>'                    +" . "\n" .
-	"		'	    Possibly the sequences over exon-exon junction,'                  +" . "\n" .
-	"		'	    so avoid using these ones.'                                       +" . "\n" .
+	"		'	    indicate sequences that are highly specific and have less'        +" . "\n" .
+	"		'	    off-target hits.'                                                 +" . "\n" .
+	"		'	<li>Target sequences with &apos;0&apos; in &apos;20mer+PAM&apos;'     +" . "\n" .
+	"		'	    (in off-target hits column) are shown in gray.<br>'               +" . "\n" .
+	"		'	    Such sequences are likely to span over exon-exon junction,'       +" . "\n" .
+	"		'	    so avoid using these.'                                            +" . "\n" .
 	"		'	<li>Target sequences with TTTTs are also shown in gray.'              +" . "\n" .
 	"		'	    Avoid TTTT for gRNA vectors with pol III promoter.'               +" . "\n" .
 	"		'<\\/ul>'"                                                                   . "\n" .

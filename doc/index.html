@@ -61,8 +61,8 @@
 	</form>
 
 	<li>Or you can directly paste a nucleotide sequence.<br>
-		Accepted input types are FASTA or plain nucleotide sequence up to 10 kbp.
-	<li>Select 'Human genome, GRCh37/hg19 (Feb, 2009)' for off-target checking.
+		FASTA format and plain nucleotide sequences up to 10 kbp are accepted.
+	<li>Select 'Human genome, GRCh37/hg19 (Feb, 2009)' to check for off-targets.
 	<li>Click 'design'.
 
 	<form name=crisprdirect method=POST action='..' target='_blank'>
@@ -103,29 +103,27 @@ CAACATCTTTTACACTAAAAAGCC
 	<li>Calculated Tm of the target 20mer.
 	<li>Presence or absence of TTTT in the target sequence. Avoid TTTT for gRNA vectors with pol III promoter.
 	<li>Off-target search results against human genome. Number of hits with perfect match is shown.
+		Smaller number (but not zero) is better for these columns.
 	<ul>
-		<li>20mer+PAM: The target 20mer is searched against the genome.<br>
-			The number '1' in this column usually indicates a perfect match against intended target
-			(<i>e.g.</i>, BAGE gene).<br>
-			The number '0' in this column means no match in the genome. Possibly the sequence over
-			exon-exon junction.<br>
-			Smaller number of hits (but not zero) is better.
-		<li>12mer+PAM: The 12mer of 3&prime; region of the target sequence is searched against the genome.<br>
-			This region contains critical residues for target specificity.<br>
-			Smaller number of hits (but not zero) is better.
-		<li>8mer+PAM: The 8mer of 3&prime; region of the target sequence is searched against the genome.<br>
-			This region contains the most critical residues for target specificity.<br>
-			Smaller number of hits (but not zero) is better.
+		<li>20mer+PAM: The target 20mer searched against the genome.<br>
+			One ('1') in this column usually indicates that the sequence has only one perfect match with the
+			intended target (<i>e.g.</i>, BAGE locus in the genome).<br>
+			Zero ('0') in this column means that the sequence has no match in the genomic sequence;
+			such sequences may possibly span over exon-exon junctions.
+		<li>12mer+PAM: The 12mer of 3&prime; region of the target sequence searched against the genome.<br>
+			The region contains critical residues determining target specificity.
+		<li>8mer+PAM: The 8mer of 3&prime; region of the target sequence searched against the genome.<br>
+			The region contains the most critical residues determining target specificity.
 	</ul>
 </ol>
 
 <img src='CRISPR_BAGE_result1.png' width=525 height=377 border=0>
 
 <ol type=A start=7>
-	<li>Only one hit in the 20mer and the 12mer columns. These targets are highly specific.<br>
+	<li>Only one match in 20mer and 12mer search. These targets are highly specific.<br>
 		<font color=brown>&rarr; Recommended for CRISPR/Cas target.</font>
 		Target positions are highlighted with green (<i>e.g.</i>, <em>123</em>).
-	<li>No hit in the 20mer column. Possibly the sequences over exon-exon junction, so avoid using these ones.<br>
+	<li>No match in 20mer search. Possibly the sequence spans over exon-exon junction, so avoid using these.<br>
 		<font color=brown>&rarr; Not recommended for CRISPR/Cas target.</font>
 	<li>Very high number of off-target hits. Avoid using these sequences.<br>
 		<font color=brown>&rarr; Not recommended for CRISPR/Cas target.</font>
