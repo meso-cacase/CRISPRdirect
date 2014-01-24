@@ -130,6 +130,7 @@ else {
 		my $template = HTML::Template->new(filename => 'result.tmpl') ;
 		$template->param(
 			TABLE  => tsv2table($result),
+			SEQMAP => tsv2seqmap($userseq, $result),
 			RESULT => $result
 		) ;
 		print_html($accession, $userseq, $db, $template->output) ;
@@ -171,7 +172,7 @@ foreach (@query){
 return %query ;
 } ;
 # ====================
-sub tsv2table {
+sub tsv2table {  # HTMLの表
 my $result = $_[0] // '' ;
 
 my $exec_time = ($result =~ /^# \[.*\|\s*(.*?)\s*\]$/m)      ? $1 : '' ;
@@ -284,6 +285,71 @@ return
 	"@{[ join '', @table ]}"                        .
 	"</tbody>"                                      . "\n" .
 	"</table>" ;
+} ;
+# ====================
+sub tsv2seqmap {  # HTMLのGraphical View
+my $fasta  = $_[0] // '' ;
+my $result = $_[1] // '' ;
+
+# 既に require CRISPRdirect しているのでここでは省略
+# eval 'require CRISPRdirect ; 1' or
+# 	print_error('ERROR : cannot load CRISPRdirect') ;
+
+my $seq = CRISPRdirect::rna2dna(
+	          CRISPRdirect::flatsequence(
+		          (CRISPRdirect::readFASTA($fasta))[1]
+	          )
+          ) ;
+
+my $markfwd = ' ' x length $seq ;
+
+my @result = split /\n/, $result ;
+@result = grep(!/^#/, @result) ;
+
+foreach (@result){
+	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	($start <= length $markfwd) and substr($markfwd, $start - 1, 1) =
+		($count23 == 1 and $count15 == 1 and $tttt eq 'false' ) ? '=' :
+		($count23 == 0 or $tttt eq 'true'                     ) ? '-' :
+		                                                          '>' ;
+}
+
+$" = '' ;
+my $html = '' ;
+my @poslist ;
+my @seqlist ;
+my @markfwd ;
+foreach (1..length($seq)){
+	my $base = substr($seq, $_ - 1, 1) ;
+	push @seqlist, "<td>$base</td>" ;
+	my $mk_f = substr($markfwd, $_ - 1, 1) ;
+	push @markfwd,
+		($mk_f eq ' ') ? '<td>&nbsp;</td>'       :
+		($mk_f eq '>') ? '<td>&gt;</td>'         :
+		($mk_f eq '=') ? '<td class=h>&gt;</td>' :
+		($mk_f eq '-') ? '<td class=s>&gt;</td>' :
+		() ;
+	unless ($_ % 10){
+		push @poslist, "<td colspan=10>$_</td>" ;
+	}
+	unless ($_ % 100){
+		$html .= "<tr class=pos>@poslist</tr>\n" .
+		         "<tr class=seq>@seqlist</tr>\n" .
+		         "<tr class=mark>@markfwd</tr>\n" ;
+		@poslist = () ;
+		@seqlist = () ;
+		@markfwd = () ;
+	}
+}
+if (@seqlist){
+	push @poslist, "<td>&nbsp;</td>" ;
+	$html .= "<tr class=pos>@poslist</tr>\n" .
+	         "<tr class=seq>@seqlist</tr>\n" .
+	         "<tr class=mark>@markfwd</tr>\n" ;
+}
+
+return "<table cellpadding=0 cellspacing=0 id=seqmap>
+$html</table>" ;
 } ;
 # ====================
 sub print_html {  # HTMLを出力

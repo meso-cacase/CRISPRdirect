@@ -144,13 +144,18 @@ $(document).ready(function(){
 	.s      { text-decoration:none; color:gray    }
 	form  { margin:10px 0px }
 	table { text-align:center; white-space:nowrap }
-	tr:nth-child(odd) td { background-color:white }
-	th { border-left:1px solid white }
-	td { border-left:1px solid #CCCCCC }
+	table#result tr:nth-child(odd) td { background-color:white }
+	table#result th { border-left:1px solid white   }
+	table#result td { border-left:1px solid #CCCCCC }
+	table#seqmap td { font-family:monaco,courier,monospace }
+	table#seqmap .pos  { text-align:right; color:green }
+	table#seqmap .seq  { background-color:white }
+	table#seqmap .mark { background-color:#F3F3F3; font-weight:bold }
 	em { background-color:#99FF99; font-style:normal; font-weight:bold }
 	.v { background-color:#E6E6FA }
 	.o { background-color:#FFF0E0 }
 	.g { background-color:#E6FAF2 }
+	.h { background-color:#99FF99 }
 -->
 </style>
 </head>
