@@ -55,7 +55,7 @@ foreach (1..length($seq) - $targetlength + 1){
 	if ($pam =~ /GG$/i){
 		my $gc      = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
-		my $tttt    = ($targetseq =~ /TTTT/i) ? 'true' : 'false' ;
+		my $tttt    = (substr($targetseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
 		my $count23 = KmerCount::kmercount(substr($targetseq, -23), $db) ;
 		my $count15 = KmerCount::kmercount(substr($targetseq, -15), $db) ;
 		my $count11 = KmerCount::kmercount(substr($targetseq, -11), $db) ;

@@ -201,6 +201,7 @@ foreach (@result){
 	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	my $seq15 = substr($sequence, -15) ;
 	my $seq11 = substr($sequence, -11) ;
+	$tttt = $tttt ? '+' : '-' ;
 	push @table,
 		"<tr>" . "\n" .
 		"	<td class=v>$start"                                   . "\n" .
@@ -232,25 +233,25 @@ return
 	"</p>"                                          . "\n" .
 	                                                  "\n" .
 	#- ▼ DataTablesが有効の場合のみ表示する情報
-	"<script type='text/javascript'>"                                                    . "\n" .
-	"<!--"                                                                               . "\n" .
-	"if (\$('#result').show()){"                                                         . "\n" .
-	"	document.write("                                                                 . "\n" .
-	"		'<ul>'                                                                    +" . "\n" .
-	"		'	<li>Highlighted target positions (<i>e.g.<\\/i>, <em>123<\\/em>)'     +" . "\n" .
-	"		'	    indicate sequences that are highly specific and have less'        +" . "\n" .
-	"		'	    off-target hits.'                                                 +" . "\n" .
-	"		'	<li>Target sequences with &apos;0&apos; in &apos;20mer+PAM&apos;'     +" . "\n" .
-	"		'	    (in off-target hits column) are shown in gray.<br>'               +" . "\n" .
-	"		'	    Such sequences are likely to span over exon-exon junction,'       +" . "\n" .
-	"		'	    so avoid using these.'                                            +" . "\n" .
-	"		'	<li>Target sequences with TTTTs are also shown in gray.'              +" . "\n" .
-	"		'	    Avoid TTTT for gRNA vectors with pol III promoter.'               +" . "\n" .
-	"		'<\\/ul>'"                                                                   . "\n" .
-	"	) ;"                                                                             . "\n" .
-	"}"                                                                                  . "\n" .
-	"//-->"                                                                              . "\n" .
-	"</script>"                                                                          . "\n" .
+	"<script type='text/javascript'>"                                                . "\n" .
+	"<!--"                                                                           . "\n" .
+	"if (\$('#result').show()){"                                                     . "\n" .
+	"	document.write("                                                             . "\n" .
+	"		'<ul>'                                                                +" . "\n" .
+	"		'	<li>Highlighted target positions (<i>e.g.<\\/i>, <em>123<\\/em>)' +" . "\n" .
+	"		'	    indicate sequences that are highly specific and have less'    +" . "\n" .
+	"		'	    off-target hits.'                                             +" . "\n" .
+	"		'	<li>Target sequences with &apos;0&apos; in &apos;20mer+PAM&apos;' +" . "\n" .
+	"		'	    (in off-target hits column) are shown in gray.<br>'           +" . "\n" .
+	"		'	    Such sequences are likely to span over exon-exon junction,'   +" . "\n" .
+	"		'	    so avoid using these.'                                        +" . "\n" .
+	"		'	<li>Target sequences with TTTTs are also shown in gray.'          +" . "\n" .
+	"		'	    Avoid TTTT for gRNA vectors with pol III promoter.'           +" . "\n" .
+	"		'<\\/ul>'"                                                               . "\n" .
+	"	) ;"                                                                         . "\n" .
+	"}"                                                                              . "\n" .
+	"//-->"                                                                          . "\n" .
+	"</script>"                                                                      . "\n" .
 	#- ▲ DataTablesが有効の場合のみ表示する情報
 	                                                  "\n" .
 	"<table cellspacing=0 cellpadding=2 id=result>" . "\n" .
@@ -272,7 +273,7 @@ return
 	"	<th class=v>PAM"                            . "\n" .
 	"	<th class=o>GC% of<br>20mer"                . "\n" .
 	"	<th class=o>Tm of<br>20mer"                 . "\n" .
-	"	<th class=o>TTTT in<br>23mer"               . "\n" .
+	"	<th class=o>TTTT in<br>20mer"               . "\n" .
 	"	<th class=g>20mer<br>+PAM"                  . "\n" .
 	"	<th class=g>"                               . "\n" .
 	"	<th class=g>12mer<br>+PAM"                  . "\n" .
@@ -309,9 +310,9 @@ my @result = split /\n/, $result ;
 foreach (@result){
 	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	($start <= length $markfwd) and substr($markfwd, $start - 1, 1) =
-		($count23 == 1 and $count15 == 1 and $tttt eq 'false' ) ? '=' :
-		($count23 == 0 or $tttt eq 'true'                     ) ? '-' :
-		                                                          '>' ;
+		($count23 == 1 and $count15 == 1 and $tttt == 0 ) ? '=' :
+		($count23 == 0 or $tttt == 1                    ) ? '-' :
+		                                                    '>' ;
 }
 
 $" = '' ;
