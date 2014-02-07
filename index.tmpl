@@ -93,6 +93,18 @@ jQuery.fn.dataTableExt.oSort['position-range-desc'] = function(a,b) {
 	return ((x < y) ?  1 : ((x > y) ? -1 : 0));
 };
 
+jQuery.fn.dataTableExt.oSort['hits-asc'] = function(a,b) {
+	var x = parseFloat( a.replace( /\D.*/, '' ) ) ;  // get number of hits
+	var y = parseFloat( b.replace( /\D.*/, '' ) ) ;  // get number of hits
+	return ((x < y) ? -1 : ((x > y) ?  1 : 0)) ;
+} ;
+
+jQuery.fn.dataTableExt.oSort['hits-desc'] = function(a,b) {
+	var x = parseFloat( a.replace( /\D.*/, '' ) ) ;  // get number of hits
+	var y = parseFloat( b.replace( /\D.*/, '' ) ) ;  // get number of hits
+	return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+};
+
 $(document).ready(function(){
 	$('#result').dataTable({
 		'bAutoWidth'      : false,  // Disable automatic column width
@@ -107,33 +119,33 @@ $(document).ready(function(){
 			null,                        // GC%
 			null,                        // Tm
 			null,                        // TTTT
-			null,                        // hit_20mer
-			{'bSortable':false},         // detail
-			null,                        // hit_12mer
-			{'bSortable':false},         // detail
-			null,                        // hit_8mer
-			{'bSortable':false},         // detail
+			{'sType':'hits'},            // hit_20mer
+			{'sType':'hits'},            // hit_12mer
+			{'sType':'hits'},            // hit_8mer
 		],
 		'fnRowCallback'   : function( nRow, aData, iDisplayIndex, iDisplayIndexFull ){
+			var tttt      = aData[5] ;
+			var hit_20mer = aData[6].replace( /\D.*/, '' ) ;
+			var hit_12mer = aData[7].replace( /\D.*/, '' ) ;
 			// specific target sequence (Recommended)
-			if ( aData[6] == '1' ){
+			if ( hit_20mer == '1' ){
 				$('td:eq(6)', nRow).css('font-weight', 'bold') ;
 			}
 			// specific target sequence (Recommended)
-			if ( aData[8] == '1' ){
-				$('td:eq(8)', nRow).css('font-weight', 'bold') ;
+			if ( hit_12mer == '1' ){
+				$('td:eq(7)', nRow).css('font-weight', 'bold') ;
 			}
 			// specific target sequence (Recommended)
-			if ( aData[6] == '1' && aData[8] == '1' && aData[5] == '-' ){
+			if ( hit_20mer == '1' && hit_12mer == '1' && tttt == '-' ){
 				$('td:eq(0)', nRow).html('<em>' + aData[0] + '<\/em>') ;
 			}
 			// No hit against genomic sequences (Not recommended)
-			if ( aData[6] == '0' ){
+			if ( hit_20mer == '0' ){
 				$(nRow).addClass('s') ;
 				$('td:eq(6)', nRow).css('color', '#cc6666') ;
 			}
 			// TTTT in 20mer (Not recommended)
-			if ( aData[5] == '+' ){
+			if ( tttt == '+' ){
 				$(nRow).addClass('s') ;
 				$('td:eq(5)', nRow).css('color', '#cc6666') ;
 			}
@@ -177,6 +189,8 @@ $(document).ready(function(){
 	table#result tr:nth-child(odd) td { background-color:white }
 	table#result th { border-left:1px solid white   }
 	table#result td { border-left:1px solid #CCCCCC }
+	table#result .hits   { text-align:right; padding-left:7pt }
+	table#result .detail { font-size:7pt; font-weight:normal }
 	table#seqmap td { font-family:monaco,courier,monospace }
 	table#seqmap .pos  { text-align:right; color:green }
 	table#seqmap .seq  { background-color:white }

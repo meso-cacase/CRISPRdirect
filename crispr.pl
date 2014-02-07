@@ -220,18 +220,15 @@ foreach (@result){
 		"	<td class=o>$gc %"                                    . "\n" .
 		"	<td class=o>$tm &deg;C"                               . "\n" .
 		"	<td class=o>$tttt"                                    . "\n" .
-		"	<td class=g>$count23"                                 . "\n" .
-		"	<td class=g style='border-left:none; font-size:7pt'>" . "\n" .
-		"		<a target='_blank' href='$ggg/$db/$sequence'>"    .
-				"[detail]</a>"                                    . "\n" .
-		"	<td class=g>$count15"                                 . "\n" .
-		"	<td class=g style='border-left:none; font-size:7pt'>" . "\n" .
-		"		<a target='_blank' href='$ggg/$db/$seq15'>"       .
-				"[detail]</a>"                                    . "\n" .
-		"	<td class=g>$count11"                                 . "\n" .
-		"	<td class=g style='border-left:none; font-size:7pt'>" . "\n" .
-		"		<a target='_blank' href='$ggg/$db/$seq11'>"       .
-				"[detail]</a>"                                    . "\n" .
+		"	<td class='g hits'>$count23"                          . "\n" .
+		"		<a target='_blank' class=detail"                  . "\n" .
+		"			href='$ggg/$db/$sequence'>[detail]</a>"       . "\n" .
+		"	<td class='g hits'>$count15"                          . "\n" .
+		"		<a target='_blank' class=detail"                  . "\n" .
+		"			href='$ggg/$db/$seq15'>[detail]</a>"          . "\n" .
+		"	<td class='g hits'>$count11"                          . "\n" .
+		"		<a target='_blank' class=detail"                  . "\n" .
+		"			href='$ggg/$db/$seq11'>[detail]</a>"          . "\n" .
 		"</tr>" . "\n" ;
 }
 
@@ -270,7 +267,7 @@ return
 	"	<th class=v colspan=2>position"             . "\n" .
 	"	<th class=v colspan=1>target sequence"      . "\n" .
 	"	<th class=o colspan=3>sequence information" . "\n" .
-	"	<th class=g colspan=6>off-target hits "     . "\n" .
+	"	<th class=g colspan=3>off-target hits "     . "\n" .
 	"		<a href='doc/off-target.html'"                                          . "\n" .
 	"			onclick=\"window.open("                                             . "\n" .
 	"				'doc/off-target.html','','width=600,height=700,scrollbars=yes'" . "\n" .
@@ -288,11 +285,8 @@ return
 	"	<th class=o>Tm of<br>20mer"                 . "\n" .
 	"	<th class=o>TTTT in<br>20mer"               . "\n" .
 	"	<th class=g>20mer<br>+PAM"                  . "\n" .
-	"	<th class=g>"                               . "\n" .
 	"	<th class=g>12mer<br>+PAM"                  . "\n" .
-	"	<th class=g>"                               . "\n" .
 	"	<th class=g>8mer<br>+PAM"                   . "\n" .
-	"	<th class=g>"                               . "\n" .
 	"</tr>"                                         . "\n" .
 	"</thead>"                                      . "\n" .
 	"<tbody>"                                       . "\n" .
