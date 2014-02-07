@@ -198,15 +198,16 @@ $error and
 my @table ;
 my $ggg = 'http://GGGenome.dbcls.jp/en' ;  # GGGenome URI
 foreach (@result){
-	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
-	my $seq15 = substr($sequence, -15) ;
-	my $seq11 = substr($sequence, -11) ;
+	my ($start, $end, $strand, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my $target20 = substr($sequence, 0, 20) ;
+	my $seq15    = substr($sequence, -15) ;
+	my $seq11    = substr($sequence, -11) ;
 	$tttt = $tttt ? '+' : '-' ;
 	push @table,
 		"<tr>" . "\n" .
-		"	<td class=v>$start"                                   . "\n" .
-		"	<td class=v><span class=mono>$sequence</span>"        . "\n" .
-		"	<td class=v><span class=mono>$pam</span>"             . "\n" .
+		"	<td class=v>$start - $end"                            . "\n" .
+		"	<td class=v>$strand"                                  . "\n" .		
+		"	<td class=v><span class=mono>$target20 $pam</span>"   . "\n" .
 		"	<td class=o>$gc %"                                    . "\n" .
 		"	<td class=o>$tm &deg;C"                               . "\n" .
 		"	<td class=o>$tttt"                                    . "\n" .
@@ -257,8 +258,8 @@ return
 	"<table cellspacing=0 cellpadding=2 id=result>" . "\n" .
 	"<thead>"                                       . "\n" .
 	"<tr>"                                          . "\n" .
-	"	<th class=v rowspan=2>target<br>position"   . "\n" .
-	"	<th class=v colspan=2>target sequence"      . "\n" .
+	"	<th class=v colspan=2>position"             . "\n" .
+	"	<th class=v colspan=1>target sequence"      . "\n" .
 	"	<th class=o colspan=3>sequence information" . "\n" .
 	"	<th class=g colspan=6>off-target hits "     . "\n" .
 	"		<a href='doc/off-target.html'"                                          . "\n" .
@@ -269,8 +270,9 @@ return
 	"		</a>"                                                                   . "\n" .
 	"</tr>"                                         . "\n" .
 	"<tr>"                                          . "\n" .
+	"	<th class=v>start<br>- end"                 . "\n" .
+	"	<th class=v>+<br>&minus;"                   . "\n" .
 	"	<th class=v>20mer+PAM (total 23mer)"        . "\n" .
-	"	<th class=v>PAM"                            . "\n" .
 	"	<th class=o>GC% of<br>20mer"                . "\n" .
 	"	<th class=o>Tm of<br>20mer"                 . "\n" .
 	"	<th class=o>TTTT in<br>20mer"               . "\n" .
@@ -308,7 +310,7 @@ my @result = split /\n/, $result ;
 @result = grep(!/^#/, @result) ;
 
 foreach (@result){
-	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $end, $strand, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	($start <= length $markfwd) and substr($markfwd, $start - 1, 1) =
 		($count23 == 1 and $count15 == 1 and $tttt == 0 ) ? '=' :
 		($count23 == 0 or $tttt == 1                    ) ? '-' :
@@ -436,9 +438,11 @@ my @result = split /\n/, $result ;
 
 my @json ;
 foreach (@result){
-	my ($start, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $end, $strand, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	push @json, {
-		position  => $start,
+		start     => $start,
+		end       => $end,
+		strand    => $strand,
 		sequence  => $sequence,
 		pam       => $pam,
 		gc        => $gc,

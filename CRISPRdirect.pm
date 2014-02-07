@@ -32,7 +32,7 @@ my $tsv =
 "# [ CRISPRdirect | @{[ timestamp() ]} ]
 # sequence_name:	$name
 # specificity_check:	$db
-# position	sequence	PAM	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
+# start	end	strand	sequence	PAM	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
 #
 " ;
 
@@ -48,8 +48,9 @@ eval {
 
 #- ▽ すべての部分配列を生成
 foreach (1..length($seq) - $targetlength + 1){
-	my $position  = $_ ;
-	my $targetseq = substr($seq, $position - 1, $targetlength) ;
+	my $start     = $_ ;
+	my $end       = $start + $targetlength - 1 ;
+	my $targetseq = substr($seq, $start - 1, $targetlength) ;
 	my $pam       = substr($targetseq, -3) ;
 
 	if ($pam =~ /GG$/i){
@@ -60,7 +61,9 @@ foreach (1..length($seq) - $targetlength + 1){
 		my $count15 = KmerCount::kmercount(substr($targetseq, -15), $db) ;
 		my $count11 = KmerCount::kmercount(substr($targetseq, -11), $db) ;
 		push @targetlist, {
-			'start'    => $position,
+			'start'    => $start,
+			'end'      => $end,
+			'strand'   => '+',
 			'sequence' => $targetseq,
 			'pam'      => $pam,
 			'gc'       => $gc,
@@ -85,6 +88,8 @@ $@ and return $tsv . "# ERROR:	Timed out.\n" ;
 foreach (@targetlist){
 	$tsv .= join "\t", (
 		$$_{'start'},
+		$$_{'end'},
+		$$_{'strand'},
 		$$_{'sequence'},
 		$$_{'pam'},
 		$$_{'gc'},
