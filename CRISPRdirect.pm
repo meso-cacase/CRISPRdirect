@@ -51,9 +51,10 @@ foreach (1..length($seq) - $targetlength + 1){
 	my $start     = $_ ;
 	my $end       = $start + $targetlength - 1 ;
 	my $targetseq = substr($seq, $start - 1, $targetlength) ;
-	my $pam       = substr($targetseq, -3) ;
+	my $reverseq  = comp($targetseq) ;
 
-	if ($pam =~ /GG$/i){
+	#-- ▽ (+)鎖を判定
+	if ((my $pam = substr($targetseq, -3)) =~ /GG$/i){
 		my $gc      = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
 		my $tttt    = (substr($targetseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
@@ -74,6 +75,31 @@ foreach (1..length($seq) - $targetlength + 1){
 			'count11'  => $count11
 		} ;
 	}
+	#-- △ (+)鎖を判定
+
+	#-- ▽ (-)鎖を判定
+	if ((my $pam = substr($reverseq, -3)) =~ /GG$/i){
+		my $gc      = gc_percent(substr($reverseq, 0, 20)) ;
+		my $tm      = tm_RNA(dna2rna(substr($reverseq, 0, 20))) ;
+		my $tttt    = (substr($reverseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
+		my $count23 = KmerCount::kmercount(substr($reverseq, -23), $db) ;
+		my $count15 = KmerCount::kmercount(substr($reverseq, -15), $db) ;
+		my $count11 = KmerCount::kmercount(substr($reverseq, -11), $db) ;
+		push @targetlist, {
+			'start'    => $start,
+			'end'      => $end,
+			'strand'   => '-',
+			'sequence' => $targetseq,
+			'pam'      => $pam,
+			'gc'       => $gc,
+			'tm'       => $tm,
+			'tttt'     => $tttt,
+			'count23'  => $count23,
+			'count15'  => $count15,
+			'count11'  => $count11
+		} ;
+	}
+	#-- △ (-)鎖を判定
 }
 #- △ すべての部分配列を生成
 
@@ -155,6 +181,23 @@ sub dna2rna {
 my $seq = $_[0] or return '' ;
 $seq =~ tr/Tt/Uu/ ;
 return $seq ;
+} ;
+# ====================
+sub comp {
+
+# 相補鎖を求める
+# DNA配列(A,T,G,C)を出力するが、もとの配列にUが含まれるときはRNA配列(A,U,G,C)を出力
+#
+# usage: $compseq = comp('GCACUGUAcguagc') ;  # gcuacgUACAGUGC
+
+my $seq  = flatsequence($_[0]) ;
+my $comp = reverse $seq ;
+($comp =~ /U/i) ?
+	# 配列にUが含まれる：RNAの場合
+	$comp =~ tr/GATUCRYMKSWHBVDNgatucrymkswhbvdn/CUAAGYRKMSWDVBHNcuaagyrkmswdvbhn/ :
+	# 配列にUが含まれない：DNAの場合
+    $comp =~ tr/GATUCRYMKSWHBVDNgatucrymkswhbvdn/CTAAGYRKMSWDVBHNctaagyrkmswdvbhn/ ;
+return $comp ;
 } ;
 # ====================
 sub gc_percent {

@@ -199,15 +199,24 @@ my @table ;
 my $ggg = 'http://GGGenome.dbcls.jp/en' ;  # GGGenome URI
 foreach (@result){
 	my ($start, $end, $strand, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
-	my $target20 = substr($sequence, 0, 20) ;
-	my $seq15    = substr($sequence, -15) ;
-	my $seq11    = substr($sequence, -11) ;
+
+	my $target = ($strand eq '+') ?
+		substr($sequence, 0, 20) . '<span class=pam>' . substr($sequence, -3) . '</span>' :
+		'<span class=pam>' . substr($sequence, 0, 3) . '</span>' . substr($sequence, -20) ;
+
+	my $seq15  = ($strand eq '+') ? substr($sequence, -15)   :
+	                                substr($sequence, 0, 15) ;
+
+	my $seq11  = ($strand eq '+') ? substr($sequence, -11)   :
+	                                substr($sequence, 0, 11) ;
+
 	$tttt = $tttt ? '+' : '-' ;
+
 	push @table,
 		"<tr>" . "\n" .
 		"	<td class=v>$start - $end"                            . "\n" .
 		"	<td class=v>$strand"                                  . "\n" .		
-		"	<td class=v><span class=mono>$target20 $pam</span>"   . "\n" .
+		"	<td class=v><span class=mono>$target</span>"          . "\n" .
 		"	<td class=o>$gc %"                                    . "\n" .
 		"	<td class=o>$tm &deg;C"                               . "\n" .
 		"	<td class=o>$tttt"                                    . "\n" .
@@ -272,7 +281,9 @@ return
 	"<tr>"                                          . "\n" .
 	"	<th class=v>start<br>- end"                 . "\n" .
 	"	<th class=v>+<br>&minus;"                   . "\n" .
-	"	<th class=v>20mer+PAM (total 23mer)"        . "\n" .
+	"	<th class=v>20mer+"                         .
+			"<span class=pam>PAM</span> "           .
+			"(total 23mer)"                         . "\n" .
 	"	<th class=o>GC% of<br>20mer"                . "\n" .
 	"	<th class=o>Tm of<br>20mer"                 . "\n" .
 	"	<th class=o>TTTT in<br>20mer"               . "\n" .
@@ -305,16 +316,21 @@ my $seq = CRISPRdirect::rna2dna(
           ) ;
 
 my $markfwd = ' ' x length $seq ;
+my $markrev = ' ' x length $seq ;
 
 my @result = split /\n/, $result ;
 @result = grep(!/^#/, @result) ;
 
 foreach (@result){
 	my ($start, $end, $strand, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
-	($start <= length $markfwd) and substr($markfwd, $start - 1, 1) =
+	($strand eq '+') and ($start <= length $markfwd) and substr($markfwd, $start - 1, 1) =
 		($count23 == 1 and $count15 == 1 and $tttt == 0 ) ? '=' :
 		($count23 == 0 or $tttt == 1                    ) ? '-' :
 		                                                    '>' ;
+	($strand eq '-') and ($end <= length $markrev) and substr($markrev, $end - 1, 1) =
+		($count23 == 1 and $count15 == 1 and $tttt == 0 ) ? '=' :
+		($count23 == 0 or $tttt == 1                    ) ? '-' :
+		                                                    '<' ;
 }
 
 $" = '' ;
@@ -322,6 +338,7 @@ my $html = '' ;
 my @poslist ;
 my @seqlist ;
 my @markfwd ;
+my @markrev ;
 foreach (1..length($seq)){
 	my $base = substr($seq, $_ - 1, 1) ;
 	push @seqlist, "<td>$base</td>" ;
@@ -332,23 +349,33 @@ foreach (1..length($seq)){
 		($mk_f eq '=') ? '<td class=h>&gt;</td>' :
 		($mk_f eq '-') ? '<td class=s>&gt;</td>' :
 		() ;
+	my $mk_r = substr($markrev, $_ - 1, 1) ;
+	push @markrev,
+		($mk_r eq ' ') ? '<td>&nbsp;</td>'       :
+		($mk_r eq '<') ? '<td>&lt;</td>'         :
+		($mk_r eq '=') ? '<td class=h>&lt;</td>' :
+		($mk_r eq '-') ? '<td class=s>&lt;</td>' :
+		() ;
 	unless ($_ % 10){
 		push @poslist, "<td colspan=10>$_</td>" ;
 	}
 	unless ($_ % 100){
-		$html .= "<tr class=pos>@poslist</tr>\n" .
-		         "<tr class=seq>@seqlist</tr>\n" .
-		         "<tr class=mark>@markfwd</tr>\n" ;
+		$html .= "<tr class=pos>@poslist</tr>\n"  .
+		         "<tr class=seq>@seqlist</tr>\n"  .
+		         "<tr class=mark>@markfwd</tr>\n" .
+		         "<tr class=mark>@markrev</tr>\n" ;
 		@poslist = () ;
 		@seqlist = () ;
 		@markfwd = () ;
+		@markrev = () ;
 	}
 }
 if (@seqlist){
 	push @poslist, "<td>&nbsp;</td>" ;
-	$html .= "<tr class=pos>@poslist</tr>\n" .
-	         "<tr class=seq>@seqlist</tr>\n" .
-	         "<tr class=mark>@markfwd</tr>\n" ;
+	$html .= "<tr class=pos>@poslist</tr>\n"  .
+	         "<tr class=seq>@seqlist</tr>\n"  .
+	         "<tr class=mark>@markfwd</tr>\n" .
+	         "<tr class=mark>@markrev</tr>\n" ;
 }
 
 return "<table cellpadding=0 cellspacing=0 id=seqmap>
