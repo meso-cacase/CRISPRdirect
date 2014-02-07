@@ -32,7 +32,7 @@ my $tsv =
 "# [ CRISPRdirect | @{[ timestamp() ]} ]
 # sequence_name:	$name
 # specificity_check:	$db
-# start	end	strand	sequence	PAM	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
+# start	end	strand	sequence	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
 #
 " ;
 
@@ -66,7 +66,6 @@ foreach (1..length($seq) - $targetlength + 1){
 			'end'      => $end,
 			'strand'   => '+',
 			'sequence' => $targetseq,
-			'pam'      => $pam,
 			'gc'       => $gc,
 			'tm'       => $tm,
 			'tttt'     => $tttt,
@@ -90,7 +89,6 @@ foreach (1..length($seq) - $targetlength + 1){
 			'end'      => $end,
 			'strand'   => '-',
 			'sequence' => $targetseq,
-			'pam'      => $pam,
 			'gc'       => $gc,
 			'tm'       => $tm,
 			'tttt'     => $tttt,
@@ -117,7 +115,6 @@ foreach (@targetlist){
 		$$_{'end'},
 		$$_{'strand'},
 		$$_{'sequence'},
-		$$_{'pam'},
 		$$_{'gc'},
 		$$_{'tm'},
 		$$_{'tttt'},

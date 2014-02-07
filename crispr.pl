@@ -198,7 +198,7 @@ $error and
 my @table ;
 my $ggg = 'http://GGGenome.dbcls.jp/en' ;  # GGGenome URI
 foreach (@result){
-	my ($start, $end, $strand, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 
 	my $target = ($strand eq '+') ?
 		substr($sequence, 0, 20) . '<span class=pam>' . substr($sequence, -3) . '</span>' :
@@ -322,7 +322,7 @@ my @result = split /\n/, $result ;
 @result = grep(!/^#/, @result) ;
 
 foreach (@result){
-	my ($start, $end, $strand, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	($strand eq '+') and ($start <= length $markfwd) and substr($markfwd, $start - 1, 1) =
 		($count23 == 1 and $count15 == 1 and $tttt == 0 ) ? '=' :
 		($count23 == 0 or $tttt == 1                    ) ? '-' :
@@ -465,13 +465,12 @@ my @result = split /\n/, $result ;
 
 my @json ;
 foreach (@result){
-	my ($start, $end, $strand, $sequence, $pam, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 	push @json, {
 		start     => $start,
 		end       => $end,
 		strand    => $strand,
 		sequence  => $sequence,
-		pam       => $pam,
 		gc        => $gc,
 		tm        => $tm,
 		tttt      => $tttt,
