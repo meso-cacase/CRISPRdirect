@@ -245,9 +245,9 @@ return
 	"if (\$('#result').show()){"                                                     . "\n" .
 	"	document.write("                                                             . "\n" .
 	"		'<ul>'                                                                +" . "\n" .
-	"		'	<li>Highlighted target positions (<i>e.g.<\\/i>, <em>123<\\/em>)' +" . "\n" .
-	"		'	    indicate sequences that are highly specific and have less'    +" . "\n" .
-	"		'	    off-target hits.'                                             +" . "\n" .
+	"		'	<li>Highlighted target positions (<i>e.g.<\\/i>,'                 +" . "\n" .
+	"		'	    <em>45 - 67<\\/em>) indicate sequences that are highly'       +" . "\n" .
+	"		'	    specific and have less off-target hits.'                      +" . "\n" .
 	"		'	<li>Target sequences with &apos;0&apos; in &apos;20mer+PAM&apos;' +" . "\n" .
 	"		'	    (in off-target hits column) are shown in gray.<br>'           +" . "\n" .
 	"		'	    Such sequences are likely to span over exon-exon junction,'   +" . "\n" .
