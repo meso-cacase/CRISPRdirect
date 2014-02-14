@@ -249,7 +249,7 @@ return
 	"		'	    <em>45 - 67<\\/em>) indicate sequences that are highly'       +" . "\n" .
 	"		'	    specific and have less off-target hits.'                      +" . "\n" .
 	"		'	<li>Target sequences with &apos;0&apos; in &apos;20mer+PAM&apos;' +" . "\n" .
-	"		'	    (in off-target hits column) are shown in gray.<br>'           +" . "\n" .
+	"		'	    (in number of target sites column) are shown in gray.<br>'    +" . "\n" .
 	"		'	    Such sequences are likely to span over exon-exon junction,'   +" . "\n" .
 	"		'	    so avoid using these.'                                        +" . "\n" .
 	"		'	<li>Target sequences with TTTTs are also shown in gray.'          +" . "\n" .
@@ -267,7 +267,7 @@ return
 	"	<th class=v colspan=2>position"             . "\n" .
 	"	<th class=v colspan=1>target sequence"      . "\n" .
 	"	<th class=o colspan=3>sequence information" . "\n" .
-	"	<th class=g colspan=3>off-target hits "     . "\n" .
+	"	<th class=g colspan=3>number of target sites " . "\n" .
 	"		<a href='doc/off-target.html'"                                          . "\n" .
 	"			onclick=\"window.open("                                             . "\n" .
 	"				'doc/off-target.html','','width=600,height=700,scrollbars=yes'" . "\n" .
