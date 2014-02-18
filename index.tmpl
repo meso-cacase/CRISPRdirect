@@ -186,10 +186,10 @@ $(document).ready(function(){
 	.b      { text-decoration:none; color:black   }
 	.s      { text-decoration:none; color:gray    }
 	form  { margin:10px 0px }
-	table { text-align:center; white-space:nowrap }
+	table#result { text-align:center; white-space:nowrap; border-collapse:collapse }
 	table#result tr:nth-child(odd) td { background-color:white }
-	table#result th { border-left:1px solid white   }
-	table#result td { border-left:1px solid #CCCCCC }
+	table#result th { border-left:1px solid white;   border-right:1px solid white   }
+	table#result td { border-left:1px solid #CCCCCC; border-right:1px solid #CCCCCC }
 	table#result .hits   { text-align:right; padding-left:7pt }
 	table#result .detail { font-size:7pt; font-weight:normal }
 	table#seqmap td { font-family:monaco,courier,monospace }
