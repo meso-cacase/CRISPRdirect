@@ -247,26 +247,26 @@ return
 	"		'<ul>'                                                                +" . "\n" .
 	"		'	<li>Highlighted target positions (<i>e.g.<\\/i>,'                 +" . "\n" .
 	"		'	    <em>45 - 67<\\/em>) indicate sequences that are highly'       +" . "\n" .
-	"		'	    specific and have less off-target hits.'                      +" . "\n" .
+	"		'	    specific and have fewer off-target hits.'                     +" . "\n" .
 	"		'	<li>Target sequences with &apos;0&apos; in &apos;20mer+PAM&apos;' +" . "\n" .
 	"		'	    (in number of target sites column) are shown in gray.<br>'    +" . "\n" .
-	"		'	    Such sequences are likely to span over exon-exon junction,'   +" . "\n" .
+	"		'	    Such sequences may possibly span over exon-exon junctions,'   +" . "\n" .
 	"		'	    so avoid using these.'                                        +" . "\n" .
 	"		'	<li>Target sequences with TTTTs are also shown in gray.'          +" . "\n" .
-	"		'	    Avoid TTTT for gRNA vectors with pol III promoter.'           +" . "\n" .
+	"		'	    Avoid TTTTs in gRNA vectors with pol III promoter.'           +" . "\n" .
 	"		'<\\/ul>'"                                                               . "\n" .
 	"	) ;"                                                                         . "\n" .
 	"}"                                                                              . "\n" .
 	"//-->"                                                                          . "\n" .
 	"</script>"                                                                      . "\n" .
 	#- ▲ DataTablesが有効の場合のみ表示する情報
-	                                                  "\n" .
-	"<table cellspacing=0 cellpadding=2 id=result>" . "\n" .
-	"<thead>"                                       . "\n" .
-	"<tr>"                                          . "\n" .
-	"	<th class=v colspan=2>position"             . "\n" .
-	"	<th class=v colspan=1>target sequence"      . "\n" .
-	"	<th class=o colspan=3>sequence information" . "\n" .
+	                                                     "\n" .
+	"<table cellspacing=0 cellpadding=2 id=result>"    . "\n" .
+	"<thead>"                                          . "\n" .
+	"<tr>"                                             . "\n" .
+	"	<th class=v colspan=2>position"                . "\n" .
+	"	<th class=v colspan=1>target sequence"         . "\n" .
+	"	<th class=o colspan=3>sequence information"    . "\n" .
 	"	<th class=g colspan=3>number of target sites " . "\n" .
 	"		<a href='doc/off-target.html'"                                          . "\n" .
 	"			onclick=\"window.open("                                             . "\n" .
@@ -274,24 +274,24 @@ return
 	"			) ; return false ;\">"                                              . "\n" .
 	"		<img src='qicon.png' alt='?' width=15 height=15 border=0>"              . "\n" .
 	"		</a>"                                                                   . "\n" .
-	"</tr>"                                         . "\n" .
-	"<tr>"                                          . "\n" .
-	"	<th class=v>start<br>- end"                 . "\n" .
-	"	<th class=v>+<br>&minus;"                   . "\n" .
-	"	<th class=v>20mer+"                         .
-			"<span class=pam>PAM</span> "           .
-			"(total 23mer)"                         . "\n" .
-	"	<th class=o>GC% of<br>20mer"                . "\n" .
-	"	<th class=o>Tm of<br>20mer"                 . "\n" .
-	"	<th class=o>TTTT in<br>20mer"               . "\n" .
-	"	<th class=g>20mer<br>+PAM"                  . "\n" .
-	"	<th class=g>12mer<br>+PAM"                  . "\n" .
-	"	<th class=g>8mer<br>+PAM"                   . "\n" .
-	"</tr>"                                         . "\n" .
-	"</thead>"                                      . "\n" .
-	"<tbody>"                                       . "\n" .
-	"@{[ join '', @table ]}"                        .
-	"</tbody>"                                      . "\n" .
+	"</tr>"                                            . "\n" .
+	"<tr>"                                             . "\n" .
+	"	<th class=v>start<br>- end"                    . "\n" .
+	"	<th class=v>+<br>&minus;"                      . "\n" .
+	"	<th class=v>20mer+"                            .
+			"<span class=pam>PAM</span> "              .
+			"(total 23mer)"                            . "\n" .
+	"	<th class=o>GC% of<br>20mer"                   . "\n" .
+	"	<th class=o>Tm of<br>20mer"                    . "\n" .
+	"	<th class=o>TTTT in<br>20mer"                  . "\n" .
+	"	<th class=g>20mer<br>+PAM"                     . "\n" .
+	"	<th class=g>12mer<br>+PAM"                     . "\n" .
+	"	<th class=g>8mer<br>+PAM"                      . "\n" .
+	"</tr>"                                            . "\n" .
+	"</thead>"                                         . "\n" .
+	"<tbody>"                                          . "\n" .
+	"@{[ join '', @table ]}"                           .
+	"</tbody>"                                         . "\n" .
 	"</table>" ;
 } ;
 # ====================

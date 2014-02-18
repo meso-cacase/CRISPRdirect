@@ -20,6 +20,7 @@
 	}
 	p,div,ol,ul,h5 { font-size:9pt }
 	table,textarea { font-size:8pt }
+	p,ol,ul { width:90% }
 	a       { text-decoration:none; color:#003399 }
 	a:hover { text-decoration:none; color:maroon  }
 	.b      { text-decoration:none; color:black   }
@@ -47,7 +48,7 @@
 <h4>About CRISPRdirect</h4>
 
 <p>CRISPRdirect is a web server for selecting rational CRISPR/Cas targets from an input sequence.<br>
-	All services at CRISPRdirect web server are provided free of charge to all users.</p>
+	All services of the CRISPRdirect web server are provided free of charge to all users.</p>
 
 
 <h4>Example</h4>
@@ -67,7 +68,7 @@
 	</form>
 
 	<li>Or you can directly paste a nucleotide sequence.<br>
-		FASTA format and plain nucleotide sequences up to 10 kbp are accepted.
+		FASTA format or a plain nucleotide sequence up to 10 kbp are accepted.
 	<li>Select 'Human genome, GRCh37/hg19 (Feb, 2009)' to check for off-targets.
 	<li>Click 'design'.
 
@@ -107,30 +108,32 @@ CAACATCTTTTACACTAAAAAGCC
 	<li>Target sequences, 20mer + 3mer PAM (total 23mer).
 	<li>GC content of the target 20mer.
 	<li>Calculated Tm of the target 20mer.
-	<li>Presence or absence of TTTT in the target 20mer. Avoid TTTT for gRNA vectors with pol III promoter.
-	<li>Off-target search results against human genome. Number of target sites with perfect match is shown.
-		Note that the number displayed here includes both on-target and off-target sites.
-		Smaller number (but not zero) is better for these columns.
+	<li>Presence or absence of TTTT (four contiguous T’s that cause pol III termination)
+		in the target 20mer. Avoid TTTT in gRNA vectors with pol III promoter.
+	<li>Off-target search results against human genome. The number of target sites with perfect match
+		is shown. Note that the number displayed here includes both on-target and off-target sites.
+		Smaller number (but not zero) is better for these columns to avoid off-target editing.
 	<ul>
-		<li>20mer+PAM: The target 20mer searched against the genome.<br>
-			One ('1') in this column usually indicates that the sequence has only one perfect match with the
-			intended target (<i>e.g.</i>, BAGE locus in the genome).<br>
+		<li>20mer+PAM: The target sequence (20mer) adjacent to the PAM is searched against the genome.
+			One ('1') in this column usually indicates that the sequence has only one perfect match
+			with the intended target (<i>e.g.</i>, BAGE locus in the genome).
 			Zero ('0') in this column means that the sequence has no match in the genomic sequence;
-			such sequences may possibly span over exon-exon junctions.
-		<li>12mer+PAM: The 12mer of 3&prime; region of the target sequence searched against the genome.<br>
-			The region contains critical residues determining target specificity.
-		<li>8mer+PAM: The 8mer of 3&prime; region of the target sequence searched against the genome.<br>
-			The region contains the most critical residues determining target specificity.
+			such sequences may possibly span over exon-exon junctions, so their use should be avoided.
+		<li>12mer+PAM: The 12mer of 3&prime; region of the target sequence adjacent to the PAM is searched
+			against the genome. The region contains critical residues determining target specificity.
+		<li>8mer+PAM: The 8mer of 3&prime; region of the target sequence adjacent to the PAM is searched
+			against the genome. The region contains the most critical residues determining target specificity.
 	</ul>
 </ol>
 
 <img src='CRISPR_BAGE_result1.png' width=525 height=377 border=0>
 
 <ol type=A start=7>
-	<li>Only one match in 20mer and 12mer search. These targets are highly specific.<br>
+	<li>Only one match in 20mer+PAM and 12mer+PAM search. These targets are highly specific.<br>
 		<font color=brown>&rarr; Recommended for CRISPR/Cas target.</font>
 		Target positions are highlighted with green (<i>e.g.</i>, <em>45 - 67</em>).
-	<li>No match in 20mer search. Possibly the sequence spans over exon-exon junction, so avoid using these.<br>
+	<li>No match in 20mer+PAM search. Possibly the sequence spans over exon-exon junction,
+		so avoid using these.<br>
 		<font color=brown>&rarr; Not recommended for CRISPR/Cas target.</font>
 	<li>Very high number of off-target hits. Avoid using these sequences.<br>
 		<font color=brown>&rarr; Not recommended for CRISPR/Cas target.</font>
@@ -141,14 +144,14 @@ CAACATCTTTTACACTAAAAAGCC
 <h5>Saving and exporting the results</h5>
 
 <ol type=A start=10>
-	<li>Tab-delimited text can be shown or downloaded as a file.
+	<li>Tab-delimited text can be displayed or downloaded as a file.
 	<li>JSON format output is also available.
 	<li>Tab-delimited text, ready-to-use for copy-pasting into Excel or text editors, etc.
 </ol>
 
 <img src='CRISPR_BAGE_tsv.png' width=525 height=453 border=0>
 
-<p>The result page can also be saved as HTML file and opened by browser again.</p>
+<p>The result page can also be saved as HTML file and opened by a web browser again.</p>
 
 <img src='savehtml.png' width=212 height=172 border=0>
 
@@ -157,8 +160,14 @@ CAACATCTTTTACACTAAAAAGCC
 
 <h5>Specificity check</h5>
 
-<p>Number of target sites (including both on-target and off-target sites)
-	are displayed for following species:</p>
+<p>The number of target sites in the genome (including both on-target and off-target sites)
+	is displayed using <a target='_blank' href='http://www.cbcb.umd.edu/software/jellyfish/'>
+	Jellyfish</a> k-mer counting software. A detailed list of off-target candidates are
+	displayed using <a target='_blank' href='http://GGGenome.dbcls.jp/'>GGGenome</a>
+	REST API. GGGenome quickly searches short nucleotide sequences allowing mismatches and
+	gaps utilizing suffix arrays and inverse suffix links indexed on solid state drive (SSD). </p>
+
+<p>Specificity check can be performed for following species:</p>
 
 <ul>
 	<li><b>Human genome</b>, GRCh37/hg19 (Feb, 2009)<br>
@@ -203,6 +212,10 @@ CAACATCTTTTACACTAAAAAGCC
 		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/chromFa.tar.gz'>
 		ftp://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/chromFa.tar.gz</a>
 </ul>
+
+<h5>Illustrated overview of specificity check</h5>
+
+<img src='gRNAalign.png' width=525 height=422 border=0>
 
 
 <h4>Useful tools</h4>
