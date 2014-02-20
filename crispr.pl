@@ -196,7 +196,7 @@ $error and
 		"</b>" ;
 
 my @table ;
-my $ggg = 'http://GGGenome.dbcls.jp/en' ;  # GGGenome URI
+my $ggg = 'detail/en' ;  # GGGenome URI
 foreach (@result){
 	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
 

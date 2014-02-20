@@ -148,7 +148,7 @@ $download =                           # ファイルとしてダウンロード�
 
 #- ▼ パラメータからURIを生成してリダイレクト
 my $redirect_uri = '/' ;
-$redirect_uri .= ($request_uri =~ m{^/test/}) ? 'test/' : '' ;  # テストページ /test/ 対応
+$redirect_uri .= ($request_uri =~ m{^/((test/)?detail/)}) ? $1 : '' ;  # テストページ /test/ 対応
 $redirect_uri .= $lang ? "$lang/" : '' ;
 $redirect_uri .= $db   ? "$db/"   : '' ;
 $redirect_uri .= $k    ? "$k/"    : '' ;  # 値が 0 の場合は /0/ を省略
@@ -379,7 +379,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ TXT/JSON出力のbase URIを生成
 	my $linkbase_uri = '/' ;
-	$linkbase_uri .= ($request_uri =~ m{^/test/}) ? 'test/' : '' ;  # テストページ /test/ 対応
+	$linkbase_uri .= ($request_uri =~ m{^/((test/)?detail/)}) ? $1 : '' ;  # テストページ /test/ 対応
 	$linkbase_uri .= $db ? "$db/" : '' ;
 	$linkbase_uri .= $k  ? "$k/"  : '' ;  # 値が 0 の場合は /0/ を省略
 	$linkbase_uri .= $query_string ;
