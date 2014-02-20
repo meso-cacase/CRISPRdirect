@@ -11,7 +11,7 @@ CRISPR/Casシステムのターゲット配列を設計するウェブサービ�
 --------
 
 ![スクリーンショット]
-(http://g86.dbcls.jp/~meso/meme/wp-content/uploads/2014/01/CRISPRscreen.png
+(http://g86.dbcls.jp/~meso/meme/wp-content/uploads/2014/02/CRISPRscreen.png
 "スクリーンショット")
 
 
