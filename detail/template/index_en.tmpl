@@ -124,9 +124,9 @@ function hideDebug() {
 
 <form name=gggenome method=GET action='./'>
 <p>
-	<a class=zbutton href='<TMPL_VAR NAME=QUERY>?k=0'>0 mismatch/gap</a> &nbsp; | &nbsp;
-	<a class=zbutton href='<TMPL_VAR NAME=QUERY>?k=1'>&le;1 mismatch/gap</a> &nbsp; | &nbsp;
-	<a class=zbutton href='<TMPL_VAR NAME=QUERY>?k=2'>&le;2 mismatches/gaps</a> &nbsp; | &nbsp;
+	<a class=zbutton href='0/<TMPL_VAR NAME=QUERY>'>0 mismatch/gap</a> &nbsp; | &nbsp;
+	<a class=zbutton href='1/<TMPL_VAR NAME=QUERY>'>&le;1 mismatch/gap</a> &nbsp; | &nbsp;
+	<a class=zbutton href='2/<TMPL_VAR NAME=QUERY>'>&le;2 mismatches/gaps</a> &nbsp; | &nbsp;
 	<input type=hidden name=query size=70 value='<TMPL_VAR NAME=QUERY>'>
 	<select id=db name=db style='display:none'>
 	<TMPL_VAR NAME=SELECT>
