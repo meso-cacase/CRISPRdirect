@@ -201,6 +201,46 @@ $(document).ready(function(){
 	.o { background-color:#FFF0E0 }
 	.g { background-color:#E6FAF2 }
 	.h { background-color:#99FF99 }
+
+	/* zurui_button from http://css3button.net/ */
+	.zbutton {
+		outline:none;
+		padding:2px 8px;
+		border:1px solid #606060;
+		-webkit-border-radius:9px;
+		-moz-border-radius:9px;
+		-ms-border-radius:9px;
+		border-radius:9px;
+		background:-webkit-gradient(linear, left top, left bottom, from(#E5EEFF), to(#BFD4FF));
+		background:-webkit-linear-gradient(top, #E5EEFF, #BFD4FF);
+		background:-moz-linear-gradient(top, #E5EEFF, #BFD4FF);
+		background:-ms-linear-gradient(top, #E5EEFF, #BFD4FF);
+		background:-o-linear-gradient(top, #E5EEFF, #BFD4FF);
+		background:linear-gradient(top, #E5EEFF, #BFD4FF);
+		background-color:#E5EEFF;
+		text-shadow:
+			0px -1px 0px rgba(0,0,0,0.2),
+			0px  1px 0px rgba(255,255,255,0.5);
+	}
+	.zbutton:hover {
+		background:-webkit-gradient(linear, left top, left bottom, from(#CCDEFF), to(#80AAFF));
+		background:-webkit-linear-gradient(top, #CCDEFF, #80AAFF);
+		background:-moz-linear-gradient(top, #CCDEFF, #80AAFF);
+		background:-ms-linear-gradient(top, #CCDEFF, #80AAFF);
+		background:-o-linear-gradient(top, #CCDEFF, #80AAFF);
+		background:linear-gradient(top, #CCDEFF, #80AAFF);
+		background-color:#CCDEFF;
+	}
+	.zbutton:active {
+		color:white;
+		background:-webkit-gradient(linear, left top, left bottom, from(#8296BD), to(#2A5EBC));
+		background:-webkit-linear-gradient(top, #8296BD, #2A5EBC);
+		background:-moz-linear-gradient(top, #8296BD, #2A5EBC);
+		background:-ms-linear-gradient(top, #8296BD, #2A5EBC);
+		background:-o-linear-gradient(top, #8296BD, #2A5EBC);
+		background:linear-gradient(top, #8296BD, #2A5EBC);
+		background-color:#8296BD;
+	}
 -->
 </style>
 </head>
@@ -288,7 +328,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 	</p>
 
 	<input type=hidden id=acc2 name=accession value="<TMPL_VAR NAME=ACCESSION>">
-	<p><input type=submit value='   design   '></p>
+	<p><input type=submit class=zbutton value='   design   '></p>
 </div>
 
 <TMPL_VAR NAME=RESULT>
