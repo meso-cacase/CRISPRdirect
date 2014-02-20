@@ -36,7 +36,7 @@ my @timer ;                       # 実行時間計測用
 my $timestamp = timestamp() ;     # CGIを実行した時刻
 my $min_query_length = 6 ;        # クエリの最低塩基長
 my $max_k            = 20 ;       # 許容するミスマッチ/ギャップ数の上限、％
-my $max_hit_html     = 50 ;       # 検索を打ち切るヒット数、HTMLの場合
+my $max_hit_html     = 200 ;      # 検索を打ち切るヒット数、HTMLの場合
 my $max_hit_api      = 10000 ;    # 検索を打ち切るヒット数、TXTまたはJSONの場合
 
 my %db_fullname = (               # データベースの正式名
