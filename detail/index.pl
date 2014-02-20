@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 
-# GGGenome (ゲゲゲノム)： 塩基配列を高速に検索するサービス
-# http://GGGenome.dbcls.jp/
+# GGGenome (ゲゲゲノム) https://github.com/meso-cacase/GGGenome より改変
 #
 # 曖昧検索サーバに問い合わせを行い、結果を HTML, TXT, JSON 形式で出力する
 #
@@ -11,15 +10,6 @@
 #   LWP::Simple  (Approx.pm内で使用)
 #   JSON::XS     (Approx.pm内で使用)
 # ./Align2seq.pm (by Yuki Naito)
-#
-# 2012-07-03 Yuki Naito (@meso_cacase) 実装開始
-# 2012-11-30 Yuki Naito (@meso_cacase) index.html と search.cgi とを統合
-# 2012-12-21 Yuki Naito (@meso_cacase) 出力フォーマットの切り替えに対応
-# 2013-02-08 Yuki Naito (@meso_cacase) 英語版HTMLの出力に対応
-# 2013-02-22 Yuki Naito (@meso_cacase) URIルーティングを本スクリプトに実装
-# 2013-02-25 Yuki Naito (@meso_cacase) 検索結果のダウンロードに対応
-# 2013-02-26 Yuki Naito (@meso_cacase) HTMLをテンプレート化
-# 2013-08-16 Yuki Naito (@meso_cacase) 曖昧検索サーバへの問い合わせをモジュール化
 
 #- ▼ モジュール読み込みと変数の初期化
 use warnings ;
@@ -792,14 +782,12 @@ $title  = 'GGGenome | Error' and
 $robots = "<meta name=robots content=none>\n" ;  # トップページ以外はロボット回避
 #- ▲ エラーページを出力：引数が ERROR で始まる場合
 
-#- ▼ トップページ：引数がない場合
-my $template_top = HTML::Template->new(filename => 'template/top_ja.tmpl') ;
-
-(not $html) and
-$html   = $template_top->output and
-$title  = '超絶高速ゲノム配列検索GGGenome' and
-$robots = '' ;
-#- ▲ トップページ：引数がない場合
+#- ▼ CRISPRdirectトップページ：引数がない場合
+if (not $html){
+	my $redirect_uri = ($request_uri =~ m{^/(test/)?}) ? "/$1" : "/" ;  # テストページ /test/ 対応
+	redirect_page("http://$ENV{'HTTP_HOST'}$redirect_uri") ;
+}
+#- ▲ CRISPRdirectトップページ：引数がない場合
 
 #- ▼ HTML出力
 my $template_index = HTML::Template->new(filename => 'template/index_ja.tmpl') ;
@@ -864,14 +852,12 @@ $title  = 'GGGenome | Error' and
 $robots = "<meta name=robots content=none>\n" ;  # トップページ以外はロボット回避
 #- ▲ エラーページを出力：引数が ERROR で始まる場合
 
-#- ▼ トップページ：引数がない場合
-my $template_top = HTML::Template->new(filename => 'template/top_en.tmpl') ;
-
-(not $html) and
-$html   = $template_top->output and
-$title  = 'GGGenome | ultrafast DNA search' and
-$robots = '' ;
-#- ▲ トップページ：引数がない場合
+#- ▼ CRISPRdirectトップページ：引数がない場合
+if (not $html){
+	my $redirect_uri = ($request_uri =~ m{^/(test/)?}) ? "/$1" : "/" ;  # テストページ /test/ 対応
+	redirect_page("http://$ENV{'HTTP_HOST'}$redirect_uri") ;
+}
+#- ▲ CRISPRdirectトップページ：引数がない場合
 
 #- ▼ HTML出力
 my $template_index = HTML::Template->new(filename => 'template/index_en.tmpl') ;
