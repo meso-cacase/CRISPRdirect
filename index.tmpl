@@ -223,7 +223,7 @@ var ua = navigator.userAgent.toLowerCase() ;
 if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 	document.write(
 		'<div>'                                                           +
-		'<form name=getsequence method=GET action=".">'                   +
+		'<form name=getsequence method=GET action="./">'                  +
 		'    <p>Enter an accession number and retrieve sequence '         +
 		'        (<i>e.g.<\/i> NM_001187):<br>'                           +
 		'    <input type=text id=acc name=accession size=20 maxlength=50' +
@@ -250,7 +250,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 
 <noscript>
 <div>
-<form name=getsequence method=GET action='.'>
+<form name=getsequence method=GET action='./'>
 	<p>Enter an accession number and retrieve sequence (<i>e.g.</i> NM_001187):<br>
 	<input type=text id=acc name=accession size=20 maxlength=50
 		value='<TMPL_VAR NAME=ACCESSION>'>
@@ -260,7 +260,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 </div>
 </noscript>
 
-<form name=crisprdirect method=POST action='.'>
+<form name=crisprdirect method=POST action='./'>
 <div>
 	<p>or Paste a nucleotide sequence:
 		<a href='doc/input.html'
