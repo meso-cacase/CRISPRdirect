@@ -1,0 +1,73 @@
+# GGGenome (ゲゲゲノム)： 塩基配列を高速に検索するサービス
+# http://GGGenome.dbcls.jp/
+# http://GGGenome.dbcls.jp/test/ (テスト用)
+
+AddLanguage en .en
+AddLanguage ja .ja
+LanguagePriority en ja
+ForceLanguagePriority Prefer Fallback
+Options +MultiViews
+
+# mod_rewriteを利用し、画像以外の全リクエストをindex.cgiで処理するようURIを書き換える
+RewriteEngine On
+
+# [NC] は大文字小文字を区別しない
+# [R]  はリダイレクト
+# [R=301] はredirect permanent
+# [L]  は評価終了
+# [NE] はURIエンコードしない。指定しないと %22query+str%22 が %2522query+str%2522 になる
+
+# メンテナンス領域へのアクセスはリライトしない
+RewriteRule  ^dev/  -  [L]
+
+#- ▼ GGGlogo_en.png, GGGlogo_ja.pngの表示
+# mod_rewriteの適用を終了する条件
+RewriteRule  ^GGGlogo_(en|ja)\.png$  -  [L]
+
+# パスに/db/k/等が含まれる場合にURIを修正してリダイレクト
+RewriteCond  %{REQUEST_URI}  ^/(test/)?
+RewriteRule  (?:^|/)(GGGlogo_(en|ja)\.png)$  /%1$1  [R,L]
+#- ▲ GGGlogo_en.png, GGGlogo_ja.pngの表示
+
+#- ▼ chata_en.png, chata_ja.pngの表示
+# mod_rewriteの適用を終了する条件
+RewriteRule  ^chata_(en|ja)\.png$  -  [L]
+
+# パスに/db/k/等が含まれる場合にURIを修正してリダイレクト
+RewriteCond  %{REQUEST_URI}  ^/(test/)?
+RewriteRule  (?:^|/)(chata_(en|ja)\.png)$  /%1$1  [R,L]
+#- ▲ chata_en.png, chata_ja.pngの表示
+
+#- ▼ togotv_en.png, togotv_ja.pngの表示
+# mod_rewriteの適用を終了する条件
+RewriteRule  ^togotv_(en|ja)\.png$  -  [L]
+
+# パスに/db/k/等が含まれる場合にURIを修正してリダイレクト
+RewriteCond  %{REQUEST_URI}  ^/(test/)?
+RewriteRule  (?:^|/)(togotv_(en|ja)\.png)$  /%1$1  [R,L]
+#- ▲ togotv_en.png, togotv_ja.pngの表示
+
+#- ▼ api.txtの表示
+# mod_rewriteの適用を終了する条件
+RewriteRule  ^api\.txt$  -  [L]
+
+# クエリが空欄またはパスに/db/k/等が含まれる場合にURIを修正してリダイレクト
+RewriteCond  %{REQUEST_URI}  ^/(test/)?
+RewriteRule  (?:^|/)(api)?\.txt$  /%1api.txt  [R,L]
+#- ▲ api.txtの表示
+
+#- ▼ help.htmlの表示
+# mod_rewriteの適用を終了する条件
+RewriteRule  ^help\.html(\.en|\.ja)?$                                           -             [L]
+RewriteRule  ^(?:(en|ja)/)(?:(?!en/|ja/)\w+/)?(?:\d+/)?help\.html(\.en|\.ja)?$  help.html.$1  [L]
+RewriteRule  ^(?:\w+/)?(?:\d+/)?help\.html(\.en|\.ja)?$                         help.html$1   [L]
+#- ▲ help.htmlの表示
+
+#- ▼ それ以外のリクエストを全てindex.cgiに送る
+# mod_rewriteの適用を終了する条件
+RewriteRule  ^index\.cgi  -  [L]
+
+# それ以外の場合はURIを index.cgi に修正
+RewriteCond  %{REQUEST_URI}  ^/(test/)?
+RewriteRule  .*  /%1index.cgi  [L]
+#- ▲ それ以外のリクエストを全てindex.cgiに送る
