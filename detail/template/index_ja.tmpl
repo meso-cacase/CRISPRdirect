@@ -67,6 +67,48 @@ function hideDebug() {
 	.b { word-wrap:break-word; width:90% }
 	.g { color:gray; width:90% }
 	.s { color:silver; width:90% }
+	.zbutton { font-size:8pt }
+
+	/* zurui_button from http://css3button.net/ */
+	.zbutton {
+		text-decoration:none;
+		outline:none;
+		padding:2px 8px;
+		border:1px solid #606060;
+		-webkit-border-radius:9px;
+		-moz-border-radius:9px;
+		-ms-border-radius:9px;
+		border-radius:9px;
+		background:-webkit-gradient(linear, left top, left bottom, from(#E5EEFF), to(#BFD4FF));
+		background:-webkit-linear-gradient(top, #E5EEFF, #BFD4FF);
+		background:-moz-linear-gradient(top, #E5EEFF, #BFD4FF);
+		background:-ms-linear-gradient(top, #E5EEFF, #BFD4FF);
+		background:-o-linear-gradient(top, #E5EEFF, #BFD4FF);
+		background:linear-gradient(top, #E5EEFF, #BFD4FF);
+		background-color:#E5EEFF;
+		text-shadow:
+			0px -1px 0px rgba(0,0,0,0.2),
+			0px  1px 0px rgba(255,255,255,0.5);
+	}
+	.zbutton:hover {
+		background:-webkit-gradient(linear, left top, left bottom, from(#CCDEFF), to(#80AAFF));
+		background:-webkit-linear-gradient(top, #CCDEFF, #80AAFF);
+		background:-moz-linear-gradient(top, #CCDEFF, #80AAFF);
+		background:-ms-linear-gradient(top, #CCDEFF, #80AAFF);
+		background:-o-linear-gradient(top, #CCDEFF, #80AAFF);
+		background:linear-gradient(top, #CCDEFF, #80AAFF);
+		background-color:#CCDEFF;
+	}
+	.zbutton:active {
+		color:white;
+		background:-webkit-gradient(linear, left top, left bottom, from(#8296BD), to(#2A5EBC));
+		background:-webkit-linear-gradient(top, #8296BD, #2A5EBC);
+		background:-moz-linear-gradient(top, #8296BD, #2A5EBC);
+		background:-ms-linear-gradient(top, #8296BD, #2A5EBC);
+		background:-o-linear-gradient(top, #8296BD, #2A5EBC);
+		background:linear-gradient(top, #8296BD, #2A5EBC);
+		background-color:#8296BD;
+	}
 -->
 </style>
 </head>
@@ -82,14 +124,15 @@ function hideDebug() {
 
 <form name=gggenome method=GET action='./'>
 <p>
-<input type=text name=query size=70 value='<TMPL_VAR NAME=QUERY>'>
-<input type=submit value='検索'>
-<select id=db name=db>
-<TMPL_VAR NAME=SELECT>
-</select>
-<br>
-許容するミスマッチ/ギャップの数：<input type=text name=k size=3 value='<TMPL_VAR NAME=K>'>
-(検索する塩基配列の長さの20%まで)
+	<a class=zbutton href='<TMPL_VAR NAME=QUERY>?k=0'>0 mismatch/gap</a> &nbsp; | &nbsp;
+	<a class=zbutton href='<TMPL_VAR NAME=QUERY>?k=1'>&le;1 mismatch/gap</a> &nbsp; | &nbsp;
+	<a class=zbutton href='<TMPL_VAR NAME=QUERY>?k=2'>&le;2 mismatches/gaps</a> &nbsp; | &nbsp;
+	<input type=hidden name=query size=70 value='<TMPL_VAR NAME=QUERY>'>
+	<select id=db name=db style='display:none'>
+	<TMPL_VAR NAME=SELECT>
+	</select>
+	more: <input type=text name=k size=3 value='<TMPL_VAR NAME=K>'><!--
+	--><input type=submit class=zbutton value='show'>
 </p>
 </form>
 
