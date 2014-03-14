@@ -6,9 +6,9 @@
 #
 # 必要なモジュール：
 # HTML::Template
-# ./Approx.pm    (by Yuki Naito)
-#   LWP::Simple  (Approx.pm内で使用)
-#   JSON::XS     (Approx.pm内で使用)
+# ./GGGenome.pm  (by Yuki Naito)
+#   LWP::Simple  (GGGenome.pm内で使用)
+#   JSON::XS     (GGGenome.pm内で使用)
 # ./Align2seq.pm (by Yuki Naito)
 
 #- ▼ モジュール読み込みと変数の初期化
@@ -19,8 +19,8 @@ use Time::HiRes ;
 eval 'use HTML::Template ; 1' or  # HTMLをテンプレート化
 	printresult('ERROR : cannot load HTML::Template') ;
 
-eval 'use Approx ; 1' or          # 曖昧検索サーバに問い合わせを行うためのモジュール
-	printresult('ERROR : cannot load Approx') ;
+eval 'use GGGenome ; 1' or        # 曖昧検索サーバに問い合わせを行うためのモジュール
+	printresult('ERROR : cannot load GGGenome') ;
 
 my @timer ;                       # 実行時間計測用
 my $timestamp = timestamp() ;     # CGIを実行した時刻
@@ -220,7 +220,7 @@ if ($format eq 'txt'){
 	push @summary, "# database:	$db_fullname" ;
 
 	#--- ▽ (+)鎖の検索実行と結果出力
-	($hits, $uri) = Approx::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
 		printresult('ERROR : searcher error') ;
 
 	push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -240,7 +240,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (-)鎖の検索実行と結果出力
 	$queryseq = comp($queryseq) ;
-	($hits, $uri) = Approx::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
 		printresult('ERROR : searcher error') ;
 
 	push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
@@ -268,7 +268,7 @@ if ($format eq 'txt'){
 	my $limit = $max_hit_api ;  # 検索を打ち切るヒット数
 
 	#--- ▽ (+)鎖の検索実行と結果出力
-	($hits, $uri) = Approx::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
 		printresult('ERROR : searcher error') ;
 
 	push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -290,7 +290,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (-)鎖の検索実行と結果出力
 	$queryseq = comp($queryseq) ;
-	($hits, $uri) = Approx::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
 		printresult('ERROR : searcher error') ;
 
 	push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
@@ -327,7 +327,7 @@ if ($format eq 'txt'){
 		printresult('ERROR : cannot load Align2seq') ;
 
 	#--- ▽ (+)鎖の検索実行と結果出力
-	($hits, $uri) = Approx::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
 		printresult('ERROR : searcher error') ;
 
 	push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -350,7 +350,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (-)鎖の検索実行と結果出力
 	$queryseq = comp($queryseq) ;
-	($hits, $uri) = Approx::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
 		printresult('ERROR : searcher error') ;
 
 	push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====

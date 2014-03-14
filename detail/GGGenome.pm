@@ -1,4 +1,4 @@
-package Approx ;
+package GGGenome ;
 
 # 曖昧検索サーバに問い合わせを行うためのモジュール
 #
