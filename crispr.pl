@@ -89,8 +89,10 @@ if (not defined $userseq and $format eq 'txt'){
 	my $fasta = (not $accession) ?
 	            	$sampleseq :
 	            (eval 'require GetSequence ; 1') ?
-	            	GetSequence::accession2fasta($accession) || $sampleseq :
-	            	"ERROR : cannot load GetSequence\n" ;
+	            	$accession =~ /:.*:/ ?
+	            		GetSequence::getgenomefasta($accession)  || $sampleseq :
+	            		GetSequence::accession2fasta($accession) || $sampleseq :
+	            		"ERROR : cannot load GetSequence\n" ;
 	#--- △ Accession番号からFASTAを取得
 
 	#--- ▽ TXT出力
@@ -389,8 +391,10 @@ not defined $userseq and
 $userseq = (not $accession) ?
            	$sampleseq :
            (eval 'require GetSequence ; 1') ?
-           	GetSequence::accession2fasta($accession) || $sampleseq :
-           	print_error('ERROR : cannot load GetSequence') ;
+           	($accession =~ /:.*:/) ?
+           		GetSequence::getgenomefasta($accession)  || $sampleseq :
+           		GetSequence::accession2fasta($accession) || $sampleseq :
+           		print_error('ERROR : cannot load GetSequence') ;
 #- ▲ Accession番号からFASTAを取得
 
 #- ▼ プルダウンメニュー

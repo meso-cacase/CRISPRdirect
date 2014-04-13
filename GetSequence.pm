@@ -3,6 +3,7 @@ package GetSequence ;
 # Accession番号から配列情報を取得するためのモジュール
 #
 # 2013-05-24 Yuki Naito (@meso_cacase)
+# 2014-04-13 Yuki Naito (@meso_cacase) ゲノム座標からの配列取得に対応
 
 use warnings ;
 use strict ;
@@ -30,6 +31,50 @@ $accession =~ /^[\w\.]+$/ or return "\nCannot retrieve sequence\n" ;
 my $uri   = "http://130.14.29.110/sviewer/" .
             "?report=fasta&retmode=text&val=$accession" ;
             # 130.14.29.110 = www.ncbi.nlm.nih.gov (DNS参照時間を短縮)
+
+my $fasta = get($uri) || "\nCannot retrieve sequence\n" ;
+
+return $fasta ;
+} ;
+# ====================
+sub getgenomefasta {
+
+# ゲノムの座標をもとにTogoWSからFASTAを取得
+#
+# usage: $fasta = getgenomefasta('hg19:chr7:900000-901000') ;
+#
+# エラーメッセージ :
+# 問い合わせに失敗　　 → 'Cannot retrieve sequence'
+# 座標の範囲が長すぎる → 'Sequence too long'
+#
+# 参考 :
+# http://togows.org/api/ucsc/hg19/chr7:900000-901000.fasta
+
+my $maxlength = 10000 ;
+
+# 入力がが空文字または未定義でないか？
+my $query = $_[0] or return '' ;
+
+# 各変数が不正な文字を含まないか？
+$query =~ /(\w+):([^:]+):(\d+)-(\d+)/ or return "\nCannot retrieve sequence\n" ;
+
+my $db    = lc ($1 // '') ;
+my $chr   = $2 // '' ;
+my $start = $3 // '' ;
+my $end   = $4 // '' ;
+
+abs($start - $end) > $maxlength and return "\nSequence too long\n" ;
+
+#-- ▽ 大文字小文字を正規化
+$db =~ s/galGal4/galGal4/i ;
+$db =~ s/xenTro3/xenTro3/i ;
+$db =~ s/danRer7/danRer7/i ;
+$db =~ s/TAIR10/TAIR10/i   ;
+$db =~ s/sacCer3/sacCer3/i ;
+#-- △ 大文字小文字を正規化
+
+my $uri   = "http://togows.org/api/ucsc/" .
+            "$db/$chr:$start-$end.fasta" ;
 
 my $fasta = get($uri) || "\nCannot retrieve sequence\n" ;
 
