@@ -302,7 +302,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 </div>
 </noscript>
 
-<form name=crisprdirect method=POST action='./'>
+<form name=crisprdirect method=POST action='./' enctype='multipart/form-data'>
 <div>
 	<p>or Paste a nucleotide sequence:
 		<a href='doc/input.html'
@@ -313,6 +313,10 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 		</a><br>
 	<textarea id=useq name=userseq rows=15 cols=90 class=mono>
 <TMPL_VAR NAME=USERSEQ></textarea>
+	</p>
+
+	<p>or upload sequence file:
+	<input type=file name=upload size=40>
 	</p>
 
 	<p>Specificity check:

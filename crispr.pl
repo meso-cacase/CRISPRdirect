@@ -13,12 +13,15 @@
 use warnings ;
 use strict ;
 use Time::HiRes ;
+use CGI ;
 
 eval 'use HTML::Template ; 1' or  # HTMLをテンプレート化
 	print_error('ERROR : cannot load HTML::Template') ;
 
 my @timer ;                       # 実行時間計測用
 my $timestamp = timestamp() ;     # CGIを実行した時刻
+
+my $maxfilesize = 20 * 1024 ;     # アップロードできるファイル容量の上限
 
 my $sampleseq =                   # トップページで表示するサンプル配列
 '>sample sequence
@@ -54,12 +57,18 @@ my %db_fullname = (               # データベースの正式名
 #- ▼ リクエストからパラメータを取得
 push @timer, [Time::HiRes::time(), 'start;'] ;           #===== 実行時間計測 =====
 
-my %query = get_query_parameters() ;   # HTTPリクエストからパラメータを取得
+#-- ▽ HTTPリクエストからパラメータを取得
+my $q = new CGI ;
+my %query ;
+foreach ($q->param){ $query{$_} = $q->param($_) }
+#-- △ HTTPリクエストからパラメータを取得
 
 #-- ▽ 使用するパラメータ一覧
 my $accession = $query{'accession'} ;  # Accession番号: NM_003380, ...
 
 my $userseq   = $query{'userseq'} ;    # 塩基配列: (FASTA形式または塩基配列のみ)
+
+my $upload    = $query{'upload'} ;     # アップロードされたファイル名: test.fasta, ...
 
 my $db = lc(                           # 特異性確認のデータベース: hg19, mm10, ...
 	$query{'db'} // 'hg19') ;          # default: hg19 (Human genome)
@@ -83,6 +92,28 @@ $db =~ s/sacCer3/sacCer3/i ;
 #- ▲ リクエストからパラメータを取得
 
 #- ▼ パラメータに応じて画面遷移
+#-- uploadファイル指定あり：ファイルを読み込みuserseqにセット
+if ($upload){
+	my $uploaddata ;
+	while(read($upload, my $buffer, 2048)){
+		$uploaddata .= $buffer ;
+	}
+
+	# データがASCII文字以外を含まないかチェック
+	$uploaddata =~ /^[\x20-\x7E\s]+$/ or
+		$uploaddata = "\n> Uploaded file is not a plain text or FASTA format.\n" ;
+
+	# ファイルサイズのチェック
+	length $uploaddata > $maxfilesize and
+		$uploaddata = "\n> Uploaded file is too large.\n" ;
+
+	# 改行コードをLFに統一
+	$uploaddata =~ s/\r\n/\n/g ;  # CRLF -> LF
+	$uploaddata =~ tr/\r/\n/ ;    # CR   -> LF
+
+	$userseq = $uploaddata ;
+}
+
 #-- userseqなしでformat=txt：FASTAを取得してテキスト出力
 if (not defined $userseq and $format eq 'txt'){
 	#--- ▽ Accession番号からFASTAを取得
@@ -147,31 +178,6 @@ sub timestamp {  # タイムスタンプを 2000-01-01 00:00:00 の形式で出�
 my ($sec, $min, $hour, $mday, $mon, $year) = localtime ;
 return sprintf("%04d-%02d-%02d %02d:%02d:%02d",
 	$year+1900, $mon+1, $mday, $hour, $min, $sec) ;
-} ;
-# ====================
-sub get_query_parameters {  # CGIが受け取ったパラメータの処理
-my $buffer = '' ;
-if (defined $ENV{'REQUEST_METHOD'} and
-	$ENV{'REQUEST_METHOD'} eq 'POST' and
-	defined $ENV{'CONTENT_LENGTH'}
-){
-	eval 'read(STDIN, $buffer, $ENV{"CONTENT_LENGTH"})' or
-		print_error('ERROR : get_query_parameters() : read failed') ;
-} elsif (defined $ENV{'QUERY_STRING'}){
-	$buffer = $ENV{'QUERY_STRING'} ;
-}
-my %query ;
-my @query = split /&/, $buffer ;
-foreach (@query){
-	my ($name, $value) = split /=/ ;
-	if (defined $name and defined $value){
-		$value =~ tr/+/ / ;
-		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack('C', hex($1))/eg ;
-		$name  =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack('C', hex($1))/eg ;
-		$query{lc($name)} = $value ;
-	}
-}
-return %query ;
 } ;
 # ====================
 sub tsv2table {  # HTMLの表
