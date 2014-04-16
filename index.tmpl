@@ -105,8 +105,18 @@ jQuery.fn.dataTableExt.oSort['hits-desc'] = function(a,b) {
 	return ((x < y) ?  1 : ((x > y) ? -1 : 0));
 };
 
+jQuery.fn.dataTableExt.afnFiltering.push(
+	function(oSettings, aData, iDataIndex) {
+		var tttt       = aData[5] ;
+		var hit_20mer  = aData[6].replace( /\D.*/, '' ) ;
+		var hit_12mer  = aData[7].replace( /\D.*/, '' ) ;
+		var isSpecific = (hit_20mer == '1' && hit_12mer == '1' && tttt == '-') ;
+		return ($('#filter_highlight').is(':checked') ? isSpecific : true);
+	}
+);
+
 $(document).ready(function(){
-	$('#result').dataTable({
+	var result = $('#result').dataTable({
 		'bAutoWidth'      : false,  // Disable automatic column width
 		'iDisplayLength'  : 20,     // Number of rows per page
 		'aLengthMenu'     : [[20, 50, 100, -1], [20, 50, 100, 'All']],  // Menu items
@@ -151,6 +161,9 @@ $(document).ready(function(){
 			}
 		}
 	}) ;
+	$(':checkbox').click(function() {
+		result.fnDraw();
+	});
 }) ;
 //-->
 </script>

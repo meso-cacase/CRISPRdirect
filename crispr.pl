@@ -271,7 +271,10 @@ return
 	"		'	    so avoid using these.'                                        +" . "\n" .
 	"		'	<li>Target sequences with TTTTs are also shown in gray.'          +" . "\n" .
 	"		'	    Avoid TTTTs in gRNA vectors with pol III promoter.'           +" . "\n" .
-	"		'<\\/ul>'"                                                               . "\n" .
+	"		'<\\/ul>'                                                             +" . "\n" .
+	"		'<label><input type=checkbox id=filter_highlight></label>'            +" . "\n" .
+	"		'show <em>highly specific<\\/em> target only'                         +" . "\n" .
+	"		'<\\/p>'"                                                                . "\n" .
 	"	) ;"                                                                         . "\n" .
 	"}"                                                                              . "\n" .
 	"//-->"                                                                          . "\n" .
