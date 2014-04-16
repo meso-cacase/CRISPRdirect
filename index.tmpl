@@ -319,6 +319,11 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 	<input type=file name=upload size=40>
 	</p>
 
+	<p>PAM sequence requirement:
+	<input type=text id=pam name=pam size=10 maxlength=3
+		value='<TMPL_VAR NAME=PAM>'> (e.g. NGG, NRG)
+	</p>
+
 	<p>Specificity check:
 	<select name=db>
 <TMPL_VAR NAME=SELECT>

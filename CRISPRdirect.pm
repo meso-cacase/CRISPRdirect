@@ -23,10 +23,13 @@ my $timeout      = 10 ;
 
 my $fasta = $_[0] or return '' ;
 my $db    = $_[1] // '' ;
+my $pam   = $_[2] // 'NGG' ;
 
 my ($name, $seq) = readFASTA($fasta) ;
 $name //= 'YourSeq' ;
 $seq = rna2dna(flatsequence($seq)) ;
+
+my $pam_regexp = iub2regexp($pam) ;
 
 my $tsv =
 "# [ CRISPRdirect | @{[ timestamp() ]} ]
@@ -54,7 +57,7 @@ foreach (1..length($seq) - $targetlength + 1){
 	my $reverseq  = comp($targetseq) ;
 
 	#-- ▽ (+)鎖を判定
-	if ((my $pam = substr($targetseq, -3)) =~ /GG$/i){
+	if ((my $pam = substr($targetseq, -3)) =~ /${pam_regexp}$/i){
 		my $gc      = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
 		my $tttt    = (substr($targetseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
@@ -77,7 +80,7 @@ foreach (1..length($seq) - $targetlength + 1){
 	#-- △ (+)鎖を判定
 
 	#-- ▽ (-)鎖を判定
-	if ((my $pam = substr($reverseq, -3)) =~ /GG$/i){
+	if ((my $pam = substr($reverseq, -3)) =~ /${pam_regexp}$/i){
 		my $gc      = gc_percent(substr($reverseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($reverseq, 0, 20))) ;
 		my $tttt    = (substr($reverseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
@@ -155,6 +158,40 @@ sub flatsequence {
 
 my $seq = $_[0] or return '' ;
 $seq =~ s/[^ATGCUNRYMKSWHBVD-]//gi ;
+return $seq ;
+} ;
+# ====================
+sub iub2regexp {
+
+# 塩基配列中のIUBコードを正規表現に展開
+#
+# usage: $seq_regexp = iub2regexp($seq) ;
+
+my $seq = flatsequence($_[0]) ;
+
+$seq =~ s/R/[AG]/g ;    # R = A/G
+$seq =~ s/r/[ag]/g ;
+$seq =~ s/Y/[TC]/g ;    # Y = T/C
+$seq =~ s/y/[tc]/g ;
+$seq =~ s/K/[TG]/g ;    # K = T/G
+$seq =~ s/k/[tg]/g ;
+$seq =~ s/M/[AC]/g ;    # M = A/C
+$seq =~ s/m/[ac]/g ;
+$seq =~ s/S/[GC]/g ;    # S = G/C
+$seq =~ s/s/[gc]/g ;
+$seq =~ s/W/[AT]/g ;    # W = A/T
+$seq =~ s/w/[at]/g ;
+$seq =~ s/B/[TGC]/g ;   # B = T/G/C
+$seq =~ s/b/[tgc]/g ;
+$seq =~ s/D/[ATG]/g ;   # D = A/T/G
+$seq =~ s/d/[atg]/g ;
+$seq =~ s/H/[ATC]/g ;   # H = A/T/C
+$seq =~ s/h/[atc]/g ;
+$seq =~ s/V/[AGC]/g ;   # V = A/G/C
+$seq =~ s/v/[agc]/g ;
+$seq =~ s/N/[ATGC]/g ;  # N = A/T/G/C
+$seq =~ s/n/[atgc]/g ;
+
 return $seq ;
 } ;
 # ====================

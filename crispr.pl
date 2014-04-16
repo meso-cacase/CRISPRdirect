@@ -70,6 +70,8 @@ my $userseq   = $query{'userseq'} ;    # 塩基配列: (FASTA形式または塩�
 
 my $upload    = $query{'upload'} ;     # アップロードされたファイル名: test.fasta, ...
 
+my $pam       = $query{'pam'} ;        # PAMの配列: NGG, NAG, ...
+
 my $db = lc(                           # 特異性確認のデータベース: hg19, mm10, ...
 	$query{'db'} // 'hg19') ;          # default: hg19 (Human genome)
 
@@ -81,6 +83,13 @@ my $download =                         # ファイルとしてダウンロード
 	($query{'download'} and $format =~ /^(txt|json)$/) ?
 	$query{'download'} : '' ;
 #-- △ 使用するパラメータ一覧
+
+#-- ▽ PAMを正規化、塩基構成文字以外をNに置換
+$pam =~ s/\s//g ;
+$pam =~ tr/Uu/Tt/ ;
+$pam =~ s/[^ATGCURYMKSWHBVD-]/N/gi ;
+$pam = uc(substr($pam . 'NNN', 0, 3)) ;  # 先頭3文字、満たなければ最後にNを付加
+#-- △ PAMを正規化、塩基構成文字以外をNに置換
 
 #-- ▽ 大文字小文字を正規化
 $db =~ s/galGal4/galGal4/i ;
@@ -143,7 +152,7 @@ elsif (not defined $userseq){
 else {
 	eval 'require CRISPRdirect ; 1' or
 		print_error('ERROR : cannot load CRISPRdirect') ;
-	my $result = CRISPRdirect::crispr_design($userseq, $db) ;
+	my $result = CRISPRdirect::crispr_design($userseq, $db, $pam) ;
 	$result =~ s/(?<=^# specificity_check:\t)(\w+)/$db_fullname{$1}/m ;
 
 	#--- TXT出力
@@ -166,7 +175,7 @@ else {
 			SEQMAP => tsv2seqmap($userseq, $result),
 			RESULT => $result
 		) ;
-		print_html($accession, $userseq, $db, $template->output) ;
+		print_html($accession, $userseq, $pam, $db, $template->output) ;
 	}
 }
 #- ▲ パラメータに応じて画面遷移
@@ -387,8 +396,9 @@ $html</table>" ;
 sub print_html {  # HTMLを出力
 my $accession = $_[0] // ''     ;
 my $userseq   = $_[1]           ;
-my $db        = $_[2] // 'hg19' ;  # default: hg19 (Human genome)
-my $result    = $_[3] // ''     ;
+my $pam       = $_[2] // 'NGG'  ;
+my $db        = $_[3] // 'hg19' ;  # default: hg19 (Human genome)
+my $result    = $_[4] // ''     ;
 
 $sampleseq ||= '' ;  # undefを回避
 
@@ -428,6 +438,7 @@ my $template = HTML::Template->new(filename => 'index.tmpl') ;
 $template->param(
 	ACCESSION => $accession,
 	USERSEQ   => $userseq,
+	PAM       => $pam,
 	SELECT    => $select,
 	RESULT    => $result
 ) ;
