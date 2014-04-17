@@ -194,6 +194,7 @@ my $result = $_[0] // '' ;
 
 my $exec_time = ($result =~ /^# \[.*\|\s*(.*?)\s*\]$/m)      ? $1 : '' ;
 my $seq_name  = ($result =~ /^# sequence_name:\t(.*)$/m)     ? $1 : '' ;
+my $pam_seq   = ($result =~ /^# pam_sequence:\t(.*)$/m)      ? $1 : '' ;
 my $db_name   = ($result =~ /^# specificity_check:\t(.*)$/m) ? $1 : '' ;
 my $error     = ($result =~ /^# ERROR:\t(.*)$/m)             ? $1 : '' ;
 
@@ -204,6 +205,7 @@ $error and
 	return
 		"<p>"                                         . "\n" .
 		"	<b>Sequence name:</b> $seq_name<br>"      . "\n" .
+		"	<b>PAM sequence:</b> $pam_seq<br>"        . "\n" .
 		"	<b>Specificity check:</b> $db_name<br>"   . "\n" .
 		"	<b>Time:</b> $exec_time"                  . "\n" .
 		"</p>"                                        . "\n" .
@@ -252,6 +254,7 @@ foreach (@result){
 return
 	"<p>"                                           . "\n" .
 	"	<b>Sequence name:</b> $seq_name<br>"        . "\n" .
+	"	<b>PAM sequence:</b> $pam_seq<br>"          . "\n" .
 	"	<b>Specificity check:</b> $db_name<br>"     . "\n" .
 	"	<b>Time:</b> $exec_time"                    . "\n" .
 	"</p>"                                          . "\n" .
@@ -475,6 +478,7 @@ my $result    = $_[2] // '' ;
 my $prog_name = ($result =~ /^# \[\s*(.*?)\s*\|.*\]$/m)      ? $1 : '' ;
 my $exec_time = ($result =~ /^# \[.*\|\s*(.*?)\s*\]$/m)      ? $1 : '' ;
 my $seq_name  = ($result =~ /^# sequence_name:\t(.*)$/m)     ? $1 : '' ;
+my $pam_seq   = ($result =~ /^# pam_sequence:\t(.*)$/m)      ? $1 : '' ;
 my $db_name   = ($result =~ /^# specificity_check:\t(.*)$/m) ? $1 : '' ;
 my $error     = ($result =~ /^# ERROR:\t(.*)$/m)             ? $1 : '' ;
 
@@ -506,6 +510,7 @@ print JSON::XS->new->canonical->utf8->encode({
 	program_name      => $prog_name,
 	time              => $exec_time,
 	sequence_name     => $seq_name,
+	pam_sequence      => $pam_seq,
 	specificity_check => $db_name,
 	error             => $error,
 	results           => \@json

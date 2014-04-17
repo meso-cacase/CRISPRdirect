@@ -34,6 +34,7 @@ my $pam_regexp = iub2regexp($pam) ;
 my $tsv =
 "# [ CRISPRdirect | @{[ timestamp() ]} ]
 # sequence_name:	$name
+# pam_sequence:	$pam
 # specificity_check:	$db
 # start	end	strand	sequence	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
 #
