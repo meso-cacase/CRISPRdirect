@@ -85,6 +85,7 @@ my $download =                         # ファイルとしてダウンロード
 #-- △ 使用するパラメータ一覧
 
 #-- ▽ PAMを正規化、塩基構成文字以外をNに置換
+$pam ||= 'NGG' ;
 $pam =~ s/\s//g ;
 $pam =~ tr/Uu/Tt/ ;
 $pam =~ s/[^ATGCURYMKSWHBVD-]/N/gi ;
