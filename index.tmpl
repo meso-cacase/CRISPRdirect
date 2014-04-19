@@ -276,26 +276,44 @@ $(document).ready(function(){
 var ua = navigator.userAgent.toLowerCase() ;
 if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 	document.write(
-		'<div>'                                                           +
-		'<form name=getsequence method=GET action="./">'                  +
-		'    <p>Enter an accession number (e.g. NM_001187) or '           +
-		'        genome location (e.g. hg19:chr7:900000-901000):<br>'     +
-		'    <input type=text id=acc name=accession size=40 maxlength=80' +
-		'        value="<TMPL_VAR NAME=ACCESSION>">'                      +
-		'    <input type=submit value="retrieve sequence">'               +
-		'    <\/p>'                                                       +
-		'<\/form>'                                                        +
+		'<div>'                                                              +
+		'<form name=getsequence method=GET action="./">'                     +
+		'    <p>Enter an accession number (<i>e.g.<\/i> NM_001187) or '      +
+		'        genome location (<i>e.g.<\/i> hg19:chr7:900000-901000):'    +
+		'        <span style="vertical-align:-0.4ex">'                       +
+		'        <a href="doc/accession.html"'                               +
+		'            onclick="window.open('                                  +
+		'            \'doc/accession.html\','                                +
+		'            \'\','                                                  +
+		'            \'width=600,height=700,scrollbars=yes\''                +
+		'            ) ; return false ;">'                                   +
+		'        <img src="qicon.png" alt="?" width=15 height=15 border=0>'  +
+		'        <\/a><\/span><br>'                                          +
+		'    <input type=text id=acc name=accession size=40 maxlength=80'    +
+		'        value="<TMPL_VAR NAME=ACCESSION>">'                         +
+		'    <input type=submit value="retrieve sequence">'                  +
+		'    <\/p>'                                                          +
+		'<\/form>'                                                           +
 		'<\/div>'
 	) ;
 } else {
 	document.write(
-		'    <p>Enter an accession number (e.g. NM_001187) or '           +
-		'        genome location (e.g. hg19:chr7:900000-901000):<br>'     +
-		'    <input type=text id=acc name=accession size=40 maxlength=80' +
-		'        value="<TMPL_VAR NAME=ACCESSION>"'                       +
-		'        onkeypress="if(event.keyCode==13){retrieveSequence()}">' +
-		'    <input type=button value="retrieve sequence"'                +
-		'        onclick="retrieveSequence()">'                           +
+		'    <p>Enter an accession number (<i>e.g.<\/i> NM_001187) or '      +
+		'        genome location (<i>e.g.<\/i> hg19:chr7:900000-901000):'    +
+		'        <span style="vertical-align:-0.4ex">'                       +
+		'        <a href="doc/accession.html"'                               +
+		'            onclick="window.open('                                  +
+		'            \'doc/accession.html\','                                +
+		'            \'\','                                                  +
+		'            \'width=600,height=700,scrollbars=yes\''                +
+		'            ) ; return false ;">'                                   +
+		'        <img src="qicon.png" alt="?" width=15 height=15 border=0>'  +
+		'        <\/a><\/span><br>'                                          +
+		'    <input type=text id=acc name=accession size=40 maxlength=80'    +
+		'        value="<TMPL_VAR NAME=ACCESSION>"'                          +
+		'        onkeypress="if(event.keyCode==13){retrieveSequence()}">'    +
+		'    <input type=button value="retrieve sequence"'                   +
+		'        onclick="retrieveSequence()">'                              +
 		'    <\/p>'
 	) ;
 }
@@ -305,8 +323,15 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 <noscript>
 <div>
 <form name=getsequence method=GET action='./'>
-	<p>Enter an accession number (e.g. NM_001187) or
-		genome location (e.g. hg19:chr7:900000-901000):<br>
+	<p>Enter an accession number (<i>e.g.</i> NM_001187) or
+		genome location (<i>e.g.</i> hg19:chr7:900000-901000):
+		<span style='vertical-align:-0.4ex'>
+		<a href='doc/accession.html'
+			onclick="window.open(
+				'doc/accession.html','','width=600,height=700,scrollbars=yes'
+			) ; return false ;">
+		<img src='qicon.png' alt='?' width=15 height=15 border=0>
+		</a></span><br>
 	<input type=text id=acc name=accession size=40 maxlength=80
 		value='<TMPL_VAR NAME=ACCESSION>'>
 	<input type=submit value='retrieve sequence'>
@@ -329,12 +354,28 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 	</p>
 
 	<p>or upload sequence file:
+	<span style='vertical-align:-0.4ex'>
+	<a href='doc/upload.html'
+		onclick="window.open(
+			'doc/upload.html','','width=600,height=700,scrollbars=yes'
+		) ; return false ;">
+	<img src='qicon.png' alt='?' width=15 height=15 border=0>
+	</a>
+	</span>
 	<input type=file name=upload size=40>
 	</p>
 
 	<p>PAM sequence requirement:
 	<input type=text id=pam name=pam size=10 maxlength=3
 		value='<TMPL_VAR NAME=PAM>'> (e.g. NGG, NRG)
+	<span style='vertical-align:-0.4ex'>
+	<a href='doc/pam.html'
+		onclick="window.open(
+			'doc/pam.html','','width=600,height=700,scrollbars=yes'
+		) ; return false ;">
+	<img src='qicon.png' alt='?' width=15 height=15 border=0>
+	</a>
+	</span>
 	</p>
 
 	<p>Specificity check:

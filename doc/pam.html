@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html>
+
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta http-equiv='Content-Style-Type' content='text/css'>
+<meta name='author' content='Yuki Naito'>
+<title>CRISPRdirect help</title>
+<style type='text/css'>
+<!--
+	*     { font-family:verdana,arial,helvetica,sans-serif }
+	.mono { font-family:monaco,courier,monospace }
+	.pam  {
+		font-family:inherit;
+		border:1px solid;
+		margin-left:1px;
+		margin-right:1px;
+		padding-left:1px;
+		padding-right:1px;
+	}
+	p,div,ol,ul,h5 { font-size:9pt }
+	table,textarea { font-size:8pt }
+	p,ol,ul { width:90% }
+	a       { text-decoration:none; color:#003399 }
+	a:hover { text-decoration:none; color:maroon  }
+	.b      { text-decoration:none; color:black   }
+	.s      { text-decoration:none; color:gray    }
+	form  { margin:10px 0px }
+	em { background-color:#99FF99; font-style:normal; font-weight:bold }
+	.v { background-color:#E6E6FA }
+	.o { background-color:#FFF0E0 }
+	.g { background-color:#E6FAF2 }
+	.h { background-color:#99FF99 }
+-->
+</style>
+</head>
+
+<body>
+
+<h5>PAM sequence requirement</h5>
+
+<p>
+	An arbitrary 3 nt sequence using IUB codes can be specified in (<font color=blue><b>5</b></font>).
+</p>
+
+<p>
+	Example:
+	<ul>
+		<li>NGG (default)
+		<li>NRG (= NGG or NAG)
+	</ul>
+</p>
+
+<img src='CRISPR_BAGE_fasta.png' width=557 height=458 border=0>
+
+<h5>IUB codes for nucleic acid bases</h5>
+
+<table cellspacing=0 cellpadding=2 width='50%' style='text-align:center'>
+	<tr class=v> <td><b>Code</b></td><td><b>Base</b></td><td><b>Comment</b></td></tr>
+	<tr        > <td><b>G</b></td> <td>G</td>      <td><b>G</b>uanine</td></tr>
+	<tr class=v> <td><b>A</b></td> <td>A</td>      <td><b>A</b>denine</td></tr>
+	<tr        > <td><b>T</b></td> <td>T</td>      <td><b>T</b>hymine</td></tr>
+	<tr class=v> <td><b>C</b></td> <td>C</td>      <td><b>C</b>ytosine</td></tr>
+	<tr        > <td><b>R</b></td> <td>A, G</td>     <td>pu<b>R</b>ines</td></tr>
+	<tr class=v> <td><b>Y</b></td> <td>C, T</td>     <td>p<b>Y</b>rimidines</td></tr>
+	<tr        > <td><b>M</b></td> <td>A, C</td>     <td>a<b>M</b>ino</td></tr>
+	<tr class=v> <td><b>K</b></td> <td>G, T</td>     <td><b>K</b>eto</td></tr>
+	<tr        > <td><b>S</b></td> <td>C, G</td>     <td><b>S</b>trong</td></tr>
+	<tr class=v> <td><b>W</b></td> <td>A, T</td>     <td><b>W</b>eak</td></tr>
+	<tr        > <td><b>H</b></td> <td>A, C, T</td>   <td>not G</td></tr>
+	<tr class=v> <td><b>B</b></td> <td>C, G, T</td>   <td>not A</td></tr>
+	<tr        > <td><b>V</b></td> <td>A, C, G</td>   <td>not T</td></tr>
+	<tr class=v> <td><b>D</b></td> <td>A, G, T</td>   <td>not C</td></tr>
+	<tr        > <td><b>N</b></td> <td>A, C, G, T</td> <td>any</td></tr>
+</table>
+
+</body>
+</html>
