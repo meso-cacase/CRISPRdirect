@@ -11,7 +11,7 @@ CRISPR/Casシステムのターゲット配列を設計するウェブサービ�
 --------
 
 ![スクリーンショット]
-(http://g86.dbcls.jp/~meso/meme/wp-content/uploads/2014/02/CRISPRscreen.png
+(http://g86.dbcls.jp/~meso/meme/wp-content/uploads/2014/04/CRISPRscreen.png
 "スクリーンショット")
 
 
@@ -26,6 +26,9 @@ API
 
 + *accession* (省略可)  
   設計には使われないが、accession番号を設計結果に表示できる。
+
++ *pam* (省略可)  
+  PAMを指定。現在は3塩基に限定。省略時はNGG。
 
 + *db* (省略可)  
   特異性確認のためのデータベース。  

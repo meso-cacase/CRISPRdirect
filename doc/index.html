@@ -170,7 +170,7 @@ CAACATCTTTTACACTAAAAAGCC
 	<li>Target sequences, 20mer + 3mer PAM (total 23mer).
 	<li>GC content of the target 20mer.
 	<li>Calculated Tm of the target 20mer.
-	<li>Presence or absence of TTTT (four contiguous T’s that cause pol III termination)
+	<li>Presence or absence of TTTT (four consecutive T’s that cause pol III termination)
 		in the target 20mer. Avoid TTTT in gRNA vectors with pol III promoter.
 	<li>Off-target search results against human genome. The number of target sites with perfect match
 		is shown. Note that the number displayed here includes both on-target and off-target sites.
@@ -188,7 +188,7 @@ CAACATCTTTTACACTAAAAAGCC
 	</ul>
 </ol>
 
-<img src='CRISPR_BAGE_result1.png' width=557 height=403 border=0>
+<img src='CRISPR_BAGE_result1.png' width=557 height=430 border=0>
 
 <ol type=A start=7>
 	<li>Only one match in 20mer+PAM and 12mer+PAM search. These targets are highly specific.<br>
@@ -312,9 +312,20 @@ CAACATCTTTTACACTAAAAAGCC
 	<td>Retrieve sequence mode. Set an accession<br>
 		number to retrieve sequence from GenBank<br>
 		instead of designing CRISPR/Cas targets.<br>
+		Genome location is also accepted for<br>
+		hg19, mm10, rn5, galGal4, xenTro3,<br>
+		danRer7, ci2, dm3, ce10 and sacCer3.<br>
 		The variable <i>userseq</i> should be null.<br>
 		The variable <i>format</i> should be 'html' or 'txt'.</td>
-	<td>NM_001187</td>
+	<td>NM_001187<br>
+		hg19:chr7:900000-901000</td>
+</tr>
+<tr>
+	<td><b><i>pam</i></b></td>
+	<td>Optional</td>
+	<td>An arbitrary 3 nt sequence using IUB codes<br>
+		can be specified.</td>
+	<td>NGG (default), NAG, ...</td>
 </tr>
 <tr>
 	<td><b><i>db</i></b></td>
