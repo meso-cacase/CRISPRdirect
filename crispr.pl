@@ -327,6 +327,14 @@ my $result = $_[1] // '' ;
 # eval 'require CRISPRdirect ; 1' or
 # 	print_error('ERROR : cannot load CRISPRdirect') ;
 
+my $error = ($result =~ /^# ERROR:\t(.*)$/m) ? $1 : '' ;
+
+$error and
+	return
+		"<b style='font-size:12pt; color:#800000'>"   . "\n" .
+		"	$error"                                   . "\n" .
+		"</b>" ;
+
 my $seq = CRISPRdirect::rna2dna(
 	          CRISPRdirect::flatsequence(
 		          (CRISPRdirect::readFASTA($fasta))[1]
