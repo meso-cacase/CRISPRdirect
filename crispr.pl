@@ -38,19 +38,19 @@ tcagcatcac gatgaccttg aataaaaatt gcacacactc agtgcagcaa tatattacca
 ' ;
 
 my %db_fullname = (               # データベースの正式名
-	'hg19'    => 'Human genome, GRCh37/hg19 (Feb, 2009)',
-	'mm10'    => 'Mouse genome, GRCm38/mm10 (Dec, 2011)',
-	'rn5'     => 'Rat genome, RGSC 5.0/rn5 (Mar, 2012)',
-	'galGal4' => 'Chicken genome, ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)',
-	'xenTro3' => 'Xenopus tropicalis genome, JGI 4.2/xenTro3 (Nov, 2009)',
-	'danRer7' => 'Zebrafish genome, Zv9/danRer7 (Jul, 2010)',
-	'ci2'     => 'Ciona intestinalis genome, JGI 2.1/ci2 (Mar, 2005)',
-	'dm3'     => 'Drosophila genome, BDGP R5/dm3 (Apr, 2006)',
-	'ce10'    => 'C. elegans genome, WS220/ce10 (Oct, 2010)',
-	'TAIR10'  => 'Arabidopsis thaliana genome, TAIR10 (Nov, 2010)',
-	'rice'    => 'Rice genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)',
-	'bmor1'   => 'Silkworm genome, Bmor1 (Apr, 2008)',
-	'sacCer3' => 'S. cerevisiae (S288C) genome, sacCer3 (Apr, 2011)',
+	'hg19'    => 'Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)',
+	'mm10'    => 'Mouse (Mus musculus) genome, GRCm38/mm10 (Dec, 2011)',
+	'rn5'     => 'Rat (Rattus norvegicus) genome, RGSC 5.0/rn5 (Mar, 2012)',
+	'galGal4' => 'Chicken (Gallus gallus) genome, ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)',
+	'xenTro3' => 'Frog (Xenopus tropicalis) genome, JGI 4.2/xenTro3 (Nov, 2009)',
+	'danRer7' => 'Zebrafish (Danio rerio) genome, Zv9/danRer7 (Jul, 2010)',
+	'ci2'     => 'Sea squirt (Ciona intestinalis) genome, JGI 2.1/ci2 (Mar, 2005)',
+	'dm3'     => 'Fruit fly (Drosophila melanogaster) genome, BDGP R5/dm3 (Apr, 2006)',
+	'ce10'    => 'Roundworm (Caenorhabditis elegans) genome, WS220/ce10 (Oct, 2010)',
+	'TAIR10'  => 'Thale cress (Arabidopsis thaliana) genome, TAIR10 (Nov, 2010)',
+	'rice'    => 'Rice (Oryza sativa) genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)',
+	'bmor1'   => 'Silkworm (Bombyx mori) genome, Bmor1 (Apr, 2008)',
+	'sacCer3' => 'Budding yeast (Saccharomyces cerevisiae) (S288C) genome, sacCer3 (Apr, 2011)',
 ) ;
 #- ▲ モジュール読み込みと変数の初期化
 
