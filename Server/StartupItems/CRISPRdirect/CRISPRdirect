@@ -26,6 +26,9 @@
 # rice   	6838	6837	6836
 # bmor1  	6848	6847	6846
 # sacCer3	6858	6857	6856
+# sorBic 	6868	6867	6866
+# susScr3	6878	6877	6876
+# calJac3	6888	6887	6886
 # --------------------------------
 
 JELFISH="/opt/CRISPRdirect/jellyfishd.pl"
@@ -112,6 +115,24 @@ StartService ()
 		>> $HASHDIR/sacCer3/sacCer3_15nt.log &
 	sudo -u nobody $JELFISH -p 6856 -k 11 -hash $HASHDIR/sacCer3/sacCer3_11nt.jf \
 		>> $HASHDIR/sacCer3/sacCer3_11nt.log &
+	sudo -u nobody $JELFISH -p 6868 -k 23 -hash $HASHDIR/sorBic/sorBic_23nt.jf \
+		>> $HASHDIR/sorBic/sorBic_23nt.log &
+	sudo -u nobody $JELFISH -p 6867 -k 15 -hash $HASHDIR/sorBic/sorBic_15nt.jf \
+		>> $HASHDIR/sorBic/sorBic_15nt.log &
+	sudo -u nobody $JELFISH -p 6866 -k 11 -hash $HASHDIR/sorBic/sorBic_11nt.jf \
+		>> $HASHDIR/sorBic/sorBic_11nt.log &
+	sudo -u nobody $JELFISH -p 6878 -k 23 -hash $HASHDIR/susScr3/susScr3_23nt.jf \
+		>> $HASHDIR/susScr3/susScr3_23nt.log &
+	sudo -u nobody $JELFISH -p 6877 -k 15 -hash $HASHDIR/susScr3/susScr3_15nt.jf \
+		>> $HASHDIR/susScr3/susScr3_15nt.log &
+	sudo -u nobody $JELFISH -p 6876 -k 11 -hash $HASHDIR/susScr3/susScr3_11nt.jf \
+		>> $HASHDIR/susScr3/susScr3_11nt.log &
+	sudo -u nobody $JELFISH -p 6888 -k 23 -hash $HASHDIR/calJac3/calJac3_23nt.jf \
+		>> $HASHDIR/calJac3/calJac3_23nt.log &
+	sudo -u nobody $JELFISH -p 6887 -k 15 -hash $HASHDIR/calJac3/calJac3_15nt.jf \
+		>> $HASHDIR/calJac3/calJac3_15nt.log &
+	sudo -u nobody $JELFISH -p 6886 -k 11 -hash $HASHDIR/calJac3/calJac3_11nt.jf \
+		>> $HASHDIR/calJac3/calJac3_11nt.log &
 }
 
 StopService ()
