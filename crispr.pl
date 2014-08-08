@@ -272,7 +272,7 @@ return
 	"if (\$('#result').show()){"                                                     . "\n" .
 	"	document.write("                                                             . "\n" .
 	"		'<ul>'                                                                +" . "\n" .
-	"		'	<li>Highlighted target positions (<i>e.g.<\\/i>,'                 +" . "\n" .
+	"		'	<li>Highlighted target positions (e.g.,'                          +" . "\n" .
 	"		'	    <em>45 - 67<\\/em>) indicate sequences that are highly'       +" . "\n" .
 	"		'	    specific and have fewer off-target hits.'                     +" . "\n" .
 	"		'	<li>Target sequences with &apos;0&apos; in &apos;20mer+PAM&apos;' +" . "\n" .
