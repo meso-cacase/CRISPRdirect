@@ -230,6 +230,8 @@ foreach (@result){
 		substr($sequence, 0, 20) . '<span class=pam>' . substr($sequence, -3) . '</span>' :
 		'<span class=pam>' . substr($sequence, 0, 3) . '</span>' . substr($sequence, -20) ;
 
+	my $target2 = ($strand eq '+') ? $sequence : CRISPRdirect::comp($sequence) ;
+
 	my $seq15  = ($strand eq '+') ? substr($sequence, -15)   :
 	                                substr($sequence, 0, 15) ;
 
@@ -243,6 +245,8 @@ foreach (@result){
 		"	<td class=v>$start - $end"                            . "\n" .
 		"	<td class=v>$strand"                                  . "\n" .		
 		"	<td class=v><span class=mono>$target</span>"          . "\n" .
+		"		<a target='_blank' class=detail"                  . "\n" .
+		"			href='gRNAcalc/?seq=$target2'>[gRNA]</a>"     . "\n" .
 		"	<td class=o>$gc %"                                    . "\n" .
 		"	<td class=o>$tm &deg;C"                               . "\n" .
 		"	<td class=o>$tttt"                                    . "\n" .
