@@ -58,7 +58,7 @@ foreach (1..length($seq) - $targetlength + 1){
 	my $reverseq  = comp($targetseq) ;
 
 	#-- ▽ (+)鎖を判定
-	if ((my $pam = substr($targetseq, -3)) =~ /${pam_regexp}$/i){
+	if ((my $pam = substr($targetseq, -3)) =~ /${pam_regexp}$/i and $targetseq =~ /^[atgc]+$/){
 		my $gc      = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
 		my $tttt    = (substr($targetseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
@@ -81,7 +81,7 @@ foreach (1..length($seq) - $targetlength + 1){
 	#-- △ (+)鎖を判定
 
 	#-- ▽ (-)鎖を判定
-	if ((my $pam = substr($reverseq, -3)) =~ /${pam_regexp}$/i){
+	if ((my $pam = substr($reverseq, -3)) =~ /${pam_regexp}$/i and $reverseq =~ /^[atgc]+$/){
 		my $gc      = gc_percent(substr($reverseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($reverseq, 0, 20))) ;
 		my $tttt    = (substr($reverseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
