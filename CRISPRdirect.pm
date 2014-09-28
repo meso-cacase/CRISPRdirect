@@ -19,7 +19,7 @@ sub crispr_design {
 
 my $targetlength = 23 ;
 my $maxlength    = 10000 ;
-my $timeout      = 10 ;
+my $timeout      = 30 ;
 
 my $fasta = $_[0] or return '' ;
 my $db    = $_[1] // '' ;
@@ -58,13 +58,13 @@ foreach (1..length($seq) - $targetlength + 1){
 	my $reverseq  = comp($targetseq) ;
 
 	#-- ▽ (+)鎖を判定
-	if ((my $pam = substr($targetseq, -3)) =~ /${pam_regexp}$/i and $targetseq =~ /^[atgc]+$/){
+	if (substr($targetseq, -3) =~ /${pam_regexp}$/i and $targetseq =~ /^[atgc]+$/i){
 		my $gc      = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
 		my $tttt    = (substr($targetseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
-		my $count23 = KmerCount::kmercount(substr($targetseq, -23), $db) ;
-		my $count15 = KmerCount::kmercount(substr($targetseq, -15), $db) ;
-		my $count11 = KmerCount::kmercount(substr($targetseq, -11), $db) ;
+		my $count23 = KmerCount::kmercount(substr($targetseq, -23, -3) . $pam, $db) ;
+		my $count15 = KmerCount::kmercount(substr($targetseq, -15, -3) . $pam, $db) ;
+		my $count11 = KmerCount::kmercount(substr($targetseq, -11, -3) . $pam, $db) ;
 		push @targetlist, {
 			'start'    => $start,
 			'end'      => $end,
@@ -81,13 +81,13 @@ foreach (1..length($seq) - $targetlength + 1){
 	#-- △ (+)鎖を判定
 
 	#-- ▽ (-)鎖を判定
-	if ((my $pam = substr($reverseq, -3)) =~ /${pam_regexp}$/i and $reverseq =~ /^[atgc]+$/){
+	if (substr($reverseq, -3) =~ /${pam_regexp}$/i and $reverseq =~ /^[atgc]+$/i){
 		my $gc      = gc_percent(substr($reverseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($reverseq, 0, 20))) ;
 		my $tttt    = (substr($reverseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
-		my $count23 = KmerCount::kmercount(substr($reverseq, -23), $db) ;
-		my $count15 = KmerCount::kmercount(substr($reverseq, -15), $db) ;
-		my $count11 = KmerCount::kmercount(substr($reverseq, -11), $db) ;
+		my $count23 = KmerCount::kmercount(substr($reverseq, -23, -3) . $pam, $db) ;
+		my $count15 = KmerCount::kmercount(substr($reverseq, -15, -3) . $pam, $db) ;
+		my $count11 = KmerCount::kmercount(substr($reverseq, -11, -3) . $pam, $db) ;
 		push @targetlist, {
 			'start'    => $start,
 			'end'      => $end,
