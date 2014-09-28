@@ -21,7 +21,19 @@ my $db  = $_[1] or return '' ;
 
 # 入力文字列のチェック
 chomp $seq ;
-$seq =~ /^[atgc]+$/i or return '' ;
+$seq =~ /^[atgcnrymkswhbvd]+$/i or return '' ;
+
+# 縮重塩基を含む場合は、展開して再帰により頻度の合計を求める
+if ($seq =~ /[nrymkswhbvd]/i){
+	my @seq = iub_expand($seq) ;
+	my $count = '' ;
+	foreach (@seq){
+		my $kmercount = kmercount($_, $db) ;
+		($kmercount eq '') and return '' ;
+		$count += $kmercount ;
+	}
+	return $count ;
+}
 
 my $k    = length $seq ;
 my $host = 'localhost' ;
@@ -61,6 +73,42 @@ while (<SOCKET>){ $count .= $_ }
 # 結果を整数で返す
 ($count =~ /(-?\d+)/) ? return $1 :
                         return '' ;
+} ;
+# ====================
+sub iub_expand {  # 塩基配列のIUBコードを展開してリストを返す
+my @in = @_ ;
+my @out ;
+while (my $seq = shift @in){
+	if (
+		$seq =~ s/^(.*?)R(.*)$/$1A$2,$1G$2/             or  # R = A/G
+		$seq =~ s/^(.*?)r(.*)$/$1a$2,$1g$2/             or
+		$seq =~ s/^(.*?)Y(.*)$/$1T$2,$1C$2/             or  # Y = T/C
+		$seq =~ s/^(.*?)y(.*)$/$1t$2,$1c$2/             or
+		$seq =~ s/^(.*?)K(.*)$/$1T$2,$1G$2/             or  # K = T/G
+		$seq =~ s/^(.*?)k(.*)$/$1t$2,$1g$2/             or
+		$seq =~ s/^(.*?)M(.*)$/$1A$2,$1C$2/             or  # M = A/C
+		$seq =~ s/^(.*?)m(.*)$/$1a$2,$1c$2/             or
+		$seq =~ s/^(.*?)S(.*)$/$1G$2,$1C$2/             or  # S = G/C
+		$seq =~ s/^(.*?)s(.*)$/$1g$2,$1c$2/             or
+		$seq =~ s/^(.*?)W(.*)$/$1A$2,$1T$2/             or  # W = A/T
+		$seq =~ s/^(.*?)w(.*)$/$1a$2,$1t$2/             or
+		$seq =~ s/^(.*?)B(.*)$/$1T$2,$1G$2,$1C$2/       or  # B = T/G/C
+		$seq =~ s/^(.*?)b(.*)$/$1t$2,$1g$2,$1c$2/       or
+		$seq =~ s/^(.*?)D(.*)$/$1A$2,$1T$2,$1G$2/       or  # D = A/T/G
+		$seq =~ s/^(.*?)d(.*)$/$1a$2,$1t$2,$1g$2/       or
+		$seq =~ s/^(.*?)H(.*)$/$1A$2,$1T$2,$1C$2/       or  # H = A/T/C
+		$seq =~ s/^(.*?)h(.*)$/$1a$2,$1t$2,$1c$2/       or
+		$seq =~ s/^(.*?)V(.*)$/$1A$2,$1G$2,$1C$2/       or  # V = A/G/C
+		$seq =~ s/^(.*?)v(.*)$/$1a$2,$1g$2,$1c$2/       or
+		$seq =~ s/^(.*?)N(.*)$/$1A$2,$1T$2,$1G$2,$1C$2/ or  # N = A/T/G/C
+		$seq =~ s/^(.*?)n(.*)$/$1a$2,$1t$2,$1g$2,$1c$2/
+	){
+		unshift @in, split(/,/, $seq) ;
+	} else {
+		push @out, $seq ;
+	}
+}
+return @out ;
 } ;
 # ====================
 sub portselect {  # Jellyfishサーバのポート番号対応表
