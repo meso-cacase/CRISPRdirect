@@ -12,9 +12,10 @@ use Socket ;
 # ====================
 sub kmercount {
 
-# Jellyfishサーバに問い合わせ、ゲノムにおけるk-merの頻度を整数で返す
+# ゲノムにおけるk-merの頻度を整数で返す
+# 縮重塩基は展開して頻度の合計を求める
 # ただしエラーの際は空白文字を返す
-# usage: $count = kmercount('ggctgccaagaacctgcaggagg', 'hg19') ;
+# usage: $count = kmercount('ggctgccaagaacctgcaggNgg', 'hg19') ;
 
 my $seq = $_[0] or return '' ;
 my $db  = $_[1] or return '' ;
@@ -23,17 +24,29 @@ my $db  = $_[1] or return '' ;
 chomp $seq ;
 $seq =~ /^[atgcnrymkswhbvd]+$/i or return '' ;
 
-# 縮重塩基を含む場合は、展開して再帰により頻度の合計を求める
-if ($seq =~ /[nrymkswhbvd]/i){
-	my @seq = iub_expand($seq) ;
-	my $count = '' ;
-	foreach (@seq){
-		my $kmercount = kmercount($_, $db) ;
-		($kmercount eq '') and return '' ;
-		$count += $kmercount ;
-	}
-	return $count ;
+# 縮重塩基を展開し、頻度の合計を求める
+my @seq = iub_expand($seq) ;
+my $count = 0 ;
+foreach (@seq){
+	my $kmercount = kmercount_core($_, $db) ;
+	($kmercount eq '') and return '' ;
+	$count += $kmercount ;
 }
+return $count ;
+} ;
+# ====================
+sub kmercount_core {
+
+# Jellyfishサーバに問い合わせ、ゲノムにおけるk-merの頻度を整数で返す
+# ただしエラーの際は空白文字を返す
+# usage: $count = kmercount_core('ggctgccaagaacctgcaggagg', 'hg19') ;
+
+my $seq = $_[0] or return '' ;
+my $db  = $_[1] or return '' ;
+
+# 入力文字列のチェック
+chomp $seq ;
+$seq =~ /^[atgc]+$/i or return '' ;
 
 my $k    = length $seq ;
 my $host = 'localhost' ;
