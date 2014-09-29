@@ -15,7 +15,7 @@ sub crispr_design {
 
 # 塩基配列とDBからCRISPR/Casシステムのターゲット配列を設計
 #
-# usage: $tsv = crispr_design($userseq, $db) ;
+# usage: $tsv = crispr_design($userseq, $db, $pam) ;
 
 my $targetlength = 23 ;
 my $maxlength    = 10000 ;
