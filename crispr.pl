@@ -25,16 +25,16 @@ my $maxfilesize = 20 * 1024 ;     # アップロードできるファイル容�
 
 my $sampleseq =                   # トップページで表示するサンプル配列
 '>sample sequence
-ggctgccaag aacctgcagg aggcagaaga atggtacaaa tccaagtttg ctgacctctc
-tgaggctgcc aaccggaaca atgacgccct gcgccaggca aagcaggagt ccactgagta
-ccggagacag gtgcagtccc tcacctgtga agtggatgcc cttaaaggaa ccaatgagtc
-cctggaacgc cagatgcgtg aaatggaaga gaactttgcc gttgaagctg ctaactacca
-agacactatt ggccgcctgc aggatgagat tcagaatatg aaggaggaaa tggctcgtca
-ccttcgtgaa taccaagacc tgctcaatgt taagatggcc cttgacattg agattgccac
-ctacaggaag ctgctggaag gcgaggagag caggatttct ctgcctcttc caaacttttc
-ctccctgaac ctgagggaaa ctaatctgga ttcactccct ctggttgata cccactcaaa
-aaggacactt ctgattaaga cggttgaaac tagagatgga caggttatca acgaaacttc
-tcagcatcac gatgaccttg aataaaaatt gcacacactc agtgcagcaa tatattacca
+atgccgcgcgtcgtgcccgaccagagaagcaagttcgagaacgaggagttttttaggaag
+ctgagccgcgagtgtgagattaagtacacgggcttcagggaccggccccacgaggaacgc
+caggcacgcttccagaacgcctgccgcgacggccgctcggaaatcgcttttgtggccaca
+ggaaccaatctgtctctccagttttttccggccagctggcagggagaacagcgacaaaca
+cctagccgagagtatgtcgacttagaaagagaagcaggcaaggtatatttgaaggctccc
+atgattctgaatggagtctgtgttatctggaaaggctggattgatctccaaagactggat
+ggtatgggctgtctggagtttgatgaggagcgagcccagcaggaggatgcattagcacaa
+caggcctttgaagaggctcggagaaggacacgcgaatttgaagatagagacaggtctcat
+cgggaggaaatggaggcaagaagacaacaagaccctagtcctggttccaatttaggtggt
+ggtgatgacctcaaacttcgttaa
 ' ;
 
 my %db_fullname = (               # データベースの正式名
