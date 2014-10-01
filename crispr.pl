@@ -232,11 +232,14 @@ foreach (@result){
 
 	my $target2 = ($strand eq '+') ? $sequence : CRISPRdirect::comp($sequence) ;
 
-	my $seq15  = ($strand eq '+') ? substr($sequence, -15)   :
-	                                substr($sequence, 0, 15) ;
+	my $seq23  = ($strand eq '+') ? substr($sequence, -23, -3) . $pam :
+	                                CRISPRdirect::comp($pam) . substr($sequence, 3, 23-3) ;
 
-	my $seq11  = ($strand eq '+') ? substr($sequence, -11)   :
-	                                substr($sequence, 0, 11) ;
+	my $seq15  = ($strand eq '+') ? substr($sequence, -15, -3) . $pam :
+	                                CRISPRdirect::comp($pam) . substr($sequence, 3, 15-3) ;
+
+	my $seq11  = ($strand eq '+') ? substr($sequence, -11, -3) . $pam :
+	                                CRISPRdirect::comp($pam) . substr($sequence, 3, 11-3) ;
 
 	$tttt = $tttt ? '+' : '-' ;
 
@@ -252,7 +255,7 @@ foreach (@result){
 		"	<td class=o>$tttt"                                    . "\n" .
 		"	<td class='g hits'>$count23"                          . "\n" .
 		"		<a target='_blank' class=detail"                  . "\n" .
-		"			href='$ggg/$db/$sequence'>[detail]</a>"       . "\n" .
+		"			href='$ggg/$db/$seq23'>[detail]</a>"          . "\n" .
 		"	<td class='g hits'>$count15"                          . "\n" .
 		"		<a target='_blank' class=detail"                  . "\n" .
 		"			href='$ggg/$db/$seq15'>[detail]</a>"          . "\n" .
