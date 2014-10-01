@@ -2,7 +2,7 @@
 
 # GGGenome (ゲゲゲノム) https://github.com/meso-cacase/GGGenome より改変
 #
-# 曖昧検索サーバに問い合わせを行い、結果を HTML, TXT, JSON 形式で出力する
+# 曖昧検索サーバに問い合わせを行い、結果を HTML, TXT, JSON 等の形式で出力する
 #
 # 必要なモジュール：
 # HTML::Template
@@ -25,32 +25,44 @@ eval 'use GGGenome ; 1' or        # 曖昧検索サーバに問い合わせを�
 my @timer ;                       # 実行時間計測用
 my $timestamp = timestamp() ;     # CGIを実行した時刻
 my $min_query_length = 6 ;        # クエリの最低塩基長
-my $max_k            = 20 ;       # 許容するミスマッチ/ギャップ数の上限、％
+my $max_k            = 25 ;       # 許容するミスマッチ/ギャップ数の上限、％
 my $max_hit_html     = 200 ;      # 検索を打ち切るヒット数、HTMLの場合
-my $max_hit_api      = 100000 ;   # 検索を打ち切るヒット数、TXTまたはJSONの場合
+my $max_hit_api      = 100000 ;   # 検索を打ち切るヒット数、TXT,CSV,BED,GFF,JSONの場合
+my $timeout          = 20 ;       # タイムアウト時間、秒
 
-my %db_fullname = (               # データベースの正式名
-	'hg19'      => 'Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)',
-	'mm10'      => 'Mouse (Mus musculus) genome, GRCm38/mm10 (Dec, 2011)',
-	'rn5'       => 'Rat (Rattus norvegicus) genome, RGSC 5.0/rn5 (Mar, 2012)',
-	'calJac3'   => 'Marmoset (Callithrix jacchus) genome, WUGSC 3.2/calJac3 (Mar, 2009)',
-	'susScr3'   => 'Pig (Sus scrofa) genome, SGSC Sscrofa10.2/susScr3 (Aug, 2011)',
-	'galGal4'   => 'Chicken (Gallus gallus) genome, ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)',
-	'xenTro3'   => 'Frog (Xenopus tropicalis) genome, JGI 4.2/xenTro3 (Nov, 2009)',
-	'danRer7'   => 'Zebrafish (Danio rerio) genome, Zv9/danRer7 (Jul, 2010)',
-	'ci2'       => 'Sea squirt (Ciona intestinalis) genome, JGI 2.1/ci2 (Mar, 2005)',
-	'dm3'       => 'Fruit fly (Drosophila melanogaster) genome, BDGP R5/dm3 (Apr, 2006)',
-	'ce10'      => 'Roundworm (Caenorhabditis elegans) genome, WS220/ce10 (Oct, 2010)',
-	'TAIR10'    => 'Thale cress (Arabidopsis thaliana) genome, TAIR10 (Nov, 2010)',
-	'rice'      => 'Rice (Oryza sativa) genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)',
-	'sorBic'    => 'Sorghum (Sorghum bicolor) genome, Sorghum bicolor v2.1 (May, 2013)',
-	'bmor1'     => 'Silkworm (Bombyx mori) genome, Bmor1 (Apr, 2008)',
-	'sacCer3'   => 'Budding yeast (Saccharomyces cerevisiae) (S288C) genome, sacCer3 (Apr, 2011)',
-	'refseq'    => 'RefSeq complete RNA release 66 (Jul, 2014)',
-	'hs_refseq' => 'RefSeq Human RNA release 60 (Jul, 2013)',
-	'prok'      => 'Prokaryotic TogoGenome from RefSeq 62 (Nov, 2013)',
-	'ddbj'      => 'DDBJ release 92.0 (Feb, 2013)',
-) ;
+my $dbconfig =                    # データベースの正式名およびポート番号リスト
+<<'--EOS--' ;
+hg19	42233	Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)
+mm10	42253	Mouse (Mus musculus) genome, GRCm38/mm10 (Dec, 2011)
+rn5	42263	Rat (Rattus norvegicus) genome, RGSC 5.0/rn5 (Mar, 2012)
+calJac3	42423	Marmoset (Callithrix jacchus) genome, WUGSC 3.2/calJac3 (Mar, 2009)
+susScr3	42413	Pig (Sus scrofa) genome, SGSC Sscrofa10.2/susScr3 (Aug, 2011)
+galGal4	42333	Chicken (Gallus gallus) genome, ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)
+xenTro3	42343	Frog (Xenopus tropicalis) genome, JGI 4.2/xenTro3 (Nov, 2009)
+danRer7	42353	Zebrafish (Danio rerio) genome, Zv9/danRer7 (Jul, 2010)
+ci2	42363	Sea squirt (Ciona intestinalis) genome, JGI 2.1/ci2 (Mar, 2005)
+dm3	42273	Fruit fly (Drosophila melanogaster) genome, BDGP R5/dm3 (Apr, 2006)
+ce10	42283	Roundworm (Caenorhabditis elegans) genome, WS220/ce10 (Oct, 2010)
+TAIR10	42373	Thale cress (Arabidopsis thaliana) genome, TAIR10 (Nov, 2010)
+rice	42293	Rice (Oryza sativa) genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)
+sorBic	42403	Sorghum (Sorghum bicolor) genome, Sorghum bicolor v2.1 (May, 2013)
+bmor1	42303	Silkworm (Bombyx mori) genome, Bmor1 (Apr, 2008)
+sacCer3	42383	Budding yeast (Saccharomyces cerevisiae) (S288C) genome, sacCer3 (Apr, 2011)
+refseq	42243	RefSeq complete RNA release 66 (Jul, 2014)
+hs_refseq	42393	RefSeq human RNA release 60 (Jul, 2013)
+mm_refseq	42433	RefSeq mouse RNA release 60 (Jul, 2013)
+prok	42323	Prokaryotic TogoGenome from RefSeq 62 (Nov, 2013)
+ddbj	42313	DDBJ release 92.0 (Feb, 2013)
+--EOS--
+
+my %port ;
+my %db_fullname ;
+foreach (split /\n/, $dbconfig){
+	chomp ;
+	my ($db, $port, $fullname) = split /\t/ ;
+	$port{$db}        = $port ;
+	$db_fullname{$db} = $fullname ;
+}
 #- ▲ モジュール読み込みと変数の初期化
 
 #- ▼ リクエストからパラメータを取得
@@ -61,7 +73,7 @@ my $lang         = '' ;  # HTMLの場合の日本語/英語: ja, en
 my $db           = '' ;  # 生物種 (データベース): hg19, mm10, ...
 my $k            = '' ;  # 許容するミスマッチ/ギャップの数: 0, 1, 2, ...
 my $query_string = '' ;  # 塩基配列
-my $format       = '' ;  # 出力フォーマット: html, txt, json
+my $format       = '' ;  # 出力フォーマット: html, txt, csv, bed, gff, json
 my $download     = '' ;  # ファイルとしてダウンロードするか: (boolean)
 #-- △ 使用するパラメータ一覧
 
@@ -77,7 +89,7 @@ while ($request_uri =~ m{([^/]+)(/?)}g){
 	($param =~ /^(ja|en)$/i) ?
 		$lang = lc $1 :
 	($param =~ /^(hg19|mm10|rn5|calJac3|susScr3|galGal4|xenTro3|danRer7|ci2|dm3|ce10|
-	              TAIR10|rice|sorBic|bmor1|sacCer3|refseq|hs_refseq|prok|ddbj)$/xi) ?
+	              TAIR10|rice|sorBic|bmor1|sacCer3|refseq|hs_refseq|mm_refseq|prok|ddbj)$/xi) ?
 		$db = lc $1 :
 	($param =~ /^(\d+)$/) ?
 		$k = $1 :
@@ -88,7 +100,7 @@ while ($request_uri =~ m{([^/]+)(/?)}g){
 #--- △ スラッシュ間 (/param/) のパラメーターを処理
 
 #--- ▽ パスの最後の要素 (query.format) を処理
-if ($query_string =~ s/(?:\.(html|txt|json)|\.(download))+$//i){
+if ($query_string =~ s/(?:\.(html|txt|csv|bed|gff|json)|\.(download))+$//i){
 	$1 and $format   = lc $1 ;
 	$2 and $download = 'true' ;
 }
@@ -129,17 +141,17 @@ $k =                                  # 許容するミスマッチ/ギャップ
 	'' ;                              # 3) URI未指定 → 空欄
 
 $format =                             # 出力フォーマット
-	(defined $query{'format'} and $query{'format'} =~ /^(html|txt|json)?$/i) ?
+	(defined $query{'format'} and $query{'format'} =~ /^(html|txt|csv|bed|gff|json)?$/i) ?
 	lc($query{'format'}) :            # 1) QUERY_STRINGから
 	$format //                        # 2) QUERY_STRING未指定 → URIから
 	'' ;                              # 3) URI未指定 → 空欄
 
 $download =                           # ファイルとしてダウンロードするか
-	($format =~ /^(txt|json)$/) ?     # ダウンロードはtxt,jsonの場合に限る
+	($format =~ /^(txt|csv|bed|gff|json)$/) ?  # ダウンロードはtxt,csv,bed,gff,jsonの場合に限る
 	$query{'download'} //             # 1) QUERY_STRINGから
 	$download //                      # 2) QUERY_STRING未指定 → URIから
 	'' :                              # 3) URI未指定 → 空欄
-	'' ;                              # txt,json以外 → 空欄
+	'' ;                              # txt,csv,bed,gff,json以外 → 空欄
 #-- △ QUERY_STRINGからパラメータを取得
 #- ▲ リクエストからパラメータを取得
 
@@ -188,30 +200,16 @@ my $queryseq = flatsequence($query_string) ;  # 塩基構成文字以外を除�
 #- ▲ クエリの内容をチェック
 
 #- ▼ 塩基配列の検索と結果出力
+#- ▽ タイムアウト処理を行う部分
+eval {
+	local $SIG{ALRM} = sub { die } ;
+	alarm $timeout ;
+
 #-- ▽ 生物種 $db により切り替えるパラメータ
 my $db_fullname = $db_fullname{$db} //    # データベースの正式名
                   $db_fullname{'hg19'} ;  # default: Human genome (hg19)
-my $port =                                # 曖昧検索サーバのポート
-	($db eq 'mm10'     ) ? 42253 :
-	($db eq 'rn5'      ) ? 42263 :
-	($db eq 'calJac3'  ) ? 42423 :
-	($db eq 'susScr3'  ) ? 42413 :
-	($db eq 'galGal4'  ) ? 42333 :
-	($db eq 'xenTro3'  ) ? 42343 :
-	($db eq 'danRer7'  ) ? 42353 :
-	($db eq 'ci2'      ) ? 42363 :
-	($db eq 'dm3'      ) ? 42273 :
-	($db eq 'ce10'     ) ? 42283 :
-	($db eq 'TAIR10'   ) ? 42373 :
-	($db eq 'rice'     ) ? 42293 :
-	($db eq 'sorBic'   ) ? 42403 :
-	($db eq 'bmor1'    ) ? 42303 :
-	($db eq 'sacCer3'  ) ? 42383 :
-	($db eq 'refseq'   ) ? 42243 :
-	($db eq 'hs_refseq') ? 42393 :
-	($db eq 'prok'     ) ? 42323 :
-	($db eq 'ddbj'     ) ? 42313 :
-	                       42233 ;        # default: Human genome (hg19)
+my $port        = $port{$db} //           # 曖昧検索サーバのポート
+                  $port{'hg19'} ;         # default: Human genome (hg19)
 #-- △ 生物種 $db により切り替えるパラメータ
 
 push @timer, [Time::HiRes::time(), 'search_start;'] ;                #===== 実行時間計測 =====
@@ -274,6 +272,122 @@ if ($format eq 'txt'){
 	@hit_list or push @hit_list, '### No items found. ###' ;  # ヒットがゼロ件
 	print_txt(join "\n", (@summary, @hit_list)) ;
 #-- △ TXT(タブ区切りテキスト)形式
+
+#-- ▽ CSV形式
+} elsif ($format eq 'csv'){
+	my $limit = $max_hit_api ;  # 検索を打ち切るヒット数
+	push @summary, "# [ GGGenome | $timestamp ]" ;
+	push @summary, "# database,\"$db_fullname\"" ;
+
+	#--- ▽ (+)鎖の検索実行と結果出力
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+		printresult('ERROR : searcher error') ;
+
+	push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
+
+	foreach (@{$hits->{hits}}){
+		push @hit_list, show_hit_csv($_, '+') ;
+	}
+
+	# ヒット数を出力、予測値の場合は有効2桁で先頭に'>'を付加
+	$hit_num    = $hits->{total_hit_num}           // '' ;
+	$hit_approx = $hits->{total_hit_num_is_approx} // '' ;
+	$hit_approx and $hit_num =~ s/^(\d{2})(\d*)/'>' . $1 . 0 x length($2)/e ;
+
+	push @summary, "# query,$queryseq" ;
+	push @summary, "# count,$hit_num" ;
+	#--- △ (+)鎖の検索実行と結果出力
+
+	#--- ▽ (-)鎖の検索実行と結果出力
+	$queryseq = comp($queryseq) ;
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+		printresult('ERROR : searcher error') ;
+
+	push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
+
+	foreach (@{$hits->{hits}}){
+		push @hit_list, show_hit_csv($_, '-') ;
+	}
+
+	# ヒット数を出力、予測値の場合は有効2桁で先頭に'>'を付加
+	$hit_num    = $hits->{total_hit_num}           // '' ;
+	$hit_approx = $hits->{total_hit_num_is_approx} // '' ;
+	$hit_approx and $hit_num =~ s/^(\d{2})(\d*)/'>' . $1 . 0 x length($2)/e ;
+
+	push @summary, "# query,$queryseq" ;
+	push @summary, "# count,$hit_num" ;
+	#--- △ (-)鎖の検索実行と結果出力
+
+	push @summary, '# name,strand,start,end,snippet,snippet_pos,snippet_end' ;
+	@hit_list or push @hit_list, '### No items found. ###' ;  # ヒットがゼロ件
+	print_txt(join "\n", (@summary, @hit_list)) ;
+#-- △ CSV形式
+
+#-- ▽ BED形式
+} elsif ($format eq 'bed'){
+	my $limit = $max_hit_api ;  # 検索を打ち切るヒット数
+	push @summary, "track name=GGGenome description=\"GGGenome matches\"" ;
+
+	#--- ▽ (+)鎖の検索実行と結果出力
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+		printresult('ERROR : searcher error') ;
+
+	push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
+
+	foreach (@{$hits->{hits}}){
+		push @hit_list, show_hit_bed($_, '+') ;
+	}
+	#--- △ (+)鎖の検索実行と結果出力
+
+	#--- ▽ (-)鎖の検索実行と結果出力
+	$queryseq = comp($queryseq) ;
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+		printresult('ERROR : searcher error') ;
+
+	push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
+
+	foreach (@{$hits->{hits}}){
+		push @hit_list, show_hit_bed($_, '-') ;
+	}
+	#--- △ (-)鎖の検索実行と結果出力
+
+	@hit_list or push @hit_list, '### No items found. ###' ;  # ヒットがゼロ件
+	print_txt(join "\n", (@summary, @hit_list)) ;
+#-- △ BED形式
+
+#-- ▽ GFF形式
+} elsif ($format eq 'gff'){
+	my $limit = $max_hit_api ;  # 検索を打ち切るヒット数
+	push @summary, "##gff-version 3" ;
+	push @summary, "##source-version GGGenome v1" ;
+	push @summary, "track name=GGGenome description=\"GGGenome matches\"" ;
+
+	#--- ▽ (+)鎖の検索実行と結果出力
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+		printresult('ERROR : searcher error') ;
+
+	push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
+
+	foreach (@{$hits->{hits}}){
+		push @hit_list, show_hit_gff($_, '+') ;
+	}
+	#--- △ (+)鎖の検索実行と結果出力
+
+	#--- ▽ (-)鎖の検索実行と結果出力
+	$queryseq = comp($queryseq) ;
+	($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $port, $k, $limit) or
+		printresult('ERROR : searcher error') ;
+
+	push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
+
+	foreach (@{$hits->{hits}}){
+		push @hit_list, show_hit_gff($_, '-') ;
+	}
+	#--- △ (-)鎖の検索実行と結果出力
+
+	@hit_list or push @hit_list, '### No items found. ###' ;  # ヒットがゼロ件
+	print_txt(join "\n", (@summary, @hit_list)) ;
+#-- △ GFF形式
 
 #-- ▽ JSON形式
 } elsif ($format eq 'json'){
@@ -392,14 +506,14 @@ if ($format eq 'txt'){
 	@hit_list or
 		push @hit_list, '<div class=gene><p>No items found.</p></div>' ;  # ヒットがゼロ件
 
-	#--- ▽ TXT/JSON出力のbase URIを生成
+	#--- ▽ TXT/CSV/BED/GFF/JSON出力のbase URIを生成
 	my $linkbase_uri = '/' ;
 	$linkbase_uri .= ($request_uri =~ m{^/((test/)?detail/)}) ? $1 : '' ;  # テストページ /test/ 対応
 	$linkbase_uri .= $lang ? "$lang/" : '' ;
 	$linkbase_uri .= $db   ? "$db/"   : '' ;
 	$linkbase_uri .= $k    ? "$k/"    : '' ;  # 値が 0 の場合は /0/ を省略
 	$linkbase_uri .= $query_string ;
-	#--- △ TXT/JSON出力のbase URIを生成
+	#--- △ TXT/CSV/BED/GFF/JSON出力のbase URIを生成
 
 	push @timer, [Time::HiRes::time(), 'cgi_end;'] ;                 #===== 実行時間計測 =====
 
@@ -449,6 +563,13 @@ if ($format eq 'txt'){
 	                  print_html_en($template_search->output) ;  # default: English HTML
 }
 #-- △ HTML形式
+
+	alarm 0 ;
+} ;
+#- △ タイムアウト処理を行う部分
+
+# タイムアウトの有無をチェック
+$@ and printresult("ERROR : searcher timed out") ;
 #- ▲ 塩基配列の検索と結果出力
 
 exit ;
@@ -544,6 +665,96 @@ return join "\t", (
 	$snippet,
 	$snippet_pos,
 	$snippet_end
+) ;
+} ;
+# ====================
+sub show_hit_csv {  # ヒットした遺伝子をCSV形式で出力
+my $gene   = $_[0] or return '' ;
+my $strand = $_[1] // '' ;
+
+my $name        = $gene->{docname}     // '' ;
+my $length      = $gene->{length}      // '' ;
+my $position    = $gene->{pos}         // '' ;
+my $snippet     = $gene->{snippet}     // '' ;
+my $snippet_pos = $gene->{snippet_pos} // '' ;
+
+my $position_end = ($position and $length) ?
+                   $position + $length - 1 :
+                   '' ;
+my $snippet_end  = ($snippet_pos and $snippet) ?
+                   $snippet_pos + length($snippet) - 1 :
+                   '' ;
+
+$name =~ s/^>// ;
+
+return join ',', (
+	"\"$name\"",
+	$strand,
+	$position,
+	$position_end,
+	$snippet,
+	$snippet_pos,
+	$snippet_end
+) ;
+} ;
+# ====================
+sub show_hit_bed {  # ヒットした遺伝子をBED形式で出力
+my $gene   = $_[0] or return '' ;
+my $strand = $_[1] // '' ;
+
+my $name        = $gene->{docname}     // '' ;
+my $length      = $gene->{length}      // '' ;
+my $position    = $gene->{pos}         // '' ;
+
+my $position_end = ($position and $length) ?
+                   $position + $length - 1 :
+                   '' ;
+
+$name =~ s/^>// ;
+$position -- ;      # BEDの座標は0-basedのため変換
+$position_end -- ;  # BEDの座標は0-basedのため変換
+
+return join "\t", (
+	$name,
+	$position,
+	$position_end,
+	'.',
+	0,
+	$strand,
+) ;
+} ;
+# ====================
+sub show_hit_gff {  # ヒットした遺伝子をGFF形式で出力
+my $gene   = $_[0] or return '' ;
+my $strand = $_[1] // '' ;
+
+my $name        = $gene->{docname}     // '' ;
+my $length      = $gene->{length}      // '' ;
+my $position    = $gene->{pos}         // '' ;
+my $snippet     = $gene->{snippet}     // '' ;
+my $snippet_pos = $gene->{snippet_pos} // '' ;
+
+my $position_end = ($position and $length) ?
+                   $position + $length - 1 :
+                   '' ;
+my $snippet_end  = ($snippet_pos and $snippet) ?
+                   $snippet_pos + length($snippet) - 1 :
+                   '' ;
+
+$name =~ s/^>// ;
+
+return join "\t", (
+	$name,
+	'GGGenome',
+	'match',
+	$position,
+	$position_end,
+	'.',
+	$strand,
+	'.',
+	"snippet=$snippet;"         .
+	"snippet_pos=$snippet_pos;" .
+	"snippet_end=$snippet_end"
 ) ;
 } ;
 # ====================
@@ -661,7 +872,7 @@ my $db      = $_[3] // '' ;
 	return "<a class=a target='_blank' href='" .
 	       "http://www.phytozome.net/cgi-bin/gbrowse/sorghum_er/?" .
 	       "version=100;name=$name%3A$pos..$pos_end'>$name:$pos-$pos_end</a>" :
-($db =~ /^(hs_)?refseq$/ and $name =~ /^gi\|\d+\|ref\|(.*?)\|(.*)$/) ?
+($db =~ /^(hs_|mm_)?refseq$/ and $name =~ /^gi\|\d+\|ref\|(.*?)\|(.*)$/) ?
 	return "<a class=a target='_blank' href=" .
 	       "http://www.ncbi.nlm.nih.gov/nuccore/$1>$2</a><br>\n" .
 	       "<font color='#0E774A'>$1</font>:$pos-$pos_end" :
@@ -689,7 +900,7 @@ return $str ;
 } ;
 # ====================
 sub printresult {  # $format (global) にあわせて結果を出力
-($format eq 'txt' ) ? print_txt($_[0])     :
+($format =~ /^(txt|csv|bed|gff)$/) ? print_txt($_[0]) :
 ($format eq 'json') ? print_json($_[0])    :
 ($lang   eq 'ja'  ) ? print_html_ja($_[0]) :  # default format: html
                       print_html_en($_[0]) ;  # default lang  : en
@@ -700,6 +911,7 @@ sub print_txt {  # TXTを出力
 
 #- ▼ メモ
 # ・検索結果をタブ区切りテキストで出力
+# ・CSV, BED, GFFの場合もこれに準ずる
 # ・引数が ERROR で始まる場合はエラーを出力
 # ・引数がない場合 → ERROR : query is empty
 #- ▲ メモ
@@ -720,8 +932,17 @@ $txt =~ s/^(ERROR.*)$/### $1 ###/s ;
 
 #- ▼ TXT出力
 print "Content-type: text/plain; charset=utf-8\n" ;
-print "Content-Disposition: attachment; filename=gggenome_result.txt\n"
-	if $download ;  # ファイルとしてダウンロードする場合
+#- ▽ ファイルとしてダウンロードする場合
+($download and $format eq 'txt') ?
+	print "Content-Disposition: attachment; filename=gggenome_result.txt\n" :
+($download and $format eq 'csv') ?
+	print "Content-Disposition: attachment; filename=gggenome_result.csv\n" :
+($download and $format eq 'bed') ?
+	print "Content-Disposition: attachment; filename=gggenome_result.bed\n" :
+($download and $format eq 'gff') ?
+	print "Content-Disposition: attachment; filename=gggenome_result.gff\n" :
+() ;
+#- △ ファイルとしてダウンロードする場合
 print "\n" ;
 print "$txt\n" ;
 #- ▲ TXT出力
@@ -800,6 +1021,7 @@ my $select =
 	<option disabled>----------</option>
 	<option value=refseq   >$db_fullname{'refseq'   }</option>
 	<option value=hs_refseq>$db_fullname{'hs_refseq'}</option>
+	<option value=mm_refseq>$db_fullname{'mm_refseq'}</option>
 	<option value=prok     >$db_fullname{'prok'     }</option>
 	<option value=ddbj     >$db_fullname{'ddbj'     }</option>" ;
 $db and $select =~ s/(?<=option value=$db)/ selected/ or  # 種を選択
@@ -874,6 +1096,7 @@ my $select =
 	<option disabled>----------</option>
 	<option value=refseq   >$db_fullname{'refseq'   }</option>
 	<option value=hs_refseq>$db_fullname{'hs_refseq'}</option>
+	<option value=mm_refseq>$db_fullname{'mm_refseq'}</option>
 	<option value=prok     >$db_fullname{'prok'     }</option>
 	<option value=ddbj     >$db_fullname{'ddbj'     }</option>" ;
 $db and $select =~ s/(?<=option value=$db)/ selected/ or  # 種を選択
