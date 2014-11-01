@@ -38,7 +38,8 @@ API
   calJac3 : マーモセットゲノム  
   susScr3 : ブタゲノム  
   galGal4 : ニワトリゲノム  
-  xenTro3 : ツメガエルゲノム  
+  xenTro3 : ネッタイツメガエルゲノム  
+  Xenla7  : アフリカツメガエルゲノム  
   danRer7 : ゼブラフィッシュゲノム  
   ci2     : ホヤゲノム  
   dm3     : ショウジョウバエゲノム  
@@ -47,7 +48,8 @@ API
   rice    : イネゲノム  
   sorBic  : ソルガムゲノム  
   bmor1   : カイコゲノム  
-  sacCer3 : 出芽酵母ゲノム
+  sacCer3 : 出芽酵母ゲノム  
+  pombe   : 分裂酵母ゲノム
 
 + *format* (省略可)  
   設計結果のフォーマット。  

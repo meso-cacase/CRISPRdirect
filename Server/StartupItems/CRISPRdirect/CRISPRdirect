@@ -29,6 +29,8 @@
 # sorBic 	6868	6867	6866
 # susScr3	6878	6877	6876
 # calJac3	6888	6887	6886
+# Xenla7 	6898	6897	6896
+# pombe  	6908	6907	6906
 # --------------------------------
 
 JELFISH="/opt/CRISPRdirect/jellyfishd.pl"
@@ -133,6 +135,18 @@ StartService ()
 		>> $HASHDIR/calJac3/calJac3_15nt.log &
 	sudo -u nobody $JELFISH -p 6886 -k 11 -hash $HASHDIR/calJac3/calJac3_11nt.jf \
 		>> $HASHDIR/calJac3/calJac3_11nt.log &
+	sudo -u nobody $JELFISH -p 6898 -k 23 -hash $HASHDIR/Xenla7/Xenla7_23nt.jf \
+		>> $HASHDIR/Xenla7/Xenla7_23nt.log &
+	sudo -u nobody $JELFISH -p 6897 -k 15 -hash $HASHDIR/Xenla7/Xenla7_15nt.jf \
+		>> $HASHDIR/Xenla7/Xenla7_15nt.log &
+	sudo -u nobody $JELFISH -p 6896 -k 11 -hash $HASHDIR/Xenla7/Xenla7_11nt.jf \
+		>> $HASHDIR/Xenla7/Xenla7_11nt.log &
+	sudo -u nobody $JELFISH -p 6908 -k 23 -hash $HASHDIR/pombe/pombe_23nt.jf \
+		>> $HASHDIR/pombe/pombe_23nt.log &
+	sudo -u nobody $JELFISH -p 6907 -k 15 -hash $HASHDIR/pombe/pombe_15nt.jf \
+		>> $HASHDIR/pombe/pombe_15nt.log &
+	sudo -u nobody $JELFISH -p 6906 -k 11 -hash $HASHDIR/pombe/pombe_11nt.jf \
+		>> $HASHDIR/pombe/pombe_11nt.log &
 }
 
 StopService ()

@@ -45,6 +45,7 @@ my %db_fullname = (               # データベースの正式名
 	'susScr3' => 'Pig (Sus scrofa) genome, SGSC Sscrofa10.2/susScr3 (Aug, 2011)',
 	'galGal4' => 'Chicken (Gallus gallus) genome, ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)',
 	'xenTro3' => 'Frog (Xenopus tropicalis) genome, JGI 4.2/xenTro3 (Nov, 2009)',
+	'Xenla7'  => 'Frog (Xenopus laevis) genome, JGI 7.1/Xenla7 (Dec, 2013)',
 	'danRer7' => 'Zebrafish (Danio rerio) genome, Zv9/danRer7 (Jul, 2010)',
 	'ci2'     => 'Sea squirt (Ciona intestinalis) genome, JGI 2.1/ci2 (Mar, 2005)',
 	'dm3'     => 'Fruit fly (Drosophila melanogaster) genome, BDGP R5/dm3 (Apr, 2006)',
@@ -54,6 +55,7 @@ my %db_fullname = (               # データベースの正式名
 	'sorBic'  => 'Sorghum (Sorghum bicolor) genome, Sorghum bicolor v2.1 (May, 2013)',
 	'bmor1'   => 'Silkworm (Bombyx mori) genome, Bmor1 (Apr, 2008)',
 	'sacCer3' => 'Budding yeast (Saccharomyces cerevisiae) (S288C) genome, sacCer3 (Apr, 2011)',
+	'pombe'   => 'Fission yeast (Schizosaccharomyces pombe) (972h-) genome, ASM294v2 (Nov, 2007)',
 ) ;
 #- ▲ モジュール読み込みと変数の初期化
 
@@ -100,6 +102,7 @@ $db =~ s/calJac3/calJac3/i ;
 $db =~ s/susScr3/susScr3/i ;
 $db =~ s/galGal4/galGal4/i ;
 $db =~ s/xenTro3/xenTro3/i ;
+$db =~ s/Xenla7/Xenla7/i ;
 $db =~ s/danRer7/danRer7/i ;
 $db =~ s/TAIR10/TAIR10/i   ;
 $db =~ s/sorBic/sorBic/i   ;
@@ -451,6 +454,7 @@ my $select =
 		<option value=susScr3>$db_fullname{'susScr3'}</option>
 		<option value=galGal4>$db_fullname{'galGal4'}</option>
 		<option value=xenTro3>$db_fullname{'xenTro3'}</option>
+		<option value=Xenla7 >$db_fullname{'Xenla7' }</option>
 		<option value=danRer7>$db_fullname{'danRer7'}</option>
 		<option value=ci2    >$db_fullname{'ci2'    }</option>
 		<option value=dm3    >$db_fullname{'dm3'    }</option>
@@ -459,7 +463,8 @@ my $select =
 		<option value=rice   >$db_fullname{'rice'   }</option>
 		<option value=sorBic >$db_fullname{'sorBic' }</option>
 		<option value=bmor1  >$db_fullname{'bmor1'  }</option>
-		<option value=sacCer3>$db_fullname{'sacCer3'}</option>" ;
+		<option value=sacCer3>$db_fullname{'sacCer3'}</option>
+		<option value=pombe  >$db_fullname{'pombe'  }</option>" ;
 $db and $select =~ s/(?<=option value=$db)/ selected/i ;  # 生物種を選択
 #- ▲ プルダウンメニュー
 

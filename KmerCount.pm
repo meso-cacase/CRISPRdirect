@@ -148,6 +148,9 @@ galGal4	11	6766
 xenTro3	23	6778
 xenTro3	15	6777
 xenTro3	11	6776
+Xenla7	23	6898
+Xenla7	15	6897
+Xenla7	11	6896
 danRer7	23	6788
 danRer7	15	6787
 danRer7	11	6786
@@ -175,6 +178,9 @@ bmor1	11	6846
 sacCer3	23	6858
 sacCer3	15	6857
 sacCer3	11	6856
+pombe	23	6908
+pombe	15	6907
+pombe	11	6906
 --EOS--
 
 my %port ;
