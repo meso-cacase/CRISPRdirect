@@ -110,12 +110,22 @@ foreach (@hit){
 # ヒットした配列の並べ替え
 @{$hit_all->{hits}} =
 	sort { cmp_chrname($a->{docname}, $b->{docname}) || $a->{pos} <=> $b->{pos} }
-	     @{$hit_all->{hits}} ;
+	     unique_hit(@{$hit_all->{hits}}) ;
 
 # 未実装:ヒットした配列の重複を削除
 # total_hit_numも重複を含んだヒット件数となっている
 
 return $hit_all ;
+} ;
+# ====================
+sub unique_hit {  # ヒットの重複を除く
+my %hash ;
+my @out ;
+foreach (@_){
+	$hash{"$_->{docname}:$_->{pos}:$_->{length}"} or push @out, $_ ;
+	$hash{"$_->{docname}:$_->{pos}:$_->{length}"} = 1 ;
+}
+return @out ;
 } ;
 # ====================
 sub cmp_chrname {
