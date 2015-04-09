@@ -465,7 +465,7 @@ my $select =
 		<option value=bmor1  >$db_fullname{'bmor1'  }</option>
 		<option value=sacCer3>$db_fullname{'sacCer3'}</option>
 		<option value=pombe  >$db_fullname{'pombe'  }</option>" ;
-$db and $select =~ s/(?<=option value=$db)/ selected/i ;  # 生物種を選択
+$db and $select =~ s/(?<=option value=$db)/ selected/ ;  # 生物種を選択
 #- ▲ プルダウンメニュー
 
 #- ▼ HTML出力
