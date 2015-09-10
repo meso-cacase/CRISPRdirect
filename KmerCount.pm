@@ -87,7 +87,7 @@ $seq =~ /^[atgc]+$/i or return '' ;
 
 my $k    = length $seq ;
 my $host = 'localhost' ;
-my %port = portselect2() ;
+my %port = portselect() ;
 my $port = $port{$db}{$k} // 0 ;
 
 $port or return '' ;
@@ -126,75 +126,6 @@ while (<SOCKET>){ $count .= $_ }
 } ;
 # ====================
 sub portselect {  # Jellyfishサーバのポート番号対応表
-
-my $portconfig = <<'--EOS--' ;
-hg19	23	6738
-hg19	15	6737
-hg19	11	6736
-mm10	23	6748
-mm10	15	6747
-mm10	11	6746
-rn5	23	6758
-rn5	15	6757
-rn5	11	6756
-calJac3	23	6888
-calJac3	15	6887
-calJac3	11	6886
-susScr3	23	6878
-susScr3	15	6877
-susScr3	11	6876
-galGal4	23	6768
-galGal4	15	6767
-galGal4	11	6766
-xenTro3	23	6778
-xenTro3	15	6777
-xenTro3	11	6776
-Xenla7	23	6898
-Xenla7	15	6897
-Xenla7	11	6896
-danRer7	23	6788
-danRer7	15	6787
-danRer7	11	6786
-ci2	23	6798
-ci2	15	6797
-ci2	11	6796
-dm3	23	6808
-dm3	15	6807
-dm3	11	6806
-ce10	23	6818
-ce10	15	6817
-ce10	11	6816
-TAIR10	23	6828
-TAIR10	15	6827
-TAIR10	11	6826
-rice	23	6838
-rice	15	6837
-rice	11	6836
-sorBic	23	6868
-sorBic	15	6867
-sorBic	11	6866
-bmor1	23	6848
-bmor1	15	6847
-bmor1	11	6846
-sacCer3	23	6858
-sacCer3	15	6857
-sacCer3	11	6856
-pombe	23	6908
-pombe	15	6907
-pombe	11	6906
---EOS--
-
-my %port ;
-foreach (split /\n/, $portconfig){
-	chomp ;
-	my ($db, $k, $port) = split /\t/ ;
-	$port{$db}{$k} = $port ;
-}
-
-return %port ;
-} ;
-# ====================
-sub portselect2 {  # Jellyfishサーバのポート番号対応表
 
 my $dbconf = $DBlist::dbconfig ;  # データベースの正式名およびホスト名/ポート番号のリスト
 
