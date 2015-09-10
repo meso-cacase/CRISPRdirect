@@ -8,6 +8,7 @@ package KmerCount ;
 use warnings ;
 use strict ;
 use Socket ;
+use DBlist ;  # データベースの正式名およびホスト名/ポート番号の一覧 (DBlist.pm)
 
 # ====================
 sub kmercount {
@@ -86,7 +87,7 @@ $seq =~ /^[atgc]+$/i or return '' ;
 
 my $k    = length $seq ;
 my $host = 'localhost' ;
-my %port = portselect() ;
+my %port = portselect2() ;
 my $port = $port{$db}{$k} // 0 ;
 
 $port or return '' ;
@@ -188,6 +189,23 @@ foreach (split /\n/, $portconfig){
 	chomp ;
 	my ($db, $k, $port) = split /\t/ ;
 	$port{$db}{$k} = $port ;
+}
+
+return %port ;
+} ;
+# ====================
+sub portselect2 {  # Jellyfishサーバのポート番号対応表
+
+my $dbconf = $DBlist::dbconfig ;  # データベースの正式名およびホスト名/ポート番号のリスト
+
+my %port ;
+foreach (split /\n/, $dbconf){
+	chomp ;
+	map {defined $_ ? ($_ =~ s/\s*$//g) : ($_ = '')}  # 後方のスペースを除去
+		my ($db, $host, $port_23nt, $port_15nt, $port_11nt) = split /\t/ ;
+	$port{$db}{23} = $port_23nt ;
+	$port{$db}{15} = $port_15nt ;
+	$port{$db}{11} = $port_11nt ;
 }
 
 return %port ;
