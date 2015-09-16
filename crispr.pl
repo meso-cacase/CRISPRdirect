@@ -11,7 +11,7 @@
 # 2013-04-18 Yuki Naito (@meso_cacase) 実装開始
 
 #- ▼ モジュール読み込みと変数の初期化
-use warnings ;
+use warnings ; no warnings qw(once) ;
 use strict ;
 use Time::HiRes ;
 use CGI ;
@@ -90,17 +90,9 @@ $pam =~ s/[^ATGCURYMKSWHBVD-]/N/gi ;
 $pam = uc(substr($pam . 'NNN', 0, 3)) ;  # 先頭3文字、満たなければ最後にNを付加
 #-- △ PAMを正規化、塩基構成文字以外をNに置換
 
-#-- ▽ 大文字小文字を正規化
-$db =~ s/calJac3/calJac3/i ;
-$db =~ s/susScr3/susScr3/i ;
-$db =~ s/galGal4/galGal4/i ;
-$db =~ s/xenTro3/xenTro3/i ;
-$db =~ s/Xenla7/Xenla7/i ;
-$db =~ s/danRer7/danRer7/i ;
-$db =~ s/TAIR10/TAIR10/i   ;
-$db =~ s/sorBic/sorBic/i   ;
-$db =~ s/sacCer3/sacCer3/i ;
-#-- △ 大文字小文字を正規化
+#-- ▽ DBの大文字小文字を正規化
+grep {$db =~ s/^$_$/$_/i} keys(%db_fullname) ;
+#-- △ DBの大文字小文字を正規化
 #- ▲ リクエストからパラメータを取得
 
 #- ▼ パラメータに応じて画面遷移
