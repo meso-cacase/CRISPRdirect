@@ -85,10 +85,8 @@ my $db  = $_[1] or return '' ;
 chomp $seq ;
 $seq =~ /^[atgc]+$/i or return '' ;
 
-my $k    = length $seq ;
-my $host = 'localhost' ;
-my %port = portselect() ;
-my $port = $port{$db}{$k} // 0 ;
+my $k = length $seq ;
+my ($host, $port) = portselect($db, $k) ;
 
 $port or return '' ;
 
@@ -125,21 +123,30 @@ while (<SOCKET>){ $count .= $_ }
                         return '' ;
 } ;
 # ====================
-sub portselect {  # Jellyfishサーバのポート番号対応表
+sub portselect {  # Jellyfishサーバのホスト名/ポート番号
+
+my $db = $_[0] or return ('localhost', 0) ;
+my $k  = $_[1] or return ('localhost', 0) ;
 
 my $dbconf = $DBlist::dbconfig ;  # データベースの正式名およびホスト名/ポート番号のリスト
 
-my %port ;
+my (%host, %port) ;
 foreach (split /\n/, $dbconf){
 	chomp ;
 	map {defined $_ ? ($_ =~ s/\s*$//g) : ($_ = '')}  # 後方のスペースを除去
 		my ($db, $host, $port_23nt, $port_15nt, $port_11nt) = split /\t/ ;
+	$host{$db}     = $host ;
 	$port{$db}{23} = $port_23nt ;
 	$port{$db}{15} = $port_15nt ;
 	$port{$db}{11} = $port_11nt ;
 }
 
-return %port ;
+my @hostport = (
+	$host{$db}     // 'localhost',
+	$port{$db}{$k} // 0,
+) ;
+
+return @hostport ;
 } ;
 # ====================
 
