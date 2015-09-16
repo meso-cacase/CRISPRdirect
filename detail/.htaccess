@@ -18,14 +18,14 @@ RewriteEngine On
 # メンテナンス領域へのアクセスはリライトしない
 RewriteRule  ^dev/  -  [L]
 
-#- ▼ CRISPRdirect_en.png, CRISPRdirect_ja.pngの表示
+#- ▼ ロゴ等の画像ファイルの表示
 # mod_rewriteの適用を終了する条件
-RewriteRule  ^CRISPRdirect_(en|ja)\.png$  -  [L]
+RewriteRule  ^[^/]*\.png$  -  [L]
 
 # パスに/db/k/等が含まれる場合にURIを修正してリダイレクト
 RewriteCond  %{REQUEST_URI}  ^/((test/)?detail/)?
-RewriteRule  (?:^|/)(CRISPRdirect_(en|ja)\.png)$  /%1$1  [R,L]
-#- ▲ CRISPRdirect_en.png, CRISPRdirect_ja.pngの表示
+RewriteRule  (?:^|/)([^/]*\.png)$  /%1$1  [R,L]
+#- ▲ ロゴ等の画像ファイルの表示
 
 #- ▼ api.txtの表示
 # mod_rewriteの適用を終了する条件

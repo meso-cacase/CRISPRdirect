@@ -7,7 +7,7 @@
 <meta http-equiv='Content-Style-Type' content='text/css'>
 <TMPL_VAR NAME=ROBOTS><meta name=author content='Yuki Naito'>
 <title><TMPL_VAR NAME=TITLE></title>
-<script type="text/javascript">
+<script type='text/javascript'>
 <!--
 function hideDebug() {
 	if (document.getElementById('debug').style.display == 'none') {
@@ -134,20 +134,12 @@ function hideDebug() {
 	more: <input type=text name=k size=3 value='<TMPL_VAR NAME=K>'><!--
 	--><input type=submit class=zbutton value='show'>
 </p>
+<p>
+	<TMPL_VAR NAME=STRAND>
+</p>
 </form>
 
-<!--
-<div><font color=red>
-NOTICE:
-<ul>
-	<li>Currently under maintenance.
-</ul>
-</font></div>
-
-<img src='chata_en.png' alt='nyaan' border=0>
-
-<hr> --> <!-- __________________________________________________ -->
-
+<TMPL_VAR NAME=CHATA>
 <TMPL_VAR NAME=HTML>
 
 <hr style='border-top:1px solid #2655A9'><!-- ________________________________________ -->
