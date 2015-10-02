@@ -147,6 +147,306 @@ StartService ()
 		>> $HASHDIR/pombe/pombe_15nt.log &
 	sudo -u nobody $JELFISH -p 6906 -k 11 -hash $HASHDIR/pombe/pombe_11nt.jf \
 		>> $HASHDIR/pombe/pombe_11nt.log &
+
+	sudo -u nobody sh -c "cd $HASHDIR/hg38/ ; $JELFISH -p 48001 -k 23 -hash hg38_23nt.jf >> hg38_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/hg38/ ; $JELFISH -p 47001 -k 15 -hash hg38_15nt.jf >> hg38_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/hg38/ ; $JELFISH -p 46001 -k 11 -hash hg38_11nt.jf >> hg38_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/hg19/ ; $JELFISH -p 48002 -k 23 -hash hg19_23nt.jf >> hg19_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/hg19/ ; $JELFISH -p 47002 -k 15 -hash hg19_15nt.jf >> hg19_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/hg19/ ; $JELFISH -p 46002 -k 11 -hash hg19_11nt.jf >> hg19_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/hg18/ ; $JELFISH -p 48003 -k 23 -hash hg18_23nt.jf >> hg18_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/hg18/ ; $JELFISH -p 47003 -k 15 -hash hg18_15nt.jf >> hg18_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/hg18/ ; $JELFISH -p 46003 -k 11 -hash hg18_11nt.jf >> hg18_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/mm10/ ; $JELFISH -p 48004 -k 23 -hash mm10_23nt.jf >> mm10_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/mm10/ ; $JELFISH -p 47004 -k 15 -hash mm10_15nt.jf >> mm10_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/mm10/ ; $JELFISH -p 46004 -k 11 -hash mm10_11nt.jf >> mm10_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/mm9/ ; $JELFISH -p 48005 -k 23 -hash mm9_23nt.jf >> mm9_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/mm9/ ; $JELFISH -p 47005 -k 15 -hash mm9_15nt.jf >> mm9_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/mm9/ ; $JELFISH -p 46005 -k 11 -hash mm9_11nt.jf >> mm9_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/rn6/ ; $JELFISH -p 48006 -k 23 -hash rn6_23nt.jf >> rn6_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/rn6/ ; $JELFISH -p 47006 -k 15 -hash rn6_15nt.jf >> rn6_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/rn6/ ; $JELFISH -p 46006 -k 11 -hash rn6_11nt.jf >> rn6_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/rn5/ ; $JELFISH -p 48007 -k 23 -hash rn5_23nt.jf >> rn5_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/rn5/ ; $JELFISH -p 47007 -k 15 -hash rn5_15nt.jf >> rn5_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/rn5/ ; $JELFISH -p 46007 -k 11 -hash rn5_11nt.jf >> rn5_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/calJac3/ ; $JELFISH -p 48027 -k 23 -hash calJac3_23nt.jf >> calJac3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/calJac3/ ; $JELFISH -p 47027 -k 15 -hash calJac3_15nt.jf >> calJac3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/calJac3/ ; $JELFISH -p 46027 -k 11 -hash calJac3_11nt.jf >> calJac3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/susScr3/ ; $JELFISH -p 48036 -k 23 -hash susScr3_23nt.jf >> susScr3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/susScr3/ ; $JELFISH -p 47036 -k 15 -hash susScr3_15nt.jf >> susScr3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/susScr3/ ; $JELFISH -p 46036 -k 11 -hash susScr3_11nt.jf >> susScr3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/allMis1/ ; $JELFISH -p 48053 -k 23 -hash allMis1_23nt.jf >> allMis1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/allMis1/ ; $JELFISH -p 47053 -k 15 -hash allMis1_15nt.jf >> allMis1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/allMis1/ ; $JELFISH -p 46053 -k 11 -hash allMis1_11nt.jf >> allMis1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/gadMor1/ ; $JELFISH -p 48054 -k 23 -hash gadMor1_23nt.jf >> gadMor1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/gadMor1/ ; $JELFISH -p 47054 -k 15 -hash gadMor1_15nt.jf >> gadMor1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/gadMor1/ ; $JELFISH -p 46054 -k 11 -hash gadMor1_11nt.jf >> gadMor1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/melUnd1/ ; $JELFISH -p 48055 -k 23 -hash melUnd1_23nt.jf >> melUnd1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/melUnd1/ ; $JELFISH -p 47055 -k 15 -hash melUnd1_15nt.jf >> melUnd1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/melUnd1/ ; $JELFISH -p 46055 -k 11 -hash melUnd1_11nt.jf >> melUnd1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/galGal4/ ; $JELFISH -p 48056 -k 23 -hash galGal4_23nt.jf >> galGal4_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/galGal4/ ; $JELFISH -p 47056 -k 15 -hash galGal4_15nt.jf >> galGal4_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/galGal4/ ; $JELFISH -p 46056 -k 11 -hash galGal4_11nt.jf >> galGal4_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/latCha1/ ; $JELFISH -p 48057 -k 23 -hash latCha1_23nt.jf >> latCha1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/latCha1/ ; $JELFISH -p 47057 -k 15 -hash latCha1_15nt.jf >> latCha1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/latCha1/ ; $JELFISH -p 46057 -k 11 -hash latCha1_11nt.jf >> latCha1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/calMil1/ ; $JELFISH -p 48058 -k 23 -hash calMil1_23nt.jf >> calMil1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/calMil1/ ; $JELFISH -p 47058 -k 15 -hash calMil1_15nt.jf >> calMil1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/calMil1/ ; $JELFISH -p 46058 -k 11 -hash calMil1_11nt.jf >> calMil1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/fr3/ ; $JELFISH -p 48059 -k 23 -hash fr3_23nt.jf >> fr3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/fr3/ ; $JELFISH -p 47059 -k 15 -hash fr3_15nt.jf >> fr3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/fr3/ ; $JELFISH -p 46059 -k 11 -hash fr3_11nt.jf >> fr3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/petMar2/ ; $JELFISH -p 48060 -k 23 -hash petMar2_23nt.jf >> petMar2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/petMar2/ ; $JELFISH -p 47060 -k 15 -hash petMar2_15nt.jf >> petMar2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/petMar2/ ; $JELFISH -p 46060 -k 11 -hash petMar2_11nt.jf >> petMar2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/anoCar2/ ; $JELFISH -p 48061 -k 23 -hash anoCar2_23nt.jf >> anoCar2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/anoCar2/ ; $JELFISH -p 47061 -k 15 -hash anoCar2_15nt.jf >> anoCar2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/anoCar2/ ; $JELFISH -p 46061 -k 11 -hash anoCar2_11nt.jf >> anoCar2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/oryLat2/ ; $JELFISH -p 48062 -k 23 -hash oryLat2_23nt.jf >> oryLat2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/oryLat2/ ; $JELFISH -p 47062 -k 15 -hash oryLat2_15nt.jf >> oryLat2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/oryLat2/ ; $JELFISH -p 46062 -k 11 -hash oryLat2_11nt.jf >> oryLat2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/geoFor1/ ; $JELFISH -p 48063 -k 23 -hash geoFor1_23nt.jf >> geoFor1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/geoFor1/ ; $JELFISH -p 47063 -k 15 -hash geoFor1_15nt.jf >> geoFor1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/geoFor1/ ; $JELFISH -p 46063 -k 11 -hash geoFor1_11nt.jf >> geoFor1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/oreNil2/ ; $JELFISH -p 48064 -k 23 -hash oreNil2_23nt.jf >> oreNil2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/oreNil2/ ; $JELFISH -p 47064 -k 15 -hash oreNil2_15nt.jf >> oreNil2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/oreNil2/ ; $JELFISH -p 46064 -k 11 -hash oreNil2_11nt.jf >> oreNil2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/chrPic1/ ; $JELFISH -p 48065 -k 23 -hash chrPic1_23nt.jf >> chrPic1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/chrPic1/ ; $JELFISH -p 47065 -k 15 -hash chrPic1_15nt.jf >> chrPic1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/chrPic1/ ; $JELFISH -p 46065 -k 11 -hash chrPic1_11nt.jf >> chrPic1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/gasAcu1/ ; $JELFISH -p 48066 -k 23 -hash gasAcu1_23nt.jf >> gasAcu1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/gasAcu1/ ; $JELFISH -p 47066 -k 15 -hash gasAcu1_15nt.jf >> gasAcu1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/gasAcu1/ ; $JELFISH -p 46066 -k 11 -hash gasAcu1_11nt.jf >> gasAcu1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/tetNig2/ ; $JELFISH -p 48067 -k 23 -hash tetNig2_23nt.jf >> tetNig2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/tetNig2/ ; $JELFISH -p 47067 -k 15 -hash tetNig2_15nt.jf >> tetNig2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/tetNig2/ ; $JELFISH -p 46067 -k 11 -hash tetNig2_11nt.jf >> tetNig2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/melGal1/ ; $JELFISH -p 48068 -k 23 -hash melGal1_23nt.jf >> melGal1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/melGal1/ ; $JELFISH -p 47068 -k 15 -hash melGal1_15nt.jf >> melGal1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/melGal1/ ; $JELFISH -p 46068 -k 11 -hash melGal1_11nt.jf >> melGal1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/xenTro3/ ; $JELFISH -p 48069 -k 23 -hash xenTro3_23nt.jf >> xenTro3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/xenTro3/ ; $JELFISH -p 47069 -k 15 -hash xenTro3_15nt.jf >> xenTro3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/xenTro3/ ; $JELFISH -p 46069 -k 11 -hash xenTro3_11nt.jf >> xenTro3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/taeGut2/ ; $JELFISH -p 48070 -k 23 -hash taeGut2_23nt.jf >> taeGut2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/taeGut2/ ; $JELFISH -p 47070 -k 15 -hash taeGut2_15nt.jf >> taeGut2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/taeGut2/ ; $JELFISH -p 46070 -k 11 -hash taeGut2_11nt.jf >> taeGut2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/danRer7/ ; $JELFISH -p 48071 -k 23 -hash danRer7_23nt.jf >> danRer7_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/danRer7/ ; $JELFISH -p 47071 -k 15 -hash danRer7_15nt.jf >> danRer7_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/danRer7/ ; $JELFISH -p 46071 -k 11 -hash danRer7_11nt.jf >> danRer7_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/ci2/ ; $JELFISH -p 48072 -k 23 -hash ci2_23nt.jf >> ci2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/ci2/ ; $JELFISH -p 47072 -k 15 -hash ci2_15nt.jf >> ci2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/ci2/ ; $JELFISH -p 46072 -k 11 -hash ci2_11nt.jf >> ci2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/braFlo1/ ; $JELFISH -p 48073 -k 23 -hash braFlo1_23nt.jf >> braFlo1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/braFlo1/ ; $JELFISH -p 47073 -k 15 -hash braFlo1_15nt.jf >> braFlo1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/braFlo1/ ; $JELFISH -p 46073 -k 11 -hash braFlo1_11nt.jf >> braFlo1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/strPur2/ ; $JELFISH -p 48074 -k 23 -hash strPur2_23nt.jf >> strPur2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/strPur2/ ; $JELFISH -p 47074 -k 15 -hash strPur2_15nt.jf >> strPur2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/strPur2/ ; $JELFISH -p 46074 -k 11 -hash strPur2_11nt.jf >> strPur2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/anoGam1/ ; $JELFISH -p 48075 -k 23 -hash anoGam1_23nt.jf >> anoGam1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/anoGam1/ ; $JELFISH -p 47075 -k 15 -hash anoGam1_15nt.jf >> anoGam1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/anoGam1/ ; $JELFISH -p 46075 -k 11 -hash anoGam1_11nt.jf >> anoGam1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/apiMel2/ ; $JELFISH -p 48076 -k 23 -hash apiMel2_23nt.jf >> apiMel2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/apiMel2/ ; $JELFISH -p 47076 -k 15 -hash apiMel2_15nt.jf >> apiMel2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/apiMel2/ ; $JELFISH -p 46076 -k 11 -hash apiMel2_11nt.jf >> apiMel2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droAna2/ ; $JELFISH -p 48077 -k 23 -hash droAna2_23nt.jf >> droAna2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droAna2/ ; $JELFISH -p 47077 -k 15 -hash droAna2_15nt.jf >> droAna2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droAna2/ ; $JELFISH -p 46077 -k 11 -hash droAna2_11nt.jf >> droAna2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droEre1/ ; $JELFISH -p 48078 -k 23 -hash droEre1_23nt.jf >> droEre1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droEre1/ ; $JELFISH -p 47078 -k 15 -hash droEre1_15nt.jf >> droEre1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droEre1/ ; $JELFISH -p 46078 -k 11 -hash droEre1_11nt.jf >> droEre1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droGri1/ ; $JELFISH -p 48079 -k 23 -hash droGri1_23nt.jf >> droGri1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droGri1/ ; $JELFISH -p 47079 -k 15 -hash droGri1_15nt.jf >> droGri1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droGri1/ ; $JELFISH -p 46079 -k 11 -hash droGri1_11nt.jf >> droGri1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/dm6/ ; $JELFISH -p 48080 -k 23 -hash dm6_23nt.jf >> dm6_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/dm6/ ; $JELFISH -p 47080 -k 15 -hash dm6_15nt.jf >> dm6_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/dm6/ ; $JELFISH -p 46080 -k 11 -hash dm6_11nt.jf >> dm6_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/dm3/ ; $JELFISH -p 48081 -k 23 -hash dm3_23nt.jf >> dm3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/dm3/ ; $JELFISH -p 47081 -k 15 -hash dm3_15nt.jf >> dm3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/dm3/ ; $JELFISH -p 46081 -k 11 -hash dm3_11nt.jf >> dm3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droMoj2/ ; $JELFISH -p 48082 -k 23 -hash droMoj2_23nt.jf >> droMoj2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droMoj2/ ; $JELFISH -p 47082 -k 15 -hash droMoj2_15nt.jf >> droMoj2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droMoj2/ ; $JELFISH -p 46082 -k 11 -hash droMoj2_11nt.jf >> droMoj2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droPer1/ ; $JELFISH -p 48083 -k 23 -hash droPer1_23nt.jf >> droPer1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droPer1/ ; $JELFISH -p 47083 -k 15 -hash droPer1_15nt.jf >> droPer1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droPer1/ ; $JELFISH -p 46083 -k 11 -hash droPer1_11nt.jf >> droPer1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/dp3/ ; $JELFISH -p 48084 -k 23 -hash dp3_23nt.jf >> dp3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/dp3/ ; $JELFISH -p 47084 -k 15 -hash dp3_15nt.jf >> dp3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/dp3/ ; $JELFISH -p 46084 -k 11 -hash dp3_11nt.jf >> dp3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droSec1/ ; $JELFISH -p 48085 -k 23 -hash droSec1_23nt.jf >> droSec1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droSec1/ ; $JELFISH -p 47085 -k 15 -hash droSec1_15nt.jf >> droSec1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droSec1/ ; $JELFISH -p 46085 -k 11 -hash droSec1_11nt.jf >> droSec1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droSim1/ ; $JELFISH -p 48086 -k 23 -hash droSim1_23nt.jf >> droSim1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droSim1/ ; $JELFISH -p 47086 -k 15 -hash droSim1_15nt.jf >> droSim1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droSim1/ ; $JELFISH -p 46086 -k 11 -hash droSim1_11nt.jf >> droSim1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droVir2/ ; $JELFISH -p 48087 -k 23 -hash droVir2_23nt.jf >> droVir2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droVir2/ ; $JELFISH -p 47087 -k 15 -hash droVir2_15nt.jf >> droVir2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droVir2/ ; $JELFISH -p 46087 -k 11 -hash droVir2_11nt.jf >> droVir2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/droYak2/ ; $JELFISH -p 48088 -k 23 -hash droYak2_23nt.jf >> droYak2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droYak2/ ; $JELFISH -p 47088 -k 15 -hash droYak2_15nt.jf >> droYak2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/droYak2/ ; $JELFISH -p 46088 -k 11 -hash droYak2_11nt.jf >> droYak2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/caePb2/ ; $JELFISH -p 48089 -k 23 -hash caePb2_23nt.jf >> caePb2_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/caePb2/ ; $JELFISH -p 47089 -k 15 -hash caePb2_15nt.jf >> caePb2_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/caePb2/ ; $JELFISH -p 46089 -k 11 -hash caePb2_11nt.jf >> caePb2_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/cb3/ ; $JELFISH -p 48090 -k 23 -hash cb3_23nt.jf >> cb3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/cb3/ ; $JELFISH -p 47090 -k 15 -hash cb3_15nt.jf >> cb3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/cb3/ ; $JELFISH -p 46090 -k 11 -hash cb3_11nt.jf >> cb3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/ce10/ ; $JELFISH -p 48091 -k 23 -hash ce10_23nt.jf >> ce10_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/ce10/ ; $JELFISH -p 47091 -k 15 -hash ce10_15nt.jf >> ce10_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/ce10/ ; $JELFISH -p 46091 -k 11 -hash ce10_11nt.jf >> ce10_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/caeJap1/ ; $JELFISH -p 48092 -k 23 -hash caeJap1_23nt.jf >> caeJap1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/caeJap1/ ; $JELFISH -p 47092 -k 15 -hash caeJap1_15nt.jf >> caeJap1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/caeJap1/ ; $JELFISH -p 46092 -k 11 -hash caeJap1_11nt.jf >> caeJap1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/caeRem3/ ; $JELFISH -p 48093 -k 23 -hash caeRem3_23nt.jf >> caeRem3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/caeRem3/ ; $JELFISH -p 47093 -k 15 -hash caeRem3_15nt.jf >> caeRem3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/caeRem3/ ; $JELFISH -p 46093 -k 11 -hash caeRem3_11nt.jf >> caeRem3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/priPac1/ ; $JELFISH -p 48094 -k 23 -hash priPac1_23nt.jf >> priPac1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/priPac1/ ; $JELFISH -p 47094 -k 15 -hash priPac1_15nt.jf >> priPac1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/priPac1/ ; $JELFISH -p 46094 -k 11 -hash priPac1_11nt.jf >> priPac1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/sacCer3/ ; $JELFISH -p 48095 -k 23 -hash sacCer3_23nt.jf >> sacCer3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/sacCer3/ ; $JELFISH -p 47095 -k 15 -hash sacCer3_15nt.jf >> sacCer3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/sacCer3/ ; $JELFISH -p 46095 -k 11 -hash sacCer3_11nt.jf >> sacCer3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/aplCal1/ ; $JELFISH -p 48096 -k 23 -hash aplCal1_23nt.jf >> aplCal1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/aplCal1/ ; $JELFISH -p 47096 -k 15 -hash aplCal1_15nt.jf >> aplCal1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/aplCal1/ ; $JELFISH -p 46096 -k 11 -hash aplCal1_11nt.jf >> aplCal1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/eboVir3/ ; $JELFISH -p 48097 -k 23 -hash eboVir3_23nt.jf >> eboVir3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/eboVir3/ ; $JELFISH -p 47097 -k 15 -hash eboVir3_15nt.jf >> eboVir3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/eboVir3/ ; $JELFISH -p 46097 -k 11 -hash eboVir3_11nt.jf >> eboVir3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Xenla9/ ; $JELFISH -p 48207 -k 23 -hash Xenla9_23nt.jf >> Xenla9_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xenla9/ ; $JELFISH -p 47207 -k 15 -hash Xenla9_15nt.jf >> Xenla9_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xenla9/ ; $JELFISH -p 46207 -k 11 -hash Xenla9_11nt.jf >> Xenla9_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Xenla7/ ; $JELFISH -p 48208 -k 23 -hash Xenla7_23nt.jf >> Xenla7_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xenla7/ ; $JELFISH -p 47208 -k 15 -hash Xenla7_15nt.jf >> Xenla7_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xenla7/ ; $JELFISH -p 46208 -k 11 -hash Xenla7_11nt.jf >> Xenla7_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr9/ ; $JELFISH -p 48209 -k 23 -hash Xentr9_23nt.jf >> Xentr9_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr9/ ; $JELFISH -p 47209 -k 15 -hash Xentr9_15nt.jf >> Xentr9_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr9/ ; $JELFISH -p 46209 -k 11 -hash Xentr9_11nt.jf >> Xentr9_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr8/ ; $JELFISH -p 48210 -k 23 -hash Xentr8_23nt.jf >> Xentr8_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr8/ ; $JELFISH -p 47210 -k 15 -hash Xentr8_15nt.jf >> Xentr8_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr8/ ; $JELFISH -p 46210 -k 11 -hash Xentr8_11nt.jf >> Xentr8_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr7/ ; $JELFISH -p 48211 -k 23 -hash Xentr7_23nt.jf >> Xentr7_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr7/ ; $JELFISH -p 47211 -k 15 -hash Xentr7_15nt.jf >> Xentr7_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Xentr7/ ; $JELFISH -p 46211 -k 11 -hash Xentr7_11nt.jf >> Xentr7_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/TAIR10/ ; $JELFISH -p 48212 -k 23 -hash TAIR10_23nt.jf >> TAIR10_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/TAIR10/ ; $JELFISH -p 47212 -k 15 -hash TAIR10_15nt.jf >> TAIR10_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/TAIR10/ ; $JELFISH -p 46212 -k 11 -hash TAIR10_11nt.jf >> TAIR10_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/rice/ ; $JELFISH -p 48213 -k 23 -hash rice_23nt.jf >> rice_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/rice/ ; $JELFISH -p 47213 -k 15 -hash rice_15nt.jf >> rice_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/rice/ ; $JELFISH -p 46213 -k 11 -hash rice_11nt.jf >> rice_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/sorBic/ ; $JELFISH -p 48214 -k 23 -hash sorBic_23nt.jf >> sorBic_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/sorBic/ ; $JELFISH -p 47214 -k 15 -hash sorBic_15nt.jf >> sorBic_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/sorBic/ ; $JELFISH -p 46214 -k 11 -hash sorBic_11nt.jf >> sorBic_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Brana_v4.1/ ; $JELFISH -p 48215 -k 23 -hash Brana_v4.1_23nt.jf >> Brana_v4.1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Brana_v4.1/ ; $JELFISH -p 47215 -k 15 -hash Brana_v4.1_15nt.jf >> Brana_v4.1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Brana_v4.1/ ; $JELFISH -p 46215 -k 11 -hash Brana_v4.1_11nt.jf >> Brana_v4.1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/lotus_r3.0/ ; $JELFISH -p 48216 -k 23 -hash lotus_r3.0_23nt.jf >> lotus_r3.0_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/lotus_r3.0/ ; $JELFISH -p 47216 -k 15 -hash lotus_r3.0_15nt.jf >> lotus_r3.0_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/lotus_r3.0/ ; $JELFISH -p 46216 -k 11 -hash lotus_r3.0_11nt.jf >> lotus_r3.0_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Niben_v1.0.1/ ; $JELFISH -p 48217 -k 23 -hash Niben_v1.0.1_23nt.jf >> Niben_v1.0.1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Niben_v1.0.1/ ; $JELFISH -p 47217 -k 15 -hash Niben_v1.0.1_15nt.jf >> Niben_v1.0.1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Niben_v1.0.1/ ; $JELFISH -p 46217 -k 11 -hash Niben_v1.0.1_11nt.jf >> Niben_v1.0.1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/adzuki_ver3/ ; $JELFISH -p 48218 -k 23 -hash adzuki_ver3_23nt.jf >> adzuki_ver3_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/adzuki_ver3/ ; $JELFISH -p 47218 -k 15 -hash adzuki_ver3_15nt.jf >> adzuki_ver3_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/adzuki_ver3/ ; $JELFISH -p 46218 -k 11 -hash adzuki_ver3_11nt.jf >> adzuki_ver3_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/RSA_r1.0/ ; $JELFISH -p 48219 -k 23 -hash RSA_r1.0_23nt.jf >> RSA_r1.0_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/RSA_r1.0/ ; $JELFISH -p 47219 -k 15 -hash RSA_r1.0_15nt.jf >> RSA_r1.0_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/RSA_r1.0/ ; $JELFISH -p 46219 -k 11 -hash RSA_r1.0_11nt.jf >> RSA_r1.0_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Ptrichocarpa_v3.0/ ; $JELFISH -p 48220 -k 23 -hash Ptrichocarpa_v3.0_23nt.jf >> Ptrichocarpa_v3.0_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Ptrichocarpa_v3.0/ ; $JELFISH -p 47220 -k 15 -hash Ptrichocarpa_v3.0_15nt.jf >> Ptrichocarpa_v3.0_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Ptrichocarpa_v3.0/ ; $JELFISH -p 46220 -k 11 -hash Ptrichocarpa_v3.0_11nt.jf >> Ptrichocarpa_v3.0_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/bmor1/ ; $JELFISH -p 48221 -k 23 -hash bmor1_23nt.jf >> bmor1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/bmor1/ ; $JELFISH -p 47221 -k 15 -hash bmor1_15nt.jf >> bmor1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/bmor1/ ; $JELFISH -p 46221 -k 11 -hash bmor1_11nt.jf >> bmor1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/pombe/ ; $JELFISH -p 48222 -k 23 -hash pombe_23nt.jf >> pombe_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/pombe/ ; $JELFISH -p 47222 -k 15 -hash pombe_15nt.jf >> pombe_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/pombe/ ; $JELFISH -p 46222 -k 11 -hash pombe_11nt.jf >> pombe_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/macaque_CE_1/ ; $JELFISH -p 48223 -k 23 -hash macaque_CE_1_23nt.jf >> macaque_CE_1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/macaque_CE_1/ ; $JELFISH -p 47223 -k 15 -hash macaque_CE_1_15nt.jf >> macaque_CE_1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/macaque_CE_1/ ; $JELFISH -p 46223 -k 11 -hash macaque_CE_1_11nt.jf >> macaque_CE_1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/KH/ ; $JELFISH -p 48224 -k 23 -hash KH_23nt.jf >> KH_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/KH/ ; $JELFISH -p 47224 -k 15 -hash KH_15nt.jf >> KH_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/KH/ ; $JELFISH -p 46224 -k 11 -hash KH_11nt.jf >> KH_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Spur_v3.1/ ; $JELFISH -p 48225 -k 23 -hash Spur_v3.1_23nt.jf >> Spur_v3.1_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Spur_v3.1/ ; $JELFISH -p 47225 -k 15 -hash Spur_v3.1_15nt.jf >> Spur_v3.1_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Spur_v3.1/ ; $JELFISH -p 46225 -k 11 -hash Spur_v3.1_11nt.jf >> Spur_v3.1_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/h7/ ; $JELFISH -p 48226 -k 23 -hash h7_23nt.jf >> h7_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/h7/ ; $JELFISH -p 47226 -k 15 -hash h7_15nt.jf >> h7_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/h7/ ; $JELFISH -p 46226 -k 11 -hash h7_11nt.jf >> h7_11nt.log 2>&1 &"
+
+	sudo -u nobody sh -c "cd $HASHDIR/Hydra_RP_1.0/ ; $JELFISH -p 48227 -k 23 -hash Hydra_RP_1.0_23nt.jf >> Hydra_RP_1.0_23nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Hydra_RP_1.0/ ; $JELFISH -p 47227 -k 15 -hash Hydra_RP_1.0_15nt.jf >> Hydra_RP_1.0_15nt.log 2>&1 &"
+	sudo -u nobody sh -c "cd $HASHDIR/Hydra_RP_1.0/ ; $JELFISH -p 46227 -k 11 -hash Hydra_RP_1.0_11nt.jf >> Hydra_RP_1.0_11nt.log 2>&1 &"
 }
 
 StopService ()
