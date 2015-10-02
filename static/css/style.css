@@ -1,0 +1,24 @@
+.x-body {
+	margin: 8px;
+}
+.x-form-trigger-wrap {
+	border-color: silver;  /* 生物種選択メニューの枠線 */
+}
+.x-boundlist-item {
+	line-height: 17px;     /* 生物種選択メニューの行間 */
+}
+.dblist-render {
+	display: inline-block;
+	vertical-align: middle;
+}
+.dblist-render *{
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 10px;
+}
+.dblist-boundlist li {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 10px;
+}
+.x-list-plain {
+	width: 100%;
+}

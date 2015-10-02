@@ -7,6 +7,14 @@
 <meta http-equiv='Content-Style-Type' content='text/css'>
 <meta name='author' content='Yuki Naito'>
 <title>CRISPRdirect</title>
+<link rel='stylesheet' type='text/css' media='all' charset='UTF-8'
+	href='//cdn.sencha.com/ext/gpl/4.2.1/resources/css/ext-all-neptune.css'>
+<link rel='stylesheet' type='text/css' media='all' charset='UTF-8'
+	href='static/css/style.css'>
+<script type='text/javascript' charset='utf-8'
+	src='//cdn.sencha.com/ext/gpl/4.2.1/ext-all.js'></script>
+<script type='text/javascript' charset='utf-8'
+	src='//cdn.sencha.com/ext/gpl/4.2.1/locale/ext-lang-en.js'></script>
 <script type='text/javascript'>
 <!--
 function retrieveSequence(){
@@ -16,7 +24,7 @@ function retrieveSequence(){
 function requestFile(data, method, fileName, async){
 	var httpoj = createHttpRequest() ;
 	httpoj.onreadystatechange = function(){
-		if (httpoj.readyState==4){ 
+		if (httpoj.readyState==4){
 			on_loaded(httpoj) ;
 		}
 	}
@@ -259,7 +267,7 @@ $(document).ready(function(){
 </style>
 </head>
 
-<body>
+<body style='background:white'>
 
 <div>
 <a href='.'><img src='CRISPRdirect.png' alt='CRISPRdirect' width=200 height=105 border=0></a>
@@ -420,5 +428,7 @@ if (ua.indexOf('msie') != -1 && ua.indexOf('mac') != -1){
 	</a>
 </p>
 
+<!-- dropdown menu -->
+<script type='text/javascript' src='static/js/app.js' charset='utf-8'></script>
 </body>
 </html>

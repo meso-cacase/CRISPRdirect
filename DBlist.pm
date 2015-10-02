@@ -3,7 +3,7 @@ package DBlist ;
 # データベースの正式名およびホスト名/ポート番号の一覧
 #
 # フォーマット：
-# DB	host	port_23nt	port_15nt	port_11nt	fullname
+# DB	host	port_23nt	port_15nt	port_11nt	fullname	synonym(複数の場合は;で区切る)
 
 $dbconfig =
 <<'--EOS--' ;

@@ -44,11 +44,13 @@ ggtgatgacctcaaacttcgttaa
 my $dbconf = $DBlist::dbconfig ;  # データベースの正式名およびホスト名/ポート番号のリスト
 
 my %db_fullname ;                 # データベースの正式名
+my %db_synonym ;	#ADD tyamamot
 foreach (split /\n/, $dbconf){
 	chomp ;
 	map {defined $_ ? ($_ =~ s/\s*$//g) : ($_ = '')}  # 後方のスペースを除去
-		my ($db, undef, undef, undef, undef, $fullname) = split /\t/ ;
+		my ($db, undef, undef, undef, undef, $fullname, $synonym) = split /\t/ ; #CHANGE tyamamot
 	$db_fullname{$db} = $fullname ;
+	$db_synonym{$db}  = $synonym ;	#ADD tyamamot
 }
 #- ▲ モジュール読み込みと変数の初期化
 
@@ -430,27 +432,30 @@ $userseq = (not $accession) ?
 #- ▲ Accession番号からFASTAを取得
 
 #- ▼ プルダウンメニュー
-my $select =
-"		<option value=none   >none</option>
-		<option value=hg19   >$db_fullname{'hg19'   }</option>
-		<option value=mm10   >$db_fullname{'mm10'   }</option>
-		<option value=rn5    >$db_fullname{'rn5'    }</option>
-		<option value=calJac3>$db_fullname{'calJac3'}</option>
-		<option value=susScr3>$db_fullname{'susScr3'}</option>
-		<option value=galGal4>$db_fullname{'galGal4'}</option>
-		<option value=xenTro3>$db_fullname{'xenTro3'}</option>
-		<option value=Xenla7 >$db_fullname{'Xenla7' }</option>
-		<option value=danRer7>$db_fullname{'danRer7'}</option>
-		<option value=ci2    >$db_fullname{'ci2'    }</option>
-		<option value=dm3    >$db_fullname{'dm3'    }</option>
-		<option value=ce10   >$db_fullname{'ce10'   }</option>
-		<option value=TAIR10 >$db_fullname{'TAIR10' }</option>
-		<option value=rice   >$db_fullname{'rice'   }</option>
-		<option value=sorBic >$db_fullname{'sorBic' }</option>
-		<option value=bmor1  >$db_fullname{'bmor1'  }</option>
-		<option value=sacCer3>$db_fullname{'sacCer3'}</option>
-		<option value=pombe  >$db_fullname{'pombe'  }</option>" ;
-$db and $select =~ s/(?<=option value=$db)/ selected/ ;  # 生物種を選択
+#ADD tyamamot synonym属性の追記
+my $select = <<"--EOS--" ;
+		<option value=\'none\'    synonym=\"\"                      >none</option>
+		<option value=\'hg19\'    synonym=\"$db_synonym{'hg19'   }\">$db_fullname{'hg19'   }</option>
+		<option value=\'mm10\'    synonym=\"$db_synonym{'mm10'   }\">$db_fullname{'mm10'   }</option>
+		<option value=\'rn5\'     synonym=\"$db_synonym{'rn5'    }\">$db_fullname{'rn5'    }</option>
+		<option value=\'calJac3\' synonym=\"$db_synonym{'calJac3'}\">$db_fullname{'calJac3'}</option>
+		<option value=\'susScr3\' synonym=\"$db_synonym{'susScr3'}\">$db_fullname{'susScr3'}</option>
+		<option value=\'galGal4\' synonym=\"$db_synonym{'galGal4'}\">$db_fullname{'galGal4'}</option>
+		<option value=\'xenTro3\' synonym=\"$db_synonym{'xenTro3'}\">$db_fullname{'xenTro3'}</option>
+		<option value=\'Xenla7\'  synonym=\"$db_synonym{'Xenla7' }\">$db_fullname{'Xenla7' }</option>
+		<option value=\'danRer7\' synonym=\"$db_synonym{'danRer7'}\">$db_fullname{'danRer7'}</option>
+		<option value=\'ci2\'     synonym=\"$db_synonym{'ci2'    }\">$db_fullname{'ci2'    }</option>
+		<option value=\'dm3\'     synonym=\"$db_synonym{'dm3'    }\">$db_fullname{'dm3'    }</option>
+		<option value=\'ce10\'    synonym=\"$db_synonym{'ce10'   }\">$db_fullname{'ce10'   }</option>
+		<option value=\'TAIR10\'  synonym=\"$db_synonym{'TAIR10' }\">$db_fullname{'TAIR10' }</option>
+		<option value=\'rice\'    synonym=\"$db_synonym{'rice'   }\">$db_fullname{'rice'   }</option>
+		<option value=\'sorBic\'  synonym=\"$db_synonym{'sorBic' }\">$db_fullname{'sorBic' }</option>
+		<option value=\'bmor1\'   synonym=\"$db_synonym{'bmor1'  }\">$db_fullname{'bmor1'  }</option>
+		<option value=\'sacCer3\' synonym=\"$db_synonym{'sacCer3'}\">$db_fullname{'sacCer3'}</option>
+		<option value=\'pombe\'   synonym=\"$db_synonym{'pombe'  }\">$db_fullname{'pombe'  }</option>
+--EOS--
+
+$db and $select =~ s/(?<=option value=\'$db\')/ selected/ ;  # 生物種を選択
 #- ▲ プルダウンメニュー
 
 #- ▼ HTML出力
