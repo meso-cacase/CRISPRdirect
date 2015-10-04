@@ -3,9 +3,50 @@
 
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta http-equiv='Content-Script-Type' content='text/javascript'>
 <meta http-equiv='Content-Style-Type' content='text/css'>
 <meta name='author' content='Yuki Naito'>
 <title>CRISPRdirect help</title>
+<!-- DataTables CSS -->
+<link rel='stylesheet' type='text/css'
+	href='//cdn.datatables.net/1.10.7/css/jquery.dataTables.css'>
+<!-- jQuery -->
+<script type='text/javascript' charset='utf8'
+	src='//code.jquery.com/jquery-1.10.2.min.js'></script>
+<!-- DataTables -->
+<script type='text/javascript' charset='utf8'
+	src='//cdn.datatables.net/1.10.7/js/jquery.dataTables.js'></script>
+<!-- DataTables initialization -->
+<script type='text/javascript'>
+<!--
+$(document).ready(function(){
+	$('#genomelist').dataTable({
+		'iDisplayLength'  : 25,      // Number of rows per page
+		'aLengthMenu'     : [[25, 50, 100, -1], [25, 50, 100, 'All']],  // Menu items
+		'sPaginationType' : 'full_numbers',  // Page control method
+		'order'           : [], // No initial order
+	}) ;
+}) ;
+$(document).ready(function(){
+	$('#otherlist').dataTable({
+		'order'           : [], // No initial order
+		'paging'          : false,
+	}) ;
+}) ;
+//-->
+</script>
+<!-- DataTables CSS -->
+<style type='text/css'>
+<!--
+	table { font-size:8pt; white-space:nowrap }
+	.dataTables_wrapper { display:inline-table }
+	table#genomelist thead th { padding:2px 16px 2px 2px }
+	table#genomelist tbody td { padding:2px }
+	table#otherlist  thead th { padding:3px 16px 3px 3px }
+	table#otherlist  tbody td { padding:3px }
+-->
+</style>
+
 <style type='text/css'>
 <!--
 	*     { font-family:verdana,arial,helvetica,sans-serif }
@@ -248,64 +289,2065 @@ CAACATCTTTTACACTAAAAAGCC
 
 <p>Specificity check can be performed for following species:</p>
 
-<ul>
-	<li><b>Human (<i>Homo sapiens</i>) genome</b>, GRCh37/hg19 (Feb, 2009)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz</a>
-	<li><b>Mouse (<i>Mus musculus</i>) genome</b>, GRCm38/mm10 (Dec, 2011)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/chromFa.tar.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/chromFa.tar.gz</a>
-	<li><b>Rat (<i>Rattus norvegicus</i>) genome</b>, RGSC 5.0/rn5 (Mar, 2012)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/rn5/bigZips/chromFa.tar.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/rn5/bigZips/chromFa.tar.gz</a>
-	<li><b>Marmoset (<i>Callithrix jacchus</i>) genome</b>, WUGSC 3.2/calJac3 (Mar, 2009)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/calJac3/bigZips/calJac3.fa.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/calJac3/bigZips/calJac3.fa.gz</a>
-	<li><b>Pig (<i>Sus scrofa</i>) genome</b>, SGSC Sscrofa10.2/susScr3 (Aug, 2011)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/susScr3/bigZips/susScr3.fa.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/susScr3/bigZips/susScr3.fa.gz</a>
-	<li><b>Chicken (<i>Gallus gallus</i>) genome</b>, ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/galGal4/bigZips/galGal4.fa.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/galGal4/bigZips/galGal4.fa.gz</a>
-	<li><b>Frog (<i>Xenopus tropicalis</i>) genome</b>, JGI 4.2/xenTro3 (Nov, 2009)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/xenTro3/bigZips/xenTro3.fa.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/xenTro3/bigZips/xenTro3.fa.gz</a>
-	<li><b>Frog (<i>Xenopus laevis</i>) genome</b>, JGI 7.1/Xenla7 (Dec, 2013)<br>
-		<a target='_blank' href='ftp://ftp.xenbase.org/pub/Genomics/JGI/Xenla7.1/Xenla_7.1_JGI_scaffolds_on_Xenbase_GBrowse.tgz'>
-		ftp://ftp.xenbase.org/pub/Genomics/JGI/Xenla7.1/Xenla_7.1_JGI_scaffolds_on_Xenbase_GBrowse.tgz</a>
-	<li><b>Zebrafish (<i>Danio rerio</i>) genome</b>, Zv9/danRer7 (Jul, 2010)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/danRer7/bigZips/danRer7.fa.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/danRer7/bigZips/danRer7.fa.gz</a>
-	<li><b>Sea squirt (<i>Ciona intestinalis</i>) genome</b>, JGI 2.1/ci2 (Mar, 2005)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/ci2/bigZips/ScaffoldFa.zip'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/ci2/bigZips/ScaffoldFa.zip</a>
-	<li><b>Fruit fly (<i>Drosophila melanogaster</i>) genome</b>, BDGP R5/dm3 (Apr, 2006)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/dm3/bigZips/chromFa.tar.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/dm3/bigZips/chromFa.tar.gz</a>
-	<li><b>Roundworm (<i>Caenorhabditis elegans</i>) genome</b>, WS220/ce10 (Oct, 2010)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/ce10/bigZips/chromFa.tar.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/ce10/bigZips/chromFa.tar.gz</a>
-	<li><b>Thale cress (<i>Arabidopsis thaliana</i>) genome</b>, TAIR10 (Nov, 2010)<br>
-		<a target='_blank' href='ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/'>
-		ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes</a>/*.fas
-	<li><b>Rice (<i>Oryza sativa</i>) genome</b>, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)<br>
-		Genome assemblies (12 chromosomes) + Unanchored sequences from<br>
-		<a target='_blank' href='http://rapdb.dna.affrc.go.jp/download/irgsp1.html'>
-		http://rapdb.dna.affrc.go.jp/download/irgsp1.html</a>
-	<li><b>Sorghum (<i>Sorghum bicolor</i>) genome</b>, Sorghum bicolor v2.1 (May, 2013)<br>
-		<a target='_blank' href='ftp://ftp.jgi-psf.org/pub/compgen/phytozome/v9.0/early_release/Sbicolor_v2.1/assembly/Sbicolor_v2.1_255.fa.gz'>
-		ftp://ftp.jgi-psf.org/pub/compgen/phytozome/v9.0/early_release/Sbicolor_v2.1/assembly/Sbicolor_v2.1_255.fa.gz</a>
-	<li><b>Silkworm (<i>Bombyx mori</i>) genome</b>, Bmor1 (Apr, 2008)<br>
-		Bombyx_mori.Bmor1.17.dna.toplevel.fa.gz from<br>
-		<a target='_blank' href='ftp://ftp.ensemblgenomes.org/pub/metazoa/release-17/fasta/bombyx_mori/dna/'>
-		ftp://ftp.ensemblgenomes.org/pub/metazoa/release-17/fasta/bombyx_mori/dna/</a>
-	<li><b>Budding yeast (<i>Saccharomyces cerevisiae</i>) (S288C) genome</b>, sacCer3 (Apr, 2011)<br>
-		<a target='_blank' href='ftp://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/chromFa.tar.gz'>
-		ftp://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/chromFa.tar.gz</a>
-	<li><b>Fission yeast (<i>Schizosaccharomyces pombe</i>) (972h-) genome</b>, ASM294v2 (Nov, 2007)<br>
-		<a target='_blank' href='ftp://ftp.ensemblgenomes.org/pub/fungi/current/fasta/schizosaccharomyces_pombe/dna/Schizosaccharomyces_pombe.ASM294v2.23.dna.genome.fa.gz'>
-		ftp://ftp.ensemblgenomes.org/pub/fungi/current/fasta/schizosaccharomyces_pombe/dna/Schizosaccharomyces_pombe.ASM294v2.23.dna.genome.fa.gz</a>
-</ul>
+<div>
+<table cellspacing=0 cellpadding=2 id=genomelist class=display>
+<thead>
+<tr>
+	<th>Database
+	<th>Source
+	<th>Group
+	<th>Species
+	<th>Latin name
+	<th>Assembly information
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>hg38
+	<td>UCSC
+	<td>Mammal
+	<td>Human
+	<td>Homo sapiens
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=hg38'><!--
+		-->GRCh38/hg38 (Dec, 2013)</a>
+</tr>
+<tr>
+	<td>hg19
+	<td>UCSC
+	<td>Mammal
+	<td>Human
+	<td>Homo sapiens
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=hg19'><!--
+		-->GRCh37/hg19 (Feb, 2009)</a>
+</tr>
+<tr>
+	<td>hg18
+	<td>UCSC
+	<td>Mammal
+	<td>Human
+	<td>Homo sapiens
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=hg18'><!--
+		-->NCBI36/hg18 (Mar, 2006)</a>
+</tr>
+<tr>
+	<td>mm10
+	<td>UCSC
+	<td>Mammal
+	<td>Mouse
+	<td>Mus musculus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=mm10'><!--
+		-->GRCm38/mm10 (Dec, 2011)</a>
+</tr>
+<tr>
+	<td>mm9
+	<td>UCSC
+	<td>Mammal
+	<td>Mouse
+	<td>Mus musculus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=mm9'><!--
+		-->NCBI37/mm9 (Jul, 2007)</a>
+</tr>
+<tr>
+	<td>rn6
+	<td>UCSC
+	<td>Mammal
+	<td>Rat
+	<td>Rattus norvegicus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=rn6'><!--
+		-->RGSC 6.0/rn6 (Jul, 2014)</a>
+</tr>
+<tr>
+	<td>rn5
+	<td>UCSC
+	<td>Mammal
+	<td>Rat
+	<td>Rattus norvegicus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=rn5'><!--
+		-->RGSC 5.0/rn5 (Mar, 2012)</a>
+</tr>
+<tr>
+	<td>vicPac2
+	<td>UCSC
+	<td>Mammal
+	<td>Alpaca
+	<td>Vicugna pacos
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=vicPac2'><!--
+		-->Vicugna_pacos-2.0.1/vicPac2 (Mar, 2013)</a>
+</tr>
+<tr>
+	<td>dasNov3
+	<td>UCSC
+	<td>Mammal
+	<td>Armadillo
+	<td>Dasypus novemcinctus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=dasNov3'><!--
+		-->Baylor/dasNov3 (Dec, 2011)</a>
+</tr>
+<tr>
+	<td>papAnu2
+	<td>UCSC
+	<td>Mammal
+	<td>Baboon
+	<td>Papio anubis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=papAnu2'><!--
+		-->Baylor Panu_2.0/papAnu2 (Mar, 2012)</a>
+</tr>
+<tr>
+	<td>otoGar3
+	<td>UCSC
+	<td>Mammal
+	<td>Bushbaby
+	<td>Otolemur garnettii
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=otoGar3'><!--
+		-->Broad/otoGar3 (Mar, 2011)</a>
+</tr>
+<tr>
+	<td>felCat5
+	<td>UCSC
+	<td>Mammal
+	<td>Cat
+	<td>Felis catus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=felCat5'><!--
+		-->ICGSC Felis_catus 6.2/felCat5 (Sep, 2011)</a>
+</tr>
+<tr>
+	<td>panTro4
+	<td>UCSC
+	<td>Mammal
+	<td>Chimpanzee
+	<td>Pan troglodytes
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=panTro4'><!--
+		-->CSAC 2.1.4/panTro4 (Feb, 2011)</a>
+</tr>
+<tr>
+	<td>criGri1
+	<td>UCSC
+	<td>Mammal
+	<td>Chinese hamster
+	<td>Cricetulus griseus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=criGri1'><!--
+		-->C_griseus_v1.0/criGri1 (Jul, 2013)</a>
+</tr>
+<tr>
+	<td>bosTau8
+	<td>UCSC
+	<td>Mammal
+	<td>Cow
+	<td>Bos taurus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=bosTau8'><!--
+		-->Bos_taurus_UMD_3.1.1/bosTau8 (Jun, 2014)</a>
+</tr>
+<tr>
+	<td>canFam3
+	<td>UCSC
+	<td>Mammal
+	<td>Dog
+	<td>Canis familiaris
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=canFam3'><!--
+		-->Broad CanFam3.1/canFam3 (Sep, 2011)</a>
+</tr>
+<tr>
+	<td>turTru2
+	<td>UCSC
+	<td>Mammal
+	<td>Dolphin
+	<td>Tursiops truncatus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=turTru2'><!--
+		-->Baylor Ttru_1.4/turTru2 (Oct, 2011)</a>
+</tr>
+<tr>
+	<td>loxAfr3
+	<td>UCSC
+	<td>Mammal
+	<td>Elephant
+	<td>Loxodonta africana
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=loxAfr3'><!--
+		-->Broad/loxAfr3 (Jul, 2009)</a>
+</tr>
+<tr>
+	<td>musFur1
+	<td>UCSC
+	<td>Mammal
+	<td>Ferret
+	<td>Mustela putorius furo
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=musFur1'><!--
+		-->MusPutFur1.0/musFur1 (Apr, 2011)</a>
+</tr>
+<tr>
+	<td>nomLeu3
+	<td>UCSC
+	<td>Mammal
+	<td>Gibbon
+	<td>Nomascus leucogenys
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=nomLeu3'><!--
+		-->GGSC Nleu3.0/nomLeu3 (Oct, 2012)</a>
+</tr>
+<tr>
+	<td>gorGor3
+	<td>UCSC
+	<td>Mammal
+	<td>Gorilla
+	<td>Gorilla gorilla gorilla
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=gorGor3'><!--
+		-->gorGor3.1/gorGor3 (May, 2011)</a>
+</tr>
+<tr>
+	<td>cavPor3
+	<td>UCSC
+	<td>Mammal
+	<td>Guinea pig
+	<td>Cavia porcellus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=cavPor3'><!--
+		-->Broad/cavPor3 (Feb, 2008)</a>
+</tr>
+<tr>
+	<td>eriEur2
+	<td>UCSC
+	<td>Mammal
+	<td>Hedgehog
+	<td>Erinaceus europaeus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=eriEur2'><!--
+		-->EriEur2.0/eriEur2 (May, 2012)</a>
+</tr>
+<tr>
+	<td>equCab2
+	<td>UCSC
+	<td>Mammal
+	<td>Horse
+	<td>Equus caballus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=equCab2'><!--
+		-->Broad/equCab2 (Sep, 2007)</a>
+</tr>
+<tr>
+	<td>dipOrd1
+	<td>UCSC
+	<td>Mammal
+	<td>Kangaroo rat
+	<td>Dipodomys ordii
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=dipOrd1'><!--
+		-->Broad/dipOrd1 (Jul, 2008)</a>
+</tr>
+<tr>
+	<td>triMan1
+	<td>UCSC
+	<td>Mammal
+	<td>Manatee
+	<td>Trichechus manatus latirostris
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=triMan1'><!--
+		-->Broad v1.0/triMan1 (Oct, 2011)</a>
+</tr>
+<tr>
+	<td>calJac3
+	<td>UCSC
+	<td>Mammal
+	<td>Marmoset
+	<td>Callithrix jacchus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=calJac3'><!--
+		-->WUGSC 3.2/calJac3 (Mar, 2009)</a>
+</tr>
+<tr>
+	<td>pteVam1
+	<td>UCSC
+	<td>Mammal
+	<td>Megabat
+	<td>Pteropus vampyrus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=pteVam1'><!--
+		-->Broad/pteVam1 (Jul, 2008)</a>
+</tr>
+<tr>
+	<td>myoLuc2
+	<td>UCSC
+	<td>Mammal
+	<td>Microbat
+	<td>Myotis lucifugus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=myoLuc2'><!--
+		-->Broad Institute Myoluc2.0/myoLuc2 (Jul, 2010)</a>
+</tr>
+<tr>
+	<td>balAcu1
+	<td>UCSC
+	<td>Mammal
+	<td>Minke whale
+	<td>Balaenoptera acutorostrata scammoni
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=balAcu1'><!--
+		-->BalAcu1.0/balAcu1 (Oct, 2013)</a>
+</tr>
+<tr>
+	<td>micMur1
+	<td>UCSC
+	<td>Mammal
+	<td>Mouse lemur
+	<td>Microcebus murinus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=micMur1'><!--
+		-->Broad/micMur1 (Jul, 2007)</a>
+</tr>
+<tr>
+	<td>hetGla2
+	<td>UCSC
+	<td>Mammal
+	<td>Naked mole rat
+	<td>Heterocephalus glaber
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=hetGla2'><!--
+		-->Broad HetGla_female_1.0/hetGla2 (Jan, 2012)</a>
+</tr>
+<tr>
+	<td>monDom5
+	<td>UCSC
+	<td>Mammal
+	<td>Opossum
+	<td>Monodelphis domestica
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=monDom5'><!--
+		-->Broad/monDom5 (Oct, 2006)</a>
+</tr>
+<tr>
+	<td>ponAbe2
+	<td>UCSC
+	<td>Mammal
+	<td>Orangutan
+	<td>Pongo abelii
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=ponAbe2'><!--
+		-->WUGSC 2.0.2/ponAbe2 (Jul, 2007)</a>
+</tr>
+<tr>
+	<td>ailMel1
+	<td>UCSC
+	<td>Mammal
+	<td>Panda
+	<td>Ailuropoda melanoleuca
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=ailMel1'><!--
+		-->BGI-Shenzhen 1.0/ailMel1 (Dec, 2009)</a>
+</tr>
+<tr>
+	<td>susScr3
+	<td>UCSC
+	<td>Mammal
+	<td>Pig
+	<td>Sus scrofa
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=susScr3'><!--
+		-->SGSC Sscrofa10.2/susScr3 (Aug, 2011)</a>
+</tr>
+<tr>
+	<td>ochPri3
+	<td>UCSC
+	<td>Mammal
+	<td>Pika
+	<td>Ochotona princeps
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=ochPri3'><!--
+		-->OchPri3.0/ochPri3 (May, 2012)</a>
+</tr>
+<tr>
+	<td>ornAna1
+	<td>UCSC
+	<td>Mammal
+	<td>Platypus
+	<td>Ornithorhynchus anatinus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=ornAna1'><!--
+		-->WUGSC 5.0.1/ornAna1 (Mar, 2007)</a>
+</tr>
+<tr>
+	<td>oryCun2
+	<td>UCSC
+	<td>Mammal
+	<td>Rabbit
+	<td>Oryctolagus cuniculus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=oryCun2'><!--
+		-->Broad/oryCun2 (Apr, 2009)</a>
+</tr>
+<tr>
+	<td>rheMac3
+	<td>UCSC
+	<td>Mammal
+	<td>Rhesus macaque
+	<td>Macaca mulatta
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=rheMac3'><!--
+		-->BGI CR_1.0/rheMac3 (Oct, 2010)</a>
+</tr>
+<tr>
+	<td>proCap1
+	<td>UCSC
+	<td>Mammal
+	<td>Rock hyrax, Cape hyrax
+	<td>Procavia capensis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=proCap1'><!--
+		-->Broad/proCap1 (Jul, 2008)</a>
+</tr>
+<tr>
+	<td>oviAri3
+	<td>UCSC
+	<td>Mammal
+	<td>Sheep
+	<td>Ovis aries
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=oviAri3'><!--
+		-->ISGC Oar_v3.1/oviAri3 (Aug, 2012)</a>
+</tr>
+<tr>
+	<td>sorAra2
+	<td>UCSC
+	<td>Mammal
+	<td>Shrew
+	<td>Sorex araneus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=sorAra2'><!--
+		-->Broad/sorAra2 (Aug, 2008)</a>
+</tr>
+<tr>
+	<td>choHof1
+	<td>UCSC
+	<td>Mammal
+	<td>Sloth
+	<td>Choloepus hoffmanni
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=choHof1'><!--
+		-->Broad/choHof1 (Jul, 2008)</a>
+</tr>
+<tr>
+	<td>speTri2
+	<td>UCSC
+	<td>Mammal
+	<td>Squirrel
+	<td>Spermophilus tridecemlineatus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=speTri2'><!--
+		-->Broad/speTri2 (Nov, 2011)</a>
+</tr>
+<tr>
+	<td>saiBol1
+	<td>UCSC
+	<td>Mammal
+	<td>Squirrel monkey
+	<td>Saimiri boliviensis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=saiBol1'><!--
+		-->Broad/saiBol1 (Oct, 2011)</a>
+</tr>
+<tr>
+	<td>tarSyr1
+	<td>UCSC
+	<td>Mammal
+	<td>Tarsier
+	<td>Tarsius syrichta
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=tarSyr1'><!--
+		-->Broad/tarSyr1 (Aug, 2008)</a>
+</tr>
+<tr>
+	<td>sarHar1
+	<td>UCSC
+	<td>Mammal
+	<td>Tasmanian devil
+	<td>Sarcophilus harrisii
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=sarHar1'><!--
+		-->WTSI Devil_ref v7.0/sarHar1 (Feb, 2011)</a>
+</tr>
+<tr>
+	<td>echTel2
+	<td>UCSC
+	<td>Mammal
+	<td>Tenrec
+	<td>Echinops telfairi
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=echTel2'><!--
+		-->Broad/echTel2 (Nov, 2012)</a>
+</tr>
+<tr>
+	<td>tupBel1
+	<td>UCSC
+	<td>Mammal
+	<td>Tree shrew
+	<td>Tupaia belangeri
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=tupBel1'><!--
+		-->Broad/tupBel1 (Dec, 2006)</a>
+</tr>
+<tr>
+	<td>macEug2
+	<td>UCSC
+	<td>Mammal
+	<td>Wallaby
+	<td>Macropus eugenii
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=macEug2'><!--
+		-->TWGS Meug_1.1/macEug2 (Sep, 2009)</a>
+</tr>
+<tr>
+	<td>cerSim1
+	<td>UCSC
+	<td>Mammal
+	<td>White rhinoceros
+	<td>Ceratotherium simum
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=cerSim1'><!--
+		-->CerSimSim1.0/cerSim1 (May, 2012)</a>
+</tr>
+<tr>
+	<td>allMis1
+	<td>UCSC
+	<td>Vertebrate
+	<td>American alligator
+	<td>Alligator mississippiensis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=allMis1'><!--
+		-->allMis0.2/allMis1 (Aug, 2012)</a>
+</tr>
+<tr>
+	<td>gadMor1
+	<td>UCSC
+	<td>Vertebrate
+	<td>Atlantic cod
+	<td>Gadus morhua
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=gadMor1'><!--
+		-->Genofisk GadMor_May2010/gadMor1 (May, 2010)</a>
+</tr>
+<tr>
+	<td>melUnd1
+	<td>UCSC
+	<td>Vertebrate
+	<td>Budgerigar
+	<td>Melopsittacus undulatus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=melUnd1'><!--
+		-->WUSTL v6.3/melUnd1 (Sep, 2011)</a>
+</tr>
+<tr>
+	<td>galGal4
+	<td>UCSC
+	<td>Vertebrate
+	<td>Chicken
+	<td>Gallus gallus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=galGal4'><!--
+		-->ICGSC Gallus_gallus-4.0/galGal4 (Nov, 2011)</a>
+</tr>
+<tr>
+	<td>latCha1
+	<td>UCSC
+	<td>Vertebrate
+	<td>Coelacanth
+	<td>Latimeria chalumnae
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=latCha1'><!--
+		-->Broad/latCha1 (Aug, 2011)</a>
+</tr>
+<tr>
+	<td>calMil1
+	<td>UCSC
+	<td>Vertebrate
+	<td>Elephant shark
+	<td>Callorhinchus milii
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=calMil1'><!--
+		-->Callorhinchus_milii-6.1.3/calMil1 (Dec, 2013)</a>
+</tr>
+<tr>
+	<td>fr3
+	<td>UCSC
+	<td>Vertebrate
+	<td>Fugu
+	<td>Takifugu rubripes
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=fr3'><!--
+		-->FUGU5/fr3 (Oct, 2011)</a>
+</tr>
+<tr>
+	<td>petMar2
+	<td>UCSC
+	<td>Vertebrate
+	<td>Lamprey
+	<td>Petromyzon marinus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=petMar2'><!--
+		-->WUGSC 7.0/petMar2 (Sep, 2010)</a>
+</tr>
+<tr>
+	<td>anoCar2
+	<td>UCSC
+	<td>Vertebrate
+	<td>Lizard
+	<td>Anolis carolinensis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=anoCar2'><!--
+		-->Broad AnoCar2.0/anoCar2 (May, 2010)</a>
+</tr>
+<tr>
+	<td>oryLat2
+	<td>UCSC
+	<td>Vertebrate
+	<td>Medaka
+	<td>Oryzias latipes
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=oryLat2'><!--
+		-->NIG/UT MEDAKA1/oryLat2 (Oct, 2005)</a>
+</tr>
+<tr>
+	<td>geoFor1
+	<td>UCSC
+	<td>Vertebrate
+	<td>Medium ground finch
+	<td>Geospiza fortis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=geoFor1'><!--
+		-->GeoFor_1.0/geoFor1 (Apr, 2012)</a>
+</tr>
+<tr>
+	<td>oreNil2
+	<td>UCSC
+	<td>Vertebrate
+	<td>Nile tilapia
+	<td>Oreochromis niloticus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=oreNil2'><!--
+		-->Broad oreNil1.1/oreNil2 (Jan, 2011)</a>
+</tr>
+<tr>
+	<td>chrPic1
+	<td>UCSC
+	<td>Vertebrate
+	<td>Painted turtle
+	<td>Chrysemys picta bellii
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=chrPic1'><!--
+		-->v3.0.1/chrPic1 (Dec, 2011)</a>
+</tr>
+<tr>
+	<td>gasAcu1
+	<td>UCSC
+	<td>Vertebrate
+	<td>Stickleback
+	<td>Gasterosteus aculeatus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=gasAcu1'><!--
+		-->Broad/gasAcu1 (Feb, 2006)</a>
+</tr>
+<tr>
+	<td>tetNig2
+	<td>UCSC
+	<td>Vertebrate
+	<td>Tetraodon
+	<td>Tetraodon nigroviridis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=tetNig2'><!--
+		-->Genoscope 8.0/tetNig2 (Mar, 2007)</a>
+</tr>
+<tr>
+	<td>melGal1
+	<td>UCSC
+	<td>Vertebrate
+	<td>Turkey
+	<td>Meleagris gallopavo
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=melGal1'><!--
+		-->TGC Turkey_2.01/melGal1 (Dec, 2009)</a>
+</tr>
+<tr>
+	<td>xenTro3
+	<td>UCSC
+	<td>Vertebrate
+	<td>Western clawed frog
+	<td>Xenopus tropicalis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=xenTro3'><!--
+		-->JGI 4.2/xenTro3 (Nov, 2009)</a>
+</tr>
+<tr>
+	<td>taeGut2
+	<td>UCSC
+	<td>Vertebrate
+	<td>Zebra finch
+	<td>Taeniopygia guttata
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=taeGut2'><!--
+		-->WashU taeGut324/taeGut2 (Feb, 2013)</a>
+</tr>
+<tr>
+	<td>danRer7
+	<td>UCSC
+	<td>Vertebrate
+	<td>Zebrafish
+	<td>Danio rerio
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=danRer7'><!--
+		-->Zv9/danRer7 (Jul, 2010)</a>
+</tr>
+<tr>
+	<td>ci2
+	<td>UCSC
+	<td>Deuterostome
+	<td>Transparent sea squirt
+	<td>Ciona intestinalis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=ci2'><!--
+		-->JGI 2.1/ci2 (Mar, 2005)</a>
+</tr>
+<tr>
+	<td>braFlo1
+	<td>UCSC
+	<td>Deuterostome
+	<td>Lancelet
+	<td>Branchiostoma floridae
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=braFlo1'><!--
+		-->JGI 1.0/braFlo1 (Mar, 2006)</a>
+</tr>
+<tr>
+	<td>strPur2
+	<td>UCSC
+	<td>Deuterostome
+	<td>Purple sea urchin
+	<td>Strongylocentrotus purpuratus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=strPur2'><!--
+		-->Baylor 2.1/strPur2 (Sep, 2006)</a>
+</tr>
+<tr>
+	<td>anoGam1
+	<td>UCSC
+	<td>Insect
+	<td>African malaria mosquito
+	<td>Anopheles gambiae
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=anoGam1'><!--
+		-->IAGEC MOZ2/anoGam1 (Feb, 2003)</a>
+</tr>
+<tr>
+	<td>apiMel2
+	<td>UCSC
+	<td>Insect
+	<td>Honeybee
+	<td>Apis mellifera
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=apiMel2'><!--
+		-->Baylor 2.0/apiMel2 (Jan, 2005)</a>
+</tr>
+<tr>
+	<td>droAna2
+	<td>UCSC
+	<td>Insect
+	<td>D. ananassae (Fruit fly)
+	<td>Drosophila ananassae
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droAna2'><!--
+		-->Agencourt prelim/droAna2 (Aug, 2005)</a>
+</tr>
+<tr>
+	<td>droEre1
+	<td>UCSC
+	<td>Insect
+	<td>D. erecta (Fruit fly)
+	<td>Drosophila erecta
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droEre1'><!--
+		-->Agencourt prelim/droEre1 (Aug, 2005)</a>
+</tr>
+<tr>
+	<td>droGri1
+	<td>UCSC
+	<td>Insect
+	<td>D. grimshawi (Fruit fly)
+	<td>Drosophila grimshawi
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droGri1'><!--
+		-->Agencourt prelim/droGri1 (Aug, 2005)</a>
+</tr>
+<tr>
+	<td>dm6
+	<td>UCSC
+	<td>Insect
+	<td>D. melanogaster (Fruit fly)
+	<td>Drosophila melanogaster
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=dm6'><!--
+		-->BDGP Release 6 + ISO1 MT/dm6 (Aug, 2014)</a>
+</tr>
+<tr>
+	<td>dm3
+	<td>UCSC
+	<td>Insect
+	<td>D. melanogaster (Fruit fly)
+	<td>Drosophila melanogaster
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=dm3'><!--
+		-->BDGP R5/dm3 (Apr, 2006)</a>
+</tr>
+<tr>
+	<td>droMoj2
+	<td>UCSC
+	<td>Insect
+	<td>D. mojavensis (Fruit fly)
+	<td>Drosophila mojavensis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droMoj2'><!--
+		-->Agencourt prelim/droMoj2 (Aug, 2005)</a>
+</tr>
+<tr>
+	<td>droPer1
+	<td>UCSC
+	<td>Insect
+	<td>D. persimilis (Fruit fly)
+	<td>Drosophila persimilis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droPer1'><!--
+		-->Broad/droPer1 (Oct, 2005)</a>
+</tr>
+<tr>
+	<td>dp3
+	<td>UCSC
+	<td>Insect
+	<td>D. pseudoobscura (Fruit fly)
+	<td>Drosophila pseudoobscura
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=dp3'><!--
+		-->FlyBase 1.03/dp3 (Nov, 2004)</a>
+</tr>
+<tr>
+	<td>droSec1
+	<td>UCSC
+	<td>Insect
+	<td>D. sechellia (Fruit fly)
+	<td>Drosophila sechellia
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droSec1'><!--
+		-->Broad/droSec1 (Oct, 2005)</a>
+</tr>
+<tr>
+	<td>droSim1
+	<td>UCSC
+	<td>Insect
+	<td>D. simulans (Fruit fly)
+	<td>Drosophila simulans
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droSim1'><!--
+		-->WUGSC mosaic 1.0/droSim1 (Apr, 2005)</a>
+</tr>
+<tr>
+	<td>droVir2
+	<td>UCSC
+	<td>Insect
+	<td>D. virilis (Fruit fly)
+	<td>Drosophila virilis
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droVir2'><!--
+		-->Agencourt prelim/droVir2 (Aug, 2005)</a>
+</tr>
+<tr>
+	<td>droYak2
+	<td>UCSC
+	<td>Insect
+	<td>D. yakuba (Fruit fly)
+	<td>Drosophila yakuba
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=droYak2'><!--
+		-->WUGSC 7.1/droYak2 (Nov, 2005)</a>
+</tr>
+<tr>
+	<td>caePb2
+	<td>UCSC
+	<td>Nematode
+	<td>C. brenneri (Nematode worm)
+	<td>Caenorhabditis brenneri
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=caePb2'><!--
+		-->WUGSC 6.0.1/caePb2 (Feb, 2008)</a>
+</tr>
+<tr>
+	<td>cb3
+	<td>UCSC
+	<td>Nematode
+	<td>C. briggsae (Nematode worm)
+	<td>Caenorhabditis briggsae
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=cb3'><!--
+		-->WUGSC 1.0/cb3 (Jan, 2007)</a>
+</tr>
+<tr>
+	<td>ce10
+	<td>UCSC
+	<td>Nematode
+	<td>C. elegans (Nematode worm)
+	<td>Caenorhabditis elegans
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=ce10'><!--
+		-->WS220/ce10 (Oct, 2010)</a>
+</tr>
+<tr>
+	<td>caeJap1
+	<td>UCSC
+	<td>Nematode
+	<td>C. japonica (Nematode worm)
+	<td>Caenorhabditis japonica
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=caeJap1'><!--
+		-->WUGSC 3.0.2/caeJap1 (Mar, 2008)</a>
+</tr>
+<tr>
+	<td>caeRem3
+	<td>UCSC
+	<td>Nematode
+	<td>C. remanei (Nematode worm)
+	<td>Caenorhabditis remanei
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=caeRem3'><!--
+		-->WUGSC 15.0.1/caeRem3 (May, 2007)</a>
+</tr>
+<tr>
+	<td>priPac1
+	<td>UCSC
+	<td>Nematode
+	<td>P. pacificus (Parasitic nematode)
+	<td>Pristionchus pacificus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=priPac1'><!--
+		-->WUGSC 5.0/priPac1 (Feb, 2007)</a>
+</tr>
+<tr>
+	<td>sacCer3
+	<td>UCSC
+	<td>Other
+	<td>Budding yeast
+	<td>Saccharomyces cerevisiae
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=sacCer3'><!--
+		-->SacCer_Apr2011/sacCer3 (Apr, 2011)</a>
+</tr>
+<tr>
+	<td>aplCal1
+	<td>UCSC
+	<td>Other
+	<td>Sea hare
+	<td>Aplysia californica
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=aplCal1'><!--
+		-->Broad 2.0/aplCal1 (Sep, 2008)</a>
+</tr>
+<tr>
+	<td>eboVir3
+	<td>UCSC
+	<td>Viruses
+	<td>Ebola virus
+	<td>Filoviridae ebolavirus
+	<td><a target='_blank' href='http://genome.ucsc.edu/cgi-bin/hgGateway?db=eboVir3'><!--
+		-->Sierra Leone G3683/KM034562.1/eboVir3 (Jun, 2014)</a>
+</tr>
+<tr>
+	<td>OryAfe1.0
+	<td>Ensembl
+	<td>Mammal
+	<td>Aardvark
+	<td>Orycteropus afer
+	<td><a target='_blank' href='http://pre.ensembl.org/Orycteropus_afer_afer/'><!--
+		-->OryAfe1.0 (May, 2012)</a>
+</tr>
+<tr>
+	<td>PoeFor_5.1.2
+	<td>Ensembl
+	<td>Vertebrate
+	<td>Amazon molly
+	<td>Poecilia formosa
+	<td><a target='_blank' href='http://www.ensembl.org/Poecilia_formosa/'><!--
+		-->Poecilia_formosa-5.1.2 (Oct, 2013)</a>
+</tr>
+<tr>
+	<td>CSAV2.0
+	<td>Ensembl
+	<td>Deuterostome
+	<td>Pacific transparent sea squirt
+	<td>Ciona savignyi
+	<td><a target='_blank' href='http://www.ensembl.org/Ciona_savignyi/'><!--
+		-->CSAV 2.0 (Oct, 2005)</a>
+</tr>
+<tr>
+	<td>AstMex102
+	<td>Ensembl
+	<td>Vertebrate
+	<td>Blind cave fish
+	<td>Astyanax mexicanus
+	<td><a target='_blank' href='http://www.ensembl.org/Astyanax_mexicanus/'><!--
+		-->AstMex102 (Apr, 2013)</a>
+</tr>
+<tr>
+	<td>PelSin_1.0
+	<td>Ensembl
+	<td>Vertebrate
+	<td>Chinese softshell turtle
+	<td>Pelodiscus sinensis
+	<td><a target='_blank' href='http://www.ensembl.org/Pelodiscus_sinensis/'><!--
+		-->PelSin_1.0 (Oct, 2011)</a>
+</tr>
+<tr>
+	<td>MacFas5.0
+	<td>Ensembl
+	<td>Mammal
+	<td>Crab-eating macaque
+	<td>Macaca fascicularis
+	<td><a target='_blank' href='http://pre.ensembl.org/Macaca_fascicularis/'><!--
+		-->MacFas5.0 (Jun, 2013)</a>
+</tr>
+<tr>
+	<td>BGI_duck_1.0
+	<td>Ensembl
+	<td>Vertebrate
+	<td>Duck
+	<td>Anas platyrhynchos
+	<td><a target='_blank' href='http://www.ensembl.org/Anas_platyrhynchos/'><!--
+		-->BGI_duck_1.0 (Apr, 2013)</a>
+</tr>
+<tr>
+	<td>FicAlb_1.4
+	<td>Ensembl
+	<td>Vertebrate
+	<td>Flycatcher
+	<td>Ficedula albicollis
+	<td><a target='_blank' href='http://www.ensembl.org/Ficedula_albicollis/'><!--
+		-->FicAlb_1.4 (Jan, 2012)</a>
+</tr>
+<tr>
+	<td>Pham
+	<td>Ensembl
+	<td>Mammal
+	<td>Hamadryas baboon
+	<td>Papio hamadryas
+	<td><a target='_blank' href='http://pre.ensembl.org/Papio_hamadryas/'><!--
+		-->Pham (Nov, 2008)</a>
+</tr>
+<tr>
+	<td>Xipmac4.4.2
+	<td>Ensembl
+	<td>Vertebrate
+	<td>Platyfish
+	<td>Xiphophorus maculatus
+	<td><a target='_blank' href='http://www.ensembl.org/Xiphophorus_maculatus/'><!--
+		-->Xipmac4.4.2 (Jan, 2012)</a>
+</tr>
+<tr>
+	<td>MicOch1.0
+	<td>Ensembl
+	<td>Mammal
+	<td>Prairie vole
+	<td>Microtus ochrogaster
+	<td><a target='_blank' href='http://pre.ensembl.org/Microtus_ochrogaster/'><!--
+		-->MicOch1.0 (Nov, 2012)</a>
+</tr>
+<tr>
+	<td>PhyMac_2.0.2
+	<td>Ensembl
+	<td>Mammal
+	<td>Sperm whale
+	<td>Physeter macrocephalus
+	<td><a target='_blank' href='http://pre.ensembl.org/Physter_macrocephalus/'><!--
+		-->PhyMac_2.0.2 (Sep, 2013)</a>
+</tr>
+<tr>
+	<td>LepOcu1
+	<td>Ensembl
+	<td>Vertebrate
+	<td>Spotted gar
+	<td>Lepisosteus oculatus
+	<td><a target='_blank' href='http://www.ensembl.org/Lepisosteus_oculatus/'><!--
+		-->LepOcu1 (Dec, 2011)</a>
+</tr>
+<tr>
+	<td>ChlSab1.1
+	<td>Ensembl
+	<td>Mammal
+	<td>Green monkey
+	<td>Chlorocebus sabaeus
+	<td><a target='_blank' href='http://www.ensembl.org/Chlorocebus_sabaeus/'><!--
+		-->ChlSab1.1 (Mar, 2014)</a>
+</tr>
+<tr>
+	<td>Acyr_2.0
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Pea aphid
+	<td>Acyrthosiphon pisum
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Acyrthosiphon_pisum/'><!--
+		-->Acyr_2.0 (Jun, 2010)</a>
+</tr>
+<tr>
+	<td>AaegL3
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Yellowfever mosquito
+	<td>Aedes aegypti
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Aedes_aegypti/'><!--
+		-->AaegL3 (Dec, 2013)</a>
+</tr>
+<tr>
+	<td>Aqu1
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Sponge
+	<td>Amphimedon queenslandica
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Amphimedon_queenslandica/'><!--
+		-->Aqu1 (Oct, 2010)</a>
+</tr>
+<tr>
+	<td>AdarC3
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Mosquito
+	<td>Anopheles darlingi
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Anopheles_darlingi/'><!--
+		-->AdarC3 (Jan, 2014)</a>
+</tr>
+<tr>
+	<td>Attacep1.0
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Leafcutter ant
+	<td>Atta cephalotes
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Atta_cephalotes/'><!--
+		-->Attacep1.0 (Jul, 2012)</a>
+</tr>
+<tr>
+	<td>ASM15162v1
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Silkworm
+	<td>Bombyx mori
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Bombyx_mori/'><!--
+		-->ASM15162v1 (Feb, 2013)</a>
+</tr>
+<tr>
+	<td>B_malayi_3.0
+	<td>EnsemblMetazoa
+	<td>Nematode
+	<td>Filarial nematode worm
+	<td>Brugia malayi
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Brugia_malayi/'><!--
+		-->B_malayi-3.0 (Dec, 2012)</a>
+</tr>
+<tr>
+	<td>Capte_v1.0
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Polychaete worm
+	<td>Capitella teleta
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Capitella_teleta/'><!--
+		-->Capitella teleta v1.0 (Dec, 2012)</a>
+</tr>
+<tr>
+	<td>oyster_v9
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Pacific oyster
+	<td>Crassostrea gigas
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Crassostrea_gigas/'><!--
+		-->oyster_v9 (Sep, 2012)</a>
+</tr>
+<tr>
+	<td>CpipJ2
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Southern house mosquito
+	<td>Culex quinquefasciatus
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Culex_quinquefasciatus/'><!--
+		-->CpipJ2 (Jan, 2007)</a>
+</tr>
+<tr>
+	<td>DanPle_1.0
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Monarch butterfly
+	<td>Danaus plexippus
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Danaus_plexippus/'><!--
+		-->DanPle_1.0 (Nov, 2011)</a>
+</tr>
+<tr>
+	<td>Dappu_V1.0
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Water flea
+	<td>Daphnia pulex
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Daphnia_pulex/'><!--
+		-->V1.0 (Feb, 2011)</a>
+</tr>
+<tr>
+	<td>DendPond_1.0
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Mountain pine beetle
+	<td>Dendroctonus ponderosae
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Dendroctonus_ponderosae/'><!--
+		-->DendPond_male_1.0 (Apr, 2013)</a>
+</tr>
+<tr>
+	<td>dwil_caf1
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>D. willistoni (Fruit fly)
+	<td>Drosophila willistoni
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Drosophila_willistoni/'><!--
+		-->dwil_caf1 (Jul, 2008)</a>
+</tr>
+<tr>
+	<td>Hmel1
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Postman butterfly
+	<td>Heliconius melpomene
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Heliconius_melpomene/'><!--
+		-->Hmel1 (Feb, 2012)</a>
+</tr>
+<tr>
+	<td>Helro1
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Californian leech
+	<td>Helobdella robusta
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Helobdella_robusta/'><!--
+		-->Helro1 (Dec, 2012)</a>
+</tr>
+<tr>
+	<td>IscaW1
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Black-legged tick
+	<td>Ixodes scapularis
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Ixodes_scapularis/'><!--
+		-->IscaW1 (Aug, 2007)</a>
+</tr>
+<tr>
+	<td>Loa_loa_V3
+	<td>EnsemblMetazoa
+	<td>Nematode
+	<td>Eye worm
+	<td>Loa loa
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Loa_loa/'><!--
+		-->Loa_loa_V3 (Jan, 2010)</a>
+</tr>
+<tr>
+	<td>Lotgi1
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Giant owl limpet
+	<td>Lottia gigantea
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Lottia_gigantea/'><!--
+		-->Lotgi1 (Jan, 2013)</a>
+</tr>
+<tr>
+	<td>Msca1
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Humpbacked fly
+	<td>Megaselia scalaris
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Megaselia_scalaris/'><!--
+		-->Msca1 (Feb, 2013)</a>
+</tr>
+<tr>
+	<td>MelCinx1.0
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Glanville fritillary
+	<td>Melitaea cinxia
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Melitaea_cinxia/'><!--
+		-->MelCinx1.0 (Jul, 2014)</a>
+</tr>
+<tr>
+	<td>MneLei
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Sea walnut
+	<td>Mnemiopsis leidyi
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Mnemiopsis_leidyi/'><!--
+		-->MneLei_Aug2011 (Sep, 2011)</a>
+</tr>
+<tr>
+	<td>Nvit_2.1
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Parasitic wasp
+	<td>Nasonia vitripennis
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Nasonia_vitripennis/'><!--
+		-->Nvit_2.1 (Nov, 2012)</a>
+</tr>
+<tr>
+	<td>ASM20922v1
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Starlet sea anemone
+	<td>Nematostella vectensis
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Nematostella_vectensis/'><!--
+		-->ASM20922v1 (Sep, 2007)</a>
+</tr>
+<tr>
+	<td>Cameroon_v3
+	<td>EnsemblMetazoa
+	<td>Nematode
+	<td>O. volvulus (Parasitic nematode)
+	<td>Onchocerca volvulus
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Onchocerca_volvulus/'><!--
+		-->Cameroon_v3 (Nov, 2013)</a>
+</tr>
+<tr>
+	<td>PhumU2
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Body louse
+	<td>Pediculus humanus
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Pediculus_humanus/'><!--
+		-->PhumU2 (Nov, 2008)</a>
+</tr>
+<tr>
+	<td>RproC1
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Triatomid bug
+	<td>Rhodnius prolixus
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Rhodnius_prolixus/'><!--
+		-->RproC1 (Dec, 2010)</a>
+</tr>
+<tr>
+	<td>ASM23792v2
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Blood fluke
+	<td>Schistosoma mansoni
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Schistosoma_mansoni/'><!--
+		-->ASM23792v2 (Apr, 2012)</a>
+</tr>
+<tr>
+	<td>Si_gnG
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Red imported fire ant
+	<td>Solenopsis invicta
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Solenopsis_invicta/'><!--
+		-->Si_gnG (Feb, 2011)</a>
+</tr>
+<tr>
+	<td>Smar1
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>European centipede
+	<td>Strigamia maritima
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Strigamia_maritima/'><!--
+		-->Smar1 (Feb, 2013)</a>
+</tr>
+<tr>
+	<td>ASM23943v1
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>Two-spotted spider mite
+	<td>Tetranychus urticae
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Tetranychus_urticae/'><!--
+		-->ASM23943v1 (Nov, 2011)</a>
+</tr>
+<tr>
+	<td>Tcas3
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Red flour beetle
+	<td>Tribolium castaneum
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Tribolium_castaneum/'><!--
+		-->Tcas3 (Feb, 2010)</a>
+</tr>
+<tr>
+	<td>Tspiralis1
+	<td>EnsemblMetazoa
+	<td>Nematode
+	<td>Trichina worm
+	<td>Trichinella spiralis
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Trichinella_spiralis/'><!--
+		-->Tspiralis1 (Mar, 2011)</a>
+</tr>
+<tr>
+	<td>ASM15027v1
+	<td>EnsemblMetazoa
+	<td>Metazoa
+	<td>T. adhaerens
+	<td>Trichoplax adhaerens
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Trichoplax_adhaerens/'><!--
+		-->ASM15027v1 (Aug, 2006)</a>
+</tr>
+<tr>
+	<td>ZooNev1.0
+	<td>EnsemblMetazoa
+	<td>Insect
+	<td>Dampwood termite
+	<td>Zootermopsis nevadensis
+	<td><a target='_blank' href='http://metazoa.ensembl.org/Zootermopsis_nevadensis/'><!--
+		-->ZooNev1.0 (Jun, 2014)</a>
+</tr>
+<tr>
+	<td>ASM34733v1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Tausch's goatgrass
+	<td>Aegilops tauschii
+	<td><a target='_blank' href='http://plants.ensembl.org/Aegilops_tauschii/'><!--
+		-->ASM34733v1 (Dec, 2013)</a>
+</tr>
+<tr>
+	<td>AMTR1.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>A. trichopoda
+	<td>Amborella trichopoda
+	<td><a target='_blank' href='http://plants.ensembl.org/Amborella_trichopoda/'><!--
+		-->AMTR1.0 (Jan, 2014)</a>
+</tr>
+<tr>
+	<td>Araly_v.1.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Lyre-leaved rock-cress
+	<td>Arabidopsis lyrata
+	<td><a target='_blank' href='http://plants.ensembl.org/Arabidopsis_lyrata/'><!--
+		-->v.1.0 (Dec, 2008)</a>
+</tr>
+<tr>
+	<td>TAIR10_en
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Thale cress
+	<td>Arabidopsis thaliana
+	<td><a target='_blank' href='http://plants.ensembl.org/Arabidopsis_thaliana/'><!--
+		-->TAIR10 (Sep, 2010)</a>
+</tr>
+<tr>
+	<td>Bradi_v1.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Purple false brome
+	<td>Brachypodium distachyon
+	<td><a target='_blank' href='http://plants.ensembl.org/Brachypodium_distachyon/'><!--
+		-->v1.0 (Jan, 2009)</a>
+</tr>
+<tr>
+	<td>Braol_v2.1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Wild cabbage
+	<td>Brassica oleracea
+	<td><a target='_blank' href='http://plants.ensembl.org/Brassica_oleracea/'><!--
+		-->v2.1</a>
+</tr>
+<tr>
+	<td>IVFCAASv1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Chinese cabbage
+	<td>Brassica rapa
+	<td><a target='_blank' href='http://plants.ensembl.org/Brassica_rapa/'><!--
+		-->IVFCAASv1 (Aug, 2009)</a>
+</tr>
+<tr>
+	<td>Chlre_v3.1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Green algae
+	<td>Chlamydomonas reinhardtii
+	<td><a target='_blank' href='http://plants.ensembl.org/Chlamydomonas_reinhardtii/'><!--
+		-->v3.1 (Nov, 2007)</a>
+</tr>
+<tr>
+	<td>ASM9120v1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Red alga
+	<td>Cyanidioschyzon merolae
+	<td><a target='_blank' href='http://plants.ensembl.org/Cyanidioschyzon_merolae/'><!--
+		-->ASM9120v1 (Nov, 2008)</a>
+</tr>
+<tr>
+	<td>Soybn_V1.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Soybean
+	<td>Glycine max
+	<td><a target='_blank' href='http://plants.ensembl.org/Glycine_max/'><!--
+		-->V1.0 (Jan, 2010)</a>
+</tr>
+<tr>
+	<td>Horvu_v1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Barley
+	<td>Hordeum vulgare
+	<td><a target='_blank' href='http://plants.ensembl.org/Hordeum_vulgare/'><!--
+		-->082214v1 (Mar, 2012)</a>
+</tr>
+<tr>
+	<td>Lperr_V1.4
+	<td>EnsemblPlants
+	<td>Plant
+	<td>L. perrieri
+	<td>Leersia perrieri
+	<td><a target='_blank' href='http://plants.ensembl.org/Leersia_perrieri/'><!--
+		-->Lperr_V1.4 (Mar, 2014)</a>
+</tr>
+<tr>
+	<td>MedtrA17_4.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Barrel medic
+	<td>Medicago truncatula str. A17
+	<td><a target='_blank' href='http://plants.ensembl.org/Medicago_truncatula/'><!--
+		-->MedtrA17_4.0 (Jun, 2014)</a>
+</tr>
+<tr>
+	<td>MA1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Banana
+	<td>Musa acuminata
+	<td><a target='_blank' href='http://plants.ensembl.org/Musa_acuminata/'><!--
+		-->MA1 (Aug, 2012)</a>
+</tr>
+<tr>
+	<td>Obart_v1.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>African wild rice
+	<td>Oryza barthii
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_barthii/'><!--
+		-->Obart_v1.0 (Apr, 2014)</a>
+</tr>
+<tr>
+	<td>Orybr_v1.4b
+	<td>EnsemblPlants
+	<td>Plant
+	<td>African wild rice
+	<td>Oryza brachyantha
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_brachyantha/'><!--
+		-->Oryza_brachyantha.v1.4b (May, 2011)</a>
+</tr>
+<tr>
+	<td>AGI1.1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>African wild rice
+	<td>Oryza glaberrima
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_glaberrima/'><!--
+		-->AGI1.1 (May, 2011)</a>
+</tr>
+<tr>
+	<td>Orygl
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Brazilian wild rice
+	<td>Oryza glumaepatula
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_glumaepatula/'><!--
+		-->ALNU02000000 (Aug, 2013)</a>
+</tr>
+<tr>
+	<td>Orylo_v0117
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Longstamen rice
+	<td>Oryza longistaminata
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_longistaminata/'><!--
+		-->v0117-2013Aug (Aug, 2013)</a>
+</tr>
+<tr>
+	<td>Oryme_v1.3
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Australian wild rice
+	<td>Oryza meridionalis
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_meridionalis/'><!--
+		-->Oryza_meridionalis_v1.3 (Oct, 2014)</a>
+</tr>
+<tr>
+	<td>Oryni
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Indian wild rice
+	<td>Oryza nivara
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_nivara/'><!--
+		-->AWHD00000000 (Aug, 2013)</a>
+</tr>
+<tr>
+	<td>Orypu
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Red rice
+	<td>Oryza punctata
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_punctata/'><!--
+		-->AVCL00000000 (Aug, 2013)</a>
+</tr>
+<tr>
+	<td>PRJEB4137
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Brownbeard rice
+	<td>Oryza rufipogon
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_rufipogon/'><!--
+		-->PRJEB4137 (Aug, 2013)</a>
+</tr>
+<tr>
+	<td>ASM465v1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Rice
+	<td>Oryza sativa Indica
+	<td><a target='_blank' href='http://plants.ensembl.org/Oryza_indica/'><!--
+		-->ASM465v1 (Jan, 2005)</a>
+</tr>
+<tr>
+	<td>ASM9206v1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>O. lucimarinus
+	<td>Ostreococcus lucimarinus
+	<td><a target='_blank' href='http://plants.ensembl.org/Ostreococcus_lucimarinus/'><!--
+		-->ASM9206v1 (Jan, 2011)</a>
+</tr>
+<tr>
+	<td>ASM242v1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Moss
+	<td>Physcomitrella patens
+	<td><a target='_blank' href='http://plants.ensembl.org/Physcomitrella_patens/'><!--
+		-->ASM242v1 (Jul, 2006)</a>
+</tr>
+<tr>
+	<td>Poptr_JGI2.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Western balsam poplar
+	<td>Populus trichocarpa
+	<td><a target='_blank' href='http://plants.ensembl.org/Populus_trichocarpa/'><!--
+		-->JGI2.0 (Jan, 2010)</a>
+</tr>
+<tr>
+	<td>Prupe1_0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Peach
+	<td>Prunus persica
+	<td><a target='_blank' href='http://plants.ensembl.org/Prunus_persica/'><!--
+		-->Prupe1_0 (Mar, 2013)</a>
+</tr>
+<tr>
+	<td>Selml_v1.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Spikemoss
+	<td>Selaginella moellendorffii
+	<td><a target='_blank' href='http://plants.ensembl.org/Selaginella_moellendorffii/'><!--
+		-->v1.0 (May, 2011)</a>
+</tr>
+<tr>
+	<td>Setit_JGIv2.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Foxtail millet
+	<td>Setaria italica
+	<td><a target='_blank' href='http://plants.ensembl.org/Setaria_italica/'><!--
+		-->JGIv2.0 (Jan, 2012)</a>
+</tr>
+<tr>
+	<td>SL2.50
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Tomato
+	<td>Solanum lycopersicum str. Heinz 1706
+	<td><a target='_blank' href='http://plants.ensembl.org/Solanum_lycopersicum/'><!--
+		-->SL2.50 (Oct, 2014)</a>
+</tr>
+<tr>
+	<td>SolTub_3.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Potato
+	<td>Solanum tuberosum
+	<td><a target='_blank' href='http://plants.ensembl.org/Solanum_tuberosum/'><!--
+		-->SolTub_3.0 (May, 2011)</a>
+</tr>
+<tr>
+	<td>Sorbi1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Sorghum
+	<td>Sorghum bicolor
+	<td><a target='_blank' href='http://plants.ensembl.org/Sorghum_bicolor/'><!--
+		-->Sorbi1 (Dec, 2007)</a>
+</tr>
+<tr>
+	<td>Thecc_20110822
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Cacao
+	<td>Theobroma cacao
+	<td><a target='_blank' href='http://plants.ensembl.org/Theobroma_cacao/'><!--
+		-->Theobroma_cacao_20110822 (May, 2014)</a>
+</tr>
+<tr>
+	<td>IWGSC1.0
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Wheat
+	<td>Triticum aestivum
+	<td><a target='_blank' href='http://plants.ensembl.org/Triticum_aestivum/'><!--
+		-->IWGSC1.0+popseq (Nov, 2014)</a>
+</tr>
+<tr>
+	<td>ASM34745v1
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Red wild einkorn
+	<td>Triticum urartu
+	<td><a target='_blank' href='http://plants.ensembl.org/Triticum_urartu/'><!--
+		-->ASM34745v1 (Apr, 2013)</a>
+</tr>
+<tr>
+	<td>IGGP_12x
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Grape
+	<td>Vitis vinifera
+	<td><a target='_blank' href='http://plants.ensembl.org/Vitis_vinifera/'><!--
+		-->IGGP_12x (Jun, 2011)</a>
+</tr>
+<tr>
+	<td>AGPv3
+	<td>EnsemblPlants
+	<td>Plant
+	<td>Maize, Corn
+	<td>Zea mays
+	<td><a target='_blank' href='http://plants.ensembl.org/Zea_mays/'><!--
+		-->AGPv3 (Apr, 2013)</a>
+</tr>
+<tr>
+	<td>Ppatens_251_v3
+	<td>Phytozome
+	<td>Plant
+	<td>Moss
+	<td>Physcomitrella patens
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Ppatens'><!--
+		-->v3.0 (Oct, 2007)</a>
+</tr>
+<tr>
+	<td>Smoellendorffii_91_v1
+	<td>Phytozome
+	<td>Plant
+	<td>Spikemoss
+	<td>Selaginella moellendorffii
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Smoellendorffii'><!--
+		-->v1.0 (Dec, 2007)</a>
+</tr>
+<tr>
+	<td>Creinhardtii_281_v5_5
+	<td>Phytozome
+	<td>Plant
+	<td>Green algae
+	<td>Chlamydomonas reinhardtii
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Creinhardtii'><!--
+		-->v5.5 (May, 2014)</a>
+</tr>
+<tr>
+	<td>Olucimarinus_231_v2
+	<td>Phytozome
+	<td>Plant
+	<td>O. lucimarinus
+	<td>Ostreococcus lucimarinus
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Olucimarinus'><!--
+		-->v2.0 (Jan, 2011)</a>
+</tr>
+<tr>
+	<td>Cgrandiflora_v1
+	<td>Phytozome
+	<td>Plant
+	<td>C. grandiflora
+	<td>Capsella grandiflora
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Cgrandiflora'><!--
+		-->v1.1</a>
+</tr>
+<tr>
+	<td>Crubella_v1
+	<td>Phytozome
+	<td>Plant
+	<td>Red shepherd's purse
+	<td>Capsella rubella
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Crubella'><!--
+		-->v1.0</a>
+</tr>
+<tr>
+	<td>Cpapaya_r.Dec2008
+	<td>Phytozome
+	<td>Plant
+	<td>Papaya
+	<td>Carica papaya
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Cpapaya'><!--
+		-->ASGPBv0.4</a>
+</tr>
+<tr>
+	<td>CsubellipsoideaC169_v2.0
+	<td>Phytozome
+	<td>Plant
+	<td>C. subellipsoidea
+	<td>Coccomyxa subellipsoidea
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_CsubellipsoideaC_169'><!--
+		-->v2.0</a>
+</tr>
+<tr>
+	<td>Csativus_v1
+	<td>Phytozome
+	<td>Plant
+	<td>Cucumber
+	<td>Cucumis sativus
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Csativus'><!--
+		-->v1.0</a>
+</tr>
+<tr>
+	<td>Egrandis_v2.0
+	<td>Phytozome
+	<td>Plant
+	<td>Eucalyptus
+	<td>Eucalyptus grandis
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Egrandis_er'><!--
+		-->v2.0</a>
+</tr>
+<tr>
+	<td>Fvesca_v1.1
+	<td>Phytozome
+	<td>Plant
+	<td>Strawberry
+	<td>Fragaria vesca
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Fvesca'><!--
+		-->v1.1</a>
+</tr>
+<tr>
+	<td>Graimondii_v2.0
+	<td>Phytozome
+	<td>Plant
+	<td>Cotton
+	<td>Gossypium raimondii
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Graimondii'><!--
+		-->v2.1</a>
+</tr>
+<tr>
+	<td>Lusitatissimum_BGIv1.0
+	<td>Phytozome
+	<td>Plant
+	<td>Flax
+	<td>Linum usitatissimum
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Lusitatissimum'><!--
+		-->v1.0</a>
+</tr>
+<tr>
+	<td>Mdomestica_v1.0
+	<td>Phytozome
+	<td>Plant
+	<td>Apple
+	<td>Malus domestica
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Mdomestica'><!--
+		-->v1.0</a>
+</tr>
+<tr>
+	<td>Mesculenta_v6
+	<td>Phytozome
+	<td>Plant
+	<td>Cassava
+	<td>Manihot esculenta
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Mesculenta_er'><!--
+		-->v6.1</a>
+</tr>
+<tr>
+	<td>MpusillaCCMP1545_v3.0
+	<td>Phytozome
+	<td>Plant
+	<td>Picoplanktonic green alga
+	<td>Micromonas pusilla
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_MpusillaCCMP1545'><!--
+		-->v3.0</a>
+</tr>
+<tr>
+	<td>MpusillaRCC299_v3.0
+	<td>Phytozome
+	<td>Plant
+	<td>Picoplanktonic green alga
+	<td>Micromonas pusilla
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_MspRCC299'><!--
+		-->v3.0</a>
+</tr>
+<tr>
+	<td>Mguttatus_v2.0
+	<td>Phytozome
+	<td>Plant
+	<td>Monkey flower
+	<td>Mimulus guttatus
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Mguttatus'><!--
+		-->v2.0</a>
+</tr>
+<tr>
+	<td>Ppersica_v2.0
+	<td>Phytozome
+	<td>Plant
+	<td>Peach
+	<td>Prunus persica
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Ppersica_er'><!--
+		-->v2.1</a>
+</tr>
+<tr>
+	<td>Rcommunis_TIGR.0.1
+	<td>Phytozome
+	<td>Plant
+	<td>Castor bean
+	<td>Ricinus communis
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Rcommunis'><!--
+		-->v0.1</a>
+</tr>
+<tr>
+	<td>Spolyrhiza_v1
+	<td>Phytozome
+	<td>Plant
+	<td>Giant duckweed
+	<td>Spirodela polyrhiza
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Spolyrhiza_er'><!--
+		-->v2</a>
+</tr>
+<tr>
+	<td>Vcarteri_v2
+	<td>Phytozome
+	<td>Plant
+	<td>Green alga
+	<td>Volvox carteri
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Vcarteri'><!--
+		-->v2.0</a>
+</tr>
+<tr>
+	<td>Ptrichocarpa_v3.0
+	<td>Phytozome
+	<td>Plant
+	<td>Western balsam poplar
+	<td>Populus trichocarpa
+	<td><a target='_blank' href='http://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Ptrichocarpa'><!--
+		-->v3.0</a>
+</tr>
+<tr>
+	<td>Xenla9
+	<td>Xenbase
+	<td>Vertebrate
+	<td>African clawed frog
+	<td>Xenopus laevis
+	<td><a target='_blank' href='ftp://ftp.xenbase.org/pub/Genomics/JGI/Xenla9.1/'><!--
+		-->XenBase/JGI 9.1</a>
+</tr>
+<tr>
+	<td>Xenla7
+	<td>Xenbase
+	<td>Vertebrate
+	<td>African clawed frog
+	<td>Xenopus laevis
+	<td><a target='_blank' href='ftp://ftp.xenbase.org/pub/Genomics/JGI/Xenla7.1/'><!--
+		-->JGI 7.1/Xenla7 (Dec, 2013)</a>
+</tr>
+<tr>
+	<td>Xentr9
+	<td>Xenbase
+	<td>Vertebrate
+	<td>Western clawed frog
+	<td>Xenopus tropicalis
+	<td><a target='_blank' href='ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.0/'><!--
+		-->XenBase/JGI 9.0</a>
+</tr>
+<tr>
+	<td>Xentr8
+	<td>Xenbase
+	<td>Vertebrate
+	<td>Western clawed frog
+	<td>Xenopus tropicalis
+	<td><a target='_blank' href='ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr8.0/'><!--
+		-->XenBase/JGI 8.0</a>
+</tr>
+<tr>
+	<td>Xentr7
+	<td>Xenbase
+	<td>Vertebrate
+	<td>Western clawed frog
+	<td>Xenopus tropicalis
+	<td><a target='_blank' href='ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr7.1/'><!--
+		-->XenBase/JGI 7.1</a>
+</tr>
+<tr>
+	<td>TAIR10
+	<td>
+	<td>Plant
+	<td>Thale cress
+	<td>Arabidopsis thaliana
+	<td><a target='_blank' href='ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/'><!--
+		-->TAIR10 (Nov, 2010)</a>
+</tr>
+<tr>
+	<td>rice
+	<td>
+	<td>Plant
+	<td>Rice
+	<td>Oryza sativa
+	<td><a target='_blank' href='http://rapdb.dna.affrc.go.jp/download/irgsp1.html'><!--
+		-->Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)</a>
+</tr>
+<tr>
+	<td>sorBic
+	<td>
+	<td>Plant
+	<td>Sorghum
+	<td>Sorghum bicolor
+	<td><a target='_blank' href='ftp://ftp.jgi-psf.org/pub/compgen/phytozome/v9.0/early_release/Sbicolor_v2.1/assembly/'><!--
+		-->v2.1 (May, 2013)</a>
+</tr>
+<tr>
+	<td>Brana_v4.1
+	<td>Genoscope
+	<td>Plant
+	<td>Rapeseed
+	<td>Brassica napus
+	<td><a target='_blank' href='http://www.genoscope.cns.fr/brassicanapus/data/'><!--
+		-->Genoscope v4.1 (Aug, 2014)</a>
+</tr>
+<tr>
+	<td>lotus_r3.0
+	<td>Kazusa
+	<td>Plant
+	<td>Japanese trefoil
+	<td>Lotus japonicus
+	<td><a target='_blank' href='ftp://ftp.kazusa.or.jp/pub/lotus/lotus_r3.0/'><!--
+		-->build 3.0 (Aug, 2015)</a>
+</tr>
+<tr>
+	<td>Niben_v1.0.1
+	<td>
+	<td>Plant
+	<td>Tobacco
+	<td>Nicotiana benthamiana
+	<td><a target='_blank' href='ftp://ftp.solgenomics.net/genomes/Nicotiana_benthamiana/assemblies/Niben.genome.v1.0.1.scaffolds.nrcontigs.fasta.gz'><!--
+		-->v1.0.1 (Jul, 2014)</a>
+</tr>
+<tr>
+	<td>adzuki_ver3
+	<td>
+	<td>Plant
+	<td>Adzuki bean
+	<td>Vigna angularis
+	<td><a target='_blank' href='ftp://plantgenomics.snu.ac.kr/adzuki_ver3/adzuki.ver3.ref.fa.cor.fa.gz'><!--
+		-->ver3 (Nov, 2011)</a>
+</tr>
+<tr>
+	<td>RSA_r1.0
+	<td>Kazusa
+	<td>Plant
+	<td>Radish
+	<td>Raphanus sativus
+	<td><a target='_blank' href='ftp://ftp.kazusa.or.jp/pub/radish/'><!--
+		-->RSA_r1.0 (May, 2014)</a>
+</tr>
+<tr>
+	<td>bmor1
+	<td>Ensembl
+	<td>Insect
+	<td>Silkworm
+	<td>Bombyx mori
+	<td><a target='_blank' href='ftp://ftp.ensemblgenomes.org/pub/metazoa/release-17/fasta/bombyx_mori/dna/'><!--
+		-->Bmor1 (Apr, 2008)</a>
+</tr>
+<tr>
+	<td>pombe
+	<td>Ensembl
+	<td>Fungi
+	<td>Fission yeast (972h-)
+	<td>Schizosaccharomyces pombe
+	<td><a target='_blank' href='ftp://ftp.ensemblgenomes.org/pub/fungi/current/fasta/schizosaccharomyces_pombe/dna/'><!--
+		-->ASM294v2 (Nov, 2007)</a>
+</tr>
+<tr>
+	<td>macaque_CE_1
+	<td>
+	<td>Mammal
+	<td>Crab-eating macaque
+	<td>Macaca fascicularis
+	<td><a target='_blank' href='http://macaque.genomics.org.cn/page/species/download.jsp'><!--
+		-->CE_1.0 (Jul, 2011)</a>
+</tr>
+<tr>
+	<td>KH
+	<td>
+	<td>Deuterostome
+	<td>Transparent sea squirt
+	<td>Ciona intestinalis
+	<td><a target='_blank' href='http://ghost.zool.kyoto-u.ac.jp/download_kh.html'><!--
+		-->KH (Jul, 2008)</a>
+</tr>
+<tr>
+	<td>Spur_v3.1
+	<td>SpBase
+	<td>Deuterostome
+	<td>Purple sea urchin
+	<td>Strongylocentrotus purpuratus
+	<td><a target='_blank' href='http://www.spbase.org/SpBase/download/'><!--
+		-->Spur_v3.1 (Jun, 2011)</a>
+</tr>
+<tr>
+	<td>h7
+	<td>NCBI
+	<td>Metazoa
+	<td>Hydra
+	<td>Hydra vulgaris
+	<td><a target='_blank' href='ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/invertebrate/Hydra_vulgaris/all_assembly_versions/GCA_000219015.1_h7'><!--
+		-->h7 (Aug, 2008)</a>
+</tr>
+<tr>
+	<td>Hydra_RP_1.0
+	<td>NCBI
+	<td>Metazoa
+	<td>Hydra
+	<td>Hydra vulgaris
+	<td><a target='_blank' href='ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/invertebrate/Hydra_vulgaris/all_assembly_versions/GCA_000004095.1_Hydra_RP_1.0'><!--
+		-->Hydra_RP_1.0 (Oct, 2009)</a>
+</tr>
+</tbody>
+</table>
+</div>
 
 <h5>Illustrated overview of specificity check</h5>
 
