@@ -6,8 +6,6 @@
 # HTML::Template
 # JSON::XS
 # LWP::Simple (GetSequence.pm内で使用)
-# ./DBlist.pm (by Yuki Naito)
-# ./DBmenu.pm (by Yuki Naito)
 #
 # 2013-04-18 Yuki Naito (@meso_cacase) 実装開始
 
