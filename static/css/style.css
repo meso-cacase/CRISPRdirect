@@ -22,3 +22,13 @@
 .x-list-plain {
 	width: 100%;
 }
+body>div:first-of-type {
+	height: 118px;
+}
+form[name=crisprdirect] p.db {
+	min-height:  23px;
+	line-height: 26px;
+}
+form[name=crisprdirect] select[name=db] {
+	visibility: hidden;
+}

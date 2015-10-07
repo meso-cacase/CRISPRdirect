@@ -56,7 +56,7 @@ Ext.define('app', {
 		if(Ext.isEmpty(db_element)) return;
 		db_element.hide();
 		var dblist_render_html = Ext.DomHelper.createDom({tag:'div',cls:'dblist-render'});
-		var dblist_render = Ext.get(dblist_render_html).insertAfter(db_element);
+		var dblist_render = Ext.get(dblist_render_html)
 
 		self._dblistComboBox = Ext.create('app.field.dblist', {
 			id: self.makeId('ComboBox','dblist'),
@@ -84,7 +84,7 @@ Ext.define('app', {
 			})
 		});
 		if(self._dblistComboBox.queryFilter) self._dblistComboBox.store.addFilter(self._dblistComboBox.queryFilter, false);
-		db_element.remove();
+		dblist_render.replace(db_element);
 	},
 
 	initApp: function() {
