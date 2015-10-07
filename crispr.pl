@@ -436,6 +436,10 @@ my $select = $DBmenu::dbmenu ;
 $db and $select =~ s/(?<=option value=\'$db\')/ selected/ ;  # 生物種を選択
 #- ▲ プルダウンメニュー
 
+#- ▼ 新着情報 ($result が空白の場合にトップページの下部に表示)
+$result ||= HTML::Template->new(filename => 'news.tmpl')->output ;
+#- ▲ 新着情報 ($result が空白の場合にトップページの下部に表示)
+
 #- ▼ HTML出力
 my $template = HTML::Template->new(filename => 'index.tmpl') ;
 
