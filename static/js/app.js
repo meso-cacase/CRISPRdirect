@@ -31,7 +31,7 @@ Ext.define('app', {
 	initStore : function(){
 		var self = this;
 		var options;
-		try{options = Ext.query('select[name=db]>option');}catch(e){}
+		try{options = Ext.query('form[name='+self.getAppName().toLowerCase()+'] select[name=db]>option');}catch(e){}
 		if(Ext.isEmpty(options)) return;
 		var datas = options.map(function(dom){
 			var el = Ext.get(dom);
@@ -52,7 +52,7 @@ Ext.define('app', {
 	initUI : function(){
 		var self = this;
 		var db_element;
-		try{db_element = Ext.get(Ext.query('select[name=db]')[0]);}catch(e){}
+		try{db_element = Ext.get(Ext.query('form[name='+self.getAppName().toLowerCase()+'] select[name=db]')[0]);}catch(e){}
 		if(Ext.isEmpty(db_element)) return;
 		db_element.hide();
 		var dblist_render_html = Ext.DomHelper.createDom({tag:'div',cls:'dblist-render'});
@@ -84,6 +84,7 @@ Ext.define('app', {
 			})
 		});
 		if(self._dblistComboBox.queryFilter) self._dblistComboBox.store.addFilter(self._dblistComboBox.queryFilter, false);
+
 		dblist_render.replace(db_element);
 	},
 
@@ -141,4 +142,5 @@ Ext.define('app.field.dblist', {
 
 Ext.onReady(function(){
 	app.initApp();
+	Ext.getBody().setStyle({'visibility':'visible'});
 });

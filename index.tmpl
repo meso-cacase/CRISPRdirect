@@ -15,6 +15,11 @@
 	src='//cdn.sencha.com/ext/gpl/4.2.1/ext-all.js'></script>
 <script type='text/javascript' charset='utf-8'
 	src='//cdn.sencha.com/ext/gpl/4.2.1/locale/ext-lang-en.js'></script>
+<!-- suppress flicking by javascript on page load -->
+<style type='text/css'>body { visibility: hidden }</style>
+<noscript>
+<style type='text/css'>body { visibility: visible }</style>
+</noscript>
 <script type='text/javascript'>
 <!--
 function retrieveSequence(){
@@ -276,7 +281,7 @@ $(document).ready(function(){
 	<img src='help.png' alt='Help' width=36 height=15 border=0></a></span>
 </div>
 
-<div style='border-width:0; border-top:3px solid #2655A9'><!-- ________________________________________ -->
+<hr style='border-top:3px solid #2655A9'><!-- ________________________________________ -->
 
 
 <script type='text/javascript'>
