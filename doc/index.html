@@ -140,7 +140,7 @@ $(document).ready(function(){
 <h4>About CRISPRdirect</h4>
 
 <p>CRISPRdirect is a web server for selecting rational CRISPR/Cas targets from an input sequence.<br>
-	All services of the CRISPRdirect web server are provided free of charge to all users.</p>
+	All services of the CRISPRdirect web server are provided <b>free of charge to all users</b>.</p>
 
 
 <h4>Tutorial video</h4>
@@ -2374,7 +2374,7 @@ CAACATCTTTTACACTAAAAAGCC
 	<td>Required</td>
 	<td>A nucleotide sequence; FASTA format or<br>
 		a plain nucleotide sequence up to 10 kbp.</td>
-	<td>atgccgcgcgtcgtgcccgaccagagaagc ...</td>
+	<td><b>atgccgcgcgtcgtgcccgaccagagaagc</b> ...</td>
 </tr>
 <tr>
 	<td><b><i>accession</i></b></td>
@@ -2387,50 +2387,36 @@ CAACATCTTTTACACTAAAAAGCC
 		danRer7, ci2, dm3, ce10 and sacCer3.<br>
 		The variable <i>userseq</i> should be null.<br>
 		The variable <i>format</i> should be 'html' or 'txt'.</td>
-	<td>NM_001187<br>
-		hg19:chr7:900000-901000</td>
+	<td><b>NM_001187</b>,<br>
+		<b>hg19:chr7:900000-901000</b></td>
 </tr>
 <tr>
 	<td><b><i>pam</i></b></td>
 	<td>Optional</td>
 	<td>An arbitrary 3 nt sequence using IUB codes<br>
 		can be specified.</td>
-	<td>NGG (default), NAG, ...</td>
+	<td><b>NGG</b> (default), <b>NAG</b>, ...</td>
 </tr>
 <tr>
 	<td><b><i>db</i></b></td>
 	<td>Optional</td>
 	<td>Set species for off-target searching.</td>
-	<td>hg19    (Human         [<i>Homo sapiens</i>]; default),  <br>
-	    mm10    (Mouse         [<i>Mus musculus</i>]),           <br>
-	    rn5     (Rat           [<i>Rattus norvegicus</i>]),      <br>
-	    calJac3 (Marmoset      [<i>Callithrix jacchus</i>]),     <br>
-	    susScr3 (Pig           [<i>Sus scrofa</i>]),             <br>
-	    galGal4 (Chicken       [<i>Gallus gallus</i>]),          <br>
-	    xenTro3 (Frog          [<i>Xenopus tropicalis</i>]),     <br>
-	    Xenla7  (Frog          [<i>Xenopus laevis</i>]),         <br>
-	    danRer7 (Zebrafish     [<i>Danio rerio</i>]),            <br>
-	    ci2     (Sea squirt    [<i>Ciona intestinalis</i>]),     <br>
-	    dm3     (Fruit fly     [<i>Drosophila melanogaster</i>]),<br>
-	    ce10    (Roundworm     [<i>Caenorhabditis elegans</i>]), <br>
-	    TAIR10  (Thale cress   [<i>Arabidopsis thaliana</i>]),   <br>
-	    rice    (Rice          [<i>Oryza sativa</i>]),           <br>
-	    sorBic  (Sorghum       [<i>Sorghum bicolor</i>]),        <br>
-	    bmor1   (Silkworm      [<i>Bombyx mori</i>]),            <br>
-	    sacCer3 (Budding yeast [<i>Saccharomyces cerevisiae</i>])<br>
-	    pombe   (Fission yeast [<i>Schizosaccharomyces pombe</i>])</td>
+	<td><b>hg19</b> - Human (<i>Homo sapiens</i>); default,  <br>
+	    <b>mm10</b> - Mouse (<i>Mus musculus</i>),           <br>
+	    <b>rn5</b>  - Rat   (<i>Rattus norvegicus</i>), etc. <br>
+	    <a href='#db_list'>[Full list of species]</a></td>
 </tr>
 <tr>
 	<td><b><i>format</i></b></td>
 	<td>Optional</td>
 	<td>Output format.</td>
-	<td>html (default), txt, json</td>
+	<td><b>html</b> (default), <b>txt</b>, <b>json</b></td>
 </tr>
 <tr>
 	<td><b><i>download</i></b></td>
 	<td>Optional</td>
 	<td>Set 'download' to download result as a file.</td>
-	<td>download</td>
+	<td><b>download</b></td>
 </tr>
 </table>
 
@@ -2442,6 +2428,9 @@ CAACATCTTTTACACTAAAAAGCC
 		<a target='_blank' href='http://GGGenome.dbcls.jp/'>http://GGGenome.dbcls.jp/</a>
 	<li><b>siDirect</b>: highly effective, target-specific siRNA design software maintained by our group.<br>
 		<a target='_blank' href='http://siDirect2.RNAi.jp/'>http://siDirect2.RNAi.jp/</a>
+	<li><b>CRISPRdirect_crawl.pl</b>: s short perl script to retrieve CRISPRdirect results.<br>
+		<a target='_blank' href='https://github.com/meso-cacase/CRISPRdirect_crawl'>
+			https://github.com/meso-cacase/CRISPRdirect_crawl</a>
 </ul>
 
 
@@ -2451,7 +2440,7 @@ CAACATCTTTTACACTAAAAAGCC
 
 <ul>
 	<li>Naito Y, Hino K, Bono H, Ui-Tei K. (2015)<br>
-		<a href='http://dx.doi.org/10.1093/bioinformatics/btu743'>
+		<a href='http://bioinformatics.oxfordjournals.org/content/31/7/1120.full'>
 		CRISPRdirect: software for designing CRISPR/Cas guide RNA with reduced off-target sites.</a><br>
 		<i>Bioinformatics</i>, <b>31</b>, 1120-1123.
 </ul>
@@ -2462,7 +2451,7 @@ CAACATCTTTTACACTAAAAAGCC
 
 <ul>
 	<li>2015-10-05 CRISPRdirect supports 200+ species -
-	               <a href='#db_list'>List of databases</a>
+	               <a href='#db_list'>List of species</a>
 	<li>2015-01-13 HTTPS encrypted connections supported -
 	               <a href='https://crispr.dbcls.jp/'>https://crispr.dbcls.jp/</a>
 	<li>2014-11-21 CRISPRdirect paper has been published in <i>Bioinformatics</i> -
