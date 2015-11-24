@@ -233,6 +233,7 @@ RSA_r1.0                 	localhost  	48219	47219	46219	Radish (Raphanus sativus
 Ptrichocarpa_v3.0        	localhost  	48220	47220	46220	Western balsam poplar (Populus trichocarpa) genome, v3.0
 bmor1                    	localhost  	48221	47221	46221	Silkworm (Bombyx mori) genome, Bmor1 (Apr, 2008)
 pombe                    	localhost  	48222	47222	46222	Fission yeast (Schizosaccharomyces pombe) (972h-) genome, ASM294v2 (Nov, 2007)
+MG8                      	localhost  	48228	47228	46228	Rice blast fungus (Magnaporthe oryzae) (70-15) genome, MG8 (Sep, 2011)
 macaque_CE_1             	localhost  	48223	47223	46223	Crab-eating macaque (Macaca fascicularis) genome, CE_1.0 (Jul, 2011)
 KH                       	localhost  	48224	47224	46224	Sea squirt (Ciona intestinalis) genome, KH (Jul, 2008)
 Spur_v3.1                	localhost  	48225	47225	46225	Purple sea urchin (Strongylocentrotus purpuratus) genome, Spur_v3.1 (Jun, 2011)

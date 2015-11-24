@@ -294,6 +294,10 @@ StartService ()
 	sudo -u nobody $JELFISH -p 47222 -k 15 -hash $HASHDIR/pombe/pombe_15nt.jf >> $LOGDIR/pombe_15nt.log 2>&1 &
 	sudo -u nobody $JELFISH -p 46222 -k 11 -hash $HASHDIR/pombe/pombe_11nt.jf >> $LOGDIR/pombe_11nt.log 2>&1 &
 
+	sudo -u nobody $JELFISH -p 48228 -k 23 -hash $HASHDIR/MG8/MG8_23nt.jf >> $LOGDIR/MG8_23nt.log 2>&1 &
+	sudo -u nobody $JELFISH -p 47228 -k 15 -hash $HASHDIR/MG8/MG8_15nt.jf >> $LOGDIR/MG8_15nt.log 2>&1 &
+	sudo -u nobody $JELFISH -p 46228 -k 11 -hash $HASHDIR/MG8/MG8_11nt.jf >> $LOGDIR/MG8_11nt.log 2>&1 &
+
 	sudo -u nobody $JELFISH -p 48223 -k 23 -hash $HASHDIR/macaque_CE_1/macaque_CE_1_23nt.jf >> $LOGDIR/macaque_CE_1_23nt.log 2>&1 &
 	sudo -u nobody $JELFISH -p 47223 -k 15 -hash $HASHDIR/macaque_CE_1/macaque_CE_1_15nt.jf >> $LOGDIR/macaque_CE_1_15nt.log 2>&1 &
 	sudo -u nobody $JELFISH -p 46223 -k 11 -hash $HASHDIR/macaque_CE_1/macaque_CE_1_11nt.jf >> $LOGDIR/macaque_CE_1_11nt.log 2>&1 &
