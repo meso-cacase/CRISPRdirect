@@ -163,7 +163,7 @@ Araly_v.1.0    	172.18.8.75	48149	47149	46149	Lyre-leaved rock-cress (Arabidopsi
 TAIR10_en      	172.18.8.75	48150	47150	46150	Thale cress (Arabidopsis thaliana) genome, TAIR10 (Sep, 2010)
 Bradi_v1.0     	172.18.8.75	48151	47151	46151	Purple false brome (Brachypodium distachyon) genome, v1.0 (Jan, 2009)
 Braol_v2.1     	172.18.8.75	48152	47152	46152	Wild cabbage (Brassica oleracea) genome, v2.1
-IVFCAASv1      	172.18.8.75	48153	47153	46153	Chinese cabbage (Brassica rapa) genome, IVFCAASv1 (Aug, 2009)
+IVFCAASv1      	172.18.8.75	48153	47153	46153	Chinese cabbage (Brassica rapa ssp. pekinensis) genome, IVFCAASv1 (Aug, 2009)
 Chlre_v3.1     	172.18.8.75	48154	47154	46154	Green algae (Chlamydomonas reinhardtii) genome, v3.1 (Nov, 2007)
 ASM9120v1      	172.18.8.75	48155	47155	46155	Red alga (Cyanidioschyzon merolae) genome, ASM9120v1 (Nov, 2008)
 Soybn_V1.0     	172.18.8.75	48156	47156	46156	Soybean (Glycine max) genome, V1.0 (Jan, 2010)
@@ -180,7 +180,7 @@ Oryme_v1.3     	172.18.8.75	48166	47166	46166	Australian wild rice (Oryza meridi
 Oryni          	172.18.8.75	48167	47167	46167	Indian wild rice (Oryza nivara) genome, AWHD00000000 (Aug, 2013)
 Orypu          	172.18.8.75	48168	47168	46168	Red rice (Oryza punctata) genome, AVCL00000000 (Aug, 2013)
 PRJEB4137      	172.18.8.75	48169	47169	46169	Brownbeard rice (Oryza rufipogon) genome, PRJEB4137 (Aug, 2013)
-ASM465v1       	172.18.8.75	48170	47170	46170	Rice (Oryza sativa Indica) genome, ASM465v1 (Jan, 2005)
+ASM465v1       	172.18.8.75	48170	47170	46170	Rice (Oryza sativa ssp. indica) genome, ASM465v1 (Jan, 2005)
 ASM9206v1      	172.18.8.75	48171	47171	46171	Ostreococcus lucimarinus genome, ASM9206v1 (Jan, 2011)
 ASM242v1       	172.18.8.75	48172	47172	46172	Moss (Physcomitrella patens) genome, ASM242v1 (Jul, 2006)
 Poptr_JGI2.0   	172.18.8.75	48173	47173	46173	Western balsam poplar (Populus trichocarpa) genome, JGI2.0 (Jan, 2010)
@@ -223,7 +223,7 @@ Xentr9                   	localhost  	48209	47209	46209	Frog (Xenopus tropicalis
 Xentr8                   	localhost  	48210	47210	46210	Frog (Xenopus tropicalis) genome, XenBase/JGI 8.0
 Xentr7                   	localhost  	48211	47211	46211	Frog (Xenopus tropicalis) genome, XenBase/JGI 7.1
 TAIR10                   	localhost  	48212	47212	46212	Thale cress (Arabidopsis thaliana) genome, TAIR10 (Nov, 2010)
-rice                     	localhost  	48213	47213	46213	Rice (Oryza sativa) genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)
+rice                     	localhost  	48213	47213	46213	Rice (Oryza sativa ssp. japonica) genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)
 sorBic                   	localhost  	48214	47214	46214	Sorghum (Sorghum bicolor) genome, Sorghum bicolor v2.1 (May, 2013)
 Brana_v4.1               	localhost  	48215	47215	46215	Rapeseed (Brassica napus) genome, Genoscope v4.1 (Aug, 2014)
 lotus_r3.0               	localhost  	48216	47216	46216	Japanese trefoil (Lotus japonicus) genome, build 3.0 (Aug, 2015)
