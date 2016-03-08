@@ -19,7 +19,7 @@ sub crispr_design {
 
 my $targetlength = 23 ;
 my $maxlength    = 10000 ;
-my $timeout      = 30 ;
+my $timeout      = 120 ;
 
 my $fasta = $_[0] or return '' ;
 my $db    = $_[1] // '' ;
