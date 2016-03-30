@@ -209,14 +209,11 @@ sorBic   	172.18.8.70	42403	    	Sorghum genome, Sorghum bicolor v2.1 (May, 2013
 bmor1    	172.18.8.70	42303	Ensembl	Silkworm genome, Bmor1 (Apr, 2008)	Bombyx mori
 pombe    	172.18.8.70	42453	EnsemblFungi	S. pombe (972h-) genome, ASM294v2 (Nov, 2007)	Schizosaccharomyces pombe;fission yeast
 MG8      	172.18.8.77	42463	EnsemblFungi	Magnaporthe oryzae (70-15) genome, MG8 (Sep, 2011)	Magnaporthe oryzae;rice blast fungus
-prok     	172.18.8.70	42323	    	Prokaryotic TogoGenome from RefSeq 62 (Nov, 2013)	
-ddbj     	172.18.8.70	42313	DDBJ	DDBJ release 92.0 (Feb, 2013)	
 Xentr7               	172.18.8.77	43013	Xenbase  	Xenopus tropicalis genome, XenBase/JGI 7.1	Xenopus tropicalis;western clawed frog
 Xentr8               	172.18.8.77	43023	Xenbase  	Xenopus tropicalis genome, XenBase/JGI 8.0	Xenopus tropicalis;western clawed frog
 Xentr9               	172.18.8.77	42513	Xenbase  	Xenopus tropicalis genome, XenBase/JGI 9.0	Xenopus tropicalis;western clawed frog
 Xenla9               	172.18.8.77	42523	Xenbase  	Xenopus laevis genome, XenBase/JGI 9.1	Xenopus laevis;african clawed frog
 macaque_CE_1         	172.18.8.77	43043	         	Crab-eating macaque genome, CE_1.0 (Jul, 2011)	Macaca fascicularis
-macaque_CE_1_cds     	172.18.8.77	43053	         	Crab-eating macaque CDS, CE_1.0 (Jul, 2011)	Macaca fascicularis
 KH                   	172.18.8.77	42533	         	Ciona intestinalis genome, KH (Jul, 2008)	Ciona intestinalis;transparent sea squirt
 Spur_v3.1            	172.18.8.77	42543	SpBase   	S. purpuratus genome, Spur_v3.1 (Jun, 2011)	Strongylocentrotus purpuratus;purple sea urchin
 h7                   	172.18.8.77	42553	NCBI     	Hydra genome, h7 (Aug, 2008)	Hydra vulgaris
@@ -227,7 +224,6 @@ Niben_v1.0.1         	172.18.8.77	42593	         	Nicotiana benthamiana genome, 
 adzuki_ver3          	172.18.8.77	42603	         	Vigna angularis genome, ver3 (Nov, 2011)	Vigna angularis;adzuki bean
 RSA_r1.0             	172.18.8.77	42613	Kazusa   	Raphanus sativus genome, RSA_r1.0 (May, 2014)	Raphanus sativus;radish
 MesAur1.0            	172.18.8.77	42623	         	Golden hamster genome, MesAur1.0 (Mar, 2013)	Mesocricetus auratus;golden hamster
-16SrRNA              	172.18.8.77	50053	         	DDBJ 16S rRNA of prokaryotes (Dec, 2014)	
 Ppatens_251_v3          	172.18.8.74	42013	Phytozome	Physcomitrella patens genome, v3.0 (Oct, 2007)	Physcomitrella patens;moss
 Smoellendorffii_91_v1   	172.18.8.74	42023	Phytozome	Selaginella moellendorffii genome, v1.0 (Dec, 2007)	Selaginella moellendorffii;spikemoss
 Creinhardtii_281_v5_5   	172.18.8.74	42033	Phytozome	Chlamydomonas reinhardtii genome, v5.5 (May, 2014)	Chlamydomonas reinhardtii;green algae
@@ -251,49 +247,6 @@ Rcommunis_TIGR.0.1      	172.18.8.74	47303	Phytozome	Ricinus communis genome, v0
 Spolyrhiza_v1           	172.18.8.74	47333	Phytozome	Spirodela polyrhiza genome, v2	Spirodela polyrhiza;giant duckweed
 Vcarteri_v2             	172.18.8.74	47343	Phytozome	Volvox carteri genome, v2.0	Volvox carteri;green alga
 Ptrichocarpa_v3.0       	172.18.8.74	47353	Phytozome	Populus trichocarpa genome, v3.0	Populus trichocarpa;western balsam poplar
-refseq70             	172.18.8.74	60003	RefSeq   	RefSeq complete RNA release 70 (May, 2015)	
-refseq71             	172.18.8.74	60013	RefSeq   	RefSeq complete RNA release 71 (Jul, 2015)	
-refseq72             	172.18.8.74	60023	RefSeq   	RefSeq complete RNA release 72 (Sep, 2015)	
-refseq               	172.18.8.74	60023	RefSeq   	RefSeq complete RNA release 72 (Sep, 2015)	
-hs_refseq            	172.18.8.75	42393	RefSeq   	RefSeq human RNA release 60 (Jul, 2013)	Homo sapiens
-mm_refseq            	172.18.8.75	42433	RefSeq   	RefSeq mouse RNA release 60 (Jul, 2013)	Mus musculus
-hg19_pre_mRNA        	172.18.8.75	50013	         	Human pre mRNA, Bits DB (Dec, 2014)	Homo sapiens
-mm10_pre_mRNA        	172.18.8.75	50023	         	Mouse pre mRNA, Bits DB (Dec, 2014)	Mus musculus
-hg19_pre_mRNA_v2     	172.18.8.75	50033	         	Human pre mRNA, Bits DB v2 (Feb, 2015)	Homo sapiens
-mm10_pre_mRNA_v2     	172.18.8.75	50043	         	Mouse pre mRNA, Bits DB v2 (Feb, 2015)	Mus musculus
-hs_refseq70          	172.18.8.75	50063	RefSeq   	RefSeq human RNA release 70 (May, 2015)	Homo sapiens
-mm_refseq70          	172.18.8.75	50073	RefSeq   	RefSeq mouse RNA release 70 (May, 2015)	Mus musculus
-hs_pre_mRNA_201505   	172.18.8.75	50083	         	Human pre mRNA, refseq70-hg19 (May, 2015)	Homo sapiens
-mm_pre_mRNA_201505   	172.18.8.75	50093	         	Mouse pre mRNA, refseq70-mm10 (May, 2015)	Mus musculus
-hs_pre_mRNA_nr_201505	172.18.8.75	50103	         	Human non-redundant pre mRNA, refseq70-hg19 (May, 2015)	Homo sapiens
-mm_pre_mRNA_nr_201505	172.18.8.75	50113	         	Mouse non-redundant pre mRNA, refseq70-mm10 (May, 2015)	Mus musculus
-hsnm_refseq70        	172.18.8.75	50123	RefSeq   	RefSeq human RNA (NM/NR) release 70 (May, 2015)	Homo sapiens
-hsxm_refseq70        	172.18.8.75	50133	RefSeq   	RefSeq human RNA (XM/XR) release 70 (May, 2015)	Homo sapiens
-mmnm_refseq70        	172.18.8.75	50143	RefSeq   	RefSeq mouse RNA (NM/NR) release 70 (May, 2015)	Mus musculus
-mmxm_refseq70        	172.18.8.75	50153	RefSeq   	RefSeq mouse RNA (XM/XR) release 70 (May, 2015)	Mus musculus
-rn_refseq70          	172.18.8.75	50163	RefSeq   	RefSeq rat RNA release 70 (May, 2015)	Rattus norvegicus
-rnnm_refseq70        	172.18.8.75	50173	RefSeq   	RefSeq rat RNA (NM/NR) release 70 (May, 2015)	Rattus norvegicus
-rnxm_refseq70        	172.18.8.75	50183	RefSeq   	RefSeq rat RNA (XM/XR) release 70 (May, 2015)	Rattus norvegicus
-ddbj101hum           	172.18.8.71	61023	DDBJ     	DDBJ release 101.0, HUM division (Jun, 2015)	ddbjhum
-ddbj101pri           	172.18.8.71	61033	DDBJ     	DDBJ release 101.0, PRI division (Jun, 2015)	ddbjpri
-ddbj101rod           	172.18.8.71	61043	DDBJ     	DDBJ release 101.0, ROD division (Jun, 2015)	ddbjrod
-ddbj101mam           	172.18.8.71	61053	DDBJ     	DDBJ release 101.0, MAM division (Jun, 2015)	ddbjmam
-ddbj101vrt           	172.18.8.71	61063	DDBJ     	DDBJ release 101.0, VRT division (Jun, 2015)	ddbjvrt
-ddbj101inv           	172.18.8.71	61073	DDBJ     	DDBJ release 101.0, INV division (Jun, 2015)	ddbjinv
-ddbj101pln           	172.18.8.71	61083	DDBJ     	DDBJ release 101.0, PLN division (Jun, 2015)	ddbjpln
-ddbj101bct           	172.18.8.71	61093	DDBJ     	DDBJ release 101.0, BCT division (Jun, 2015)	ddbjbct
-ddbj101vrl           	172.18.8.71	61103	DDBJ     	DDBJ release 101.0, VRL division (Jun, 2015)	ddbjvrl
-ddbj101phg           	172.18.8.71	61113	DDBJ     	DDBJ release 101.0, PHG division (Jun, 2015)	ddbjphg
-ddbj101pat           	172.18.8.72	61123	DDBJ     	DDBJ release 101.0, PAT division (Jun, 2015)	ddbjpat
-ddbj101env           	172.18.8.72	61133	DDBJ     	DDBJ release 101.0, ENV division (Jun, 2015)	ddbjenv
-ddbj101syn           	172.18.8.72	61143	DDBJ     	DDBJ release 101.0, SYN division (Jun, 2015)	ddbjsyn
-ddbj101est           	172.18.8.72	61153	DDBJ     	DDBJ release 101.0, EST division (Jun, 2015)	ddbjest
-ddbj101tsa           	172.18.8.73	61163	DDBJ     	DDBJ release 101.0, TSA division (Jun, 2015)	ddbjtsa
-ddbj101gss           	172.18.8.73	61173	DDBJ     	DDBJ release 101.0, GSS division (Jun, 2015)	ddbjgss
-ddbj101htc           	172.18.8.73	61183	DDBJ     	DDBJ release 101.0, HTC division (Jun, 2015)	ddbjhtc
-ddbj101htg           	172.18.8.73	61193	DDBJ     	DDBJ release 101.0, HTG division (Jun, 2015)	ddbjhtg
-ddbj101sts           	172.18.8.73	61203	DDBJ     	DDBJ release 101.0, STS division (Jun, 2015)	ddbjsts
-ddbj101una           	172.18.8.73	61213	DDBJ     	DDBJ release 101.0, UNA division (Jun, 2015)	ddbjuna
 --EOS--
 
 return 1 ;
