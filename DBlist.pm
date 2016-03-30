@@ -239,6 +239,7 @@ KH                       	localhost  	48224	47224	46224	Sea squirt (Ciona intest
 Spur_v3.1                	localhost  	48225	47225	46225	Purple sea urchin (Strongylocentrotus purpuratus) genome, Spur_v3.1 (Jun, 2011)
 h7                       	localhost  	48226	47226	46226	Hydra vulgaris genome, h7 (Aug, 2008)
 Hydra_RP_1.0             	localhost  	48227	47227	46227	Hydra vulgaris genome, Hydra_RP_1.0 (Oct, 2009)
+MesAur1.0                	localhost  	48229	47229	46229	Golden hamster (Mesocricetus auratus) genome, MesAur1.0 (Mar, 2013)
 --EOS--
 
 return 1 ;

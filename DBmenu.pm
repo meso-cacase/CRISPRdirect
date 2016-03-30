@@ -237,6 +237,7 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'Spur_v3.1\'                 synonym=\"$db_synonym{'Spur_v3.1'                }\">$db_fullname{'Spur_v3.1'                }</option>
 		<option value=\'h7\'                        synonym=\"$db_synonym{'h7'                       }\">$db_fullname{'h7'                       }</option>
 		<option value=\'Hydra_RP_1.0\'              synonym=\"$db_synonym{'Hydra_RP_1.0'             }\">$db_fullname{'Hydra_RP_1.0'             }</option>
+		<option value=\'MesAur1.0\'                 synonym=\"$db_synonym{'MesAur1.0'                }\">$db_fullname{'MesAur1.0'                }</option>
 --EOS--
 
 return 1 ;

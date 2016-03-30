@@ -317,6 +317,10 @@ StartService ()
 	sudo -u nobody $JELFISH -p 48227 -k 23 -hash $HASHDIR/Hydra_RP_1.0/Hydra_RP_1.0_23nt.jf >> $LOGDIR/Hydra_RP_1.0_23nt.log 2>&1 &
 	sudo -u nobody $JELFISH -p 47227 -k 15 -hash $HASHDIR/Hydra_RP_1.0/Hydra_RP_1.0_15nt.jf >> $LOGDIR/Hydra_RP_1.0_15nt.log 2>&1 &
 	sudo -u nobody $JELFISH -p 46227 -k 11 -hash $HASHDIR/Hydra_RP_1.0/Hydra_RP_1.0_11nt.jf >> $LOGDIR/Hydra_RP_1.0_11nt.log 2>&1 &
+
+	sudo -u nobody $JELFISH -p 48229 -k 23 -hash $HASHDIR/MesAur1.0/MesAur1.0_23nt.jf >> $LOGDIR/MesAur1.0_23nt.log 2>&1 &
+	sudo -u nobody $JELFISH -p 47229 -k 15 -hash $HASHDIR/MesAur1.0/MesAur1.0_15nt.jf >> $LOGDIR/MesAur1.0_15nt.log 2>&1 &
+	sudo -u nobody $JELFISH -p 46229 -k 11 -hash $HASHDIR/MesAur1.0/MesAur1.0_11nt.jf >> $LOGDIR/MesAur1.0_11nt.log 2>&1 &
 }
 
 StopService ()
