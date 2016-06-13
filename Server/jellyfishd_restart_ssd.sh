@@ -182,3 +182,43 @@ $JELFISH -p 46051 -k 11 -hash $HASHDIR/macEug2/macEug2_11nt.jf >> $LOGDIR/macEug
 $JELFISH -p 48052 -k 23 -hash $HASHDIR/cerSim1/cerSim1_23nt.jf >> $LOGDIR/cerSim1_23nt.log 2>&1 &
 $JELFISH -p 47052 -k 15 -hash $HASHDIR/cerSim1/cerSim1_15nt.jf >> $LOGDIR/cerSim1_15nt.log 2>&1 &
 $JELFISH -p 46052 -k 11 -hash $HASHDIR/cerSim1/cerSim1_11nt.jf >> $LOGDIR/cerSim1_11nt.log 2>&1 &
+
+$JELFISH -p 48230 -k 23 -hash $HASHDIR/ASM644v2/ASM644v2_23nt.jf >> $LOGDIR/ASM644v2_23nt.log 2>&1 &
+$JELFISH -p 47230 -k 15 -hash $HASHDIR/ASM644v2/ASM644v2_15nt.jf >> $LOGDIR/ASM644v2_15nt.log 2>&1 &
+$JELFISH -p 46230 -k 11 -hash $HASHDIR/ASM644v2/ASM644v2_11nt.jf >> $LOGDIR/ASM644v2_11nt.log 2>&1 &
+
+$JELFISH -p 48231 -k 23 -hash $HASHDIR/ASM251v1/ASM251v1_23nt.jf >> $LOGDIR/ASM251v1_23nt.log 2>&1 &
+$JELFISH -p 47231 -k 15 -hash $HASHDIR/ASM251v1/ASM251v1_15nt.jf >> $LOGDIR/ASM251v1_15nt.log 2>&1 &
+$JELFISH -p 46231 -k 11 -hash $HASHDIR/ASM251v1/ASM251v1_11nt.jf >> $LOGDIR/ASM251v1_11nt.log 2>&1 &
+
+$JELFISH -p 48232 -k 23 -hash $HASHDIR/ASM252v1/ASM252v1_23nt.jf >> $LOGDIR/ASM252v1_23nt.log 2>&1 &
+$JELFISH -p 47232 -k 15 -hash $HASHDIR/ASM252v1/ASM252v1_15nt.jf >> $LOGDIR/ASM252v1_15nt.log 2>&1 &
+$JELFISH -p 46232 -k 11 -hash $HASHDIR/ASM252v1/ASM252v1_11nt.jf >> $LOGDIR/ASM252v1_11nt.log 2>&1 &
+
+$JELFISH -p 48233 -k 23 -hash $HASHDIR/RR/RR_23nt.jf >> $LOGDIR/RR_23nt.log 2>&1 &
+$JELFISH -p 47233 -k 15 -hash $HASHDIR/RR/RR_15nt.jf >> $LOGDIR/RR_15nt.log 2>&1 &
+$JELFISH -p 46233 -k 11 -hash $HASHDIR/RR/RR_11nt.jf >> $LOGDIR/RR_11nt.log 2>&1 &
+
+$JELFISH -p 48234 -k 23 -hash $HASHDIR/BX/BX_23nt.jf >> $LOGDIR/BX_23nt.log 2>&1 &
+$JELFISH -p 47234 -k 15 -hash $HASHDIR/BX/BX_15nt.jf >> $LOGDIR/BX_15nt.log 2>&1 &
+$JELFISH -p 46234 -k 11 -hash $HASHDIR/BX/BX_11nt.jf >> $LOGDIR/BX_11nt.log 2>&1 &
+
+$JELFISH -p 48235 -k 23 -hash $HASHDIR/RHOziaDV1.0/RHOziaDV1.0_23nt.jf >> $LOGDIR/RHOziaDV1.0_23nt.log 2>&1 &
+$JELFISH -p 47235 -k 15 -hash $HASHDIR/RHOziaDV1.0/RHOziaDV1.0_15nt.jf >> $LOGDIR/RHOziaDV1.0_15nt.log 2>&1 &
+$JELFISH -p 46235 -k 11 -hash $HASHDIR/RHOziaDV1.0/RHOziaDV1.0_11nt.jf >> $LOGDIR/RHOziaDV1.0_11nt.log 2>&1 &
+
+$JELFISH -p 48236 -k 23 -hash $HASHDIR/Tetth/Tetth_23nt.jf >> $LOGDIR/Tetth_23nt.log 2>&1 &
+$JELFISH -p 47236 -k 15 -hash $HASHDIR/Tetth/Tetth_15nt.jf >> $LOGDIR/Tetth_15nt.log 2>&1 &
+$JELFISH -p 46236 -k 11 -hash $HASHDIR/Tetth/Tetth_11nt.jf >> $LOGDIR/Tetth_11nt.log 2>&1 &
+
+$JELFISH -p 48237 -k 23 -hash $HASHDIR/Tetbo/Tetbo_23nt.jf >> $LOGDIR/Tetbo_23nt.log 2>&1 &
+$JELFISH -p 47237 -k 15 -hash $HASHDIR/Tetbo/Tetbo_15nt.jf >> $LOGDIR/Tetbo_15nt.log 2>&1 &
+$JELFISH -p 46237 -k 11 -hash $HASHDIR/Tetbo/Tetbo_11nt.jf >> $LOGDIR/Tetbo_11nt.log 2>&1 &
+
+$JELFISH -p 48238 -k 23 -hash $HASHDIR/Tetel/Tetel_23nt.jf >> $LOGDIR/Tetel_23nt.log 2>&1 &
+$JELFISH -p 47238 -k 15 -hash $HASHDIR/Tetel/Tetel_15nt.jf >> $LOGDIR/Tetel_15nt.log 2>&1 &
+$JELFISH -p 46238 -k 11 -hash $HASHDIR/Tetel/Tetel_11nt.jf >> $LOGDIR/Tetel_11nt.log 2>&1 &
+
+$JELFISH -p 48239 -k 23 -hash $HASHDIR/Tetma/Tetma_23nt.jf >> $LOGDIR/Tetma_23nt.log 2>&1 &
+$JELFISH -p 47239 -k 15 -hash $HASHDIR/Tetma/Tetma_15nt.jf >> $LOGDIR/Tetma_15nt.log 2>&1 &
+$JELFISH -p 46239 -k 11 -hash $HASHDIR/Tetma/Tetma_11nt.jf >> $LOGDIR/Tetma_11nt.log 2>&1 &

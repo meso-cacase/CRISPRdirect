@@ -227,17 +227,27 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'Xentr7\'                    synonym=\"$db_synonym{'Xentr7'                   }\">$db_fullname{'Xentr7'                   }</option>
 		<option value=\'Brana_v4.1\'                synonym=\"$db_synonym{'Brana_v4.1'               }\">$db_fullname{'Brana_v4.1'               }</option>
 		<option value=\'lotus_r3.0\'                synonym=\"$db_synonym{'lotus_r3.0'               }\">$db_fullname{'lotus_r3.0'               }</option>
+		<option value=\'BX\'                        synonym=\"$db_synonym{'BX'                       }\">$db_fullname{'BX'                       }</option>
 		<option value=\'Niben_v1.0.1\'              synonym=\"$db_synonym{'Niben_v1.0.1'             }\">$db_fullname{'Niben_v1.0.1'             }</option>
 		<option value=\'adzuki_ver3\'               synonym=\"$db_synonym{'adzuki_ver3'              }\">$db_fullname{'adzuki_ver3'              }</option>
 		<option value=\'RSA_r1.0\'                  synonym=\"$db_synonym{'RSA_r1.0'                 }\">$db_fullname{'RSA_r1.0'                 }</option>
 		<option value=\'Ptrichocarpa_v3.0\'         synonym=\"$db_synonym{'Ptrichocarpa_v3.0'        }\">$db_fullname{'Ptrichocarpa_v3.0'        }</option>
 		<option value=\'MG8\'                       synonym=\"$db_synonym{'MG8'                      }\">$db_fullname{'MG8'                      }</option>
+		<option value=\'ASM644v2\'                  synonym=\"$db_synonym{'ASM644v2'                 }\">$db_fullname{'ASM644v2'                 }</option>
+		<option value=\'ASM251v1\'                  synonym=\"$db_synonym{'ASM251v1'                 }\">$db_fullname{'ASM251v1'                 }</option>
+		<option value=\'ASM252v1\'                  synonym=\"$db_synonym{'ASM252v1'                 }\">$db_fullname{'ASM252v1'                 }</option>
+		<option value=\'RR\'                        synonym=\"$db_synonym{'RR'                       }\">$db_fullname{'RR'                       }</option>
+		<option value=\'RHOziaDV1.0\'               synonym=\"$db_synonym{'RHOziaDV1.0'              }\">$db_fullname{'RHOziaDV1.0'              }</option>
 		<option value=\'macaque_CE_1\'              synonym=\"$db_synonym{'macaque_CE_1'             }\">$db_fullname{'macaque_CE_1'             }</option>
+		<option value=\'MesAur1.0\'                 synonym=\"$db_synonym{'MesAur1.0'                }\">$db_fullname{'MesAur1.0'                }</option>
 		<option value=\'KH\'                        synonym=\"$db_synonym{'KH'                       }\">$db_fullname{'KH'                       }</option>
 		<option value=\'Spur_v3.1\'                 synonym=\"$db_synonym{'Spur_v3.1'                }\">$db_fullname{'Spur_v3.1'                }</option>
 		<option value=\'h7\'                        synonym=\"$db_synonym{'h7'                       }\">$db_fullname{'h7'                       }</option>
 		<option value=\'Hydra_RP_1.0\'              synonym=\"$db_synonym{'Hydra_RP_1.0'             }\">$db_fullname{'Hydra_RP_1.0'             }</option>
-		<option value=\'MesAur1.0\'                 synonym=\"$db_synonym{'MesAur1.0'                }\">$db_fullname{'MesAur1.0'                }</option>
+		<option value=\'Tetth\'                     synonym=\"$db_synonym{'Tetth'                    }\">$db_fullname{'Tetth'                    }</option>
+		<option value=\'Tetbo\'                     synonym=\"$db_synonym{'Tetbo'                    }\">$db_fullname{'Tetbo'                    }</option>
+		<option value=\'Tetel\'                     synonym=\"$db_synonym{'Tetel'                    }\">$db_fullname{'Tetel'                    }</option>
+		<option value=\'Tetma\'                     synonym=\"$db_synonym{'Tetma'                    }\">$db_fullname{'Tetma'                    }</option>
 --EOS--
 
 return 1 ;

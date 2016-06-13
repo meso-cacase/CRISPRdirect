@@ -240,6 +240,16 @@ Spur_v3.1                	localhost  	48225	47225	46225	Purple sea urchin (Stron
 h7                       	localhost  	48226	47226	46226	Hydra vulgaris genome, h7 (Aug, 2008)
 Hydra_RP_1.0             	localhost  	48227	47227	46227	Hydra vulgaris genome, Hydra_RP_1.0 (Oct, 2009)
 MesAur1.0                	localhost  	48229	47229	46229	Golden hamster (Mesocricetus auratus) genome, MesAur1.0 (Mar, 2013)
+ASM644v2                 	172.18.8.70	48230	47230	46230	Marine yeast (Debaryomyces hansenii, CBS767) genome, ASM644v2 (Feb, 2015)
+ASM251v1                 	172.18.8.70	48231	47231	46231	Yeast (Kluyveromyces lactis) genome, ASM251v1 (Feb, 2015)
+ASM252v1                 	172.18.8.70	48232	47232	46232	Oleaginous yeast (Yarrowia lipolytica) genome, ASM252v1 (May, 2012)
+RR                       	172.18.8.70	48233	47233	46233	Wheat head blight fungus (Fusarium graminearum) genome, RR (Nov, 2014)
+BX                       	172.18.8.70	48234	47234	46234	Tobacco (Nicotiana tabacum, BX) genome, Ntab-BX (2014)
+RHOziaDV1.0              	172.18.8.70	48235	47235	46235	Oleaginous yeast (Rhodotorula toruloides, NP11) genome, RHOziaDV1.0 (Apr, 2013)
+Tetth                    	172.18.8.70	48236	47236	46236	Tetrahymena thermophila genome (Jun, 2014)
+Tetbo                    	172.18.8.70	48237	47237	46237	Tetrahymena borealis genome (Oct, 2012)
+Tetel                    	172.18.8.70	48238	47238	46238	Tetrahymena elliotti genome (Oct, 2012)
+Tetma                    	172.18.8.70	48239	47239	46239	Tetrahymena malaccensis genome (Oct, 2012)
 --EOS--
 
 return 1 ;
