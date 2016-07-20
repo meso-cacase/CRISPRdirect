@@ -9,8 +9,8 @@
 # Trying 127.0.0.1...
 # Connected to localhost.
 # Escape character is '^]'.
-# atgcatgcatg <- 塩基配列を送信
-# 3659 <- ゲノムにおける頻度が整数で返ってくる
+# cgggcttcngg <- 塩基配列を送信、縮重塩基にも対応
+# 1306 <- ゲノムにおける頻度が整数で返ってくる
 # Connection closed by foreign host.
 # %
 #
@@ -21,6 +21,7 @@
 # Jellyfish: http://www.cbcb.umd.edu/software/jellyfish/
 #
 # 2013-12-19 Yuki Naito (@meso_cacase)
+# 2016-07-19 Yuki Naito (@meso_cacase) 縮重塩基に対応
 
 use warnings ;
 use strict ;
@@ -100,8 +101,16 @@ while (1){
 	(my $seq = <CLIENT>) =~ s/[\n\r].*//s ;
 
 	# ゲノムにおける頻度を取得
-	my $count = -1 ;  # エラーの場合は -1 を返す
-	if ($seq =~ /^[atgc]{$k}$/i){
+	my $count = 0 ;
+	foreach ( iub_expand($seq) ){
+		my $seq = $_ ;
+
+		# 塩基配列をチェックし、エラーの場合は -1 を返す
+		unless ($seq =~ /^[atgc]{$k}$/i){
+			$count = -1 ;
+			last ;
+		}
+
 		$expect->send("$seq\n") ;
 
 		$expect->expect($timeout,
@@ -118,7 +127,7 @@ while (1){
 			} ],
 			[ qr/(?<=$seq\s)\d+/i => sub {
 				my $exp = shift ;
-				$count = $exp->match() ;
+				$count += $exp->match() ;
 			} ],
 		) ;
 	}
@@ -139,5 +148,41 @@ sub timestamp {  # タイムスタンプを 2000-01-01 00:00:00 の形式で出�
 my ($sec, $min, $hour, $mday, $mon, $year) = localtime ;
 return sprintf("%04d-%02d-%02d %02d:%02d:%02d",
 	$year+1900, $mon+1, $mday, $hour, $min, $sec) ;
+} ;
+# ====================
+sub iub_expand {  # 塩基配列のIUBコードを展開してリストを返す
+my @in = @_ ;
+my @out ;
+while (my $seq = shift @in){
+	if (
+		$seq =~ s/^(.*?)R(.*)$/$1A$2,$1G$2/             or  # R = A/G
+		$seq =~ s/^(.*?)r(.*)$/$1a$2,$1g$2/             or
+		$seq =~ s/^(.*?)Y(.*)$/$1T$2,$1C$2/             or  # Y = T/C
+		$seq =~ s/^(.*?)y(.*)$/$1t$2,$1c$2/             or
+		$seq =~ s/^(.*?)K(.*)$/$1T$2,$1G$2/             or  # K = T/G
+		$seq =~ s/^(.*?)k(.*)$/$1t$2,$1g$2/             or
+		$seq =~ s/^(.*?)M(.*)$/$1A$2,$1C$2/             or  # M = A/C
+		$seq =~ s/^(.*?)m(.*)$/$1a$2,$1c$2/             or
+		$seq =~ s/^(.*?)S(.*)$/$1G$2,$1C$2/             or  # S = G/C
+		$seq =~ s/^(.*?)s(.*)$/$1g$2,$1c$2/             or
+		$seq =~ s/^(.*?)W(.*)$/$1A$2,$1T$2/             or  # W = A/T
+		$seq =~ s/^(.*?)w(.*)$/$1a$2,$1t$2/             or
+		$seq =~ s/^(.*?)B(.*)$/$1T$2,$1G$2,$1C$2/       or  # B = T/G/C
+		$seq =~ s/^(.*?)b(.*)$/$1t$2,$1g$2,$1c$2/       or
+		$seq =~ s/^(.*?)D(.*)$/$1A$2,$1T$2,$1G$2/       or  # D = A/T/G
+		$seq =~ s/^(.*?)d(.*)$/$1a$2,$1t$2,$1g$2/       or
+		$seq =~ s/^(.*?)H(.*)$/$1A$2,$1T$2,$1C$2/       or  # H = A/T/C
+		$seq =~ s/^(.*?)h(.*)$/$1a$2,$1t$2,$1c$2/       or
+		$seq =~ s/^(.*?)V(.*)$/$1A$2,$1G$2,$1C$2/       or  # V = A/G/C
+		$seq =~ s/^(.*?)v(.*)$/$1a$2,$1g$2,$1c$2/       or
+		$seq =~ s/^(.*?)N(.*)$/$1A$2,$1T$2,$1G$2,$1C$2/ or  # N = A/T/G/C
+		$seq =~ s/^(.*?)n(.*)$/$1a$2,$1t$2,$1g$2,$1c$2/
+	){
+		unshift @in, split(/,/, $seq) ;
+	} else {
+		push @out, $seq ;
+	}
+}
+return @out ;
 } ;
 # ====================
