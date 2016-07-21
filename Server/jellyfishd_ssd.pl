@@ -22,6 +22,7 @@
 #
 # 2013-12-19 Yuki Naito (@meso_cacase)
 # 2016-07-19 Yuki Naito (@meso_cacase) 縮重塩基に対応
+# 2016-07-21 Yuki Naito (@meso_cacase) 複数のhashfileに対応
 
 use warnings ;
 use strict ;
@@ -33,17 +34,21 @@ my $jellyfish = '/backup/jellyfish-1.1.10_ssd/bin/jellyfish' ;
 my $timeout   = 2 ;  # Expectのタイムアウト秒
 
 # コマンドラインオプションを取得
-my $port     = '' ;
-my $hashfile = '' ;
-my $k        = '' ;
+my $port = '' ;
+my @hashfile ;
 GetOptions(
-        'port=i' => \$port,
-        'hash=s' => \$hashfile,
-        'k=i'    => \$k,  # 頻度を求めるk-merの長さ
+	'port=i'     => \$port,
+	'hash=s{1,}' => \@hashfile,  # -h file1 file2 file3 ...
 ) ;
 $port     or die "ERROR : -p port required.\n" ;
-$hashfile or die "ERROR : -h hashfile required.\n" ;
-$k        or die "ERROR : -k oligolength required.\n" ;
+@hashfile or die "ERROR : -h hashfile required.\n" ;
+
+# ハッシュファイル一覧を %hashfile に格納
+# k が同一であるハッシュファイルが複数指定された場合は最後のものを使用
+my %hashfile ;
+foreach (@hashfile){
+	$hashfile{kmer_length($_)} = $_ ;
+}
 
 # ソケット生成
 socket(CLIENT_WAITING, PF_INET, SOCK_STREAM, 0)
@@ -63,24 +68,30 @@ listen(CLIENT_WAITING, SOMAXCONN)
 
 $| = 1 ;
 
-(my $hashname = $hashfile) =~ s{.*/}{} ;
+my @hashname = map { $hashfile{$_} } (sort keys %hashfile) ;
+map { s|.*/|| } @hashname ;
 print "[@{[ timestamp() ]}] [JellyfishServer] " .
-      "Starting server: port $port, hash $hashname, k=$k\n" ;
+      "Starting server: port $port, hash @hashname\n" ;
 
 # jellyfishコマンドを起動
 JELLYFISH:
-my $command = "$jellyfish query -C $hashfile" ;
-my $expect  = Expect->spawn("$command ; echo ___JELLYFISH_TERMINATED___")
-	or die "ERROR : cannot exec jellyfish ($!)" ;
+my %expect ;
+foreach (sort keys %hashfile){
+	my $command = "$jellyfish query -C $hashfile{$_}" ;
+	print "[@{[ timestamp() ]}] [JellyfishServer] " .
+	      "k=$_: $command\n" ;
+	$expect{$_} = Expect->spawn("$command ; echo ___JELLYFISH_TERMINATED___")
+		or die "ERROR : cannot exec jellyfish ($!)" ;
 
-# jellyfishの入出力をSTDOUTに出力しない
-$expect->log_stdout(0) ;
+	# jellyfishの入出力をSTDOUTに出力しない
+	$expect{$_}->log_stdout(0) ;
 
-# jellyfishコマンドの起動チェック
-$expect->expect($timeout,
-	[ qr/___JELLYFISH_TERMINATED___/ => sub {
-		die "ERROR : jellyfish terminated ($!)" ;
-	}]) ;
+	# jellyfishコマンドの起動チェック
+	$expect{$_}->expect($timeout,
+		[ qr/___JELLYFISH_TERMINATED___/ => sub {
+			die "ERROR : jellyfish terminated ($!)" ;
+		}]) ;
+}
 
 # while(1)することで、1つの接続が終わっても次の接続に備える
 while (1){
@@ -104,16 +115,17 @@ while (1){
 	my $count = 0 ;
 	foreach ( iub_expand($seq) ){
 		my $seq = $_ ;
+		my $k   = length $seq ;
 
 		# 塩基配列をチェックし、エラーの場合は -1 を返す
-		unless ($seq =~ /^[atgc]{$k}$/i){
+		unless ($seq =~ /^[atgc]+$/i and defined $hashfile{$k}){
 			$count = -1 ;
 			last ;
 		}
 
-		$expect->send("$seq\n") ;
+		$expect{$k}->send("$seq\n") ;
 
-		$expect->expect($timeout,
+		$expect{$k}->expect($timeout,
 			[ qr/___JELLYFISH_TERMINATED___/ => sub {
 				print "[@{[ timestamp() ]}] [JellyfishServer] " .
 				      "seq=$seq, count=-1\n" ;
@@ -148,6 +160,16 @@ sub timestamp {  # タイムスタンプを 2000-01-01 00:00:00 の形式で出�
 my ($sec, $min, $hour, $mday, $mon, $year) = localtime ;
 return sprintf("%04d-%02d-%02d %02d:%02d:%02d",
 	$year+1900, $mon+1, $mday, $hour, $min, $sec) ;
+} ;
+# ====================
+sub kmer_length {  # ハッシュファイルの k-mer length を返す
+my $hashfile = $_[0] ;
+if ($hashfile =~ /(\d+)nt\.jf/){  # ファイル名に k が含まれている場合はそれを返す
+	return $1 ;
+} else {
+	my $stats = `$jellyfish stats -v $hashfile` ;
+	return ($stats =~ /^k-mer length.*:\s*(\d+)$/m) ? $1 : '' ;
+}
 } ;
 # ====================
 sub iub_expand {  # 塩基配列のIUBコードを展開してリストを返す
