@@ -47,7 +47,7 @@ our %db_synonym ;                 # データベースの別名 (メニュー検
 foreach (split /\n/, $dbconf){
 	chomp ;
 	map {defined $_ ? ($_ =~ s/\s*$//g) : ($_ = '')}  # 後方のスペースを除去
-		my ($db, undef, undef, undef, undef, $fullname, $synonym) = split /\t/ ; #CHANGE tyamamot
+		my ($db, undef, undef, $fullname, $synonym) = split /\t/ ; #CHANGE tyamamot
 	$db_fullname{$db} = $fullname ;
 	$db_synonym{$db}  = $synonym ;	#ADD tyamamot
 }

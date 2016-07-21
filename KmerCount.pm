@@ -74,16 +74,14 @@ my (%host, %port) ;
 foreach (split /\n/, $dbconf){
 	chomp ;
 	map {defined $_ ? ($_ =~ s/\s*$//g) : ($_ = '')}  # 後方のスペースを除去
-		my ($db, $host, $port_23nt, $port_15nt, $port_11nt) = split /\t/ ;
-	$host{$db}     = $host ;
-	$port{$db}{23} = $port_23nt ;
-	$port{$db}{15} = $port_15nt ;
-	$port{$db}{11} = $port_11nt ;
+		my ($db, $host, $port) = split /\t/ ;
+	$host{$db} = $host ;
+	$port{$db} = $port ;
 }
 
 my @hostport = (
-	$host{$db}     // 'localhost',
-	$port{$db}{$k} // 0,
+	$host{$db} // 'localhost',
+	$port{$db} // 0,
 ) ;
 
 return @hostport ;
