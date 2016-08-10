@@ -54,17 +54,6 @@ $JELFISH -p 48049 -hash $HASHDIR/echTel2/*.jf >> $LOGDIR/echTel2.log 2>&1 &
 $JELFISH -p 48050 -hash $HASHDIR/tupBel1/*.jf >> $LOGDIR/tupBel1.log 2>&1 &
 $JELFISH -p 48051 -hash $HASHDIR/macEug2/*.jf >> $LOGDIR/macEug2.log 2>&1 &
 $JELFISH -p 48052 -hash $HASHDIR/cerSim1/*.jf >> $LOGDIR/cerSim1.log 2>&1 &
-$JELFISH -p 48230 -hash $HASHDIR/ASM644v2/*.jf >> $LOGDIR/ASM644v2.log 2>&1 &
-$JELFISH -p 48231 -hash $HASHDIR/ASM251v1/*.jf >> $LOGDIR/ASM251v1.log 2>&1 &
-$JELFISH -p 48232 -hash $HASHDIR/ASM252v1/*.jf >> $LOGDIR/ASM252v1.log 2>&1 &
-$JELFISH -p 48233 -hash $HASHDIR/RR/*.jf >> $LOGDIR/RR.log 2>&1 &
-$JELFISH -p 48234 -hash $HASHDIR/BX/*.jf >> $LOGDIR/BX.log 2>&1 &
-$JELFISH -p 48235 -hash $HASHDIR/RHOziaDV1.0/*.jf >> $LOGDIR/RHOziaDV1.0.log 2>&1 &
-$JELFISH -p 48236 -hash $HASHDIR/Tetth/*.jf >> $LOGDIR/Tetth.log 2>&1 &
-$JELFISH -p 48237 -hash $HASHDIR/Tetbo/*.jf >> $LOGDIR/Tetbo.log 2>&1 &
-$JELFISH -p 48238 -hash $HASHDIR/Tetel/*.jf >> $LOGDIR/Tetel.log 2>&1 &
-$JELFISH -p 48239 -hash $HASHDIR/Tetma/*.jf >> $LOGDIR/Tetma.log 2>&1 &
-
 $JELFISH -p 48098 -hash $HASHDIR/OryAfe1.0/*.jf >> $LOGDIR/OryAfe1.0.log 2>&1 &
 $JELFISH -p 48099 -hash $HASHDIR/PoeFor_5.1.2/*.jf >> $LOGDIR/PoeFor_5.1.2.log 2>&1 &
 $JELFISH -p 48100 -hash $HASHDIR/CSAV2.0/*.jf >> $LOGDIR/CSAV2.0.log 2>&1 &
@@ -174,3 +163,13 @@ $JELFISH -p 48203 -hash $HASHDIR/Ppersica_v2.0/*.jf >> $LOGDIR/Ppersica_v2.0.log
 $JELFISH -p 48204 -hash $HASHDIR/Rcommunis_TIGR.0.1/*.jf >> $LOGDIR/Rcommunis_TIGR.0.1.log 2>&1 &
 $JELFISH -p 48205 -hash $HASHDIR/Spolyrhiza_v1/*.jf >> $LOGDIR/Spolyrhiza_v1.log 2>&1 &
 $JELFISH -p 48206 -hash $HASHDIR/Vcarteri_v2/*.jf >> $LOGDIR/Vcarteri_v2.log 2>&1 &
+$JELFISH -p 48230 -hash $HASHDIR/ASM644v2/*.jf >> $LOGDIR/ASM644v2.log 2>&1 &
+$JELFISH -p 48231 -hash $HASHDIR/ASM251v1/*.jf >> $LOGDIR/ASM251v1.log 2>&1 &
+$JELFISH -p 48232 -hash $HASHDIR/ASM252v1/*.jf >> $LOGDIR/ASM252v1.log 2>&1 &
+$JELFISH -p 48233 -hash $HASHDIR/RR/*.jf >> $LOGDIR/RR.log 2>&1 &
+$JELFISH -p 48234 -hash $HASHDIR/BX/*.jf >> $LOGDIR/BX.log 2>&1 &
+$JELFISH -p 48235 -hash $HASHDIR/RHOziaDV1.0/*.jf >> $LOGDIR/RHOziaDV1.0.log 2>&1 &
+$JELFISH -p 48236 -hash $HASHDIR/Tetth/*.jf >> $LOGDIR/Tetth.log 2>&1 &
+$JELFISH -p 48237 -hash $HASHDIR/Tetbo/*.jf >> $LOGDIR/Tetbo.log 2>&1 &
+$JELFISH -p 48238 -hash $HASHDIR/Tetel/*.jf >> $LOGDIR/Tetel.log 2>&1 &
+$JELFISH -p 48239 -hash $HASHDIR/Tetma/*.jf >> $LOGDIR/Tetma.log 2>&1 &
