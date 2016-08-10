@@ -7,7 +7,6 @@ package DBlist ;
 #
 # ホスト一覧：
 # 172.18.8.70	ssd.dbcls.jp
-# 172.18.8.75	s05.dbcls.jp
 
 $dbconfig =
 <<'--EOS--' ;
