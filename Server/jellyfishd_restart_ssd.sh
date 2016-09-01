@@ -173,3 +173,4 @@ $JELFISH -p 48236 -hash $HASHDIR/Tetth/*.jf >> $LOGDIR/Tetth.log 2>&1 &
 $JELFISH -p 48237 -hash $HASHDIR/Tetbo/*.jf >> $LOGDIR/Tetbo.log 2>&1 &
 $JELFISH -p 48238 -hash $HASHDIR/Tetel/*.jf >> $LOGDIR/Tetel.log 2>&1 &
 $JELFISH -p 48239 -hash $HASHDIR/Tetma/*.jf >> $LOGDIR/Tetma.log 2>&1 &
+$JELFISH -p 48250 -hash $HASHDIR/JRGv1/*.jf >> $LOGDIR/JRGv1.log 2>&1 &

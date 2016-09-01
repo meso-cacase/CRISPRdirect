@@ -248,6 +248,7 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'Tetbo\'                     synonym=\"$db_synonym{'Tetbo'                    }\">$db_fullname{'Tetbo'                    }</option>
 		<option value=\'Tetel\'                     synonym=\"$db_synonym{'Tetel'                    }\">$db_fullname{'Tetel'                    }</option>
 		<option value=\'Tetma\'                     synonym=\"$db_synonym{'Tetma'                    }\">$db_fullname{'Tetma'                    }</option>
+		<option value=\'JRGv1\'                     synonym=\"$db_synonym{'JRGv1'                    }\">$db_fullname{'JRGv1'                    }</option>
 --EOS--
 
 return 1 ;

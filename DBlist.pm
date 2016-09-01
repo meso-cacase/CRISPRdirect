@@ -249,6 +249,7 @@ Tetth                    	172.18.8.70	48236	Tetrahymena thermophila genome (Jun,
 Tetbo                    	172.18.8.70	48237	Tetrahymena borealis genome (Oct, 2012)
 Tetel                    	172.18.8.70	48238	Tetrahymena elliotti genome (Oct, 2012)
 Tetma                    	172.18.8.70	48239	Tetrahymena malaccensis genome (Oct, 2012)
+JRGv1                    	172.18.8.70	48250	Human (Homo sapiens) Japanese Reference Genome, JRGv1 (Aug, 2016)
 --EOS--
 
 return 1 ;
