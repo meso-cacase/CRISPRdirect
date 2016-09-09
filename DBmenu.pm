@@ -248,6 +248,16 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'Tetbo\'                     synonym=\"$db_synonym{'Tetbo'                    }\">$db_fullname{'Tetbo'                    }</option>
 		<option value=\'Tetel\'                     synonym=\"$db_synonym{'Tetel'                    }\">$db_fullname{'Tetel'                    }</option>
 		<option value=\'Tetma\'                     synonym=\"$db_synonym{'Tetma'                    }\">$db_fullname{'Tetma'                    }</option>
+		<option value=\'img1\'                      synonym=\"$db_synonym{'img1'                     }\">$db_fullname{'img1'                     }</option>
+		<option value=\'stylo\'                     synonym=\"$db_synonym{'stylo'                    }\">$db_fullname{'stylo'                    }</option>
+		<option value=\'oxy\'                       synonym=\"$db_synonym{'oxy'                      }\">$db_fullname{'oxy'                      }</option>
+		<option value=\'oxymic\'                    synonym=\"$db_synonym{'oxymic'                   }\">$db_fullname{'oxymic'                   }</option>
+		<option value=\'A_nidulans_FGSC_A4\'        synonym=\"$db_synonym{'A_nidulans_FGSC_A4'       }\">$db_fullname{'A_nidulans_FGSC_A4'       }</option>
+		<option value=\'A_fumigatus_Af293\'         synonym=\"$db_synonym{'A_fumigatus_Af293'        }\">$db_fullname{'A_fumigatus_Af293'        }</option>
+		<option value=\'C_glabrata_CBS138\'         synonym=\"$db_synonym{'C_glabrata_CBS138'        }\">$db_fullname{'C_glabrata_CBS138'        }</option>
+		<option value=\'C_albicans_SC5314\'         synonym=\"$db_synonym{'C_albicans_SC5314'        }\">$db_fullname{'C_albicans_SC5314'        }</option>
+		<option value=\'JCVI_PMFA1_2.0\'            synonym=\"$db_synonym{'JCVI_PMFA1_2.0'           }\">$db_fullname{'JCVI_PMFA1_2.0'           }</option>
+		<option value=\'CC3\'                       synonym=\"$db_synonym{'CC3'                      }\">$db_fullname{'CC3'                      }</option>
 		<option value=\'JRGv1\'                     synonym=\"$db_synonym{'JRGv1'                    }\">$db_fullname{'JRGv1'                    }</option>
 --EOS--
 

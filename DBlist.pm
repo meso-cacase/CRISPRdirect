@@ -249,6 +249,16 @@ Tetth                    	172.18.8.70	48236	Tetrahymena thermophila genome (Jun,
 Tetbo                    	172.18.8.70	48237	Tetrahymena borealis genome (Oct, 2012)
 Tetel                    	172.18.8.70	48238	Tetrahymena elliotti genome (Oct, 2012)
 Tetma                    	172.18.8.70	48239	Tetrahymena malaccensis genome (Oct, 2012)
+img1                     	172.18.8.70	48240	Ichthyophthirius multifiliis macronuclear genome
+stylo                    	172.18.8.70	48241	Stylonychia lemnae macronuclear genome
+oxy                      	172.18.8.70	48242	Oxytricha trifallax macronuclear genome
+oxymic                   	172.18.8.70	48243	Oxytricha trifallax micronuclear genome
+A_nidulans_FGSC_A4       	172.18.8.70	48244	Aspergillus nidulans (Emericella nidulans) (FGSC A4) genome, s10-m04-r06 (Apr, 2016)
+A_fumigatus_Af293        	172.18.8.70	48245	Aspergillus fumigatus (Neosartorya fumigata) (Af293) genome, s03-m05-r06 (Apr, 2016)
+C_glabrata_CBS138        	172.18.8.70	48246	Candida glabrata (Torulopsis glabrata) (CBS138) genome, s02-m07-r08 (Jun, 2016)
+C_albicans_SC5314        	172.18.8.70	48247	Candida albicans (SC5314) genome, Assembly 21, A21-s02-m09-r10 (Feb, 2016)
+JCVI_PMFA1_2.0           	172.18.8.70	48248	Penicillium marneffei (ATCC 18224) genome, JCVI-PMFA1-2.0 (Oct, 2008)
+CC3                      	172.18.8.70	48249	Inky cap fungus (Coprinopsis cinerea) okayama7#130 genome, CC3 (Aug, 2014)
 JRGv1                    	172.18.8.70	48250	Human (Homo sapiens) Japanese Reference Genome, JRGv1 (Aug, 2016)
 --EOS--
 

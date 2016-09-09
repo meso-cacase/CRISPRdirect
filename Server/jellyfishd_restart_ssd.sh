@@ -173,4 +173,14 @@ $JELFISH -p 48236 -hash $HASHDIR/Tetth/*.jf >> $LOGDIR/Tetth.log 2>&1 &
 $JELFISH -p 48237 -hash $HASHDIR/Tetbo/*.jf >> $LOGDIR/Tetbo.log 2>&1 &
 $JELFISH -p 48238 -hash $HASHDIR/Tetel/*.jf >> $LOGDIR/Tetel.log 2>&1 &
 $JELFISH -p 48239 -hash $HASHDIR/Tetma/*.jf >> $LOGDIR/Tetma.log 2>&1 &
+$JELFISH -p 48240 -hash $HASHDIR/img1/*.jf >> $LOGDIR/img1.log 2>&1 &
+$JELFISH -p 48241 -hash $HASHDIR/stylo/*.jf >> $LOGDIR/stylo.log 2>&1 &
+$JELFISH -p 48242 -hash $HASHDIR/oxy/*.jf >> $LOGDIR/oxy.log 2>&1 &
+$JELFISH -p 48243 -hash $HASHDIR/oxymic/*.jf >> $LOGDIR/oxymic.log 2>&1 &
+$JELFISH -p 48244 -hash $HASHDIR/A_nidulans_FGSC_A4/*.jf >> $LOGDIR/A_nidulans_FGSC_A4.log 2>&1 &
+$JELFISH -p 48245 -hash $HASHDIR/A_fumigatus_Af293/*.jf >> $LOGDIR/A_fumigatus_Af293.log 2>&1 &
+$JELFISH -p 48246 -hash $HASHDIR/C_glabrata_CBS138/*.jf >> $LOGDIR/C_glabrata_CBS138.log 2>&1 &
+$JELFISH -p 48247 -hash $HASHDIR/C_albicans_SC5314/*.jf >> $LOGDIR/C_albicans_SC5314.log 2>&1 &
+$JELFISH -p 48248 -hash $HASHDIR/JCVI_PMFA1_2.0/*.jf >> $LOGDIR/JCVI_PMFA1_2.0.log 2>&1 &
+$JELFISH -p 48249 -hash $HASHDIR/CC3/*.jf >> $LOGDIR/CC3.log 2>&1 &
 $JELFISH -p 48250 -hash $HASHDIR/JRGv1/*.jf >> $LOGDIR/JRGv1.log 2>&1 &
