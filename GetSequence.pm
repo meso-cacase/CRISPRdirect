@@ -28,9 +28,8 @@ my $accession = $_[0] or return '' ;
 # Accession番号が不正な文字を含まないか？
 $accession =~ /^[\w\.]+$/ or return "\nCannot retrieve sequence\n" ;
 
-my $uri   = "http://130.14.29.110/sviewer/" .
+my $uri   = "https://www.ncbi.nlm.nih.gov/sviewer/" .
             "?report=fasta&retmode=text&val=$accession" ;
-            # 130.14.29.110 = www.ncbi.nlm.nih.gov (DNS参照時間を短縮)
 
 my $fasta = get($uri) || "\nCannot retrieve sequence\n" ;
 
