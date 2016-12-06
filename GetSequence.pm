@@ -40,14 +40,14 @@ sub getgenomefasta {
 
 # ゲノムの座標をもとにTogoWSからFASTAを取得
 #
-# usage: $fasta = getgenomefasta('hg19:chr7:900000-901000') ;
+# usage: $fasta = getgenomefasta('hg19:chr7:900,000-901,000') ;
 #
 # エラーメッセージ :
 # 問い合わせに失敗　　 → 'Cannot retrieve sequence'
 # 座標の範囲が長すぎる → 'Sequence too long'
 #
 # 参考 :
-# http://togows.org/api/ucsc/hg19/chr7:900000-901000.fasta
+# http://togows.org/api/ucsc/hg19/chr7:900,000-901,000.fasta
 
 my $maxlength = 10000 ;
 
@@ -55,7 +55,7 @@ my $maxlength = 10000 ;
 my $query = $_[0] or return '' ;
 
 # 各変数が不正な文字を含まないか？
-$query =~ /(\w+):([^:]+):(\d+)-(\d+)/ or return "\nCannot retrieve sequence\n" ;
+$query =~ /(\w+):([^:]+):([,\d]+)-([,\d]+)/ or return "\nCannot retrieve sequence\n" ;
 
 my $db    = lc ($1 // '') ;
 my $chr   = $2 // '' ;
