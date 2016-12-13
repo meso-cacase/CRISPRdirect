@@ -36,7 +36,7 @@ my $tsv =
 # sequence_name:	$name
 # pam_sequence:	$pam
 # specificity_check:	$db
-# start	end	strand	sequence	GC	Tm	TTTT	hit_20mer	hit_12mer	hit_8mer
+# start	end	strand	sequence	GC	Tm	TTTT	RE_sites	hit_20mer	hit_12mer	hit_8mer
 #
 " ;
 
@@ -50,12 +50,32 @@ eval {
 	local $SIG{ALRM} = sub { die } ;
 	alarm $timeout ;
 
+#- ▽ 制限酵素サイトリストを読み込み
+my $enzymefile = 'enzymelist.txt' ;
+my @enzymelist ;
+if (-f $enzymefile and -r $enzymefile){
+	open FILE, $enzymefile ;
+	@enzymelist = <FILE> ;
+	close FILE ;
+}
+#- △ 制限酵素サイトリストを読み込み
+
 #- ▽ すべての部分配列を生成
 foreach (1..length($seq) - $targetlength + 1){
 	my $start     = $_ ;
 	my $end       = $start + $targetlength - 1 ;
 	my $targetseq = substr($seq, $start - 1, $targetlength) ;
 	my $reverseq  = comp($targetseq) ;
+
+	#-- ▽ 制限酵素サイトを判定
+	my @resite ;
+	foreach (@enzymelist){
+		chomp ;
+		my ($rename, undef, $reseq) = split /\t/ ;
+		($targetseq =~ /$reseq/i) and push @resite, $rename ;
+	}
+	my $resite = join ',', @resite ;
+	#-- △ 制限酵素サイトを判定
 
 	#-- ▽ (+)鎖を判定
 	if (substr($targetseq, -3) =~ /${pam_regexp}$/i and $targetseq =~ /^[atgc]+$/i){
@@ -73,6 +93,7 @@ foreach (1..length($seq) - $targetlength + 1){
 			'gc'       => $gc,
 			'tm'       => $tm,
 			'tttt'     => $tttt,
+			'resite'   => $resite,
 			'count23'  => $count23,
 			'count15'  => $count15,
 			'count11'  => $count11
@@ -96,6 +117,7 @@ foreach (1..length($seq) - $targetlength + 1){
 			'gc'       => $gc,
 			'tm'       => $tm,
 			'tttt'     => $tttt,
+			'resite'   => $resite,
 			'count23'  => $count23,
 			'count15'  => $count15,
 			'count11'  => $count11
@@ -122,6 +144,7 @@ foreach (@targetlist){
 		$$_{'gc'},
 		$$_{'tm'},
 		$$_{'tttt'},
+		$$_{'resite'},
 		$$_{'count23'},
 		$$_{'count15'},
 		$$_{'count11'}

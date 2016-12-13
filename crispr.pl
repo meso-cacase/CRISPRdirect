@@ -213,7 +213,7 @@ $error and
 my @table ;
 my $ggg = 'detail/en' ;  # GGGenome URI
 foreach (@result){
-	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $resite, $count23, $count15, $count11) = split /\t/ ;
 
 	my $target = ($strand eq '+') ?
 		substr($sequence, 0, 20) . '<span class=pam>' . substr($sequence, -3) . '</span>' :
@@ -232,6 +232,8 @@ foreach (@result){
 
 	$tttt = $tttt ? '+' : '-' ;
 
+	$resite =~ s/,/<br>/g ;
+
 	push @table,
 		"<tr>" . "\n" .
 		"	<td class=v>$start - $end"                            . "\n" .
@@ -242,6 +244,7 @@ foreach (@result){
 		"	<td class=o>$gc %"                                    . "\n" .
 		"	<td class=o>$tm &deg;C"                               . "\n" .
 		"	<td class=o>$tttt"                                    . "\n" .
+		"	<td class=o>$resite"                                  . "\n" .
 		"	<td class='g hits'>$count23"                          . "\n" .
 		"		<a target='_blank' class=detail"                  . "\n" .
 		"			href='$ggg/$db/$seq23'>[detail]</a>"          . "\n" .
@@ -292,7 +295,7 @@ return
 	"<tr>"                                             . "\n" .
 	"	<th class=v colspan=2>position"                . "\n" .
 	"	<th class=v colspan=1>target sequence"         . "\n" .
-	"	<th class=o colspan=3>sequence information"    . "\n" .
+	"	<th class=o colspan=4>sequence information"    . "\n" .
 	"	<th class=g colspan=3>number of target sites " . "\n" .
 	"		<a href='doc/off-target.html'"                                          . "\n" .
 	"			onclick=\"window.open("                                             . "\n" .
@@ -310,6 +313,7 @@ return
 	"	<th class=o>GC% of<br>20mer"                   . "\n" .
 	"	<th class=o>Tm of<br>20mer"                    . "\n" .
 	"	<th class=o>TTTT in<br>20mer"                  . "\n" .
+	"	<th class=o>restriction<br>sites"              . "\n" .
 	"	<th class=g>20mer<br>+PAM"                     . "\n" .
 	"	<th class=g>12mer<br>+PAM"                     . "\n" .
 	"	<th class=g>8mer<br>+PAM"                      . "\n" .
@@ -350,7 +354,7 @@ my @result = split /\n/, $result ;
 @result = grep(!/^#/, @result) ;
 
 foreach (@result){
-	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $resite, $count23, $count15, $count11) = split /\t/ ;
 	($strand eq '+') and ($start <= length $markfwd) and substr($markfwd, $start - 1, 1) =
 		($count23 == 1 and $count15 == 1 and $tttt == 0 ) ? '=' :
 		($count23 == 0 or $tttt == 1                    ) ? '-' :
@@ -489,7 +493,8 @@ my @result = split /\n/, $result ;
 
 my @json ;
 foreach (@result){
-	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $count23, $count15, $count11) = split /\t/ ;
+	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $resite, $count23, $count15, $count11) = split /\t/ ;
+	my @resite = split /,/, $resite ;
 	push @json, {
 		start     => $start,
 		end       => $end,
@@ -498,6 +503,7 @@ foreach (@result){
 		gc        => $gc,
 		tm        => $tm,
 		tttt      => $tttt,
+		resite    => \@resite, 
 		hit_20mer => $count23,
 		hit_12mer => $count15,
 		hit_8mer  => $count11

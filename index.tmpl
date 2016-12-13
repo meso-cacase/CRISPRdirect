@@ -121,8 +121,8 @@ jQuery.fn.dataTableExt.oSort['hits-desc'] = function(a,b) {
 jQuery.fn.dataTableExt.afnFiltering.push(
 	function(oSettings, aData, iDataIndex) {
 		var tttt       = aData[5] ;
-		var hit_20mer  = aData[6].replace( /\D.*/, '' ) ;
-		var hit_12mer  = aData[7].replace( /\D.*/, '' ) ;
+		var hit_20mer  = aData[7].replace( /\D.*/, '' ) ;
+		var hit_12mer  = aData[8].replace( /\D.*/, '' ) ;
 		var isSpecific = (hit_20mer == '1' && hit_12mer == '1' && tttt == '-') ;
 		return ($('#filter_highlight').is(':checked') ? isSpecific : true);
 	}
@@ -142,21 +142,22 @@ $(document).ready(function(){
 			null,                        // GC%
 			null,                        // Tm
 			null,                        // TTTT
+			null,                        // restriction sites
 			{'sType':'hits'},            // hit_20mer
 			{'sType':'hits'},            // hit_12mer
 			{'sType':'hits'},            // hit_8mer
 		],
 		'fnRowCallback'   : function( nRow, aData, iDisplayIndex, iDisplayIndexFull ){
 			var tttt      = aData[5] ;
-			var hit_20mer = aData[6].replace( /\D.*/, '' ) ;
-			var hit_12mer = aData[7].replace( /\D.*/, '' ) ;
+			var hit_20mer = aData[7].replace( /\D.*/, '' ) ;
+			var hit_12mer = aData[8].replace( /\D.*/, '' ) ;
 			// specific target sequence (Recommended)
 			if ( hit_20mer == '1' ){
-				$('td:eq(6)', nRow).css('font-weight', 'bold') ;
+				$('td:eq(7)', nRow).css('font-weight', 'bold') ;
 			}
 			// specific target sequence (Recommended)
 			if ( hit_12mer == '1' ){
-				$('td:eq(7)', nRow).css('font-weight', 'bold') ;
+				$('td:eq(8)', nRow).css('font-weight', 'bold') ;
 			}
 			// specific target sequence (Recommended)
 			if ( hit_20mer == '1' && hit_12mer == '1' && tttt == '-' ){
@@ -165,7 +166,7 @@ $(document).ready(function(){
 			// No hit against genomic sequences (Not recommended)
 			if ( hit_20mer == '0' ){
 				$(nRow).addClass('s') ;
-				$('td:eq(6)', nRow).css('color', '#cc6666') ;
+				$('td:eq(7)', nRow).css('color', '#cc6666') ;
 			}
 			// TTTT in 20mer (Not recommended)
 			if ( tttt == '+' ){
