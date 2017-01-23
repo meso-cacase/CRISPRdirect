@@ -29,6 +29,7 @@ $dbmenu = <<"--EOS--" ;
 		<option disabled>----------</option>
 		<option value=\'hg38\'            synonym=\"$db_synonym{'hg38'           }\">$db_fullname{'hg38'           }</option>
 		<option value=\'hg18\'            synonym=\"$db_synonym{'hg18'           }\">$db_fullname{'hg18'           }</option>
+		<option value=\'JRGv1\'           synonym=\"$db_synonym{'JRGv1'          }\">$db_fullname{'JRGv1'          }</option>
 		<option value=\'mm9\'             synonym=\"$db_synonym{'mm9'            }\">$db_fullname{'mm9'            }</option>
 		<option value=\'MSMv3\'           synonym=\"$db_synonym{'MSMv3'          }\">$db_fullname{'MSMv3'          }</option>
 		<option value=\'JF1v2\'           synonym=\"$db_synonym{'JF1v2'          }\">$db_fullname{'JF1v2'          }</option>
@@ -262,7 +263,6 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'C_albicans_SC5314\'         synonym=\"$db_synonym{'C_albicans_SC5314'        }\">$db_fullname{'C_albicans_SC5314'        }</option>
 		<option value=\'JCVI_PMFA1_2.0\'            synonym=\"$db_synonym{'JCVI_PMFA1_2.0'           }\">$db_fullname{'JCVI_PMFA1_2.0'           }</option>
 		<option value=\'CC3\'                       synonym=\"$db_synonym{'CC3'                      }\">$db_fullname{'CC3'                      }</option>
-		<option value=\'JRGv1\'                     synonym=\"$db_synonym{'JRGv1'                    }\">$db_fullname{'JRGv1'                    }</option>
 		<option value=\'YOKOZUNA-1\'      synonym=\"$db_synonym{'YOKOZUNA-1'     }\">$db_fullname{'YOKOZUNA-1'     }</option>
 		<option value=\'ASM15095v2\'      synonym=\"$db_synonym{'ASM15095v2'     }\">$db_fullname{'ASM15095v2'     }</option>
 		<option value=\'ASM14940v2\'      synonym=\"$db_synonym{'ASM14940v2'     }\">$db_fullname{'ASM14940v2'     }</option>
