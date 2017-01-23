@@ -30,6 +30,8 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'hg38\'            synonym=\"$db_synonym{'hg38'           }\">$db_fullname{'hg38'           }</option>
 		<option value=\'hg18\'            synonym=\"$db_synonym{'hg18'           }\">$db_fullname{'hg18'           }</option>
 		<option value=\'mm9\'             synonym=\"$db_synonym{'mm9'            }\">$db_fullname{'mm9'            }</option>
+		<option value=\'MSMv3\'           synonym=\"$db_synonym{'MSMv3'          }\">$db_fullname{'MSMv3'          }</option>
+		<option value=\'JF1v2\'           synonym=\"$db_synonym{'JF1v2'          }\">$db_fullname{'JF1v2'          }</option>
 		<option value=\'rn5\'             synonym=\"$db_synonym{'rn5'            }\">$db_fullname{'rn5'            }</option>
 		<option value=\'vicPac2\'         synonym=\"$db_synonym{'vicPac2'        }\">$db_fullname{'vicPac2'        }</option>
 		<option value=\'dasNov3\'         synonym=\"$db_synonym{'dasNov3'        }\">$db_fullname{'dasNov3'        }</option>
@@ -210,9 +212,11 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'CsubellipsoideaC169_v2.0\'  synonym=\"$db_synonym{'CsubellipsoideaC169_v2.0' }\">$db_fullname{'CsubellipsoideaC169_v2.0' }</option>
 		<option value=\'Csativus_v1\'               synonym=\"$db_synonym{'Csativus_v1'              }\">$db_fullname{'Csativus_v1'              }</option>
 		<option value=\'Egrandis_v2.0\'             synonym=\"$db_synonym{'Egrandis_v2.0'            }\">$db_fullname{'Egrandis_v2.0'            }</option>
+		<option value=\'fragaria_vesca_v2.0.a1\'    synonym=\"$db_synonym{'fragaria_vesca_v2.0.a1'   }\">$db_fullname{'fragaria_vesca_v2.0.a1'   }</option>
 		<option value=\'Fvesca_v1.1\'               synonym=\"$db_synonym{'Fvesca_v1.1'              }\">$db_fullname{'Fvesca_v1.1'              }</option>
 		<option value=\'Graimondii_v2.0\'           synonym=\"$db_synonym{'Graimondii_v2.0'          }\">$db_fullname{'Graimondii_v2.0'          }</option>
 		<option value=\'Lusitatissimum_BGIv1.0\'    synonym=\"$db_synonym{'Lusitatissimum_BGIv1.0'   }\">$db_fullname{'Lusitatissimum_BGIv1.0'   }</option>
+		<option value=\'malus_x_domestica_v1.0p\'   synonym=\"$db_synonym{'malus_x_domestica_v1.0p'  }\">$db_fullname{'malus_x_domestica_v1.0p'  }</option>
 		<option value=\'Mdomestica_v1.0\'           synonym=\"$db_synonym{'Mdomestica_v1.0'          }\">$db_fullname{'Mdomestica_v1.0'          }</option>
 		<option value=\'Mesculenta_v6\'             synonym=\"$db_synonym{'Mesculenta_v6'            }\">$db_fullname{'Mesculenta_v6'            }</option>
 		<option value=\'MpusillaCCMP1545_v3.0\'     synonym=\"$db_synonym{'MpusillaCCMP1545_v3.0'    }\">$db_fullname{'MpusillaCCMP1545_v3.0'    }</option>
@@ -259,6 +263,10 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'JCVI_PMFA1_2.0\'            synonym=\"$db_synonym{'JCVI_PMFA1_2.0'           }\">$db_fullname{'JCVI_PMFA1_2.0'           }</option>
 		<option value=\'CC3\'                       synonym=\"$db_synonym{'CC3'                      }\">$db_fullname{'CC3'                      }</option>
 		<option value=\'JRGv1\'                     synonym=\"$db_synonym{'JRGv1'                    }\">$db_fullname{'JRGv1'                    }</option>
+		<option value=\'YOKOZUNA-1\'      synonym=\"$db_synonym{'YOKOZUNA-1'     }\">$db_fullname{'YOKOZUNA-1'     }</option>
+		<option value=\'ASM15095v2\'      synonym=\"$db_synonym{'ASM15095v2'     }\">$db_fullname{'ASM15095v2'     }</option>
+		<option value=\'ASM14940v2\'      synonym=\"$db_synonym{'ASM14940v2'     }\">$db_fullname{'ASM14940v2'     }</option>
+		<option value=\'asagao\'          synonym=\"$db_synonym{'asagao'         }\">$db_fullname{'asagao'         }</option>
 --EOS--
 
 return 1 ;

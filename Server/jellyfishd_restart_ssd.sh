@@ -184,3 +184,11 @@ $JELFISH -p 48247 -hash $HASHDIR/C_albicans_SC5314/*.jf >> $LOGDIR/C_albicans_SC
 $JELFISH -p 48248 -hash $HASHDIR/JCVI_PMFA1_2.0/*.jf >> $LOGDIR/JCVI_PMFA1_2.0.log 2>&1 &
 $JELFISH -p 48249 -hash $HASHDIR/CC3/*.jf >> $LOGDIR/CC3.log 2>&1 &
 $JELFISH -p 48250 -hash $HASHDIR/JRGv1/*.jf >> $LOGDIR/JRGv1.log 2>&1 &
+$JELFISH -p 48251 -hash $HASHDIR/MSMv3/*.jf >> $LOGDIR/MSMv3.log 2>&1 &
+$JELFISH -p 48251 -hash $HASHDIR/JF1v2/*.jf >> $LOGDIR/JF1v2.log 2>&1 &
+$JELFISH -p 48253 -hash $HASHDIR/YOKOZUNA-1/*.jf >> $LOGDIR/YOKOZUNA-1.log 2>&1 &
+$JELFISH -p 48254 -hash $HASHDIR/ASM15095v2/*.jf >> $LOGDIR/ASM15095v2.log 2>&1 &
+$JELFISH -p 48255 -hash $HASHDIR/ASM14940v2/*.jf >> $LOGDIR/ASM14940v2.log 2>&1 &
+$JELFISH -p 48256 -hash $HASHDIR/asagao/*.jf >> $LOGDIR/asagao.log 2>&1 &
+$JELFISH -p 48257 -hash $HASHDIR/malus_x_domestica_v1.0p/*.jf >> $LOGDIR/malus_x_domestica_v1.0p.log 2>&1 &
+$JELFISH -p 48258 -hash $HASHDIR/fragaria_vesca_v2.0.a1/*.jf >> $LOGDIR/fragaria_vesca_v2.0.a1.log 2>&1 &

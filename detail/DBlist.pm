@@ -245,6 +245,14 @@ C_glabrata_CBS138    	172.18.8.72	42793	CGD      	Candida glabrata (CBS138) geno
 C_albicans_SC5314    	172.18.8.72	42803	CGD      	Candida albicans (SC5314) genome, Assembly 21, A21-s02-m09-r10 (Feb, 2016)	Candida albicans
 JCVI_PMFA1_2.0       	172.18.8.72	42813	NCBI     	Penicillium marneffei (ATCC 18224) genome, JCVI-PMFA1-2.0 (Oct, 2008)	Penicillium marneffei;Talaromyces marneffei
 JRGv1                	172.18.8.72	42833	ToMMo    	Human Japanese Reference Genome, JRGv1 (Aug, 2016)	Homo sapiens
+MSMv3                	172.18.8.72	42853	         	Mouse genome, MSMv3	Mus musculus
+JF1v2                	172.18.8.72	42863	         	Mouse genome, JF1v2	Mus musculus
+YOKOZUNA-1           	172.18.8.72	42873	         	Ramazzottius variornatus (YOKOZUNA-1) genome (Sep, 2016)	Ramazzottius variornatus;tardigrade;water bear
+ASM15095v2           	172.18.8.72	42883	EnsemblProtists	Phaeodactylum tricornutum genome, ASM15095v2 (Feb, 2010)	Phaeodactylum tricornutum;diatom
+ASM14940v2           	172.18.8.72	42893	EnsemblProtists	Thalassiosira pseudonana genome, ASM14940v2 (May, 2014)	Thalassiosira pseudonana;diatom
+asagao               	172.18.8.72	42903	         	Ipomoea nil (Tokyo Kokei Standard; TKS) genome (Sep, 2016)	Ipomoea nil;Pharbitis nil;japanese morning glory
+malus_x_domestica_v1.0p 	172.18.8.72	42913	         	Malus domestica genome, v1.0p (Aug, 2012)	Malus domestica;apple
+fragaria_vesca_v2.0.a1  	172.18.8.72	42923	         	Fragaria vesca genome, v2.0.a1 (Dec, 2014)	Fragaria vesca;strawberry
 Ppatens_251_v3          	172.18.8.74	42013	Phytozome	Physcomitrella patens genome, v3.0 (Oct, 2007)	Physcomitrella patens;moss
 Smoellendorffii_91_v1   	172.18.8.74	42023	Phytozome	Selaginella moellendorffii genome, v1.0 (Dec, 2007)	Selaginella moellendorffii;spikemoss
 Creinhardtii_281_v5_5   	172.18.8.74	42033	Phytozome	Chlamydomonas reinhardtii genome, v5.5 (May, 2014)	Chlamydomonas reinhardtii;green algae

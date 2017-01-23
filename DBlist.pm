@@ -15,6 +15,8 @@ hg19           	localhost  	48002	Human (Homo sapiens) genome, GRCh37/hg19 (Feb,
 hg18           	localhost  	48003	Human (Homo sapiens) genome, NCBI36/hg18 (Mar, 2006)
 mm10           	localhost  	48004	Mouse (Mus musculus) genome, GRCm38/mm10 (Dec, 2011)
 mm9            	localhost  	48005	Mouse (Mus musculus) genome, NCBI37/mm9 (Jul, 2007)
+MSMv3          	172.18.8.70	48251	Mouse (Mus musculus) genome, MSMv3
+JF1v2          	172.18.8.70	48252	Mouse (Mus musculus) genome, JF1v2
 rn6            	localhost  	48006	Rat (Rattus norvegicus) genome, RGSC 6.0/rn6 (Jul, 2014)
 rn5            	localhost  	48007	Rat (Rattus norvegicus) genome, RGSC 5.0/rn5 (Mar, 2012)
 vicPac2        	172.18.8.70	48008	Alpaca (Vicugna pacos) genome, Vicugna_pacos-2.0.1/vicPac2 (Mar, 2013)
@@ -204,9 +206,11 @@ Cpapaya_r.Dec2008        	172.18.8.70	48191	Papaya (Carica papaya) genome, ASGPB
 CsubellipsoideaC169_v2.0 	172.18.8.70	48192	Coccomyxa subellipsoidea C-169 genome, v2.0
 Csativus_v1              	172.18.8.70	48193	Cucumber (Cucumis sativus) genome, v1.0
 Egrandis_v2.0            	172.18.8.70	48194	Eucalyptus grandis genome, v2.0
+fragaria_vesca_v2.0.a1   	172.18.8.70	48258	Strawberry (Fragaria vesca) genome, v2.0.a1 (Dec, 2014)
 Fvesca_v1.1              	172.18.8.70	48195	Strawberry (Fragaria vesca) genome, v1.1
 Graimondii_v2.0          	172.18.8.70	48196	Cotton (Gossypium raimondii) genome, v2.1
 Lusitatissimum_BGIv1.0   	172.18.8.70	48197	Flax (Linum usitatissimum) genome, v1.0
+malus_x_domestica_v1.0p  	172.18.8.70	48257	Apple (Malus domestica) genome, v1.0p (Aug, 2012)
 Mdomestica_v1.0          	172.18.8.70	48198	Apple (Malus domestica) genome, v1.0
 Mesculenta_v6            	172.18.8.70	48199	Cassava (Manihot esculenta) genome, v6.1
 MpusillaCCMP1545_v3.0    	172.18.8.70	48200	Picoplanktonic green alga (Micromonas pusilla) CCMP1545 genome, v3.0
@@ -260,6 +264,10 @@ C_albicans_SC5314        	172.18.8.70	48247	Candida albicans (SC5314) genome, As
 JCVI_PMFA1_2.0           	172.18.8.70	48248	Penicillium marneffei (ATCC 18224) genome, JCVI-PMFA1-2.0 (Oct, 2008)
 CC3                      	172.18.8.70	48249	Inky cap fungus (Coprinopsis cinerea) okayama7#130 genome, CC3 (Aug, 2014)
 JRGv1                    	172.18.8.70	48250	Human (Homo sapiens) Japanese Reference Genome, JRGv1 (Aug, 2016)
+YOKOZUNA-1               	172.18.8.70	48253	Tardigrade (Ramazzottius variornatus) YOKOZUNA-1 genome (Sep, 2016)
+ASM15095v2               	172.18.8.70	48254	Phaeodactylum tricornutum genome, ASM15095v2 (Feb, 2010)
+ASM14940v2               	172.18.8.70	48255	Thalassiosira pseudonana genome, ASM14940v2 (May, 2014)
+asagao                   	172.18.8.70	48256	Japanese morning glory (Ipomoea nil) Tokyo Kokei Standard (TKS) genome (Sep, 2016)
 --EOS--
 
 return 1 ;
