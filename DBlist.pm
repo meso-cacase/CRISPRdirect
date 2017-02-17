@@ -165,6 +165,7 @@ Araly_v.1.0    	172.18.8.70	48149	Lyre-leaved rock-cress (Arabidopsis lyrata) ge
 TAIR10_en      	172.18.8.70	48150	Thale cress (Arabidopsis thaliana) genome, TAIR10 (Sep, 2010)
 Bradi_v1.0     	172.18.8.70	48151	Purple false brome (Brachypodium distachyon) genome, v1.0 (Jan, 2009)
 Braol_v2.1     	172.18.8.70	48152	Wild cabbage (Brassica oleracea) genome, v2.1
+Brapa_v1.5     	172.18.8.70	48259	Chinese cabbage (Brassica rapa ssp. pekinensis) genome, v1.5 (May, 2013)
 IVFCAASv1      	172.18.8.70	48153	Chinese cabbage (Brassica rapa ssp. pekinensis) genome, IVFCAASv1 (Aug, 2009)
 Chlre_v3.1     	172.18.8.70	48154	Green algae (Chlamydomonas reinhardtii) genome, v3.1 (Nov, 2007)
 ASM9120v1      	172.18.8.70	48155	Red alga (Cyanidioschyzon merolae) genome, ASM9120v1 (Nov, 2008)
