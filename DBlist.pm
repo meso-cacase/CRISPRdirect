@@ -13,6 +13,7 @@ $dbconfig =
 hg38           	localhost  	48001	Human (Homo sapiens) genome, GRCh38/hg38 (Dec, 2013)
 hg19           	localhost  	48002	Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)
 hg18           	localhost  	48003	Human (Homo sapiens) genome, NCBI36/hg18 (Mar, 2006)
+JRGv2          	172.18.8.70	48641	Human (Homo sapiens) Japanese Reference Genome, JRGv2 (Jun, 2017)
 JRGv1          	172.18.8.70	48250	Human (Homo sapiens) Japanese Reference Genome, JRGv1 (Aug, 2016)
 mm10           	localhost  	48004	Mouse (Mus musculus) genome, GRCm38/mm10 (Dec, 2011)
 mm9            	localhost  	48005	Mouse (Mus musculus) genome, NCBI37/mm9 (Jul, 2007)

@@ -193,3 +193,4 @@ $JELFISH -p 48256 -hash $HASHDIR/asagao/*.jf >> $LOGDIR/asagao.log 2>&1 &
 $JELFISH -p 48257 -hash $HASHDIR/malus_x_domestica_v1.0p/*.jf >> $LOGDIR/malus_x_domestica_v1.0p.log 2>&1 &
 $JELFISH -p 48258 -hash $HASHDIR/fragaria_vesca_v2.0.a1/*.jf >> $LOGDIR/fragaria_vesca_v2.0.a1.log 2>&1 &
 $JELFISH -p 48259 -hash $HASHDIR/Brapa_v1.5/*.jf >> $LOGDIR/Brapa_v1.5.log 2>&1 &
+$JELFISH -p 48641 -hash $HASHDIR/JRGv2/*.jf >> $LOGDIR/JRGv2.log 2>&1 &

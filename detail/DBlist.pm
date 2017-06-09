@@ -245,6 +245,7 @@ C_glabrata_CBS138    	172.18.8.72	42793	CGD      	Candida glabrata (CBS138) geno
 C_albicans_SC5314    	172.18.8.72	42803	CGD      	Candida albicans (SC5314) genome, Assembly 21, A21-s02-m09-r10 (Feb, 2016)	Candida albicans
 JCVI_PMFA1_2.0       	172.18.8.72	42813	NCBI     	Penicillium marneffei (ATCC 18224) genome, JCVI-PMFA1-2.0 (Oct, 2008)	Penicillium marneffei;Talaromyces marneffei
 JRGv1                	172.18.8.72	42833	ToMMo    	Human Japanese Reference Genome, JRGv1 (Aug, 2016)	Homo sapiens
+JRGv2                	172.18.8.72	42973	ToMMo    	Human Japanese Reference Genome, JRGv2 (Jun, 2017)	Homo sapiens
 MSMv3                	172.18.8.72	42853	         	Mouse genome, MSMv3	Mus musculus
 JF1v2                	172.18.8.72	42863	         	Mouse genome, JF1v2	Mus musculus
 YOKOZUNA-1           	172.18.8.72	42873	         	Ramazzottius variornatus (YOKOZUNA-1) genome (Sep, 2016)	Ramazzottius variornatus;tardigrade;water bear

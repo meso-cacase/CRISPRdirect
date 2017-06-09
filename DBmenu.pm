@@ -29,6 +29,7 @@ $dbmenu = <<"--EOS--" ;
 		<option disabled>----------</option>
 		<option value=\'hg38\'            synonym=\"$db_synonym{'hg38'           }\">$db_fullname{'hg38'           }</option>
 		<option value=\'hg18\'            synonym=\"$db_synonym{'hg18'           }\">$db_fullname{'hg18'           }</option>
+		<option value=\'JRGv2\'           synonym=\"$db_synonym{'JRGv2'          }\">$db_fullname{'JRGv2'          }</option>
 		<option value=\'JRGv1\'           synonym=\"$db_synonym{'JRGv1'          }\">$db_fullname{'JRGv1'          }</option>
 		<option value=\'mm9\'             synonym=\"$db_synonym{'mm9'            }\">$db_fullname{'mm9'            }</option>
 		<option value=\'MSMv3\'           synonym=\"$db_synonym{'MSMv3'          }\">$db_fullname{'MSMv3'          }</option>
