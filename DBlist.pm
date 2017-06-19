@@ -168,6 +168,7 @@ Tcas3                    	172.18.8.70	48143	Red flour beetle (Tribolium castaneu
 Tspiralis1               	172.18.8.70	48144	Trichina worm (Trichinella spiralis) genome, Tspiralis1 (Mar, 2011)
 ASM15027v1               	172.18.8.70	48145	Trichoplax adhaerens genome, ASM15027v1 (Aug, 2006)
 ZooNev1.0                	172.18.8.70	48146	Dampwood termite (Zootermopsis nevadensis) genome, ZooNev1.0 (Jun, 2014)
+Bomo_silkbase            	172.18.8.70	48644	Silkworm (Bombyx mori) genome, SilkBase assembly (Jan, 2017)
 ASM15162v1               	172.18.8.70	48117	Silkworm (Bombyx mori) genome, ASM15162v1 (Feb, 2013)
 bmor1                    	localhost  	48221	Silkworm (Bombyx mori) genome, Bmor1 (Apr, 2008)
 h7                       	localhost  	48226	Hydra vulgaris genome, h7 (Aug, 2008)
@@ -212,7 +213,9 @@ Poptr_JGI2.0             	172.18.8.70	48173	Western balsam poplar (Populus trich
 Prupe1_0                 	172.18.8.70	48174	Peach (Prunus persica) genome, Prupe1_0 (Mar, 2013)
 Selml_v1.0               	172.18.8.70	48175	Spikemoss (Selaginella moellendorffii) genome, v1.0 (May, 2011)
 Setit_JGIv2.0            	172.18.8.70	48176	Foxtail millet (Setaria italica) genome, JGIv2.0 (Jan, 2012)
+SL3.0                    	172.18.8.70	48637	Tomato (Solanum lycopersicum) genome, SL3.00 (Feb, 2017)
 SL2.50                   	172.18.8.70	48177	Tomato (Solanum lycopersicum) str. Heinz 1706 genome, SL2.50 (Oct, 2014)
+SL2.4                    	172.18.8.70	48636	Tomato (Solanum lycopersicum) genome, SL2.40 (Jan, 2011)
 SolTub_3.0               	172.18.8.70	48178	Potato (Solanum tuberosum) genome, SolTub_3.0 (May, 2011)
 Sorbi1                   	172.18.8.70	48179	Sorghum (Sorghum bicolor) genome, Sorbi1 (Dec, 2007)
 Thecc_20110822           	172.18.8.70	48180	Cacao (Theobroma cacao) genome, Theobroma_cacao_20110822 (May, 2014)
@@ -227,7 +230,12 @@ Olucimarinus_231_v2      	172.18.8.70	48188	Ostreococcus lucimarinus genome, v2.
 Cgrandiflora_v1          	172.18.8.70	48189	Capsella grandiflora genome, v1.1
 Crubella_v1              	172.18.8.70	48190	Red shepherd's purse (Capsella rubella) genome, v1.0
 Cpapaya_r.Dec2008        	172.18.8.70	48191	Papaya (Carica papaya) genome, ASGPBv0.4
+Cclementina_v1           	172.18.8.70	48642	Clementine (Citrus clementina) genome, v1.0
+Csinensis_v1             	172.18.8.70	48643	Sweet orange (Citrus sinensis) genome, v1.1
 CsubellipsoideaC169_v2.0 	172.18.8.70	48192	Coccomyxa subellipsoidea C-169 genome, v2.0
+CM3.5.1                  	172.18.8.70	48640	Melon (Cucumis melo) genome, v3.5.1 (Oct, 2013)
+PI183967                 	172.18.8.70	48639	Cucumber (Cucumis sativus) PI183967 genome (Apr, 2013)
+ChineseLong_v2           	172.18.8.70	48638	Cucumber (Cucumis sativus) Chinese long genome, v2
 Csativus_v1              	172.18.8.70	48193	Cucumber (Cucumis sativus) genome, v1.0
 Egrandis_v2.0            	172.18.8.70	48194	Eucalyptus grandis genome, v2.0
 fragaria_vesca_v2.0.a1   	172.18.8.70	48258	Strawberry (Fragaria vesca) genome, v2.0.a1 (Dec, 2014)

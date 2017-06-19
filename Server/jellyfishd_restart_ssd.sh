@@ -193,4 +193,12 @@ $JELFISH -p 48256 -hash $HASHDIR/asagao/*.jf >> $LOGDIR/asagao.log 2>&1 &
 $JELFISH -p 48257 -hash $HASHDIR/malus_x_domestica_v1.0p/*.jf >> $LOGDIR/malus_x_domestica_v1.0p.log 2>&1 &
 $JELFISH -p 48258 -hash $HASHDIR/fragaria_vesca_v2.0.a1/*.jf >> $LOGDIR/fragaria_vesca_v2.0.a1.log 2>&1 &
 $JELFISH -p 48259 -hash $HASHDIR/Brapa_v1.5/*.jf >> $LOGDIR/Brapa_v1.5.log 2>&1 &
+$JELFISH -p 48636 -hash $HASHDIR/SL2.4/*.jf >> $LOGDIR/SL2.4.log 2>&1 &
+$JELFISH -p 48637 -hash $HASHDIR/SL3.0/*.jf >> $LOGDIR/SL3.0.log 2>&1 &
+$JELFISH -p 48638 -hash $HASHDIR/ChineseLong_v2/*.jf >> $LOGDIR/ChineseLong_v2.log 2>&1 &
+$JELFISH -p 48639 -hash $HASHDIR/PI183967/*.jf >> $LOGDIR/PI183967.log 2>&1 &
+$JELFISH -p 48640 -hash $HASHDIR/CM3.5.1/*.jf >> $LOGDIR/CM3.5.1.log 2>&1 &
 $JELFISH -p 48641 -hash $HASHDIR/JRGv2/*.jf >> $LOGDIR/JRGv2.log 2>&1 &
+$JELFISH -p 48642 -hash $HASHDIR/Cclementina_v1/*.jf >> $LOGDIR/Cclementina_v1.log 2>&1 &
+$JELFISH -p 48643 -hash $HASHDIR/Csinensis_v1/*.jf >> $LOGDIR/Csinensis_v1.log 2>&1 &
+$JELFISH -p 48644 -hash $HASHDIR/Bomo_silkbase/*.jf >> $LOGDIR/Bomo_silkbase.log 2>&1 &
