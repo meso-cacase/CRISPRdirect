@@ -10,8 +10,7 @@ CRISPR/Casシステムのターゲット配列を設計するウェブサービ�
 サンプル画像
 --------
 
-![スクリーンショット]
-(http://g86.dbcls.jp/~meso/meme/wp-content/uploads/2014/04/CRISPRscreen.png
+![スクリーンショット](http://data.dbcls.jp/~meso/img/CRISPRscreen.png
 "スクリーンショット")
 
 
@@ -20,30 +19,30 @@ API
 
 下記の変数を設定し ./ に POST または GET すると設計結果を取得できます。
 
-+ *userseq* (省略不可)  
++ `userseq` (省略不可)  
   FASTA形式、または塩基配列のみを含むテキスト。  
   塩基構成文字以外は除去され、UはTに置換される。
 
-+ *accession* (省略可)  
++ `accession` (省略可)  
   設計には使われないが、accession番号を設計結果に表示できる。
 
-+ *pam* (省略可)  
-  PAMを指定。現在は3塩基に限定。省略時はNGG。
++ `pam` (省略可)  
+  PAMを指定。現在は3塩基に限定。省略時は `NGG` 。
 
-+ *db* (省略可)  
++ `db` (省略可)  
   特異性確認のためのデータベース。  
-  hg19 : ヒトゲノム  
-  mm10 : マウスゲノム  
-  rn5  : ラットゲノム  
+  `hg19` : ヒトゲノム  
+  `mm10` : マウスゲノム  
+  `rn5`  : ラットゲノム  
   その他 → [利用可能な生物種一覧](http://crispr.dbcls.jp/doc/#db_list)
 
-+ *format* (省略可)  
++ `format` (省略可)  
   設計結果のフォーマット。  
-  html : HTML（省略時のデフォルト)  
-  txt  : タブ区切りテキスト  
-  json : JSON形式
+  `html` : HTML（省略時のデフォルト)  
+  `txt`  : タブ区切りテキスト  
+  `json` : JSON形式
 
-+ *download* (省略可)  
++ `download` (省略可)  
 検索結果をファイルとしてダウンロード (txt, jsonのみ)
 
 
@@ -64,8 +63,8 @@ API
 ライセンス
 --------
 
-Copyright &copy; 2013-2016 Yuki Naito
+Copyright &copy; 2013-2017 Yuki Naito
  ([@meso_cacase](http://twitter.com/meso_cacase)) at  
 Database Center for Life Science (DBCLS), Japan.  
-This software is distributed under [modified BSD license]
-(http://www.opensource.org/licenses/bsd-license.php).
+This software is distributed under
+[modified BSD license](http://www.opensource.org/licenses/bsd-license.php).
