@@ -967,6 +967,10 @@ my $db      = $_[3] // '' ;
 	return "<a class=a target='_blank' href='" .
 	       "http://gbrowse.xenbase.org/fgb2/gbrowse/xl7_1/?" .
 	       "name=$name%3A$pos..$pos_end'>$name:<br>$pos-$pos_end</a>" :
+($db eq 'Xenla9') ?
+	return "<a class=a target='_blank' href='" .
+	       "http://gbrowse.xenbase.org/fgb2/gbrowse/xl9_1/?" .
+	       "name=$name%3A$pos..$pos_end'>$name:<br>$pos-$pos_end</a>" :
 ($db eq 'Xentr7') ?
 	return "<a class=a target='_blank' href='" .
 	       "http://gbrowse.xenbase.org/fgb2/gbrowse/xt7_1/?" .
@@ -974,6 +978,10 @@ my $db      = $_[3] // '' ;
 ($db eq 'Xentr8') ?
 	return "<a class=a target='_blank' href='" .
 	       "http://gbrowse.xenbase.org/fgb2/gbrowse/xt8_0/?" .
+	       "name=$name%3A$pos..$pos_end'>$name:<br>$pos-$pos_end</a>" :
+($db eq 'Xentr9') ?
+	return "<a class=a target='_blank' href='" .
+	       "http://gbrowse.xenbase.org/fgb2/gbrowse/xt9_0/?" .
 	       "name=$name%3A$pos..$pos_end'>$name:<br>$pos-$pos_end</a>" :
 ($db eq 'TAIR10' and $name =~ s/\s*CHROMOSOME dumped from.*// and
 	eval '$name =~ s/^chloroplast$/ChrC/ ; $name =~ s/^mitochondria$/ChrM/ ; 1') ?
@@ -995,7 +1003,12 @@ my $db      = $_[3] // '' ;
 	return "<a class=a target='_blank' href='" .
 	       "http://genomebrowser.pombase.org/Schizosaccharomyces_pombe/Location/View?" .
 	       "r=$name%3A$pos-$pos_end'>$name:$pos-$pos_end</a>" :
-($db =~ /refseq/ and $name =~ /^gi\|\d+\|ref\|(.*?)\|(.*)$/) ?
+($db =~ /refseq/ and $name =~ /^(?:gi\|\d+\|)?ref\|(.*?)\|(.*)$/) ?
+	return "<a class=a target='_blank' href=" .
+	       "https://www.ncbi.nlm.nih.gov/nuccore/$1>$2</a><br>\n\t" .
+	       "<font color='#0E774A'>$1</font>:$pos-$pos_end" :
+# RefSeq release 83からFASTAファイルの形式変更
+($db =~ /refseq/ and $name =~ /^(\S+)\ (.*)$/) ?
 	return "<a class=a target='_blank' href=" .
 	       "https://www.ncbi.nlm.nih.gov/nuccore/$1>$2</a><br>\n\t" .
 	       "<font color='#0E774A'>$1</font>:$pos-$pos_end" :
@@ -1020,10 +1033,29 @@ my $db      = $_[3] // '' ;
 	       "https://www.ncbi.nlm.nih.gov/nuccore/$3>$1</a><br>\n\t" .
 	       "<span class=g>$2</span><br>" .
 	       "<font color='#0E774A'>$3</font>:$pos-$pos_end" :
+($db =~ /^togogenome/ and
+	$name =~ /(
+		(\"definition\":\"([^"]*)\") |
+		(\"taxonomy\"  :\"([^"]*)\") |
+		(\"bioproject\":\"([^"]*)\") |
+		(\"refseq\"    :\"([^"]*)\") |
+		(,\s*)
+	)+/x) ?
+	return "<a class=a target='_blank' href=" .
+	       "https://www.ncbi.nlm.nih.gov/nuccore/$9>$3</a><br>\n\t" .
+	       "<span class=g>taxonomy:\"$5\", bioproject:\"$7\", refseq:\"$9\"</span><br>" .
+	       "<font color='#0E774A'>$9</font>:$pos-$pos_end" :
 ($db =~ /^ddbj/ and $name =~ /^.*?\|(\S+)\s+(.*)$/) ?
 	return "<a class=a target='_blank' href=" .
 	       "https://www.ncbi.nlm.nih.gov/nuccore/$1>$2</a><br>\n\t" .
 	       "<font color='#0E774A'>$1</font>:$pos-$pos_end" :
+($db =~ /^GENCODE/ and $name =~ /^(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)$/) ?
+	return "<a class=a target='_blank' href=" .
+	       "http://www.ensembl.org/Multi/Search/Results?q=$1>$5</a> <font color=silver>|</font> " .
+	       "transcript <font color=silver>|</font> $8<br>\n\t" .
+	       "<font color='#0E774A'>$1</font> <font color=silver>|</font> " .
+	       "<font color='#7F3737'>$4</font><br>\n\t" .
+	       "position: $pos-$pos_end\n" :
 # それ以外の場合
 	return "$name<br>\n\t" .
 	       "position: $pos-$pos_end\n" ;
