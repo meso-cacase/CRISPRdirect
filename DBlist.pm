@@ -138,6 +138,7 @@ Acyr_2.0                 	172.18.8.70	48112	Pea aphid (Acyrthosiphon pisum) geno
 AaegL3                   	172.18.8.70	48113	Yellowfever mosquito (Aedes aegypti) genome, AaegL3 (Dec, 2013)
 Aqu1                     	172.18.8.70	48114	Sponge (Amphimedon queenslandica) genome, Aqu1 (Oct, 2010)
 AdarC3                   	172.18.8.70	48115	Mosquito (Anopheles darlingi) genome, AdarC3 (Jan, 2014)
+Aros_1.0                 	172.18.8.70	48648	Turnip sawfly (Athalia rosae) genome, Aros_1.0 (Mar, 2013)
 Attacep1.0               	172.18.8.70	48116	Leafcutter ant (Atta cephalotes) genome, Attacep1.0 (Jul, 2012)
 B_malayi_3.0             	172.18.8.70	48118	Filarial nematode worm (Brugia malayi) genome, B_malayi-3.0 (Dec, 2012)
 Capte_v1.0               	172.18.8.70	48119	Polychaete worm (Capitella teleta) genome, Capitella teleta v1.0 (Dec, 2012)
@@ -263,6 +264,8 @@ Niben_v1.0.1             	localhost  	48217	Tobacco (Nicotiana benthamiana) geno
 adzuki_ver3              	localhost  	48218	Adzuki bean (Vigna angularis) genome, ver3 (Nov, 2011)
 RSA_r1.0                 	localhost  	48219	Radish (Raphanus sativus) genome, RSA_r1.0 (May, 2014)
 asagao                   	172.18.8.70	48256	Japanese morning glory (Ipomoea nil) Tokyo Kokei Standard (TKS) genome (Sep, 2016)
+A_chinensis_Hongyang     	172.18.8.70	48646	Golden kiwi (Actinidia chinensis) genome
+Mpolymorpha_3.1          	172.18.8.70	48649	Liverwort (Marchantia polymorpha) genome, JGI 3.1
 pombe                    	localhost  	48222	Fission yeast (Schizosaccharomyces pombe) 972h- genome, ASM294v2 (Nov, 2007)
 MG8                      	localhost  	48228	Rice blast fungus (Magnaporthe oryzae) 70-15 genome, MG8 (Sep, 2011)
 ASM644v2                 	172.18.8.70	48230	Marine yeast (Debaryomyces hansenii) CBS767 genome, ASM644v2 (Feb, 2015)
@@ -270,6 +273,8 @@ ASM251v1                 	172.18.8.70	48231	Yeast (Kluyveromyces lactis) genome,
 ASM252v1                 	172.18.8.70	48232	Oleaginous yeast (Yarrowia lipolytica) genome, ASM252v1 (May, 2012)
 RR                       	172.18.8.70	48233	Wheat head blight fungus (Fusarium graminearum) genome, RR (Nov, 2014)
 RHOziaDV1.0              	172.18.8.70	48235	Oleaginous yeast (Rhodotorula toruloides) NP11 genome, RHOziaDV1.0 (Apr, 2013)
+ASM24337v1               	172.18.8.70	48647	Torulaspora yeast (Torulaspora delbrueckii) genome, ASM24337v1 (Feb, 2015)
+A_oryzae_RIB40           	172.18.8.70	48645	Aspergillus oryzae RIB40 genome, s01-m09-r03 (Oct, 2015)
 A_nidulans_FGSC_A4       	172.18.8.70	48244	Aspergillus nidulans (Emericella nidulans) FGSC A4 genome, s10-m04-r06 (Apr, 2016)
 A_fumigatus_Af293        	172.18.8.70	48245	Aspergillus fumigatus (Neosartorya fumigata) Af293 genome, s03-m05-r06 (Apr, 2016)
 C_glabrata_CBS138        	172.18.8.70	48246	Candida glabrata (Torulopsis glabrata) CBS138 genome, s02-m07-r08 (Jun, 2016)
