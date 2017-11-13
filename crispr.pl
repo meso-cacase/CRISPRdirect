@@ -141,7 +141,7 @@ if (not defined $userseq and $format eq 'txt'){
 
 #-- userseqなし：トップページ表示、accessionありの場合は配列を取得
 elsif (not defined $userseq){
-	print_html($accession) ;
+	print_html($accession, undef, undef, $db) ;
 }
 
 #-- userseqあり：配列設計を行い結果を出力
