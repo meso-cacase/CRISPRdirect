@@ -207,6 +207,7 @@ $JELFISH -p 48646 -hash $HASHDIR/A_chinensis_Hongyang/*.jf >> $LOGDIR/A_chinensi
 $JELFISH -p 48647 -hash $HASHDIR/ASM24337v1/*.jf >> $LOGDIR/ASM24337v1.log 2>&1 &
 $JELFISH -p 48648 -hash $HASHDIR/Aros_1.0/*.jf >> $LOGDIR/Aros_1.0.log 2>&1 &
 $JELFISH -p 48649 -hash $HASHDIR/Mpolymorpha_3.1/*.jf >> $LOGDIR/Mpolymorpha_3.1.log 2>&1 &
+$JELFISH -p 48650 -hash $HASHDIR/Dcarota_v2.0/*.jf >> $LOGDIR/Dcarota_v2.0.log 2>&1 &
 $JELFISH -p 48260 -hash $HASHDIR/GCA_000346485.1/*.jf >> $LOGDIR/GCA_000346485.1.log 2>&1 &
 $JELFISH -p 48261 -hash $HASHDIR/GCA_000317635.1/*.jf >> $LOGDIR/GCA_000317635.1.log 2>&1 &
 $JELFISH -p 48262 -hash $HASHDIR/GCA_000011385.1/*.jf >> $LOGDIR/GCA_000011385.1.log 2>&1 &

@@ -238,6 +238,7 @@ CM3.5.1                  	172.18.8.70	48640	Melon (Cucumis melo) genome, v3.5.1 
 PI183967                 	172.18.8.70	48639	Cucumber (Cucumis sativus) PI183967 genome (Apr, 2013)
 ChineseLong_v2           	172.18.8.70	48638	Cucumber (Cucumis sativus) Chinese long genome, v2
 Csativus_v1              	172.18.8.70	48193	Cucumber (Cucumis sativus) genome, v1.0
+Dcarota_v2.0             	172.18.8.70	48650	Carrot (Daucus carota) genome, v2.0
 Egrandis_v2.0            	172.18.8.70	48194	Eucalyptus grandis genome, v2.0
 fragaria_vesca_v2.0.a1   	172.18.8.70	48258	Strawberry (Fragaria vesca) genome, v2.0.a1 (Dec, 2014)
 Fvesca_v1.1              	172.18.8.70	48195	Strawberry (Fragaria vesca) genome, v1.1

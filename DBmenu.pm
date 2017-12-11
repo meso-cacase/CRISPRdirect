@@ -241,6 +241,7 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'PI183967\'                  synonym=\"$db_synonym{'PI183967'                 }\">$db_fullname{'PI183967'                 }</option>
 		<option value=\'ChineseLong_v2\'            synonym=\"$db_synonym{'ChineseLong_v2'           }\">$db_fullname{'ChineseLong_v2'           }</option>
 		<option value=\'Csativus_v1\'               synonym=\"$db_synonym{'Csativus_v1'              }\">$db_fullname{'Csativus_v1'              }</option>
+		<option value=\'Dcarota_v2.0\'              synonym=\"$db_synonym{'Dcarota_v2.0'             }\">$db_fullname{'Dcarota_v2.0'             }</option>
 		<option value=\'Egrandis_v2.0\'             synonym=\"$db_synonym{'Egrandis_v2.0'            }\">$db_fullname{'Egrandis_v2.0'            }</option>
 		<option value=\'fragaria_vesca_v2.0.a1\'    synonym=\"$db_synonym{'fragaria_vesca_v2.0.a1'   }\">$db_fullname{'fragaria_vesca_v2.0.a1'   }</option>
 		<option value=\'Fvesca_v1.1\'               synonym=\"$db_synonym{'Fvesca_v1.1'              }\">$db_fullname{'Fvesca_v1.1'              }</option>
