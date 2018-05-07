@@ -1,7 +1,7 @@
 CRISPRdirect
 ======================
 
-CRISPRdirect is a web server for selecting rational CRISPR-Cas9 guide RNAs.
+CRISPRdirect is a web server for selecting rational CRISPR-Cas9 guide RNAs.  
 Freely available to all users.
 
 CRISPR-Cas9システムのターゲット配列を設計するウェブサービスです。  
