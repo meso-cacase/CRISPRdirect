@@ -202,6 +202,17 @@ IWGSC1.0                 	172.18.8.75	45363	EnsemblPlants	Triticum aestivum geno
 ASM34745v1               	172.18.8.75	45373	EnsemblPlants	Triticum urartu genome, ASM34745v1 (Apr, 2013)	Triticum urartu;red wild einkorn
 IGGP_12x                 	172.18.8.75	45383	EnsemblPlants	Vitis vinifera genome, IGGP_12x (Jun, 2011)	Vitis vinifera;grape
 AGPv3                    	172.18.8.75	45393	EnsemblPlants	Zea mays genome, AGPv3 (Apr, 2013)	Zea mays;maize;corn
+AGPv4                    	172.18.8.72	43733	EnsemblPlants	Zea mays genome, AGPv4 (Mar, 2016)	Zea mays;maize;corn
+Cmo_v1                   	172.18.8.72	43633	    	Cucurbita moschata (Rifu) genome, v1	Cucurbita moschata;pumpkin;squash
+Zunla-1_v2.0             	172.18.8.72	43643	    	Capsicum annuum (Zunla-1) genome, release 2.0	Capsicum annuum;pepper
+Chiltepin_v2.0           	172.18.8.72	43653	    	Capsicum annuum var. glabriusculum (Chiltepin) genome, release 2.0	Capsicum annuum var. glabriusculum;pepper
+CM3.6.1                  	172.18.8.72	43663	    	Cucumis melo genome, v3.6.1 (Jul, 2017)	Cucumis melo;melon
+SME_r2.5.1               	172.18.8.72	43673	    	Solanum melongena genome, r2.5.1	Solanum melongena;eggplant
+Csativus_Gy14            	172.18.8.72	43683	    	Cucumis sativus (Gy14) genome, v1	Cucumis sativus;cucumber
+Cp4.1                    	172.18.8.72	43693	    	Cucurbita pepo subsp. pepo (Zucchini) genome, v4.1	Cucurbita pepo subsp. pepo;zucchini
+WCG_v1                   	172.18.8.72	43703	    	Citrullus lanatus subsp. vulgaris (Charleston Gray) genome, v1	Citrullus lanatus subsp. vulgaris;watermelon
+W97103_v1                	172.18.8.72	43713	    	Citrullus lanatus subsp. vulgaris (97103) genome, v1	Citrullus lanatus subsp. vulgaris;watermelon
+HanXRQr1.0               	172.18.8.72	43723	    	Helianthus annuus genome, HanXRQr1.0 (Dec, 2015)	Helianthus annuus;sunflower
 Xenla7                   	172.18.8.70	42443	Xenbase	Xenopus laevis genome, JGI 7.1/Xenla7 (Dec, 2013)	Xenopus laevis;african clawed frog
 TAIR10                   	172.18.8.70	42373	    	Arabidopsis thaliana genome, TAIR10 (Nov, 2010)	Arabidopsis thaliana;thale cress
 rice                     	172.18.8.70	42293	    	Rice genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)	Oryza sativa ssp. japonica;rice
@@ -266,6 +277,7 @@ A_chinensis_Hongyang     	172.18.8.72	43003	         	Actinidia chinensis genome
 ASM24337v1               	172.18.8.72	43033	EnsemblFungi	Torulaspora delbrueckii genome, ASM24337v1 (Feb, 2015)	Torulaspora delbrueckii;yeast
 Aros_1.0                 	172.18.8.72	43063	NCBI     	Athalia rosae genome, Aros_1.0 (Mar, 2013)	Athalia rosae;turnip sawfly;coleseed sawfly
 Mpolymorpha_3.1          	172.18.8.72	43583	         	Marchantia polymorpha genome JGI 3.1	Marchantia polymorpha;liverwort
+Ccanephora_1.0           	172.18.8.72	43793	         	Coffea canephora genome, v1.0	Coffea canephora;coffee
 Ppatens_251_v3           	172.18.8.74	42013	Phytozome	Physcomitrella patens genome, v3.0 (Oct, 2007)	Physcomitrella patens;moss
 Smoellendorffii_91_v1    	172.18.8.74	42023	Phytozome	Selaginella moellendorffii genome, v1.0 (Dec, 2007)	Selaginella moellendorffii;spikemoss
 Creinhardtii_281_v5_5    	172.18.8.74	42033	Phytozome	Chlamydomonas reinhardtii genome, v5.5 (May, 2014)	Chlamydomonas reinhardtii;green algae

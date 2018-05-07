@@ -217,12 +217,14 @@ Setit_JGIv2.0            	172.18.8.70	48176	Foxtail millet (Setaria italica) gen
 SL3.0                    	172.18.8.70	48637	Tomato (Solanum lycopersicum) genome, SL3.00 (Feb, 2017)
 SL2.50                   	172.18.8.70	48177	Tomato (Solanum lycopersicum) str. Heinz 1706 genome, SL2.50 (Oct, 2014)
 SL2.4                    	172.18.8.70	48636	Tomato (Solanum lycopersicum) genome, SL2.40 (Jan, 2011)
+SME_r2.5.1               	172.18.8.70	48655	Eggplant (Solanum melongena) genome, r2.5.1
 SolTub_3.0               	172.18.8.70	48178	Potato (Solanum tuberosum) genome, SolTub_3.0 (May, 2011)
 Sorbi1                   	172.18.8.70	48179	Sorghum (Sorghum bicolor) genome, Sorbi1 (Dec, 2007)
 Thecc_20110822           	172.18.8.70	48180	Cacao (Theobroma cacao) genome, Theobroma_cacao_20110822 (May, 2014)
 IWGSC1.0                 	172.18.8.70	48181	Wheat (Triticum aestivum) genome, IWGSC1.0+popseq (Nov, 2014)
 ASM34745v1               	172.18.8.70	48182	Red wild einkorn (Triticum urartu) genome, ASM34745v1 (Apr, 2013)
 IGGP_12x                 	172.18.8.70	48183	Grape (Vitis vinifera) genome, IGGP_12x (Jun, 2011)
+AGPv4                    	172.18.8.70	48661	Corn (Zea mays) genome, AGPv4 (Mar, 2016)
 AGPv3                    	172.18.8.70	48184	Corn (Zea mays) genome, AGPv3 (Apr, 2013)
 Ppatens_251_v3           	172.18.8.70	48185	Moss (Physcomitrella patens) genome, v3.0 (Oct, 2007)
 Smoellendorffii_91_v1    	172.18.8.70	48186	Spikemoss (Selaginella moellendorffii) genome, v1.0 (Dec, 2007)
@@ -230,19 +232,29 @@ Creinhardtii_281_v5_5    	172.18.8.70	48187	Green algae (Chlamydomonas reinhardt
 Olucimarinus_231_v2      	172.18.8.70	48188	Ostreococcus lucimarinus genome, v2.0 (Jan, 2011)
 Cgrandiflora_v1          	172.18.8.70	48189	Capsella grandiflora genome, v1.1
 Crubella_v1              	172.18.8.70	48190	Red shepherd's purse (Capsella rubella) genome, v1.0
+Zunla-1_v2.0             	172.18.8.70	48652	Pepper (Capsicum annuum) Zunla-1 genome, release 2.0
+Chiltepin_v2.0           	172.18.8.70	48653	Pepper (Capsicum annuum var. glabriusculum) Chiltepin genome, release 2.0
 Cpapaya_r.Dec2008        	172.18.8.70	48191	Papaya (Carica papaya) genome, ASGPBv0.4
+WCG_v1                   	172.18.8.70	48658	Watermelon (Citrullus lanatus subsp. vulgaris) Charleston Gray genome, v1
+W97103_v1                	172.18.8.70	48659	Watermelon (Citrullus lanatus subsp. vulgaris) 97103 genome, v1
 Cclementina_v1           	172.18.8.70	48642	Clementine (Citrus clementina) genome, v1.0
 Csinensis_v1             	172.18.8.70	48643	Sweet orange (Citrus sinensis) genome, v1.1
 CsubellipsoideaC169_v2.0 	172.18.8.70	48192	Coccomyxa subellipsoidea C-169 genome, v2.0
+Ccanephora_1.0           	172.18.8.70	48662	Coffee (Coffea canephora) genome, v1.0
+CM3.6.1                  	172.18.8.70	48654	Melon (Cucumis melo) genome, v3.6.1 (Jul, 2017)
 CM3.5.1                  	172.18.8.70	48640	Melon (Cucumis melo) genome, v3.5.1 (Oct, 2013)
 PI183967                 	172.18.8.70	48639	Cucumber (Cucumis sativus) PI183967 genome (Apr, 2013)
 ChineseLong_v2           	172.18.8.70	48638	Cucumber (Cucumis sativus) Chinese long genome, v2
+Csativus_Gy14            	172.18.8.70	48656	Cucumber (Cucumis sativus) Gy14 genome, v1
 Csativus_v1              	172.18.8.70	48193	Cucumber (Cucumis sativus) genome, v1.0
+Cmo_v1                   	172.18.8.70	48651	Pumpkin (Cucurbita moschata) Rifu genome, v1
+Cp4.1                    	172.18.8.70	48657	Zucchini (Cucurbita pepo subsp. pepo) genome, v4.1
 Dcarota_v2.0             	172.18.8.70	48650	Carrot (Daucus carota) genome, v2.0
 Egrandis_v2.0            	172.18.8.70	48194	Eucalyptus grandis genome, v2.0
 fragaria_vesca_v2.0.a1   	172.18.8.70	48258	Strawberry (Fragaria vesca) genome, v2.0.a1 (Dec, 2014)
 Fvesca_v1.1              	172.18.8.70	48195	Strawberry (Fragaria vesca) genome, v1.1
 Graimondii_v2.0          	172.18.8.70	48196	Cotton (Gossypium raimondii) genome, v2.1
+HanXRQr1.0               	172.18.8.70	48660	Sunflower (Helianthus annuus) genome, HanXRQr1.0 (Dec, 2015)
 Lusitatissimum_BGIv1.0   	172.18.8.70	48197	Flax (Linum usitatissimum) genome, v1.0
 malus_x_domestica_v1.0p  	172.18.8.70	48257	Apple (Malus domestica) genome, v1.0p (Aug, 2012)
 Mdomestica_v1.0          	172.18.8.70	48198	Apple (Malus domestica) genome, v1.0
