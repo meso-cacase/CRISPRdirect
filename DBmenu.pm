@@ -17,6 +17,8 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'galGal4\'                   synonym=\"$db_synonym{'galGal4'                  }\">$db_fullname{'galGal4'                  }</option>
 		<option value=\'Xentr9\'                    synonym=\"$db_synonym{'Xentr9'                   }\">$db_fullname{'Xentr9'                   }</option>
 		<option value=\'Xenla9\'                    synonym=\"$db_synonym{'Xenla9'                   }\">$db_fullname{'Xenla9'                   }</option>
+		<option value=\'danRer11\'                  synonym=\"$db_synonym{'danRer11'                 }\">$db_fullname{'danRer11'                 }</option>
+		<option value=\'danRer10\'                  synonym=\"$db_synonym{'danRer10'                 }\">$db_fullname{'danRer10'                 }</option>
 		<option value=\'danRer7\'                   synonym=\"$db_synonym{'danRer7'                  }\">$db_fullname{'danRer7'                  }</option>
 		<option value=\'ci2\'                       synonym=\"$db_synonym{'ci2'                      }\">$db_fullname{'ci2'                      }</option>
 		<option value=\'dm6\'                       synonym=\"$db_synonym{'dm6'                      }\">$db_fullname{'dm6'                      }</option>
