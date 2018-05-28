@@ -29,6 +29,7 @@ felCat5                  	172.18.8.70	48012	Cat (Felis catus) genome, ICGSC Feli
 panTro4                  	172.18.8.70	48013	Chimp (Pan troglodytes) genome, CSAC 2.1.4/panTro4 (Feb, 2011)
 criGri1                  	172.18.8.70	48014	Chinese hamster (Cricetulus griseus) genome, C_griseus_v1.0/criGri1 (Jul, 2013)
 bosTau8                  	172.18.8.70	48015	Cow (Bos taurus) genome, Bos_taurus_UMD_3.1.1/bosTau8 (Jun, 2014)
+bosTau7                  	172.18.8.70	48665	Cow (Bos taurus) genome, Btau_4.6.1/bosTau7 (Oct, 2011)
 canFam3                  	172.18.8.70	48016	Dog (Canis familiaris) genome, Broad CanFam3.1/canFam3 (Sep, 2011)
 turTru2                  	172.18.8.70	48017	Dolphin (Tursiops truncatus) genome, Baylor Ttru_1.4/turTru2 (Oct, 2011)
 loxAfr3                  	172.18.8.70	48018	Elephant (Loxodonta africana) genome, Broad/loxAfr3 (Jul, 2009)

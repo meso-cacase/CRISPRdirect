@@ -18,6 +18,7 @@ $JELFISH -p 48011 -hash $HASHDIR/otoGar3/*.jf >> $LOGDIR/otoGar3.log 2>&1 &
 $JELFISH -p 48012 -hash $HASHDIR/felCat5/*.jf >> $LOGDIR/felCat5.log 2>&1 &
 $JELFISH -p 48013 -hash $HASHDIR/panTro4/*.jf >> $LOGDIR/panTro4.log 2>&1 &
 $JELFISH -p 48014 -hash $HASHDIR/criGri1/*.jf >> $LOGDIR/criGri1.log 2>&1 &
+$JELFISH -p 48665 -hash $HASHDIR/bosTau7/*.jf >> $LOGDIR/bosTau7.log 2>&1 &
 $JELFISH -p 48015 -hash $HASHDIR/bosTau8/*.jf >> $LOGDIR/bosTau8.log 2>&1 &
 $JELFISH -p 48016 -hash $HASHDIR/canFam3/*.jf >> $LOGDIR/canFam3.log 2>&1 &
 $JELFISH -p 48017 -hash $HASHDIR/turTru2/*.jf >> $LOGDIR/turTru2.log 2>&1 &
