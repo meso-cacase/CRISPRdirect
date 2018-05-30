@@ -64,14 +64,6 @@ my $end   = $4 // '' ;
 
 abs($start - $end) > $maxlength and return "\nSequence too long\n" ;
 
-#-- ▽ 大文字小文字を正規化
-$db =~ s/galGal4/galGal4/i ;
-$db =~ s/xenTro3/xenTro3/i ;
-$db =~ s/danRer7/danRer7/i ;
-$db =~ s/TAIR10/TAIR10/i   ;
-$db =~ s/sacCer3/sacCer3/i ;
-#-- △ 大文字小文字を正規化
-
 my $uri   = "http://togows.org/api/ucsc/" .
             "$db/$chr:$start-$end.fasta" ;
 
