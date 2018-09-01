@@ -133,9 +133,9 @@ PhyMac_2.0.2             	172.18.8.76	43183	Ensembl	Sperm whale genome, PhyMac_2
 LepOcu1                  	172.18.8.76	43193	Ensembl	Spotted gar genome, LepOcu1 (Dec, 2011)	Lepisosteus oculatus
 ChlSab1.1                	172.18.8.76	43203	Ensembl	Green monkey genome, ChlSab1.1 (Mar, 2014)	Chlorocebus sabaeus
 Acyr_2.0                 	172.18.8.76	43213	EnsemblMetazoa	Acyrthosiphon pisum genome, Acyr_2.0 (Jun, 2010)	Acyrthosiphon pisum;pea aphid
-AaegL3                   	172.18.8.76	43223	EnsemblMetazoa	Aedes aegypti genome, AaegL3 (Dec, 2013)	Aedes aegypti;yellowfever mosquito
+AaegL3                   	172.18.8.76	43223	EnsemblMetazoa	Aedes aegypti genome, AaegL3 (Dec, 2013)	Aedes aegypti;yellow fever mosquito
 Aqu1                     	172.18.8.76	43233	EnsemblMetazoa	Amphimedon queenslandica genome, Aqu1 (Oct, 2010)	Amphimedon queenslandica;sponge
-AdarC3                   	172.18.8.76	43243	EnsemblMetazoa	Anopheles darlingi genome, AdarC3 (Jan, 2014)	Anopheles darlingi;mosquito
+AdarC3                   	172.18.8.76	43243	EnsemblMetazoa	Anopheles darlingi genome, AdarC3 (Jan, 2014)	Anopheles darlingi;american malaria mosquito
 Attacep1.0               	172.18.8.76	43253	EnsemblMetazoa	Atta cephalotes genome, Attacep1.0 (Jul, 2012)	Atta cephalotes;leafcutter ant
 ASM15162v1               	172.18.8.76	43263	EnsemblMetazoa	Silkworm genome, ASM15162v1 (Feb, 2013)	Bombyx mori
 B_malayi_3.0             	172.18.8.76	43273	EnsemblMetazoa	Brugia malayi genome, B_malayi-3.0 (Dec, 2012)	Brugia malayi;filarial nematode worm
@@ -221,7 +221,7 @@ TAIR10                   	172.18.8.70	42373	    	Arabidopsis thaliana genome, TA
 rice                     	172.18.8.70	42293	    	Rice genome, Os-Nipponbare-Reference-IRGSP-1.0 (Oct, 2011)	Oryza sativa ssp. japonica;rice
 sorBic                   	172.18.8.70	42403	    	Sorghum genome, Sorghum bicolor v2.1 (May, 2013)	Sorghum bicolor
 bmor1                    	172.18.8.70	42303	Ensembl	Silkworm genome, Bmor1 (Apr, 2008)	Bombyx mori
-pombe                    	172.18.8.70	42453	EnsemblFungi	S. pombe (972h-) genome, ASM294v2 (Nov, 2007)	Schizosaccharomyces pombe;fission yeast
+pombe                    	172.18.8.70	42453	EnsemblFungi	Schizosaccharomyces pombe (972h-) genome, ASM294v2 (Nov, 2007)	Schizosaccharomyces pombe;fission yeast
 MG8                      	172.18.8.77	42463	EnsemblFungi	Magnaporthe oryzae (70-15) genome, MG8 (Sep, 2011)	Magnaporthe oryzae;rice blast fungus
 Xentr7                   	172.18.8.77	43013	Xenbase  	Xenopus tropicalis genome, XenBase/JGI 7.1	Xenopus tropicalis;western clawed frog
 Xentr8                   	172.18.8.77	43023	Xenbase  	Xenopus tropicalis genome, XenBase/JGI 8.0	Xenopus tropicalis;western clawed frog
