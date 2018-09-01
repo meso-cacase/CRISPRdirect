@@ -223,6 +223,8 @@ $JELFISH -p 48661 -hash $HASHDIR/AGPv4/*.jf >> $LOGDIR/AGPv4.log 2>&1 &
 $JELFISH -p 48662 -hash $HASHDIR/Ccanephora_1.0/*.jf >> $LOGDIR/Ccanephora_1.0.log 2>&1 &
 $JELFISH -p 48663 -hash $HASHDIR/danRer10/*.jf >> $LOGDIR/danRer10.log 2>&1 &
 $JELFISH -p 48664 -hash $HASHDIR/danRer11/*.jf >> $LOGDIR/danRer11.log 2>&1 &
+$JELFISH -p 48666 -hash $HASHDIR/Soybn_V2.0/*.jf >> $LOGDIR/Soybn_V2.0.log 2>&1 &
+$JELFISH -p 48667 -hash $HASHDIR/Sorbi3/*.jf >> $LOGDIR/Sorbi3.log 2>&1 &
 $JELFISH -p 48260 -hash $HASHDIR/GCA_000346485.1/*.jf >> $LOGDIR/GCA_000346485.1.log 2>&1 &
 $JELFISH -p 48261 -hash $HASHDIR/GCA_000317635.1/*.jf >> $LOGDIR/GCA_000317635.1.log 2>&1 &
 $JELFISH -p 48262 -hash $HASHDIR/GCA_000011385.1/*.jf >> $LOGDIR/GCA_000011385.1.log 2>&1 &

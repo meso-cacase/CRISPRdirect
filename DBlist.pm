@@ -196,6 +196,7 @@ Brapa_v1.5               	172.18.8.70	48259	Chinese cabbage (Brassica rapa ssp. 
 IVFCAASv1                	172.18.8.70	48153	Chinese cabbage (Brassica rapa ssp. pekinensis) genome, IVFCAASv1 (Aug, 2009)
 Chlre_v3.1               	172.18.8.70	48154	Green algae (Chlamydomonas reinhardtii) genome, v3.1 (Nov, 2007)
 ASM9120v1                	172.18.8.70	48155	Red alga (Cyanidioschyzon merolae) genome, ASM9120v1 (Nov, 2008)
+Soybn_V2.0               	172.18.8.70	48666	Soybean (Glycine max) genome, v2.0 (Nov, 2015)
 Soybn_V1.0               	172.18.8.70	48156	Soybean (Glycine max) genome, V1.0 (Jan, 2010)
 Horvu_v1                 	172.18.8.70	48157	Barley (Hordeum vulgare) genome, 082214v1 (Mar, 2012)
 Lperr_V1.4               	172.18.8.70	48158	Leersia perrieri genome, Lperr_V1.4 (Mar, 2014)
@@ -222,6 +223,7 @@ SL2.50                   	172.18.8.70	48177	Tomato (Solanum lycopersicum) str. H
 SL2.4                    	172.18.8.70	48636	Tomato (Solanum lycopersicum) genome, SL2.40 (Jan, 2011)
 SME_r2.5.1               	172.18.8.70	48655	Eggplant (Solanum melongena) genome, r2.5.1
 SolTub_3.0               	172.18.8.70	48178	Potato (Solanum tuberosum) genome, SolTub_3.0 (May, 2011)
+Sorbi3                   	172.18.8.70	48667	Sorghum (Sorghum bicolor) genome, NCBIv3 (Jun, 2017)
 Sorbi1                   	172.18.8.70	48179	Sorghum (Sorghum bicolor) genome, Sorbi1 (Dec, 2007)
 Thecc_20110822           	172.18.8.70	48180	Cacao (Theobroma cacao) genome, Theobroma_cacao_20110822 (May, 2014)
 IWGSC1.0                 	172.18.8.70	48181	Wheat (Triticum aestivum) genome, IWGSC1.0+popseq (Nov, 2014)
