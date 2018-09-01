@@ -141,7 +141,9 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'Xentr7\'                    synonym=\"$db_synonym{'Xentr7'                   }\">$db_fullname{'Xentr7'                   }</option>
 		<option value=\'xenTro3\'                   synonym=\"$db_synonym{'xenTro3'                  }\">$db_fullname{'xenTro3'                  }</option>
 		<option value=\'Acyr_2.0\'                  synonym=\"$db_synonym{'Acyr_2.0'                 }\">$db_fullname{'Acyr_2.0'                 }</option>
+		<option value=\'AaegL5\'                    synonym=\"$db_synonym{'AaegL5'                   }\">$db_fullname{'AaegL5'                   }</option>
 		<option value=\'AaegL3\'                    synonym=\"$db_synonym{'AaegL3'                   }\">$db_fullname{'AaegL3'                   }</option>
+		<option value=\'AaloF1\'                    synonym=\"$db_synonym{'AaloF1'                   }\">$db_fullname{'AaloF1'                   }</option>
 		<option value=\'AdarC3\'                    synonym=\"$db_synonym{'AdarC3'                   }\">$db_fullname{'AdarC3'                   }</option>
 		<option value=\'Aqu1\'                      synonym=\"$db_synonym{'Aqu1'                     }\">$db_fullname{'Aqu1'                     }</option>
 		<option value=\'Aros_1.0\'                  synonym=\"$db_synonym{'Aros_1.0'                 }\">$db_fullname{'Aros_1.0'                 }</option>

@@ -138,7 +138,9 @@ Xentr8                   	localhost  	48210	Frog (Xenopus tropicalis) genome, Xe
 Xentr7                   	localhost  	48211	Frog (Xenopus tropicalis) genome, XenBase/JGI 7.1
 xenTro3                  	localhost  	48069	Frog (Xenopus tropicalis) genome, JGI 4.2/xenTro3 (Nov, 2009)
 Acyr_2.0                 	172.18.8.70	48112	Pea aphid (Acyrthosiphon pisum) genome, Acyr_2.0 (Jun, 2010)
+AaegL5                   	172.18.8.70	48670	Yellow fever mosquito (Aedes aegypti) genome, AaegL5 (Jun, 2017)
 AaegL3                   	172.18.8.70	48113	Yellow fever mosquito (Aedes aegypti) genome, AaegL3 (Dec, 2013)
+AaloF1                   	172.18.8.70	48671	Asian tiger mosquito (Aedes albopictus) genome, AaloF1 (Nov, 2015)
 AdarC3                   	172.18.8.70	48115	American malaria mosquito (Anopheles darlingi) genome, AdarC3 (Jan, 2014)
 Aqu1                     	172.18.8.70	48114	Sponge (Amphimedon queenslandica) genome, Aqu1 (Oct, 2010)
 Aros_1.0                 	172.18.8.70	48648	Turnip sawfly (Athalia rosae) genome, Aros_1.0 (Mar, 2013)

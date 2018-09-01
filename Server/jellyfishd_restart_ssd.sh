@@ -227,6 +227,8 @@ $JELFISH -p 48666 -hash $HASHDIR/Soybn_V2.0/*.jf >> $LOGDIR/Soybn_V2.0.log 2>&1 
 $JELFISH -p 48667 -hash $HASHDIR/Sorbi3/*.jf >> $LOGDIR/Sorbi3.log 2>&1 &
 $JELFISH -p 48668 -hash $HASHDIR/KM1777_03/*.jf >> $LOGDIR/KM1777_03.log 2>&1 &
 $JELFISH -p 48669 -hash $HASHDIR/PicPas_Mar2011/*.jf >> $LOGDIR/PicPas_Mar2011.log 2>&1 &
+$JELFISH -p 48670 -hash $HASHDIR/AaegL5/*.jf >> $LOGDIR/AaegL5.log 2>&1 &
+$JELFISH -p 48671 -hash $HASHDIR/AaloF1/*.jf >> $LOGDIR/AaloF1.log 2>&1 &
 $JELFISH -p 48260 -hash $HASHDIR/GCA_000346485.1/*.jf >> $LOGDIR/GCA_000346485.1.log 2>&1 &
 $JELFISH -p 48261 -hash $HASHDIR/GCA_000317635.1/*.jf >> $LOGDIR/GCA_000317635.1.log 2>&1 &
 $JELFISH -p 48262 -hash $HASHDIR/GCA_000011385.1/*.jf >> $LOGDIR/GCA_000011385.1.log 2>&1 &
