@@ -288,6 +288,8 @@ pombe                    	localhost  	48222	Fission yeast (Schizosaccharomyces p
 MG8                      	localhost  	48228	Rice blast fungus (Magnaporthe oryzae) 70-15 genome, MG8 (Sep, 2011)
 ASM644v2                 	172.18.8.70	48230	Marine yeast (Debaryomyces hansenii) CBS767 genome, ASM644v2 (Feb, 2015)
 ASM251v1                 	172.18.8.70	48231	Kluyveromyces yeast (Kluyveromyces lactis) genome, ASM251v1 (Feb, 2015)
+KM1777_03                	172.18.8.70	48668	Kluyveromyces yeast (Kluyveromyces marxianus) genome, KM1777_03 (Oct, 2014)
+PicPas_Mar2011           	172.18.8.70	48669	Methylotrophic yeast (Komagataella phaffii) CBS 7435 genome, PicPas_Mar2011 (Oct, 2016)
 ASM252v1                 	172.18.8.70	48232	Oleaginous yeast (Yarrowia lipolytica) genome, ASM252v1 (May, 2012)
 RR                       	172.18.8.70	48233	Wheat head blight fungus (Fusarium graminearum) genome, RR (Nov, 2014)
 RHOziaDV1.0              	172.18.8.70	48235	Oleaginous yeast (Rhodotorula toruloides) NP11 genome, RHOziaDV1.0 (Apr, 2013)
