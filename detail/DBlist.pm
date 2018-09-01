@@ -18,9 +18,9 @@ package DBlist ;
 
 $dbconfig =
 <<'--EOS--' ;
-hg38                     	172.18.8.75	40013	UCSC	Human genome, GRCh38/hg38 (Dec, 2013)	Homo sapiens
-hg19                     	172.18.8.78	40023	UCSC	Human genome, GRCh37/hg19 (Feb, 2009)	Homo sapiens
-mm10                     	172.18.8.78	40033	UCSC	Mouse genome, GRCm38/mm10 (Dec, 2011)	Mus musculus
+hg38                     	172.18.8.75	44063	UCSC	Human genome, GRCh38/hg38 (Dec, 2013)	Homo sapiens
+hg19                     	172.18.8.75	44083	UCSC	Human genome, GRCh37/hg19 (Feb, 2009)	Homo sapiens
+mm10                     	172.18.8.75	44073	UCSC	Mouse genome, GRCm38/mm10 (Dec, 2011)	Mus musculus
 mm9                      	172.18.8.78	40043	UCSC	Mouse genome, NCBI37/mm9 (Jul, 2007)	Mus musculus
 vicPac2                  	172.18.8.78	40053	UCSC	Alpaca genome, Vicugna_pacos-2.0.1/vicPac2 (Mar, 2013)	Vicugna pacos
 dasNov3                  	172.18.8.78	40063	UCSC	Armadillo genome, Baylor/dasNov3 (Dec, 2011)	Dasypus novemcinctus
@@ -42,7 +42,7 @@ eriEur2                  	172.18.8.78	40203	UCSC	Hedgehog genome, EriEur2.0/eriE
 equCab2                  	172.18.8.78	40213	UCSC	Horse genome, Broad/equCab2 (Sep, 2007)	Equus caballus
 dipOrd1                  	172.18.8.78	40223	UCSC	Kangaroo rat genome, Broad/dipOrd1 (Jul, 2008)	Dipodomys ordii
 triMan1                  	172.18.8.78	40233	UCSC	Manatee genome, Broad v1.0/triMan1 (Oct, 2011)	Trichechus manatus latirostris
-calJac3                  	172.18.8.78	40243	UCSC	Marmoset genome, WUGSC 3.2/calJac3 (Mar, 2009)	Callithrix jacchus
+calJac3                  	172.18.8.75	44093	UCSC	Marmoset genome, WUGSC 3.2/calJac3 (Mar, 2009)	Callithrix jacchus
 pteVam1                  	172.18.8.78	40253	UCSC	Megabat genome, Broad/pteVam1 (Jul, 2008)	Pteropus vampyrus
 myoLuc2                  	172.18.8.78	40263	UCSC	Microbat genome, Broad Institute Myoluc2.0/myoLuc2 (Jul, 2010)	Myotis lucifugus
 balAcu1                  	172.18.8.77	40273	UCSC	Minke whale genome, BalAcu1.0/balAcu1 (Oct, 2013)	Balaenoptera acutorostrata scammoni
@@ -55,9 +55,9 @@ susScr3                  	172.18.8.77	40333	UCSC	Pig genome, SGSC Sscrofa10.2/su
 ochPri3                  	172.18.8.77	40343	UCSC	Pika genome, OchPri3.0/ochPri3 (May, 2012)	Ochotona princeps
 ornAna1                  	172.18.8.77	40353	UCSC	Platypus genome, WUGSC 5.0.1/ornAna1 (Mar, 2007)	Ornithorhynchus anatinus
 oryCun2                  	172.18.8.77	40363	UCSC	Rabbit genome, Broad/oryCun2 (Apr, 2009)	Oryctolagus cuniculus
-rn6                      	172.18.8.77	40373	UCSC	Rat genome, RGSC 6.0/rn6 (Jul, 2014)	Rattus norvegicus
+rn6                      	172.18.8.75	44103	UCSC	Rat genome, RGSC 6.0/rn6 (Jul, 2014)	Rattus norvegicus
 rn5                      	172.18.8.77	40383	UCSC	Rat genome, RGSC 5.0/rn5 (Mar, 2012)	Rattus norvegicus
-rheMac3                  	172.18.8.77	40393	UCSC	Rhesus genome, BGI CR_1.0/rheMac3 (Oct, 2010)	Macaca mulatta
+rheMac3                  	172.18.8.75	44113	UCSC	Rhesus genome, BGI CR_1.0/rheMac3 (Oct, 2010)	Macaca mulatta
 proCap1                  	172.18.8.77	40403	UCSC	Rock hyrax genome, Broad/proCap1 (Jul, 2008)	Procavia capensis;cape hyrax
 oviAri3                  	172.18.8.77	40413	UCSC	Sheep genome, ISGC Oar_v3.1/oviAri3 (Aug, 2012)	Ovis aries
 sorAra2                  	172.18.8.77	40423	UCSC	Shrew genome, Broad/sorAra2 (Aug, 2008)	Sorex araneus
@@ -123,7 +123,7 @@ PoeFor_5.1.2             	172.18.8.76	43083	Ensembl	Amazon molly genome, Poecili
 CSAV2.0                  	172.18.8.76	43093	Ensembl	Ciona savignyi genome, CSAV 2.0 (Oct, 2005)	Ciona savignyi;pacific transparent sea squirt
 AstMex102                	172.18.8.76	43103	Ensembl	Cave fish genome, AstMex102 (Apr, 2013)	Astyanax mexicanus
 PelSin_1.0               	172.18.8.76	43113	Ensembl	Chinese softshell turtle genome, PelSin_1.0 (Oct, 2011)	Pelodiscus sinensis
-MacFas5.0                	172.18.8.76	43123	Ensembl	Crab-eating macaque genome, MacFas5.0 (Jun, 2013)	Macaca fascicularis
+MacFas5.0                	172.18.8.75	44123	Ensembl	Crab-eating macaque genome, MacFas5.0 (Jun, 2013)	Macaca fascicularis
 BGI_duck_1.0             	172.18.8.76	43133	Ensembl	Duck genome, BGI_duck_1.0 (Apr, 2013)	Anas platyrhynchos
 FicAlb_1.4               	172.18.8.76	43143	Ensembl	Flycatcher genome, FicAlb_1.4 (Jan, 2012)	Ficedula albicollis
 Pham                     	172.18.8.76	43153	Ensembl	Hamadryas baboon genome, Pham (Nov, 2008)	Papio hamadryas
@@ -227,7 +227,7 @@ Xentr7                   	172.18.8.77	43013	Xenbase  	Xenopus tropicalis genome,
 Xentr8                   	172.18.8.77	43023	Xenbase  	Xenopus tropicalis genome, XenBase/JGI 8.0	Xenopus tropicalis;western clawed frog
 Xentr9                   	172.18.8.77	42513	Xenbase  	Xenopus tropicalis genome, XenBase/JGI 9.0	Xenopus tropicalis;western clawed frog
 Xenla9                   	172.18.8.77	42523	Xenbase  	Xenopus laevis genome, XenBase/JGI 9.1	Xenopus laevis;african clawed frog
-macaque_CE_1             	172.18.8.77	43043	         	Crab-eating macaque genome, CE_1.0 (Jul, 2011)	Macaca fascicularis
+macaque_CE_1             	172.18.8.75	44133	         	Crab-eating macaque genome, CE_1.0 (Jul, 2011)	Macaca fascicularis
 KH                       	172.18.8.77	42533	         	Ciona intestinalis genome, KH (Jul, 2008)	Ciona intestinalis;transparent sea squirt
 Spur_v3.1                	172.18.8.77	42543	SpBase   	S. purpuratus genome, Spur_v3.1 (Jun, 2011)	Strongylocentrotus purpuratus;purple sea urchin
 h7                       	172.18.8.77	42553	NCBI     	Hydra genome, h7 (Aug, 2008)	Hydra vulgaris
