@@ -1,8 +1,9 @@
 CRISPRdirect
 ======================
 
-CRISPRdirect is a web server for selecting rational CRISPR-Cas9 guide RNAs.  
-Freely available to all users.
+**CRISPRdirect** is a web server for selecting rational CRISPR-Cas9 guide RNAs.  
+The web server of CRISPRdirect is freely available to all users.  
+CRISPRdirect web server: https://GGGenome.dbcls.jp/en/
 
 CRISPR-Cas9システムのターゲット配列を設計するウェブサービスです。  
 どなたでも無償で自由に利用できます。
@@ -63,7 +64,7 @@ API
 License
 --------
 
-Copyright &copy; 2013-2018 Yuki Naito
+Copyright &copy; 2013-2019 Yuki Naito
  ([@meso_cacase](http://twitter.com/meso_cacase)) at  
 Database Center for Life Science (DBCLS), Japan.  
 This software is distributed under
