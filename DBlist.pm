@@ -174,7 +174,7 @@ Tcas3                    	172.18.8.70	48143	Red flour beetle (Tribolium castaneu
 Tspiralis1               	172.18.8.70	48144	Trichina worm (Trichinella spiralis) genome, Tspiralis1 (Mar, 2011)
 ASM15027v1               	172.18.8.70	48145	Trichoplax adhaerens genome, ASM15027v1 (Aug, 2006)
 ZooNev1.0                	172.18.8.70	48146	Dampwood termite (Zootermopsis nevadensis) genome, ZooNev1.0 (Jun, 2014)
-Bomo_silkbase            	172.18.8.70	48644	Silkworm (Bombyx mori) genome, SilkBase assembly (Jan, 2017)
+Bomo_silkbase            	172.18.8.70	48644	Silkworm (Bombyx mori) genome, SilkBase assembly (Nov, 2016)
 ASM15162v1               	172.18.8.70	48117	Silkworm (Bombyx mori) genome, ASM15162v1 (Feb, 2013)
 bmor1                    	localhost  	48221	Silkworm (Bombyx mori) genome, Bmor1 (Apr, 2008)
 h7                       	localhost  	48226	Hydra vulgaris genome, h7 (Aug, 2008)
