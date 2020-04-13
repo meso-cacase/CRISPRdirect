@@ -34,7 +34,7 @@ my $max_k_debug      = 50 ;       # 許容するミスマッチ/ギャップ数�
 my $max_hit_html     = 200 ;      # 検索を打ち切るヒット数、HTMLの場合
 my $max_hit_api      = 100000 ;   # 検索を打ち切るヒット数、TXT,CSV,BED,GFF,JSONの場合
 my $max_hit_debug    = 10000000 ; # 検索を打ち切るヒット数、デバッグモード
-my $timeout          = 20 ;       # タイムアウト時間、秒
+my $timeout          = 30 ;       # タイムアウト時間、秒
 my $timeout_debug    = 1800 ;     # タイムアウト時間、秒、デバッグモード
 
 my $dbconf = $DBlist::dbconfig ;  # データベースの正式名およびホスト名/ポート番号のリスト
@@ -42,8 +42,8 @@ my $dbconf = $DBlist::dbconfig ;  # データベースの正式名およびホ�
 my %host ;
 my %port ;
 my %source ;
-my %db_fullname ;
-my %db_synonym ;	#ADD tyamamot
+our %db_fullname ;                # データベースの正式名
+our %db_synonym ;                 # データベースの別名 (メニュー検索用、学名などを格納)
 foreach (split /\n/, $dbconf){
 	chomp ;
 	map {defined $_ ? ($_ =~ s/\s*$//g) : ($_ = '')}  # 後方のスペースを除去    #CHANGE tyamamot
@@ -64,6 +64,7 @@ my $lang         = '' ;  # HTMLの場合の日本語/英語: ja, en
 my $db           = '' ;  # 生物種 (データベース): hg19, mm10, ...
 my $k            = '' ;  # 許容するミスマッチ/ギャップの数: 0, 1, 2, ...
 my $strand       = '' ;  # 検索する方向: +, -
+my $nogap        = '' ;  # nogapモード
 my $query_string = '' ;  # 塩基配列
 my $format       = '' ;  # 出力フォーマット: html, txt, csv, bed, gff, json
 my $download     = '' ;  # ファイルとしてダウンロードするか: (boolean)
@@ -71,7 +72,7 @@ my $debug        = '' ;  # デバッグモード
 #-- △ 使用するパラメータ一覧
 
 #-- ▽ URIからパラメータを取得
-# 例：/en/mm10/2/TTCATTGACAACATTGCGT.txt.download
+# 例：/debug/en/mm10/2/+/nogap/TTCATTGACAACATTGCGT.txt.download
 #
 my $request_uri = $ENV{'REQUEST_URI'} // '' ;
 $request_uri =~ s/\?.*// ;  # '?' 以降のQUERY_STRING部分を除去
@@ -87,6 +88,8 @@ while ($request_uri =~ m{([^/]+)(/?)}g){
 		$k = $1 :
 	($param =~ /^(\+|\-|plus|minus|both)$/i) ?
 		$strand = $1 :
+	($param =~ /^(nogap)$/i) ?
+		$nogap = 'true' :
 	($param =~ /^(debug)$/i) ?
 		$debug = 'true' :
 	(not $slash) ?  # 上記に当てはまらず最後の要素: $query_string へ
@@ -138,6 +141,11 @@ $strand =~ s/^plus$/+/i ;             # plus  -> +
 $strand =~ s/^minus$/-/i ;            # minus -> -
 $strand =~ s/^both$//i ;              # both  -> 空欄
 
+$nogap =                              # nogapモード
+	$query{'nogap'} //                # 1) QUERY_STRINGから
+	$nogap          //                # 2) QUERY_STRING未指定 → URIから
+	'' ;                              # 3) URI未指定 → 空欄
+
 $format =                             # 出力フォーマット
 	(defined $query{'format'} and $query{'format'} =~ /^(html|txt|csv|bed|gff|json)?$/i) ?
 	lc($query{'format'}) :            # 1) QUERY_STRINGから
@@ -161,11 +169,12 @@ $debug =                              # デバッグモード
 #- ▼ パラメータからURIを生成してリダイレクト
 my $redirect_uri = '/' ;
 $redirect_uri .= ($request_uri =~ m{^/((test/)?detail/)}) ? $1 : '' ;  # テストページ /test/ 対応
-$redirect_uri .= $debug ? "debug/" : '' ;
-$redirect_uri .= $lang ? "$lang/" : '' ;
-$redirect_uri .= $db   ? "$db/"   : '' ;
-$redirect_uri .= $k    ? "$k/"    : '' ;  # 値が 0 の場合は /0/ を省略
+$redirect_uri .= $debug    ? "debug/"    : '' ;
+$redirect_uri .= $lang     ? "$lang/"    : '' ;
+$redirect_uri .= $db       ? "$db/"      : '' ;
+$redirect_uri .= $k        ? "$k/"       : '' ;  # 値が 0 の場合は /0/ を省略
 $redirect_uri .= $strand   ? "$strand/"  : '' ;
+$redirect_uri .= $nogap    ? "nogap/"    : '' ;
 $redirect_uri .= $query_string ;
 $redirect_uri .= $format   ? ".$format"  : '' ;
 $redirect_uri .= $download ? '.download' : '' ;
@@ -189,6 +198,7 @@ $lang     ||= ($0 =~ /ja$/) ? 'ja' :  # lang が未定義で実行ファイル�
 $db       ||= 'hg19' ;
 $k        ||= 0 ;
 $strand   ||= '' ;
+$nogap    ||= '' ;
 $format   ||= 'html' ;
 $download ||= '' ;
 $debug    ||= '' ;
@@ -245,7 +255,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (+)鎖の検索実行と結果出力
 	unless ($strand eq '-'){
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -257,7 +267,7 @@ if ($format eq 'txt'){
 		# ヒット数を出力、予測値の場合は有効2桁で先頭に'>'を付加
 		$hit_num    = $hits->{total_hit_num}           // '' ;
 		$hit_approx = $hits->{total_hit_num_is_approx} // '' ;
-		$hit_approx and $hit_num =~ s/^(\d{2})(\d*)/'>' . $1 . 0 x length($2)/e ;
+		$hit_approx and $hit_num =~ s/^(\d{1,2})(\d*)/'>' . $1 . 0 x length($2)/e ;
 
 		push @summary, "# query:	$queryseq" ;
 		push @summary, "# count:	$hit_num" ;
@@ -267,7 +277,7 @@ if ($format eq 'txt'){
 	#--- ▽ (-)鎖の検索実行と結果出力
 	unless ($strand eq '+'){
 		$queryseq = comp($queryseq) ;
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
@@ -279,15 +289,34 @@ if ($format eq 'txt'){
 		# ヒット数を出力、予測値の場合は有効2桁で先頭に'>'を付加
 		$hit_num    = $hits->{total_hit_num}           // '' ;
 		$hit_approx = $hits->{total_hit_num_is_approx} // '' ;
-		$hit_approx and $hit_num =~ s/^(\d{2})(\d*)/'>' . $1 . 0 x length($2)/e ;
+		$hit_approx and $hit_num =~ s/^(\d{1,2})(\d*)/'>' . $1 . 0 x length($2)/e ;
 
 		push @summary, "# query:	$queryseq" ;
 		push @summary, "# count:	$hit_num" ;
 	}
 	#--- △ (-)鎖の検索実行と結果出力
 
-	push @summary, '# name	strand	start	end	snippet	snippet_pos	snippet_end' ;
+	push @summary, '# ' . join("\t",
+		'name',
+		'strand',
+		'start',
+		'end',
+		'snippet',
+		'snippet_pos',
+		'snippet_end',
+		'query',
+		'sbjct',
+		'align',
+		'edit',
+		'match',
+		'mis',
+		'del',
+		'ins',
+	) ;
 	@hit_list or push @hit_list, '### No items found. ###' ;  # ヒットがゼロ件
+
+	alarm 0 ;  # 検索結果の出力前にタイムアウト判定を解除
+
 	print_txt(join "\n", (@summary, @hit_list)) ;
 #-- △ TXT(タブ区切りテキスト)形式
 
@@ -299,7 +328,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (+)鎖の検索実行と結果出力
 	unless ($strand eq '-'){
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -311,7 +340,7 @@ if ($format eq 'txt'){
 		# ヒット数を出力、予測値の場合は有効2桁で先頭に'>'を付加
 		$hit_num    = $hits->{total_hit_num}           // '' ;
 		$hit_approx = $hits->{total_hit_num_is_approx} // '' ;
-		$hit_approx and $hit_num =~ s/^(\d{2})(\d*)/'>' . $1 . 0 x length($2)/e ;
+		$hit_approx and $hit_num =~ s/^(\d{1,2})(\d*)/'>' . $1 . 0 x length($2)/e ;
 
 		push @summary, "# query,$queryseq" ;
 		push @summary, "# count,$hit_num" ;
@@ -321,7 +350,7 @@ if ($format eq 'txt'){
 	#--- ▽ (-)鎖の検索実行と結果出力
 	unless ($strand eq '+'){
 		$queryseq = comp($queryseq) ;
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
@@ -333,15 +362,34 @@ if ($format eq 'txt'){
 		# ヒット数を出力、予測値の場合は有効2桁で先頭に'>'を付加
 		$hit_num    = $hits->{total_hit_num}           // '' ;
 		$hit_approx = $hits->{total_hit_num_is_approx} // '' ;
-		$hit_approx and $hit_num =~ s/^(\d{2})(\d*)/'>' . $1 . 0 x length($2)/e ;
+		$hit_approx and $hit_num =~ s/^(\d{1,2})(\d*)/'>' . $1 . 0 x length($2)/e ;
 
 		push @summary, "# query,$queryseq" ;
 		push @summary, "# count,$hit_num" ;
 	}
 	#--- △ (-)鎖の検索実行と結果出力
 
-	push @summary, '# name,strand,start,end,snippet,snippet_pos,snippet_end' ;
+	push @summary, '# ' . join(',',
+		'name',
+		'strand',
+		'start',
+		'end',
+		'snippet',
+		'snippet_pos',
+		'snippet_end',
+		'query',
+		'sbjct',
+		'align',
+		'edit',
+		'match',
+		'mis',
+		'del',
+		'ins',
+	) ;
 	@hit_list or push @hit_list, '### No items found. ###' ;  # ヒットがゼロ件
+
+	alarm 0 ;  # 検索結果の出力前にタイムアウト判定を解除
+
 	print_txt(join "\n", (@summary, @hit_list)) ;
 #-- △ CSV形式
 
@@ -352,7 +400,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (+)鎖の検索実行と結果出力
 	unless ($strand eq '-'){
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -366,7 +414,7 @@ if ($format eq 'txt'){
 	#--- ▽ (-)鎖の検索実行と結果出力
 	unless ($strand eq '+'){
 		$queryseq = comp($queryseq) ;
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
@@ -378,6 +426,9 @@ if ($format eq 'txt'){
 	#--- △ (-)鎖の検索実行と結果出力
 
 	@hit_list or push @hit_list, '### No items found. ###' ;  # ヒットがゼロ件
+
+	alarm 0 ;  # 検索結果の出力前にタイムアウト判定を解除
+
 	print_txt(join "\n", (@summary, @hit_list)) ;
 #-- △ BED形式
 
@@ -390,7 +441,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (+)鎖の検索実行と結果出力
 	unless ($strand eq '-'){
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -404,7 +455,7 @@ if ($format eq 'txt'){
 	#--- ▽ (-)鎖の検索実行と結果出力
 	unless ($strand eq '+'){
 		$queryseq = comp($queryseq) ;
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
@@ -416,6 +467,9 @@ if ($format eq 'txt'){
 	#--- △ (-)鎖の検索実行と結果出力
 
 	@hit_list or push @hit_list, '### No items found. ###' ;  # ヒットがゼロ件
+
+	alarm 0 ;  # 検索結果の出力前にタイムアウト判定を解除
+
 	print_txt(join "\n", (@summary, @hit_list)) ;
 #-- △ GFF形式
 
@@ -425,7 +479,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (+)鎖の検索実行と結果出力
 	unless ($strand eq '-'){
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -449,7 +503,7 @@ if ($format eq 'txt'){
 	#--- ▽ (-)鎖の検索実行と結果出力
 	unless ($strand eq '+'){
 		$queryseq = comp($queryseq) ;
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit) or
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, undef, $timeout) or
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
@@ -477,6 +531,9 @@ if ($format eq 'txt'){
 		results  => \@hit_list,
 		error    => 'none'
 	}) ;
+
+	alarm 0 ;  # 検索結果の出力前にタイムアウト判定を解除
+
 	print_json($json_result) ;
 #-- △ JSON形式
 
@@ -492,7 +549,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ (+)鎖の検索実行と結果出力
 	unless ($strand eq '-'){
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit, $offset, $timeout) or #CHANGE tyamamot
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, $offset, $timeout) or #CHANGE tyamamot
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_plus_done; $uri"] ;   #===== 実行時間計測 =====
@@ -505,7 +562,7 @@ if ($format eq 'txt'){
 		$hit_num    = $hits->{total_hit_num}           // '' ;
 		$hit_approx = $hits->{total_hit_num_is_approx} // '' ;
 		$ds_hit_num += $hit_num ;
-		$hit_approx and $hit_num =~ s/^(\d{2})(\d*)/'&gt;' . $1 . 0 x length($2)/e ;
+		$hit_approx and $hit_num =~ s/^(\d{1,2})(\d*)/'&gt;' . $1 . 0 x length($2)/e ;
 		$hit_approx and $ds_approx = 1 ;
 
 		push @summary,
@@ -527,7 +584,7 @@ if ($format eq 'txt'){
 		#ADD end tyamamot
 
 		$queryseq = comp($queryseq) ;
-		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $limit, $offset, $timeout) or #CHANGE tyamamot
+		($hits, $uri) = GGGenome::approx_q(uc(rna2dna($queryseq)), $host, $port, $k, $nogap, $limit, $offset, $timeout) or #CHANGE tyamamot
 			printresult('ERROR : searcher error') ;
 
 		push @timer, [Time::HiRes::time(), "search_minus_done; $uri"] ;  #===== 実行時間計測 =====
@@ -540,7 +597,7 @@ if ($format eq 'txt'){
 		$hit_num    = $hits->{total_hit_num}           // '' ;
 		$hit_approx = $hits->{total_hit_num_is_approx} // '' ;
 		$ds_hit_num += $hit_num ;
-		$hit_approx and $hit_num =~ s/^(\d{2})(\d*)/'&gt;' . $1 . 0 x length($2)/e ;
+		$hit_approx and $hit_num =~ s/^(\d{1,2})(\d*)/'&gt;' . $1 . 0 x length($2)/e ;
 		$hit_approx and $ds_approx = 1 ;
 
 		push @summary,
@@ -551,7 +608,7 @@ if ($format eq 'txt'){
 
 	#--- ▽ 両鎖の合計数を出力
 	my $total = $ds_hit_num ;  #ADD tyamamot totalの追加
-	$ds_approx and $ds_hit_num =~ s/^(\d{2})(\d*)/'&gt;' . $1 . 0 x length($2)/e ;
+	$ds_approx and $ds_hit_num =~ s/^(\d{1,2})(\d*)/'&gt;' . $1 . 0 x length($2)/e ;
 
 	$limit   = ($debug ? $max_hit_debug : $max_hit_html) ;  #ADD tyamamot 検索を打ち切るヒット数を改めてセット
 	$offset  = $query{'offset'} // 0 ;                      #ADD tyamamot offsetの追加
@@ -571,11 +628,11 @@ if ($format eq 'txt'){
 	#--- ▽ TXT/CSV/BED/GFF/JSON出力のbase URIを生成
 	my $linkbase_uri = '/' ;
 	$linkbase_uri .= ($request_uri =~ m{^/((test/)?detail/)}) ? $1 : '' ;  # テストページ /test/ 対応
-	$linkbase_uri .= $debug ? "debug/" : '' ;
-	$linkbase_uri .= $lang ? "$lang/" : '' ;
-	$linkbase_uri .= $db   ? "$db/"   : '' ;
-	$linkbase_uri .= $k    ? "$k/"    : '' ;  # 値が 0 の場合は /0/ を省略
+	$linkbase_uri .= $debug  ? "debug/"   : '' ;
+	$linkbase_uri .= $db     ? "$db/"     : '' ;
+	$linkbase_uri .= $k      ? "$k/"      : '' ;  # 値が 0 の場合は /0/ を省略
 	$linkbase_uri .= $strand ? "$strand/" : '' ;
+	$linkbase_uri .= $nogap  ? "nogap/"   : '' ;
 	$linkbase_uri .= $query_string ;
 	#--- △ TXT/CSV/BED/GFF/JSON出力のbase URIを生成
 
@@ -608,7 +665,6 @@ if ($format eq 'txt'){
 		TIMESTAMP    => $timestamp,
 		DB_FULLNAME  => $db_fullname,
 		SUMMARY      => "@summary",
-		MAX_HIT_HTML => $max_hit_html,
 		HIT_LIST     => "@hit_list",
 		MAX_HIT_API  => ($debug ? $max_hit_debug : $max_hit_api),
 		LINKBASE_URI => $linkbase_uri,
@@ -618,6 +674,7 @@ if ($format eq 'txt'){
 		DB           => $db,
 		K            => $k,
 		STRAND       => $strand,
+		NOGAP        => $nogap,
 		QUERY        => $query_string,
 		FORMAT       => $format,
 		DOWNLOAD     => $download,
@@ -625,12 +682,13 @@ if ($format eq 'txt'){
 		TIMELOG      => "@timelog"
 	) ;
 
+	alarm 0 ;  # 検索結果の出力前にタイムアウト判定を解除
+
 	($lang eq 'ja') ? print_html_ja($template_search->output) :  # Japanese HTML
 	                  print_html_en($template_search->output) ;  # default: English HTML
 }
 #-- △ HTML形式
 
-	alarm 0 ;
 } ;
 #- △ タイムアウト処理を行う部分
 
@@ -713,6 +771,10 @@ my $length      = $gene->{length}      // '' ;
 my $position    = $gene->{pos}         // '' ;
 my $snippet     = $gene->{snippet}     // '' ;
 my $snippet_pos = $gene->{snippet_pos} // '' ;
+my $query_based = $gene->{query_based} // '' ;
+my $body_based  = $gene->{body_based}  // '' ;
+my $alignment   = $gene->{matching_status} // '' ;
+my $edit_info   = $gene->{edit_info}   // '' ;
 
 my $position_end = ($position and $length) ?
                    $position + $length - 1 :
@@ -720,6 +782,13 @@ my $position_end = ($position and $length) ?
 my $snippet_end  = ($snippet_pos and $snippet) ?
                    $snippet_pos + length($snippet) - 1 :
                    '' ;
+
+#- ▼ アライメント情報からミスマッチ・挿入・欠失の数を計算
+my $match = $edit_info ? ($edit_info =~ tr/=/=/) : '' ;  # =: マッチ
+my $mis   = $edit_info ? ($edit_info =~ tr/X/X/) : '' ;  # X: ミスマッチ
+my $del   = $edit_info ? ($edit_info =~ tr/D/D/) : '' ;  # D: 欠失
+my $ins   = $edit_info ? ($edit_info =~ tr/I/I/) : '' ;  # I: 挿入
+#- ▲ アライメント情報からミスマッチ・挿入・欠失の数を計算
 
 $name =~ s/^>// ;
 
@@ -730,7 +799,15 @@ return join "\t", (
 	$position_end,
 	$snippet,
 	$snippet_pos,
-	$snippet_end
+	$snippet_end,
+	$query_based,
+	$body_based,
+	$alignment,
+	$edit_info,
+	$match,
+	$mis,
+	$del,
+	$ins,
 ) ;
 } ;
 # ====================
@@ -743,6 +820,10 @@ my $length      = $gene->{length}      // '' ;
 my $position    = $gene->{pos}         // '' ;
 my $snippet     = $gene->{snippet}     // '' ;
 my $snippet_pos = $gene->{snippet_pos} // '' ;
+my $query_based = $gene->{query_based} // '' ;
+my $body_based  = $gene->{body_based}  // '' ;
+my $alignment   = $gene->{matching_status} // '' ;
+my $edit_info   = $gene->{edit_info}   // '' ;
 
 my $position_end = ($position and $length) ?
                    $position + $length - 1 :
@@ -751,6 +832,13 @@ my $snippet_end  = ($snippet_pos and $snippet) ?
                    $snippet_pos + length($snippet) - 1 :
                    '' ;
 
+#- ▼ アライメント情報からミスマッチ・挿入・欠失の数を計算
+my $match = $edit_info ? ($edit_info =~ tr/=/=/) : '' ;  # =: マッチ
+my $mis   = $edit_info ? ($edit_info =~ tr/X/X/) : '' ;  # X: ミスマッチ
+my $del   = $edit_info ? ($edit_info =~ tr/D/D/) : '' ;  # D: 欠失
+my $ins   = $edit_info ? ($edit_info =~ tr/I/I/) : '' ;  # I: 挿入
+#- ▲ アライメント情報からミスマッチ・挿入・欠失の数を計算
+
 $name =~ s/^>// ;
 
 return join ',', (
@@ -758,9 +846,17 @@ return join ',', (
 	$strand,
 	$position,
 	$position_end,
-	$snippet,
+	"\"$snippet\"",
 	$snippet_pos,
-	$snippet_end
+	$snippet_end,
+	"\"$query_based\"",
+	"\"$body_based\"",
+	"\"$alignment\"",
+	"\"$edit_info\"",
+	$match,
+	$mis,
+	$del,
+	$ins,
 ) ;
 } ;
 # ====================
@@ -842,17 +938,31 @@ my $snippet_end  = ($snippet_pos and $snippet) ?
 
 $name =~ s/^>// ;
 
-return [
-	parse_seqname_json({
-		name         => $name,
-		strand       => $strand,
-		position     => $position,
-		position_end => $position_end,
-		snippet      => $snippet,
-		snippet_pos  => $snippet_pos,
-		snippet_end  => $snippet_end
-	})
-] ;
+my $json = {
+	name         => $name,
+	strand       => $strand,
+	position     => $position,
+	position_end => $position_end,
+	snippet      => $snippet,
+	snippet_pos  => $snippet_pos,
+	snippet_end  => $snippet_end,
+} ;
+
+defined $gene->{matching_status} and $json->{align} = $gene->{matching_status} ;
+defined $gene->{edit_info}       and $json->{edit}  = $gene->{edit_info} ;
+defined $gene->{query_based}     and $json->{query} = $gene->{query_based} ;
+defined $gene->{body_based}      and $json->{sbjct} = $gene->{body_based} ;
+
+#- ▼ アライメント情報からミスマッチ・挿入・欠失の数を計算
+if (defined $json->{edit}){
+	$json->{match} = ($json->{edit} =~ tr/=/=/) ;  # =: マッチ
+	$json->{mis}   = ($json->{edit} =~ tr/X/X/) ;  # X: ミスマッチ
+	$json->{del}   = ($json->{edit} =~ tr/D/D/) ;  # D: 欠失
+	$json->{ins}   = ($json->{edit} =~ tr/I/I/) ;  # I: 挿入
+}
+#- ▲ アライメント情報からミスマッチ・挿入・欠失の数を計算
+
+return [ parse_seqname_json($json) ] ;
 } ;
 # ====================
 sub show_hit_html {  # ヒットした遺伝子をHTMLで出力
@@ -913,7 +1023,7 @@ sub parse_seqname_json {  # 配列名に含まれるtaxonomy ID等をJSONに展�
 my $json = $_[0] or return $_[0] ;
 if ($db eq 'prok' and $json->{name} =~ s/^(.*?)\s*\{(.*)\}/$1/){
 	foreach (split /,/, $2){
-		$_ =~ /taxonomy:\"(.*?)\"/   and $json->{taxonomy}   = $1 +0 ;  # 数値化
+		$_ =~ /taxonomy:\"(.*?)\"/   and $json->{taxonomy}   = $1 + 0 ;  # 数値化
 		$_ =~ /bioproject:\"(.*?)\"/ and $json->{bioproject} = $1 ;
 		$_ =~ /refseq:\"(.*?)\"/     and $json->{refseq}     = $1 ;
 	}
@@ -1069,6 +1179,10 @@ my $db      = $_[3] // '' ;
 	       "<font color='#0E774A'>$1</font> <font color=silver>|</font> " .
 	       "<font color='#7F3737'>$4</font><br>\n\t" .
 	       "position: $pos-$pos_end\n" :
+($db =~ /^SARS/ and $name =~ /^(\S+)\ (.*)$/) ?
+	return "<a class=a target='_blank' href=" .
+	       "https://www.ncbi.nlm.nih.gov/nuccore/$1>$2</a><br>\n\t" .
+	       "<font color='#0E774A'>$1</font>:$pos-$pos_end" :
 # それ以外の場合
 	return "$name<br>\n\t" .
 	       "position: $pos-$pos_end\n" ;
@@ -1200,6 +1314,14 @@ my $strand_selection =
 ($strand and $strand eq '-') ? $strand_selection =~ s/minus/minus checked/ :
                                $strand_selection =~ s/both/both checked/   ;
 #-- △ strand選択ボタン
+
+#-- ▽ nogap選択ボタン
+my $nogap_selection =
+"<input type=radio name=nogap value=0>ミスマッチ/ギャップを許容
+<input type=radio name=nogap value=1>ミスマッチのみ許容 ：" ;
+$nogap ? $nogap_selection =~ s/value=1/value=1 checked/ :
+         $nogap_selection =~ s/value=0/value=0 checked/ ;
+#-- △ nogap選択ボタン
 #- ▲ 検索結果ページを出力：default
 
 #- ▼ エラーページを出力：引数が ERROR で始まる場合
@@ -1288,6 +1410,14 @@ my $strand_selection =
 ($strand and $strand eq '-') ? $strand_selection =~ s/minus/minus checked/ :
                                $strand_selection =~ s/both/both checked/   ;
 #-- △ strand選択ボタン
+
+#-- ▽ nogap選択ボタン
+my $nogap_selection =
+"<input type=radio name=nogap value=0>mismatches/gaps
+<input type=radio name=nogap value=1>mismatches :" ;
+$nogap ? $nogap_selection =~ s/value=1/value=1 checked/ :
+         $nogap_selection =~ s/value=0/value=0 checked/ ;
+#-- △ nogap選択ボタン
 #- ▲ 検索結果ページを出力：default
 
 #- ▼ エラーページを出力：引数が ERROR で始まる場合

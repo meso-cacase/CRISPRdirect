@@ -6,7 +6,6 @@ package DBlist ;
 # DB	host	port	source	fullname	synonym(複数の場合は;で区切る)
 #
 # ホスト一覧：
-# 172.18.8.70	ssd.dbcls.jp
 # 172.18.8.71	s01.dbcls.jp
 # 172.18.8.72	s02.dbcls.jp
 # 172.18.8.73	s03.dbcls.jp
@@ -176,8 +175,8 @@ Braol_v2.1               	172.18.8.75	28171	EnsemblPlants	Brassica oleracea geno
 IVFCAASv1                	172.18.8.75	28172	EnsemblPlants	Brassica rapa genome, IVFCAASv1 (Aug, 2009)	Brassica rapa ssp. pekinensis;chinese cabbage
 Chlre_v3.1               	172.18.8.75	28173	EnsemblPlants	Chlamydomonas reinhardtii genome, v3.1 (Nov, 2007)	Chlamydomonas reinhardtii;green algae
 ASM9120v1                	172.18.8.75	28174	EnsemblPlants	Cyanidioschyzon merolae genome, ASM9120v1 (Nov, 2008)	Cyanidioschyzon merolae;red alga
-Soybn_V1.0               	172.18.8.75	28175	EnsemblPlants	Glycine max genome, V1.0 (Jan, 2010)	Glycine max;soybean
-Soybn_V2.0               	172.18.8.75	28176	EnsemblPlants	Glycine max genome, v2.0 (Nov, 2015)	Glycine max;soybean
+Soybn_V1.0               	172.18.8.75	28175	EnsemblPlants	Glycine max genome, V1.0 EnsemblPlants (Jan, 2010)	Glycine max;soybean
+Soybn_V2.0               	172.18.8.75	28176	EnsemblPlants	Glycine max genome, v2.0 EnsemblPlants (Nov, 2015)	Glycine max;soybean
 Horvu_v1                 	172.18.8.75	28177	EnsemblPlants	Hordeum vulgare genome, 082214v1 (Mar, 2012)	Hordeum vulgare;barley
 Lperr_V1.4               	172.18.8.75	28178	EnsemblPlants	Leersia perrieri genome, Lperr_V1.4 (Mar, 2014)	Leersia perrieri
 MedtrA17_4.0             	172.18.8.75	28179	EnsemblPlants	Medicago truncatula str. A17 genome, MedtrA17_4.0 (Jun, 2014)	Medicago truncatula str. A17;barrel medic
