@@ -4,22 +4,24 @@ package KmerCount ;
 # Jellyfishを用いたサーバプログラムに問い合わせを行う
 #
 # 2013-12-23 Yuki Naito (@meso_cacase)
+# 2020-07-21 Yuki Naito (@meso_cacase) k-merカウントをJellyfishからGGGenome Count APIに置換
 
 use warnings ;
 use strict ;
-use Socket ;
+use LWP::Simple qw($ua get) ;
 use DBlist ;  # データベースの正式名およびホスト名/ポート番号の一覧 (DBlist.pm)
 
 # ====================
 sub kmercount {
 
-# Jellyfishサーバに問い合わせ、ゲノムにおけるk-merの頻度を整数で返す
+# GGGenome coutAPIを利用し、ゲノムにおけるk-merの頻度を整数で返す
 # 縮重塩基はサーバ側で展開し頻度の合計を求める
 # ただしエラーの際は空白文字を返す
-# usage: $count = kmercount('ggctgccaagaacctgcaggNgg', 'hg19') ;
+# usage: $count = kmercount('ggctgccaagaacctgcaggNgg', 'hg19', '-23,-15,-11') ;
 
 my $seq = $_[0] or return '' ;
 my $db  = $_[1] or return '' ;
+my $length = $_[2] // length($seq) ;
 
 # 入力文字列のチェック
 chomp $seq ;
@@ -28,39 +30,12 @@ $seq =~ /^[atgcnrymkswhbvd]+$/i or return '' ;
 my $k = length $seq ;
 my ($host, $port) = portselect($db, $k) ;
 
-$port or return '' ;
+my $uri = "http://$host:$port/count?q=$seq&len=$length&format=text&timeout=0" ;
+my $count = get($uri) or return '' ;
 
-# ホスト名をIPアドレスの構造体に変換
-my $iaddr = inet_aton($host) or
-	# die "ERROR : $host does not exist ($!)" ;
-	return '' ;
-
-# portとIPアドレスをまとめて構造体に変換
-my $sock_addr = pack_sockaddr_in($port, $iaddr) ;
-
-# ソケット生成
-socket(SOCKET, PF_INET, SOCK_STREAM, 0) or
-	# die "ERROR : cannot create socket ($!)" ;
-	return '' ;
-
-# ソケットに接続
-connect(SOCKET, $sock_addr) or
-	# die "ERROR : cannot connect $host:$port ($!)" ;
-	return '' ;
-
-# SOCKETをバッファリングしない
-select(SOCKET) ; $|=1 ; select(STDOUT) ;
-
-# queryを送信
-print SOCKET "$seq\n";
-
-# 結果を受信
-my $count ;
-while (<SOCKET>){ $count .= $_ }
-
-# 結果を整数で返す
-($count =~ /(-?\d+)/) ? return $1 :
-                        return '' ;
+# 結果をアレイで返す
+($count =~ /^([\d,]+)/) ? return split(/,/, $1) :
+                          return () ;
 } ;
 # ====================
 sub portselect {  # Jellyfishサーバのホスト名/ポート番号

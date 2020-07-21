@@ -82,9 +82,13 @@ foreach (1..length($seq) - $targetlength + 1){
 		my $gc      = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
 		my $tttt    = (substr($targetseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
-		my $count23 = KmerCount::kmercount(substr($targetseq, -23, -3) . $pam, $db) ;
-		my $count15 = KmerCount::kmercount(substr($targetseq, -15, -3) . $pam, $db) ;
-		my $count11 = KmerCount::kmercount(substr($targetseq, -11, -3) . $pam, $db) ;
+
+		my (
+			$count23,
+			$count15,
+			$count11,
+		) = KmerCount::kmercount(substr($targetseq, -23, -3) . $pam, $db, '-23,-15,-11') ;
+
 		push @targetlist, {
 			'start'    => $start,
 			'end'      => $end,
@@ -106,9 +110,13 @@ foreach (1..length($seq) - $targetlength + 1){
 		my $gc      = gc_percent(substr($reverseq, 0, 20)) ;
 		my $tm      = tm_RNA(dna2rna(substr($reverseq, 0, 20))) ;
 		my $tttt    = (substr($reverseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
-		my $count23 = KmerCount::kmercount(substr($reverseq, -23, -3) . $pam, $db) ;
-		my $count15 = KmerCount::kmercount(substr($reverseq, -15, -3) . $pam, $db) ;
-		my $count11 = KmerCount::kmercount(substr($reverseq, -11, -3) . $pam, $db) ;
+
+		my (
+			$count23,
+			$count15,
+			$count11,
+		) = KmerCount::kmercount(substr($reverseq, -23, -3) . $pam, $db, '-23,-15,-11') ;
+
 		push @targetlist, {
 			'start'    => $start,
 			'end'      => $end,
