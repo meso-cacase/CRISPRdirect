@@ -88,7 +88,7 @@ $pam ||= 'NGG' ;
 $pam =~ s/\s//g ;
 $pam =~ tr/Uu/Tt/ ;
 $pam =~ s/[^ATGCURYMKSWHBVD-]/N/gi ;
-$pam = uc(substr($pam . 'NNN', 0, 3)) ;  # 先頭3文字、満たなければ最後にNを付加
+$pam = uc($pam) ;
 #-- △ PAMを正規化、塩基構成文字以外をNに置換
 
 #-- ▽ DBの大文字小文字を正規化
@@ -194,6 +194,8 @@ my $pam_seq   = ($result =~ /^# pam_sequence:\t(.*)$/m)      ? $1 : '' ;
 my $db_name   = ($result =~ /^# specificity_check:\t(.*)$/m) ? $1 : '' ;
 my $error     = ($result =~ /^# ERROR:\t(.*)$/m)             ? $1 : '' ;
 
+my $pamlength = length($pam) ;
+
 my @result = split /\n/, $result ;
 @result = grep(!/^#/, @result) or $error ||= 'No candidates were found.' ;
 
@@ -216,19 +218,19 @@ foreach (@result){
 	my ($start, $end, $strand, $sequence, $gc, $tm, $tttt, $resite, $count23, $count15, $count11) = split /\t/ ;
 
 	my $target = ($strand eq '+') ?
-		substr($sequence, 0, 20) . '<span class=pam>' . substr($sequence, -3) . '</span>' :
-		'<span class=pam>' . substr($sequence, 0, 3) . '</span>' . substr($sequence, -20) ;
+		substr($sequence, 0, 20) . '<span class=pam>' . substr($sequence, -($pamlength)) . '</span>' :
+		'<span class=pam>' . substr($sequence, 0, $pamlength) . '</span>' . substr($sequence, -20) ;
 
 	my $target2 = ($strand eq '+') ? $sequence : CRISPRdirect::comp($sequence) ;
 
-	my $seq23  = ($strand eq '+') ? substr($sequence, -23, -3) . $pam :
-	                                CRISPRdirect::comp($pam) . substr($sequence, 3, 23-3) ;
+	my $seq23  = ($strand eq '+') ? substr($sequence, 0, -($pamlength)) . $pam :
+	                                CRISPRdirect::comp($pam) . substr($sequence, $pamlength, 20) ;
 
-	my $seq15  = ($strand eq '+') ? substr($sequence, -15, -3) . $pam :
-	                                CRISPRdirect::comp($pam) . substr($sequence, 3, 15-3) ;
+	my $seq15  = ($strand eq '+') ? substr($sequence, -12 -($pamlength), -($pamlength)) . $pam :
+	                                CRISPRdirect::comp($pam) . substr($sequence, $pamlength, 12) ;
 
-	my $seq11  = ($strand eq '+') ? substr($sequence, -11, -3) . $pam :
-	                                CRISPRdirect::comp($pam) . substr($sequence, 3, 11-3) ;
+	my $seq11  = ($strand eq '+') ? substr($sequence, -8 -($pamlength), -($pamlength)) . $pam :
+	                                CRISPRdirect::comp($pam) . substr($sequence, $pamlength, 8) ;
 
 	$tttt = $tttt ? '+' : '-' ;
 
@@ -309,7 +311,7 @@ return
 	"	<th class=v>+<br>&minus;"                      . "\n" .
 	"	<th class=v>20mer+"                            .
 			"<span class=pam>PAM</span> "              .
-			"(total 23mer)"                            . "\n" .
+			"(total @{[20 + $pamlength]}mer)"          . "\n" .
 	"	<th class=o>GC% of<br>20mer"                   . "\n" .
 	"	<th class=o>Tm of<br>20mer"                    . "\n" .
 	"	<th class=o>TTTT in<br>20mer"                  . "\n" .

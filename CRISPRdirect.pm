@@ -17,13 +17,15 @@ sub crispr_design {
 #
 # usage: $tsv = crispr_design($userseq, $db, $pam) ;
 
-my $targetlength = 23 ;
-my $maxlength    = 10000 ;
-my $timeout      = 120 ;
+my $maxlength = 10000 ;
+my $timeout   = 120 ;
 
 my $fasta = $_[0] or return '' ;
 my $db    = $_[1] // '' ;
 my $pam   = $_[2] // 'NGG' ;
+
+my $pamlength    = length($pam) ;
+my $targetlength = 20 + $pamlength ;
 
 my ($name, $seq) = readFASTA($fasta) ;
 $name //= 'YourSeq' ;
@@ -78,7 +80,7 @@ foreach (1..length($seq) - $targetlength + 1){
 	#-- △ 制限酵素サイトを判定
 
 	#-- ▽ (+)鎖を判定
-	if (substr($targetseq, -3) =~ /${pam_regexp}$/i and $targetseq =~ /^[atgc]+$/i){
+	if (substr($targetseq, -($pamlength)) =~ /${pam_regexp}$/i and $targetseq =~ /^[atgc]+$/i){
 		my $gc   = gc_percent(substr($targetseq, 0, 20)) ;
 		my $tm   = tm_RNA(dna2rna(substr($targetseq, 0, 20))) ;
 		my $tttt = (substr($targetseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
@@ -87,7 +89,10 @@ foreach (1..length($seq) - $targetlength + 1){
 			$count23,
 			$count15,
 			$count11,
-		) = KmerCount::kmercount(substr($targetseq, -23, -3) . $pam, $db, '-23,-15,-11') ;
+		) = KmerCount::kmercount(substr($targetseq, 0, -($pamlength)) . $pam, $db,
+		                         # '-23,-15,-11' から可変長に変更
+		                         "-@{[20 + $pamlength]},-@{[12 + $pamlength]},-@{[8 + $pamlength]}"
+		                        ) ;
 
 		push @targetlist, {
 			'start'    => $start,
@@ -106,7 +111,7 @@ foreach (1..length($seq) - $targetlength + 1){
 	#-- △ (+)鎖を判定
 
 	#-- ▽ (-)鎖を判定
-	if (substr($reverseq, -3) =~ /${pam_regexp}$/i and $reverseq =~ /^[atgc]+$/i){
+	if (substr($reverseq, -($pamlength)) =~ /${pam_regexp}$/i and $reverseq =~ /^[atgc]+$/i){
 		my $gc   = gc_percent(substr($reverseq, 0, 20)) ;
 		my $tm   = tm_RNA(dna2rna(substr($reverseq, 0, 20))) ;
 		my $tttt = (substr($reverseq, 0, 20) =~ /TTTT/i) ? 1 : 0 ;
@@ -115,7 +120,10 @@ foreach (1..length($seq) - $targetlength + 1){
 			$count23,
 			$count15,
 			$count11,
-		) = KmerCount::kmercount(substr($reverseq, -23, -3) . $pam, $db, '-23,-15,-11') ;
+		) = KmerCount::kmercount(substr($reverseq, 0, -($pamlength)) . $pam, $db,
+		                         # '-23,-15,-11' から可変長に変更
+		                         "-@{[20 + $pamlength]},-@{[12 + $pamlength]},-@{[8 + $pamlength]}"
+		                        ) ;
 
 		push @targetlist, {
 			'start'    => $start,
