@@ -312,6 +312,7 @@ JCVI_PMFA1_2.0           	172.18.8.72	28260	Penicillium marneffei ATCC 18224 gen
 CC3                      	172.18.8.72	28245	Inky cap fungus (Coprinopsis cinerea) okayama7#130 genome, CC3 (Aug, 2014)
 ASM15095v2               	172.18.8.72	28268	Phaeodactylum tricornutum genome, ASM15095v2 (Feb, 2010)
 ASM14940v2               	172.18.8.72	28269	Thalassiosira pseudonana genome, ASM14940v2 (May, 2014)
+GCA_003118565.1          	172.18.8.72	28847	Madagascar ground gecko (Paroedura picta) genome, Ppicta_assembly_v1 (Mar, 2018)
 GCA_000009725.1          	172.18.8.72	28313	Synechocystis sp. PCC 6803 genome, GCA_000009725.1
 GCA_000009705.1          	172.18.8.72	28314	Nostoc sp. PCC 7120 genome, GCA_000009705.1
 GCA_000011345.1          	172.18.8.72	28315	Thermosynechococcus elongatus BP-1 genome, GCA_000011345.1

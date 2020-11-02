@@ -286,6 +286,7 @@ Mpolymorpha_3.1          	172.18.8.72	28284	         	Marchantia polymorpha geno
 Ccanephora_1.0           	172.18.8.72	28285	         	Coffea canephora genome, v1.0	Coffea canephora;coffee
 AaegL5                   	172.18.8.72	28000	VectorBase	Aedes aegypti genome, AaegL5 (Jun, 2017)	Aedes aegypti;yellow fever mosquito
 AaloF1                   	172.18.8.72	28001	VectorBase	Aedes albopictus genome, AaloF1 (Nov, 2015)	Aedes albopictus;asian tiger mosquito;forest mosquito
+GCA_003118565.1          	172.18.8.72	28847	NCBI     	Paroedura picta genome, Ppicta_assembly_v1 (Mar, 2018)	Paroedura picta;madagascar ground gecko;ocelot gecko
 Ppatens_251_v3           	172.18.8.74	28287	Phytozome	Physcomitrella patens genome, v3.0 (Oct, 2007)	Physcomitrella patens;moss
 Smoellendorffii_91_v1    	172.18.8.74	28288	Phytozome	Selaginella moellendorffii genome, v1.0 (Dec, 2007)	Selaginella moellendorffii;spikemoss
 Creinhardtii_281_v5_5    	172.18.8.74	28289	Phytozome	Chlamydomonas reinhardtii genome, v5.5 (May, 2014)	Chlamydomonas reinhardtii;green algae
