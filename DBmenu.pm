@@ -10,6 +10,7 @@ $dbmenu = <<"--EOS--" ;
 		<option disabled>----------</option>
 		<option value=\'hg38\'                      synonym=\"$db_synonym{'hg38'                     }\">$db_fullname{'hg38'                     }</option>
 		<option value=\'hg19\'                      synonym=\"$db_synonym{'hg19'                     }\">$db_fullname{'hg19'                     }</option>
+		<option value=\'mm39\'                      synonym=\"$db_synonym{'mm39'                     }\">$db_fullname{'mm39'                     }</option>
 		<option value=\'mm10\'                      synonym=\"$db_synonym{'mm10'                     }\">$db_fullname{'mm10'                     }</option>
 		<option value=\'rn6\'                       synonym=\"$db_synonym{'rn6'                      }\">$db_fullname{'rn6'                      }</option>
 		<option value=\'calJac3\'                   synonym=\"$db_synonym{'calJac3'                  }\">$db_fullname{'calJac3'                  }</option>

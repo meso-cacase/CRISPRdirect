@@ -22,6 +22,7 @@ hg19                     	172.18.8.78	28018	Human (Homo sapiens) genome, GRCh37/
 hg18                     	172.18.8.76	28116	Human (Homo sapiens) genome, NCBI36/hg18 (Mar, 2006)
 JRGv2                    	172.18.8.72	28263	Human (Homo sapiens) Japanese Reference Genome, JRGv2 (Jun, 2017)
 JRGv1                    	172.18.8.72	28261	Human (Homo sapiens) Japanese Reference Genome, JRGv1 (Aug, 2016)
+mm39                     	172.18.8.78	28851	Mouse (Mus musculus) genome, GRCm39/mm39 (Jun, 2020)
 mm10                     	172.18.8.78	28019	Mouse (Mus musculus) genome, GRCm38/mm10 (Dec, 2011)
 mm9                      	172.18.8.78	28020	Mouse (Mus musculus) genome, NCBI37/mm9 (Jul, 2007)
 MSMv3                    	172.18.8.72	28265	Mouse (Mus musculus) genome, MSMv3
