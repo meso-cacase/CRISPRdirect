@@ -8,7 +8,7 @@ CRISPRdirect web server: https://GGGenome.dbcls.jp/en/
 CRISPR-Cas9システムのターゲット配列を設計するウェブサービスです。  
 どなたでも無償で自由に利用できます。
 
-+ http://crispr.dbcls.jp/  
++ https://crispr.dbcls.jp/  
   本レポジトリにあるCGIが実際に稼働しています。
 
 ![スクリーンショット](http://data.dbcls.jp/~meso/img/CRISPRscreen.png
@@ -35,7 +35,7 @@ API
   `hg19` : ヒトゲノム  
   `mm10` : マウスゲノム  
   `rn5`  : ラットゲノム  
-  その他 → [利用可能な生物種一覧](http://crispr.dbcls.jp/doc/#db_list)
+  その他 → [利用可能な生物種一覧](https://crispr.dbcls.jp/doc/#db_list)
 
 + `format` (省略可)  
   設計結果のフォーマット。  
