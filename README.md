@@ -11,7 +11,7 @@ CRISPR-Cas9システムのターゲット配列を設計するウェブサービ
 + https://crispr.dbcls.jp/  
   本レポジトリにあるCGIが実際に稼働しています。
 
-![スクリーンショット](http://data.dbcls.jp/~meso/img/CRISPRscreen.png
+![スクリーンショット](https://data.dbcls.jp/~meso/img/CRISPRscreen.png
 "スクリーンショット")
 
 
@@ -53,11 +53,11 @@ API
 + siDirect (http://siDirect.RNAi.jp/)  
   哺乳類細胞で活性が高く標的遺伝子に特異的なsiRNAの設計ウェブサーバ
 
-+ 統合遺伝子検索GGRNA (http://GGRNA.dbcls.jp/)  
++ 統合遺伝子検索GGRNA (https://GGRNA.dbcls.jp/)  
   遺伝子をGoogleのように検索できるウェブサーバ
-  → [紹介記事](http://first.lifesciencedb.jp/from_dbcls/e0001)
+  → [紹介記事](https://first.lifesciencedb.jp/from_dbcls/e0001)
 
-+ 高速配列検索GGGenome (http://GGGenome.dbcls.jp/)  
++ 高速配列検索GGGenome (https://GGGenome.dbcls.jp/)  
   ゲノム等の塩基配列を高速に検索できるウェブサーバ
 
 
@@ -65,7 +65,7 @@ License
 --------
 
 Copyright &copy; 2013-2020 Yuki Naito
- ([@meso_cacase](http://twitter.com/meso_cacase)) at  
+ ([@meso_cacase](https://twitter.com/meso_cacase)) at  
 Database Center for Life Science (DBCLS), Japan.  
 This software is distributed under
-[modified BSD license](http://www.opensource.org/licenses/bsd-license.php).
+[modified BSD license](https://opensource.org/licenses/bsd-license.php).
