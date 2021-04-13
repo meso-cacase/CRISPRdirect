@@ -64,7 +64,7 @@ API
 License
 --------
 
-Copyright &copy; 2013-2020 Yuki Naito
+Copyright &copy; 2013-2021 Yuki Naito
  ([@meso_cacase](https://twitter.com/meso_cacase)) at  
 Database Center for Life Science (DBCLS), Japan.  
 This software is distributed under
