@@ -288,6 +288,7 @@ Ccanephora_1.0           	172.18.8.72	28285	         	Coffea canephora genome, v
 AaegL5                   	172.18.8.72	28000	VectorBase	Aedes aegypti genome, AaegL5 (Jun, 2017)	Aedes aegypti;yellow fever mosquito
 AaloF1                   	172.18.8.72	28001	VectorBase	Aedes albopictus genome, AaloF1 (Nov, 2015)	Aedes albopictus;asian tiger mosquito;forest mosquito
 GCA_003118565.1          	172.18.8.72	28847	NCBI     	Paroedura picta genome, Ppicta_assembly_v1 (Mar, 2018)	Paroedura picta;madagascar ground gecko;ocelot gecko
+GCA_003118565.2          	172.18.8.72	28887	NCBI     	Paroedura picta genome, Ppicta_v2.0 (Sep, 2021)	Paroedura picta;madagascar ground gecko;ocelot gecko
 AspL_2604                	172.18.8.72	28013	EnsemblFungi	Aspergillus luchuensis str. RIB 2604 genome, AspL_2604	Aspergillus luchuensis;black koji
 Akaw_assembly01          	172.18.8.72	28014	NCBI     	Aspergillus kawachii genome, IFO 4308 (Nov, 2011)	Aspergillus kawachii;white koji
 Ppatens_251_v3           	172.18.8.74	28287	Phytozome	Physcomitrella patens genome, v3.0 (Oct, 2007)	Physcomitrella patens;moss

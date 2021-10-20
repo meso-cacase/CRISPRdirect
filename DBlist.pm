@@ -314,6 +314,7 @@ CC3                      	172.18.8.72	28245	Inky cap fungus (Coprinopsis cinerea
 ASM15095v2               	172.18.8.72	28268	Phaeodactylum tricornutum genome, ASM15095v2 (Feb, 2010)
 ASM14940v2               	172.18.8.72	28269	Thalassiosira pseudonana genome, ASM14940v2 (May, 2014)
 GCA_003118565.1          	172.18.8.72	28847	Madagascar ground gecko (Paroedura picta) genome, Ppicta_assembly_v1 (Mar, 2018)
+GCA_003118565.2          	172.18.8.72	28887	Madagascar ground gecko (Paroedura picta) genome, Ppicta_v2.0 (Sep, 2021)
 AspL_2604                	172.18.8.72	28013	Aspergillus luchuensis str. RIB 2604 genome, AspL_2604
 Akaw_assembly01          	172.18.8.72	28014	Aspergillus kawachii genome, IFO 4308 (Nov, 2011)
 GCA_000009725.1          	172.18.8.72	28313	Synechocystis sp. PCC 6803 genome, GCA_000009725.1
