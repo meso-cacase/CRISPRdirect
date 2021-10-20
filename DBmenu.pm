@@ -16,7 +16,9 @@ $dbmenu = <<"--EOS--" ;
 		<option value=\'calJac3\'                   synonym=\"$db_synonym{'calJac3'                  }\">$db_fullname{'calJac3'                  }</option>
 		<option value=\'susScr3\'                   synonym=\"$db_synonym{'susScr3'                  }\">$db_fullname{'susScr3'                  }</option>
 		<option value=\'galGal4\'                   synonym=\"$db_synonym{'galGal4'                  }\">$db_fullname{'galGal4'                  }</option>
+		<option value=\'Xentr10.0\'                 synonym=\"$db_synonym{'Xentr10.0'                }\">$db_fullname{'Xentr10.0'                }</option>
 		<option value=\'Xentr9\'                    synonym=\"$db_synonym{'Xentr9'                   }\">$db_fullname{'Xentr9'                   }</option>
+		<option value=\'Xenla9.2\'                  synonym=\"$db_synonym{'Xenla9.2'                 }\">$db_fullname{'Xenla9.2'                 }</option>
 		<option value=\'Xenla9\'                    synonym=\"$db_synonym{'Xenla9'                   }\">$db_fullname{'Xenla9'                   }</option>
 		<option value=\'danRer11\'                  synonym=\"$db_synonym{'danRer11'                 }\">$db_fullname{'danRer11'                 }</option>
 		<option value=\'danRer10\'                  synonym=\"$db_synonym{'danRer10'                 }\">$db_fullname{'danRer10'                 }</option>

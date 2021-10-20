@@ -139,8 +139,10 @@ LepOcu1                  	172.18.8.76	28129	Spotted gar (Lepisosteus oculatus) g
 ChlSab1.1                	172.18.8.76	28130	Green monkey (Chlorocebus sabaeus) genome, ChlSab1.1 (Mar, 2014)
 macaque_CE_1             	172.18.8.77	28229	Crab-eating macaque (Macaca fascicularis) genome, CE_1.0 (Jul, 2011)
 MesAur1.0                	172.18.8.77	28240	Golden hamster (Mesocricetus auratus) genome, MesAur1.0 (Mar, 2013)
+Xenla9.2                 	172.18.8.77	28888	Frog (Xenopus laevis) genome, XenBase/NCBI 9.2
 Xenla9                   	172.18.8.77	28228	Frog (Xenopus laevis) genome, XenBase/JGI 9.1
 Xenla7                   	172.18.8.72	28217	Frog (Xenopus laevis) genome, JGI 7.1/Xenla7 (Dec, 2013)
+Xentr10.0                	172.18.8.77	28889	Frog (Xenopus tropicalis) genome, XenBase/UCB 10.0
 Xentr9                   	172.18.8.77	28227	Frog (Xenopus tropicalis) genome, XenBase/JGI 9.0
 Xentr8                   	172.18.8.77	28226	Frog (Xenopus tropicalis) genome, XenBase/JGI 8.0
 Xentr7                   	172.18.8.77	28225	Frog (Xenopus tropicalis) genome, XenBase/JGI 7.1
